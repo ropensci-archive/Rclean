@@ -1,0 +1,82 @@
+Architecture="x86_64"
+OperatingSystem="unix"
+Language="R"
+LanguageVersion="R version 3.4.0 (2017-04-21)"
+RDataTrackerVersion="2.26.2"
+Script="/Users/hermes/Labs/HF/projects/e2ep/projects/codecleanR/example/simple.R"
+SourcedScripts=""
+ProcessFileTimestamp="2017-08-09T11.29.57PDT"
+WorkingDirectory="/Users/hermes/Labs/HF/projects/e2ep/projects/codecleanR/example"
+DDGDirectory="/Users/hermes/Labs/HF/projects/e2ep/projects/codecleanR/example/R_clean"
+DateTime="2017-08-09T11.36.00PDT"
+InstalledPackages="base 3.4.0, datasets 3.4.0, devtools 1.13.3, graphics 3.4.0, grDevices 3.4.0, methods 3.4.0, RDataTracker 2.26.2, stats 3.4.0, utils 3.4.0"
+14
+Start p1 "1-simple.R" Value="simple.R" Time="15.128" Script="NA" Pos="NA";
+Operation p2 "2-x <- read.csv(\"data/simple_data.csv\")" Value="x <- read.csv(\"data/simple_data.csv\")" Time="15.131" Script="0" Pos="4,1,4,37";
+CF p1 p2
+File d1 "1-simple_data.csv" Value="data/1-simple_data.csv" ValType="\"{\"container\":\"vector\", \"dimension\":[1], \"type\":[\"character\"]}\"" Time="2017-08-09T11.36.00PDT" Location="/Users/hermes/Labs/HF/projects/e2ep/projects/codecleanR/example/data/simple_data.csv";
+DF d1 p2
+Snapshot d2 "2-x" Value="data/2-x.csv" ValType="\"{\"container\":\"data_frame\", \"dimension\":[9,2], \"type\":[\"integer\",\"numeric\"]}\"" Time="2017-08-09T11.36.00PDT";
+DF p2 d2
+Operation p3 "3-x. <- data.frame(x, y2 = x[, \"y\"]^2)" Value="x. <- data.frame(x, y2 = x[, \"y\"]^2)" Time="15.18" Script="0" Pos="5,1,5,35";
+CF p2 p3
+DF d2 p3
+Snapshot d3 "3-x." Value="data/3-x..csv" ValType="\"{\"container\":\"data_frame\", \"dimension\":[9,3], \"type\":[\"integer\",\"numeric\",\"numeric\"]}\"" Time="2017-08-09T11.36.00PDT";
+DF p3 d3
+Operation p4 "4-fit <- lm(x ~ y, data = x)" Value="fit <- lm(x ~ y, data = x)" Time="15.205" Script="0" Pos="8,1,8,24";
+CF p3 p4
+DF d2 p4
+Snapshot d4 "4-y [ENV]" Value="data/4-y.csv" ValType="\"{\"container\":\"vector\", \"dimension\":[9], \"type\":[\"numeric\"]}\"" Time="2017-08-09T11.36.00PDT";
+DF d4 p4
+Snapshot d5 "5-fit" Value="data/5-fit.txt" ValType="\"\"list\"\"" Time="2017-08-09T11.36.00PDT";
+DF p4 d5
+Operation p5 "5-stat.tab <- capture.output(summary(fit))" Value="stat.tab <- capture.output(summary(fit))" Time="15.246" Script="0" Pos="9,1,9,40";
+CF p4 p5
+DF d5 p5
+Snapshot d6 "6-stat.tab" Value="data/6-stat.tab.csv" ValType="\"{\"container\":\"vector\", \"dimension\":[19], \"type\":[\"character\"]}\"" Time="2017-08-09T11.36.00PDT";
+DF p5 d6
+Operation p6 "6-stat.tab <- as.matrix(stat.tab)" Value="stat.tab <- as.matrix(stat.tab)" Time="15.276" Script="0" Pos="10,1,10,31";
+CF p5 p6
+DF d6 p6
+Snapshot d7 "7-stat.tab" Value="data/7-stat.tab.csv" ValType="\"{\"container\":\"matrix\", \"dimension\":[19,1], \"type\":[\"character\"]}\"" Time="2017-08-09T11.36.00PDT";
+DF p6 d7
+Operation p7 "7-write.csv(stat.tab, file = \"results/stats_table.csv\")" Value="write.csv(stat.tab, file = \"results/stats_table.csv\")" Time="15.298" Script="0" Pos="13,1,13,53";
+CF p6 p7
+DF d7 p7
+File d8 "8-stats_table.csv" Value="data/8-stats_table.csv" ValType="\"{\"container\":\"vector\", \"dimension\":[1], \"type\":[\"character\"]}\"" Time="2017-08-09T11.36.00PDT" Location="/Users/hermes/Labs/HF/projects/e2ep/projects/codecleanR/example/results/stats_table.csv";
+DF p7 d8
+Operation p8 "8-png(\"results/plot_xy.png\")" Value="png(\"results/plot_xy.png\")" Time="15.331" Script="0" Pos="15,1,15,26";
+CF p7 p8
+Data d9 "9-dev.2" Value="\"graph\"" ValType="\"{\"container\":\"vector\", \"dimension\":[1], \"type\":[\"character\"]}\"";
+DF p8 d9
+Operation p9 "9-plot(y ~ x, data = x)" Value="plot(y ~ x, data = x)" Time="15.354" Script="0" Pos="16,1,16,19";
+CF p8 p9
+DF d4 p9
+DF d2 p9
+DF d9 p9
+Data d10 "10-dev.2" Value="\"graph\"" ValType="\"{\"container\":\"vector\", \"dimension\":[1], \"type\":[\"character\"]}\"";
+DF p9 d10
+Operation p10 "10-dev.off()" Value="dev.off()" Time="15.404" Script="0" Pos="17,1,17,9";
+CF p9 p10
+File d11 "11-plot_xy.png" Value="data/11-plot_xy.png" ValType="\"{\"container\":\"vector\", \"dimension\":[1], \"type\":[\"character\"]}\"" Time="2017-08-09T11.36.01PDT" Location="/Users/hermes/Labs/HF/projects/e2ep/projects/codecleanR/example/results/plot_xy.png";
+DF p10 d11
+DF d10 p10
+Operation p11 "11-png(\"results/plot_xy2.png\")" Value="png(\"results/plot_xy2.png\")" Time="15.431" Script="0" Pos="19,1,19,27";
+CF p10 p11
+Data d12 "12-dev.2" Value="\"graph\"" ValType="\"{\"container\":\"vector\", \"dimension\":[1], \"type\":[\"character\"]}\"";
+DF p11 d12
+Operation p12 "12-plot(y2 ~ x, data = x.)" Value="plot(y2 ~ x, data = x.)" Time="15.453" Script="0" Pos="20,1,20,21";
+CF p11 p12
+DF d2 p12
+DF d3 p12
+DF d12 p12
+Data d13 "13-dev.2" Value="\"graph\"" ValType="\"{\"container\":\"vector\", \"dimension\":[1], \"type\":[\"character\"]}\"";
+DF p12 d13
+Operation p13 "13-dev.off()" Value="dev.off()" Time="15.502" Script="0" Pos="21,1,21,9";
+CF p12 p13
+File d14 "14-plot_xy2.png" Value="data/14-plot_xy2.png" ValType="\"{\"container\":\"vector\", \"dimension\":[1], \"type\":[\"character\"]}\"" Time="2017-08-09T11.36.01PDT" Location="/Users/hermes/Labs/HF/projects/e2ep/projects/codecleanR/example/results/plot_xy2.png";
+DF p13 d14
+DF d13 p13
+Finish p14 "14-simple.R" Value="simple.R" Time="15.522" Script="NA" Pos="NA";
+CF p13 p14
+
