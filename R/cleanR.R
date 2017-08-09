@@ -52,7 +52,7 @@ cleanR <- function(result,
     script <- readLines(script.path)
     rownames(script) <- rownames(prov$info$activity),
     
-prov$info$entity
+    prov$info$entity
 
     min.code <- script[]
 
