@@ -32,7 +32,7 @@ cleanR <- function(result,
     source("../R/read.prov.R")
     source("../R/get.spine.R")
     result <- "plot_xy.png"
-    script.path <- "simple.R"
+    script.path <- "example/simple.R"
     ws <- "R_clean"
 
 
@@ -40,7 +40,7 @@ cleanR <- function(result,
     #' Input result path
     #' Input script path
     #' Create workspace
-    dir.create(wd)
+    dir.create(ws)
     #' Get provenance for script
     ddg.run(script.path,ddgdir = ws)
     prov <- .read.prov(paste0(ws,"/ddg.json"))
