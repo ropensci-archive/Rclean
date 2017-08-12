@@ -9,7 +9,7 @@
 "p1" : {
 "rdt:name" : "simple.R",
 "rdt:type" : "Start",
-"rdt:elapsedTime" : "15.128",
+"rdt:elapsedTime" : "17.654",
 "rdt:scriptNum" : "NA",
 "rdt:startLine" : "NA",
 "rdt:startCol" : "NA",
@@ -20,7 +20,7 @@
 "p2" : {
 "rdt:name" : "x <- read.csv(\"data/simple_data.csv\")",
 "rdt:type" : "Operation",
-"rdt:elapsedTime" : "15.131",
+"rdt:elapsedTime" : "17.657",
 "rdt:scriptNum" : "0",
 "rdt:startLine" : "4",
 "rdt:startCol" : "1",
@@ -31,7 +31,7 @@
 "p3" : {
 "rdt:name" : "x. <- data.frame(x, y2 = x[, \"y\"]^2)",
 "rdt:type" : "Operation",
-"rdt:elapsedTime" : "15.18",
+"rdt:elapsedTime" : "17.69",
 "rdt:scriptNum" : "0",
 "rdt:startLine" : "5",
 "rdt:startCol" : "1",
@@ -42,7 +42,7 @@
 "p4" : {
 "rdt:name" : "fit <- lm(x ~ y, data = x)",
 "rdt:type" : "Operation",
-"rdt:elapsedTime" : "15.205",
+"rdt:elapsedTime" : "17.714",
 "rdt:scriptNum" : "0",
 "rdt:startLine" : "8",
 "rdt:startCol" : "1",
@@ -53,7 +53,7 @@
 "p5" : {
 "rdt:name" : "stat.tab <- capture.output(summary(fit))",
 "rdt:type" : "Operation",
-"rdt:elapsedTime" : "15.246",
+"rdt:elapsedTime" : "17.75",
 "rdt:scriptNum" : "0",
 "rdt:startLine" : "9",
 "rdt:startCol" : "1",
@@ -64,7 +64,7 @@
 "p6" : {
 "rdt:name" : "stat.tab <- as.matrix(stat.tab)",
 "rdt:type" : "Operation",
-"rdt:elapsedTime" : "15.276",
+"rdt:elapsedTime" : "17.776",
 "rdt:scriptNum" : "0",
 "rdt:startLine" : "10",
 "rdt:startCol" : "1",
@@ -75,84 +75,84 @@
 "p7" : {
 "rdt:name" : "write.csv(stat.tab, file = \"results/stats_table.csv\")",
 "rdt:type" : "Operation",
-"rdt:elapsedTime" : "15.298",
+"rdt:elapsedTime" : "17.798",
 "rdt:scriptNum" : "0",
 "rdt:startLine" : "13",
 "rdt:startCol" : "1",
-"rdt:endLine" : "13",
-"rdt:endCol" : "53"
+"rdt:endLine" : "14",
+"rdt:endCol" : "43"
 } ,
 
 "p8" : {
 "rdt:name" : "png(\"results/plot_xy.png\")",
 "rdt:type" : "Operation",
-"rdt:elapsedTime" : "15.331",
+"rdt:elapsedTime" : "17.821",
 "rdt:scriptNum" : "0",
-"rdt:startLine" : "15",
+"rdt:startLine" : "16",
 "rdt:startCol" : "1",
-"rdt:endLine" : "15",
+"rdt:endLine" : "16",
 "rdt:endCol" : "26"
 } ,
 
 "p9" : {
 "rdt:name" : "plot(y ~ x, data = x)",
 "rdt:type" : "Operation",
-"rdt:elapsedTime" : "15.354",
+"rdt:elapsedTime" : "17.843",
 "rdt:scriptNum" : "0",
-"rdt:startLine" : "16",
+"rdt:startLine" : "17",
 "rdt:startCol" : "1",
-"rdt:endLine" : "16",
-"rdt:endCol" : "19"
+"rdt:endLine" : "18",
+"rdt:endCol" : "14"
 } ,
 
 "p10" : {
 "rdt:name" : "dev.off()",
 "rdt:type" : "Operation",
-"rdt:elapsedTime" : "15.404",
+"rdt:elapsedTime" : "17.89",
 "rdt:scriptNum" : "0",
-"rdt:startLine" : "17",
+"rdt:startLine" : "19",
 "rdt:startCol" : "1",
-"rdt:endLine" : "17",
+"rdt:endLine" : "19",
 "rdt:endCol" : "9"
 } ,
 
 "p11" : {
 "rdt:name" : "png(\"results/plot_xy2.png\")",
 "rdt:type" : "Operation",
-"rdt:elapsedTime" : "15.431",
+"rdt:elapsedTime" : "17.913",
 "rdt:scriptNum" : "0",
-"rdt:startLine" : "19",
+"rdt:startLine" : "21",
 "rdt:startCol" : "1",
-"rdt:endLine" : "19",
+"rdt:endLine" : "21",
 "rdt:endCol" : "27"
 } ,
 
 "p12" : {
 "rdt:name" : "plot(y2 ~ x, data = x.)",
 "rdt:type" : "Operation",
-"rdt:elapsedTime" : "15.453",
+"rdt:elapsedTime" : "17.934",
 "rdt:scriptNum" : "0",
-"rdt:startLine" : "20",
+"rdt:startLine" : "22",
 "rdt:startCol" : "1",
-"rdt:endLine" : "20",
-"rdt:endCol" : "21"
+"rdt:endLine" : "23",
+"rdt:endCol" : "15"
 } ,
 
 "p13" : {
 "rdt:name" : "dev.off()",
 "rdt:type" : "Operation",
-"rdt:elapsedTime" : "15.502",
+"rdt:elapsedTime" : "17.984",
 "rdt:scriptNum" : "0",
-"rdt:startLine" : "21",
+"rdt:startLine" : "24",
 "rdt:startCol" : "1",
-"rdt:endLine" : "21",
+"rdt:endLine" : "24",
 "rdt:endCol" : "9"
 } ,
 
 "p14" : {
 "rdt:name" : "simple.R",
 "rdt:type" : "Finish",
-"rdt:elapsedTime" : "15.522",
+"rdt:elapsedTime" : "18.009",
 "rdt:scriptNum" : "NA",
 "rdt:startLine" : "NA",
 "rdt:startCol" : "NA",
@@ -169,17 +169,19 @@
 "rdt:script" : "/Users/hermes/Labs/HF/projects/e2ep/projects/codecleanR/example/simple.R",
 "rdt:sourcedScripts" : ""
 ,
-"rdt:scriptTimeStamp" : "2017-08-09T11.29.57PDT",
+"rdt:scriptTimeStamp" : "2017-08-12T11.42.04PDT",
 "rdt:workingDirectory" : "/Users/hermes/Labs/HF/projects/e2ep/projects/codecleanR/example",
-"rdt:ddgDirectory" : "/Users/hermes/Labs/HF/projects/e2ep/projects/codecleanR/example/R_clean",
-"rdt:ddgTimeStamp" : "2017-08-09T11.36.00PDT",
+"rdt:ddgDirectory" : "R_clean/.prov",
+"rdt:ddgTimeStamp" : "2017-08-12T13.07.43PDT",
 "rdt:rdatatrackerVersion" : "2.26.2",
 "rdt:installedPackages" : [
 	{"package" : "base", "version" : "3.4.0"},
 	{"package" : "datasets", "version" : "3.4.0"},
-	{"package" : "devtools", "version" : "1.13.3"},
+	{"package" : "formatR", "version" : "1.5"},
 	{"package" : "graphics", "version" : "3.4.0"},
 	{"package" : "grDevices", "version" : "3.4.0"},
+	{"package" : "igraph", "version" : "1.0.1"},
+	{"package" : "jsonlite", "version" : "1.5"},
 	{"package" : "methods", "version" : "3.4.0"},
 	{"package" : "RDataTracker", "version" : "2.26.2"},
 	{"package" : "stats", "version" : "3.4.0"},
@@ -195,7 +197,7 @@
 "rdt:scope" : "undefined",
 "rdt:fromEnv" : "FALSE",
 "rdt:MD5hash" : "NA",
-"rdt:timestamp" : "2017-08-09T11.36.00PDT",
+"rdt:timestamp" : "2017-08-12T13.07.43PDT",
 "rdt:location" : "/Users/hermes/Labs/HF/projects/e2ep/projects/codecleanR/example/data/simple_data.csv"
 } ,
 
@@ -207,7 +209,7 @@
 "rdt:scope" : "R_GlobalEnv",
 "rdt:fromEnv" : "FALSE",
 "rdt:MD5hash" : "",
-"rdt:timestamp" : "2017-08-09T11.36.00PDT",
+"rdt:timestamp" : "2017-08-12T13.07.43PDT",
 "rdt:location" : ""
 } ,
 
@@ -219,72 +221,72 @@
 "rdt:scope" : "R_GlobalEnv",
 "rdt:fromEnv" : "FALSE",
 "rdt:MD5hash" : "",
-"rdt:timestamp" : "2017-08-09T11.36.00PDT",
+"rdt:timestamp" : "2017-08-12T13.07.43PDT",
 "rdt:location" : ""
 } ,
 
 "d4" : {
-"rdt:name" : "y [ENV]",
-"rdt:value" : "data/4-y.csv",
-"rdt:valType" : {"container":"vector", "dimension":[9], "type":["numeric"]},
-"rdt:type" : "Snapshot",
-"rdt:scope" : "R_GlobalEnv",
-"rdt:fromEnv" : "TRUE",
-"rdt:MD5hash" : "",
-"rdt:timestamp" : "2017-08-09T11.36.00PDT",
-"rdt:location" : ""
-} ,
-
-"d5" : {
 "rdt:name" : "fit",
-"rdt:value" : "data/5-fit.txt",
+"rdt:value" : "data/4-fit.txt",
 "rdt:valType" : "list",
 "rdt:type" : "Snapshot",
 "rdt:scope" : "R_GlobalEnv",
 "rdt:fromEnv" : "FALSE",
 "rdt:MD5hash" : "",
-"rdt:timestamp" : "2017-08-09T11.36.00PDT",
+"rdt:timestamp" : "2017-08-12T13.07.43PDT",
+"rdt:location" : ""
+} ,
+
+"d5" : {
+"rdt:name" : "stat.tab",
+"rdt:value" : "data/5-stat.tab.csv",
+"rdt:valType" : {"container":"vector", "dimension":[19], "type":["character"]},
+"rdt:type" : "Snapshot",
+"rdt:scope" : "R_GlobalEnv",
+"rdt:fromEnv" : "FALSE",
+"rdt:MD5hash" : "",
+"rdt:timestamp" : "2017-08-12T13.07.43PDT",
 "rdt:location" : ""
 } ,
 
 "d6" : {
 "rdt:name" : "stat.tab",
 "rdt:value" : "data/6-stat.tab.csv",
-"rdt:valType" : {"container":"vector", "dimension":[19], "type":["character"]},
-"rdt:type" : "Snapshot",
-"rdt:scope" : "R_GlobalEnv",
-"rdt:fromEnv" : "FALSE",
-"rdt:MD5hash" : "",
-"rdt:timestamp" : "2017-08-09T11.36.00PDT",
-"rdt:location" : ""
-} ,
-
-"d7" : {
-"rdt:name" : "stat.tab",
-"rdt:value" : "data/7-stat.tab.csv",
 "rdt:valType" : {"container":"matrix", "dimension":[19,1], "type":["character"]},
 "rdt:type" : "Snapshot",
 "rdt:scope" : "R_GlobalEnv",
 "rdt:fromEnv" : "FALSE",
 "rdt:MD5hash" : "",
-"rdt:timestamp" : "2017-08-09T11.36.00PDT",
+"rdt:timestamp" : "2017-08-12T13.07.43PDT",
 "rdt:location" : ""
 } ,
 
-"d8" : {
+"d7" : {
 "rdt:name" : "stats_table.csv",
-"rdt:value" : "data/8-stats_table.csv",
+"rdt:value" : "data/7-stats_table.csv",
 "rdt:valType" : {"container":"vector", "dimension":[1], "type":["character"]},
 "rdt:type" : "File",
 "rdt:scope" : "undefined",
 "rdt:fromEnv" : "FALSE",
 "rdt:MD5hash" : "NA",
-"rdt:timestamp" : "2017-08-09T11.36.00PDT",
+"rdt:timestamp" : "2017-08-12T13.07.43PDT",
 "rdt:location" : "/Users/hermes/Labs/HF/projects/e2ep/projects/codecleanR/example/results/stats_table.csv"
 } ,
 
+"d8" : {
+"rdt:name" : "dev.3",
+"rdt:value" : "\"graph\"",
+"rdt:valType" : {"container":"vector", "dimension":[1], "type":["character"]},
+"rdt:type" : "Data",
+"rdt:scope" : "undefined",
+"rdt:fromEnv" : "FALSE",
+"rdt:MD5hash" : "",
+"rdt:timestamp" : "",
+"rdt:location" : ""
+} ,
+
 "d9" : {
-"rdt:name" : "dev.2",
+"rdt:name" : "dev.3",
 "rdt:value" : "\"graph\"",
 "rdt:valType" : {"container":"vector", "dimension":[1], "type":["character"]},
 "rdt:type" : "Data",
@@ -296,7 +298,19 @@
 } ,
 
 "d10" : {
-"rdt:name" : "dev.2",
+"rdt:name" : "plot_xy.png",
+"rdt:value" : "data/10-plot_xy.png",
+"rdt:valType" : {"container":"vector", "dimension":[1], "type":["character"]},
+"rdt:type" : "File",
+"rdt:scope" : "undefined",
+"rdt:fromEnv" : "FALSE",
+"rdt:MD5hash" : "NA",
+"rdt:timestamp" : "2017-08-12T13.07.43PDT",
+"rdt:location" : "/Users/hermes/Labs/HF/projects/e2ep/projects/codecleanR/example/results/plot_xy.png"
+} ,
+
+"d11" : {
+"rdt:name" : "dev.3",
 "rdt:value" : "\"graph\"",
 "rdt:valType" : {"container":"vector", "dimension":[1], "type":["character"]},
 "rdt:type" : "Data",
@@ -307,20 +321,8 @@
 "rdt:location" : ""
 } ,
 
-"d11" : {
-"rdt:name" : "plot_xy.png",
-"rdt:value" : "data/11-plot_xy.png",
-"rdt:valType" : {"container":"vector", "dimension":[1], "type":["character"]},
-"rdt:type" : "File",
-"rdt:scope" : "undefined",
-"rdt:fromEnv" : "FALSE",
-"rdt:MD5hash" : "NA",
-"rdt:timestamp" : "2017-08-09T11.36.01PDT",
-"rdt:location" : "/Users/hermes/Labs/HF/projects/e2ep/projects/codecleanR/example/results/plot_xy.png"
-} ,
-
 "d12" : {
-"rdt:name" : "dev.2",
+"rdt:name" : "dev.3",
 "rdt:value" : "\"graph\"",
 "rdt:valType" : {"container":"vector", "dimension":[1], "type":["character"]},
 "rdt:type" : "Data",
@@ -332,27 +334,27 @@
 } ,
 
 "d13" : {
-"rdt:name" : "dev.2",
-"rdt:value" : "\"graph\"",
-"rdt:valType" : {"container":"vector", "dimension":[1], "type":["character"]},
-"rdt:type" : "Data",
-"rdt:scope" : "undefined",
-"rdt:fromEnv" : "FALSE",
-"rdt:MD5hash" : "",
-"rdt:timestamp" : "",
-"rdt:location" : ""
-} ,
-
-"d14" : {
 "rdt:name" : "plot_xy2.png",
-"rdt:value" : "data/14-plot_xy2.png",
+"rdt:value" : "data/13-plot_xy2.png",
 "rdt:valType" : {"container":"vector", "dimension":[1], "type":["character"]},
 "rdt:type" : "File",
 "rdt:scope" : "undefined",
 "rdt:fromEnv" : "FALSE",
 "rdt:MD5hash" : "NA",
-"rdt:timestamp" : "2017-08-09T11.36.01PDT",
+"rdt:timestamp" : "2017-08-12T13.07.43PDT",
 "rdt:location" : "/Users/hermes/Labs/HF/projects/e2ep/projects/codecleanR/example/results/plot_xy2.png"
+} ,
+
+"d14" : {
+"rdt:name" : "dev.off.14.pdf",
+"rdt:value" : "data/14-dev.off.14.pdf",
+"rdt:valType" : {"container":"vector", "dimension":[1], "type":["character"]},
+"rdt:type" : "File",
+"rdt:scope" : "undefined",
+"rdt:fromEnv" : "FALSE",
+"rdt:MD5hash" : "3492ccfef4562da49663be94d4dccf40",
+"rdt:timestamp" : "2017-08-12T13.07.43PDT",
+"rdt:location" : "/Users/hermes/Labs/HF/projects/e2ep/projects/codecleanR/example/dev.off.14.pdf"
 }},
 "wasInformedBy":{
 
@@ -371,52 +373,52 @@
 "prov:informed" : "p4"
 } ,
 
-"e11" : {
+"e10" : {
 "prov:informant" : "p4",
 "prov:informed" : "p5"
 } ,
 
-"e14" : {
+"e13" : {
 "prov:informant" : "p5",
 "prov:informed" : "p6"
 } ,
 
-"e17" : {
+"e16" : {
 "prov:informant" : "p6",
 "prov:informed" : "p7"
 } ,
 
-"e20" : {
+"e19" : {
 "prov:informant" : "p7",
 "prov:informed" : "p8"
 } ,
 
-"e22" : {
+"e21" : {
 "prov:informant" : "p8",
 "prov:informed" : "p9"
 } ,
 
-"e27" : {
+"e25" : {
 "prov:informant" : "p9",
 "prov:informed" : "p10"
 } ,
 
-"e30" : {
+"e28" : {
 "prov:informant" : "p10",
 "prov:informed" : "p11"
 } ,
 
-"e32" : {
+"e30" : {
 "prov:informant" : "p11",
 "prov:informed" : "p12"
 } ,
 
-"e37" : {
+"e35" : {
 "prov:informant" : "p12",
 "prov:informed" : "p13"
 } ,
 
-"e40" : {
+"e38" : {
 "prov:informant" : "p13",
 "prov:informed" : "p14"
 }},
@@ -432,54 +434,59 @@
 "prov:activity" : "p3"
 } ,
 
-"e10" : {
-"prov:entity" : "d5",
+"e9" : {
+"prov:entity" : "d4",
 "prov:activity" : "p4"
 } ,
 
-"e13" : {
-"prov:entity" : "d6",
+"e12" : {
+"prov:entity" : "d5",
 "prov:activity" : "p5"
 } ,
 
-"e16" : {
-"prov:entity" : "d7",
+"e15" : {
+"prov:entity" : "d6",
 "prov:activity" : "p6"
 } ,
 
-"e19" : {
-"prov:entity" : "d8",
+"e18" : {
+"prov:entity" : "d7",
 "prov:activity" : "p7"
 } ,
 
-"e21" : {
-"prov:entity" : "d9",
+"e20" : {
+"prov:entity" : "d8",
 "prov:activity" : "p8"
+} ,
+
+"e24" : {
+"prov:entity" : "d9",
+"prov:activity" : "p9"
 } ,
 
 "e26" : {
 "prov:entity" : "d10",
-"prov:activity" : "p9"
-} ,
-
-"e28" : {
-"prov:entity" : "d11",
 "prov:activity" : "p10"
 } ,
 
-"e31" : {
-"prov:entity" : "d12",
+"e29" : {
+"prov:entity" : "d11",
 "prov:activity" : "p11"
+} ,
+
+"e34" : {
+"prov:entity" : "d12",
+"prov:activity" : "p12"
 } ,
 
 "e36" : {
 "prov:entity" : "d13",
-"prov:activity" : "p12"
+"prov:activity" : "p13"
 } ,
 
-"e38" : {
+"e39" : {
 "prov:entity" : "d14",
-"prov:activity" : "p13"
+"prov:activity" : "p14"
 }},
 "used":{
 
@@ -498,63 +505,53 @@
 "prov:entity" : "d2"
 } ,
 
-"e9" : {
-"prov:activity" : "p4",
+"e11" : {
+"prov:activity" : "p5",
 "prov:entity" : "d4"
 } ,
 
-"e12" : {
-"prov:activity" : "p5",
+"e14" : {
+"prov:activity" : "p6",
 "prov:entity" : "d5"
 } ,
 
-"e15" : {
-"prov:activity" : "p6",
+"e17" : {
+"prov:activity" : "p7",
 "prov:entity" : "d6"
 } ,
 
-"e18" : {
-"prov:activity" : "p7",
-"prov:entity" : "d7"
+"e22" : {
+"prov:activity" : "p9",
+"prov:entity" : "d2"
 } ,
 
 "e23" : {
 "prov:activity" : "p9",
-"prov:entity" : "d4"
+"prov:entity" : "d8"
 } ,
 
-"e24" : {
-"prov:activity" : "p9",
-"prov:entity" : "d2"
-} ,
-
-"e25" : {
-"prov:activity" : "p9",
+"e27" : {
+"prov:activity" : "p10",
 "prov:entity" : "d9"
 } ,
 
-"e29" : {
-"prov:activity" : "p10",
-"prov:entity" : "d10"
-} ,
-
-"e33" : {
+"e31" : {
 "prov:activity" : "p12",
 "prov:entity" : "d2"
 } ,
 
-"e34" : {
+"e32" : {
 "prov:activity" : "p12",
 "prov:entity" : "d3"
 } ,
 
-"e35" : {
+"e33" : {
 "prov:activity" : "p12",
-"prov:entity" : "d12"
+"prov:entity" : "d11"
 } ,
 
-"e39" : {
+"e37" : {
 "prov:activity" : "p13",
-"prov:entity" : "d13"
+"prov:entity" : "d12"
 }}
 }

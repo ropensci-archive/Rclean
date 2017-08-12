@@ -10,12 +10,15 @@ stat.tab <- capture.output(summary(fit))
 stat.tab <- as.matrix(stat.tab)
 
 ## Producing output
-write.csv(stat.tab, file = "results/stats_table.csv")
+write.csv(stat.tab, 
+          file = "results/stats_table.csv")
 
 png("results/plot_xy.png")
-plot(y~x, data = x)
+plot(y~x, 
+     data = x)
 dev.off()
 
 png("results/plot_xy2.png")
-plot(y2~x, data = x.)
+plot(y2~x, 
+     data = x.)
 dev.off()
