@@ -14,6 +14,7 @@
 #' @author Matthew K. Lau
 cleanR <- function(file = "Path to an R script",
                    result,
+                   ws = "R_clean",
                    save.comments = FALSE){
     #' Outline:
     #' Input result path
