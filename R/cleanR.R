@@ -5,8 +5,8 @@
 #' Produces simplifed, "cleaned" code that generates
 #' a set of output from an initial, "draft" script. 
 #' 
-#' @param script A source script.
-#' @param result.list A vector or list of result file names.
+#' @param file Path to an R script.
+#' @param result A desired output present in the script.
 #' @param save.comments LOGICAL: should comments be preserved in cleaned code?
 #' @return Workspace with the minimal code needed to produce the
 #' specified results.
@@ -21,42 +21,41 @@
 library(jsonlite)
 library(RDataTracker)
 library(igraph)
-source("../R/parse.graph.R")
-source("../R/parse.info.R")
-source("../R/read.prov.R")
-source("../R/get.spine.R")
-result <- "plot_xy.png"
-script.path <- "simple.R"
 
-
-cleanR <- function(result,
-                   script,
+cleanR <- function(file = "Path to an R script",
+                   result,
                    save.comments = FALSE){
-    library(jsonlite)
-    library(RDataTracker)
-    library(igraph)
-    source("../R/parse.graph.R")
-    source("../R/parse.info.R")
-    source("../R/read.prov.R")
-    source("../R/get.spine.R")
-    result <- "plot_xy.png"
-    script.path <- "example/simple.R"
-    ws <- "R_clean"
-
-
     #' Outline:
     #' Input result path
     #' Input script path
     #' Create workspace
+    print(getwd())
     dir.create(ws)
-    #' Get provenance for script
-    ddg.run(script.path,ddgdir = ws)
-    prov <- .read.prov(paste0(ws,"/ddg.json"))
-    #' Breadth first search for code spine
+    ## Get provenance for script
+    ddg.run(file,ddgdir = paste0(ws,"/.prov"))
+    prov <- .read.prov(paste0(ws,"/.prov/ddg.json"))
+    ## If result is NULL then prompt
+    r.opts <- as.character(unlist(prov$info$entity[(rownames(prov$info$entity) %in% 
+                                                    rownames(prov$graph)[(apply(prov$graph,1,sum) != 0)] &
+                                                        prov$info$entity[,"rdt:type"] == "File"),"rdt:name"]))
+    if (!("result" %in% ls())){}else{
+        if (!(result %in% r.opts)){rm(result)}else{}
+    }
+    while (!("result" %in% ls())){
+        ## Detect nodes that are not input data and have on of 
+        ## the result function tags
+        print("Choose a result (CTRL-C CTRL-C to quit):")
+        print(r.opts)
+        usr.opt <- readline()
+        if (usr.opt %in% r.opts){
+            result <- usr.opt
+        }else{}
+    }
+    ## Breadth first search for code spine
     node.id <- names(which(prov$info$entity[,"rdt:name"] == result))
     spine <- .get.spine(node.id, prov$g)
-    ## min.code == the minimum code to produce the output
-    script <- readLines(script.path)
+    ## min.script == the minimum code to produce the output
+    script <- readLines(file)
     lines <- prov$info$activity[grep("p",spine,value = TRUE),
                                 c("rdt:startLine","rdt:endLine")]
     lines <- lines[order(
@@ -93,6 +92,10 @@ cleanR <- function(result,
         file.copy(cp.dat,
                   paste0(ws,"/data/",min.data[i,"rdt.name"]))
     }
+    ## Add working directory header to script
+    min.script <- c("### The main project directory should be the working directory",
+                    "### See setwd()",
+                    min.script)
     ## Write to src
     dir.create(paste0(ws,"/src"))
     out.file <- paste0(ws,"/src/",gsub("\\.","_",result),".R")
