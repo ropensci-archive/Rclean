@@ -15,6 +15,7 @@
 cleanR <- function(file = "Path to an R script",
                    result,
                    ws = "R_clean",
+                   refresh.cash = FALSE,
                    save.comments = FALSE){
     #' Outline:
     #' Input result path
@@ -24,7 +25,9 @@ cleanR <- function(file = "Path to an R script",
     dir.create(ws)
     ## Get provenance for script
     ddg.run(file,ddgdir = paste0(ws,"/.prov"))
-    prov <- read.prov(paste0(ws,"/.prov/ddg.json"))
+    if (!(".prov" %in% dir(ws, all.files=T)) | refresh.cash){
+        prov <- read.prov(paste0(ws,"/.prov/ddg.json"))
+    }else{}
     ## If result is NULL then prompt
     r.opts <- as.character(unlist(prov$info$entity[(rownames(prov$info$entity) %in% 
                                                     rownames(prov$graph)[(apply(prov$graph,1,sum) != 0)] &
