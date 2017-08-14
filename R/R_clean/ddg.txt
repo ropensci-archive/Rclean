@@ -1,0 +1,14 @@
+Architecture="x86_64"
+OperatingSystem="unix"
+Language="R"
+LanguageVersion="R version 3.3.0 (2016-05-03)"
+RDataTrackerVersion="2.25.1"
+Script="example/simple.R"
+SourcedScripts=""
+ProcessFileTimestamp="NA"
+WorkingDirectory="/n/home10/mklau/Labs/HF/e2ep/projects/codecleanR/R"
+DDGDirectory="/n/home10/mklau/Labs/HF/e2ep/projects/codecleanR/R/R_clean"
+DateTime="2017-08-10T16.35.35EDT"
+InstalledPackages="igraph 0.7.1, jsonlite 1.5, RDataTracker 2.25.1"
+0
+

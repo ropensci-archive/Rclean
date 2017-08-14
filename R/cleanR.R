@@ -32,12 +32,27 @@ script.path <- "simple.R"
 cleanR <- function(result,
                    script,
                    save.comments = FALSE){
+    library(jsonlite)
+    library(RDataTracker)
+    library(igraph)
+    source("../R/parse.graph.R")
+    source("../R/parse.info.R")
+    source("../R/read.prov.R")
+    source("../R/get.spine.R")
+    result <- "plot_xy.png"
+    script.path <- "example/simple.R"
     ws <- "R_clean"
+
+
+    #' Outline:
+    #' Input result path
+    #' Input script path
+    #' Create workspace
     dir.create(ws)
-    ## Get provenance for script
-    ddg.run(script.path,ddgdir = paste0(ws,"/.prov"))
-    prov <- .read.prov(paste0(ws,"/.prov/ddg.json"))
-    ## Breadth first search for code spine
+    #' Get provenance for script
+    ddg.run(script.path,ddgdir = ws)
+    prov <- .read.prov(paste0(ws,"/ddg.json"))
+    #' Breadth first search for code spine
     node.id <- names(which(prov$info$entity[,"rdt:name"] == result))
     spine <- .get.spine(node.id, prov$g)
     ## min.code == the minimum code to produce the output
