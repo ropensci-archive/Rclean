@@ -8,7 +8,7 @@
 #' @return A symmetric matrix of provenance entity relationships.
 #' @author Matthew K. Lau
 
-.parse.info <- function(prov){
+parse.info <- function(prov){
     if (grepl("rdatatracker",prov[[1]][[2]])){
         activity <- prov['activity'][[1]][names(prov['activity'][[1]]) != "environment"]
         environment <- prov['activity'][[1]][names(prov['activity'][[1]]) == "environment"]

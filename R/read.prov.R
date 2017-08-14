@@ -9,9 +9,9 @@
 #' @author Matthew K. Lau
 #' @importFrom jsonlite fromJSON
 
-.read.prov <- function(file){
+read.prov <- function(file){
     prov <- fromJSON(file)
-    g <- .parse.graph(prov)
-    info <- .parse.info(prov)
+    g <- parse.graph(prov)
+    info <- parse.info(prov)
     list(graph = g, info = info)
 }

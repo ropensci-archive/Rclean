@@ -12,9 +12,7 @@
 #' @author Matthew K. Lau
 #' @importFrom igraph bfs
 
-
-
-.get.spine <- function(node.id,g){
+get.spine <- function(node.id,g){
     ig <- graph_from_adjacency_matrix(g)
     names(na.omit(bfs(ig,root = node.id, neimode = c('out'),unreachable = FALSE)$order))
 }

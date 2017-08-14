@@ -9,7 +9,7 @@
 #' @return A symmetric matrix of provenance entity relationships.
 #' @author Matthew K. Lau
 
-.parse.graph <- function(prov,rm.env = TRUE){
+parse.graph <- function(prov,rm.env = TRUE){
     if (grepl("rdatatracker",prov[[1]][[2]])){
         ## prefix: information about the provenance capture mechanism
         ## activity: information about process nodes and environment

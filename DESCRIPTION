@@ -1,0 +1,11 @@
+Package: codecleanR
+Type: Package
+Title: Clean code, one result at a time.
+Version: 0.01
+Date: 2017-08-14
+Author: Matthew K. Lau
+Maintainer: Matthew K. Lau <matthewklau@fas.harvard.edu>
+Description: Provides a simple function to help make code more easily
+	     interpretable and reproducible
+License: GPL-3 | file LICENSE
+RoxygenNote: 6.0.1

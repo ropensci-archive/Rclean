@@ -10,18 +10,9 @@
 #' @param save.comments LOGICAL: should comments be preserved in cleaned code?
 #' @return Workspace with the minimal code needed to produce the
 #' specified results.
-#' @author Matthew K. Lau
-#' @examples
-#' 
-#' 
-#' @importFrom RDataTracker ddg.run
 #' @export cleanR
-
-
-library(jsonlite)
-library(RDataTracker)
-library(igraph)
-
+#' @author Matthew K. Lau
+#' @importFrom RDataTracker ddg.run
 cleanR <- function(file = "Path to an R script",
                    result,
                    save.comments = FALSE){
@@ -33,7 +24,7 @@ cleanR <- function(file = "Path to an R script",
     dir.create(ws)
     ## Get provenance for script
     ddg.run(file,ddgdir = paste0(ws,"/.prov"))
-    prov <- .read.prov(paste0(ws,"/.prov/ddg.json"))
+    prov <- read.prov(paste0(ws,"/.prov/ddg.json"))
     ## If result is NULL then prompt
     r.opts <- as.character(unlist(prov$info$entity[(rownames(prov$info$entity) %in% 
                                                     rownames(prov$graph)[(apply(prov$graph,1,sum) != 0)] &
@@ -53,7 +44,7 @@ cleanR <- function(file = "Path to an R script",
     }
     ## Breadth first search for code spine
     node.id <- names(which(prov$info$entity[,"rdt:name"] == result))
-    spine <- .get.spine(node.id, prov$g)
+    spine <- get.spine(node.id, prov$g)
     ## min.script == the minimum code to produce the output
     script <- readLines(file)
     lines <- prov$info$activity[grep("p",spine,value = TRUE),
