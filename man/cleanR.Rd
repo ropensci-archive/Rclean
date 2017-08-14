@@ -25,4 +25,8 @@ a set of output from an initial, "draft" script.
 }
 \author{
 Matthew K. Lau
+Outline:
+Input result path
+Input script path
+Create workspace
 }
