@@ -12,7 +12,6 @@
 #' specified results.
 #' @export cleanR
 #' @author Matthew K. Lau
-#' @importFrom RDataTracker ddg.run
 cleanR <- function(file = "Path to an R script",
                    result,
                    save.comments = FALSE){
