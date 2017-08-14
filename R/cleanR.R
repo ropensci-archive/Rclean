@@ -24,14 +24,14 @@ cleanR <- function(file = "Path to an R script",
     print(getwd())
     dir.create(ws)
     ## Get provenance for script
-    ddg.run(file,ddgdir = paste0(ws,"/.prov"))
-    if (!(".prov" %in% dir(ws, all.files=T)) | refresh.cash){
-        prov <- read.prov(paste0(ws,"/.prov/ddg.json"))
+    if (!(any(grepl(".prov",dir(ws, all.files=T)))) | refresh.cash){
+        ddg.run(file,ddgdir = paste0(ws,"/.prov"))
     }else{}
-    ## If result is NULL then prompt
+    prov <- read.prov(paste0(ws,"/.prov/ddg.json"))
     r.opts <- as.character(unlist(prov$info$entity[(rownames(prov$info$entity) %in% 
                                                     rownames(prov$graph)[(apply(prov$graph,1,sum) != 0)] &
                                                         prov$info$entity[,"rdt:type"] == "File"),"rdt:name"]))
+    ## If result is NULL then prompt
     if (!("result" %in% ls())){}else{
         if (!(result %in% r.opts)){rm(result)}else{}
     }
