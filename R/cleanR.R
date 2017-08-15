@@ -13,7 +13,7 @@
 #' @export cleanR
 #' @author Matthew K. Lau
 cleanR <- function(file = "Path to an R script",
-                   result,
+                   result = "Result name",
                    ws = "R_clean",
                    refresh.cash = FALSE,
                    save.comments = FALSE){
@@ -32,7 +32,7 @@ cleanR <- function(file = "Path to an R script",
                                                     rownames(prov$graph)[(apply(prov$graph,1,sum) != 0)] &
                                                         prov$info$entity[,"rdt:type"] == "File"),"rdt:name"]))
     ## If result is NULL then prompt
-    if (!(exists("result"))){}else{
+    if (!(result == "Result name")){}else{
         if (!(result %in% r.opts)){rm(result)}else{}
     }
     while (!(exists("result"))){
