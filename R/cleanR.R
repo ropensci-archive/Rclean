@@ -14,6 +14,8 @@
 #' @author Matthew K. Lau
 cleanR <- function(file = "Path to an R script",
                    result,
+                   ws = "R_clean",
+                   refresh.cash = FALSE,
                    save.comments = FALSE){
     #' Outline:
     #' Input result path
@@ -22,16 +24,18 @@ cleanR <- function(file = "Path to an R script",
     print(getwd())
     dir.create(ws)
     ## Get provenance for script
-    ddg.run(file,ddgdir = paste0(ws,"/.prov"))
+    if (!(any(grepl(".prov",dir(ws, all.files=T)))) | refresh.cash){
+        ddg.run(file,ddgdir = paste0(ws,"/.prov"))
+    }else{}
     prov <- read.prov(paste0(ws,"/.prov/ddg.json"))
-    ## If result is NULL then prompt
     r.opts <- as.character(unlist(prov$info$entity[(rownames(prov$info$entity) %in% 
                                                     rownames(prov$graph)[(apply(prov$graph,1,sum) != 0)] &
                                                         prov$info$entity[,"rdt:type"] == "File"),"rdt:name"]))
-    if (!("result" %in% ls())){}else{
+    ## If result is NULL then prompt
+    if (!(exists("result"))){}else{
         if (!(result %in% r.opts)){rm(result)}else{}
     }
-    while (!("result" %in% ls())){
+    while (!(exists("result"))){
         ## Detect nodes that are not input data and have on of 
         ## the result function tags
         print("Choose a result (CTRL-C CTRL-C to quit):")

@@ -6,7 +6,8 @@
 OUTPUT = A workspace containing a cleanced script and associated
 data files.}
 \usage{
-cleanR(file = "Path to an R script", result, save.comments = FALSE)
+cleanR(file = "Path to an R script", result, ws = "R_clean",
+  save.comments = FALSE)
 }
 \arguments{
 \item{file}{Path to an R script.}
