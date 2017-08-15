@@ -32,10 +32,10 @@ cleanR <- function(file = "Path to an R script",
                                                     rownames(prov$graph)[(apply(prov$graph,1,sum) != 0)] &
                                                         prov$info$entity[,"rdt:type"] == "File"),"rdt:name"]))
     ## If result is NULL then prompt
-    if (!("result" %in% ls())){}else{
+    if (!(exists("result"))){}else{
         if (!(result %in% r.opts)){rm(result)}else{}
     }
-    while (!("result" %in% ls())){
+    while (!(exists("result"))){
         ## Detect nodes that are not input data and have on of 
         ## the result function tags
         print("Choose a result (CTRL-C CTRL-C to quit):")
