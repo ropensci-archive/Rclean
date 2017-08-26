@@ -72,7 +72,7 @@ cleanR <- function(file = "Path to an R script",
     file.copy(grep(result,dir(paste0(ws,"/.prov/data"), full.names = TRUE),value = TRUE),
               paste0(ws,"/results/",result))
     ## Re-organize data
-    dir.create(paste0(ws,"/data"))
+    dir.create(paste0(ws,"/data"),showWarnings = FALSE)
     min.data <- data.frame(prov$info$entity[rownames(prov$info$entity) %in% spine,])
     min.data <- min.data[min.data[,"rdt.type"] == "File",]
     min.data <- min.data[!(grepl(result,min.data[,"rdt.name"])),]
@@ -86,7 +86,7 @@ cleanR <- function(file = "Path to an R script",
                     "### See setwd()",
                     min.script)
     ## Write to src
-    dir.create(paste0(ws,"/src"))
+    dir.create(paste0(ws,"/src"),showWarnings = FALSE)
     out.file <- paste0(ws,"/src/",gsub("\\.","_",result),".R")
     file.create(out.file)
     fileConn <- file(out.file)
