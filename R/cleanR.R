@@ -7,7 +7,7 @@
 #' 
 #' @param file Path to an R script.
 #' @param result A desired output present in the script.
-#' @param save.comments LOGICAL: should comments be preserved in cleaned code?
+#' @param ws Workspace directory for cleaned project.
 #' @return Workspace with the minimal code needed to produce the
 #' specified results.
 #' @export cleanR
@@ -15,7 +15,7 @@
 cleanR <- function(file = "Path to an R script",
                    result,
                    ws = "R_clean",
-                   refresh.cash = FALSE){
+                   refresh.prov = FALSE){
     #' Outline:
     #' Input result path
     #' Input script path
@@ -23,13 +23,13 @@ cleanR <- function(file = "Path to an R script",
     print(getwd())
     dir.create(ws,showWarnings = FALSE)
     ## Get provenance for script
-    if (!(any(grepl(".prov",dir(ws, all.files=T)))) | refresh.cash){
-        ddg.run(file,ddgdir = paste0(ws,"/.prov"))
-    }else{}
-    prov <- read.prov(paste0(ws,"/.prov/ddg.json"))
-    r.opts <- as.character(unlist(prov$info$entity[(rownames(prov$info$entity) %in% 
-                                                    rownames(prov$graph)[(apply(prov$graph,1,sum) != 0)] &
-                                                        prov$info$entity[,"rdt:type"] == "File"),"rdt:name"]))
+    prov.capture(file)
+    prov <- read.prov(prov.json())
+    ## 
+    r.opts <- as.character(unlist(
+        prov$info$entity[(rownames(prov$info$entity) %in% 
+                          rownames(prov$graph)[(apply(prov$graph,1,sum) != 0)] &
+                              prov$info$entity[,"rdt:type"] == "File"),"rdt:name"]))
     ## If result is NULL then prompt
     if (!("result" %in% ls())){}else{
         if (!(result %in% r.opts)){rm(result)}else{}
