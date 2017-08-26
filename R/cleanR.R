@@ -13,7 +13,7 @@
 #' @export cleanR
 #' @author Matthew K. Lau
 cleanR <- function(file = "Path to an R script",
-                   result,
+                   result = "Result name",
                    ws = "R_clean",
                    refresh.prov = FALSE){
     #' Outline:
@@ -31,10 +31,10 @@ cleanR <- function(file = "Path to an R script",
                           rownames(prov$graph)[(apply(prov$graph,1,sum) != 0)] &
                               prov$info$entity[,"rdt:type"] == "File"),"rdt:name"]))
     ## If result is NULL then prompt
-    if (!("result" %in% ls())){}else{
+    if (!(result == "Result name")){}else{
         if (!(result %in% r.opts)){rm(result)}else{}
     }
-    while (!("result" %in% ls())){
+    while (!(exists("result"))){
         ## Detect nodes that are not input data and have on of 
         ## the result function tags
         print("Choose a result (CTRL-C CTRL-C to quit):")
@@ -49,12 +49,8 @@ cleanR <- function(file = "Path to an R script",
     spine <- get.spine(node.id, prov$g)
     ## min.script == the minimum code to produce the output
     script <- readLines(file)
-    lines <- prov$info$activity[grep("p",spine,value = TRUE),
-                                c("rdt:startLine","rdt:endLine")]
-    lines <- lines[order(
-        as.numeric(
-            gsub("p","",rownames(lines))),
-        decreasing = FALSE),]
+    lines <- data.frame(prov$info$activity)[grep("p",spine,value = TRUE),
+                                c("rdt.startLine","rdt.endLine")]
     lines <- cbind(process = rownames(lines),lines)
     lines[,2:3] <- apply(lines[,2:3],2,as.numeric)
     min.script <- character(0)
