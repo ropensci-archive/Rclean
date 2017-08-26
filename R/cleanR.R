@@ -15,14 +15,13 @@
 cleanR <- function(file = "Path to an R script",
                    result,
                    ws = "R_clean",
-                   refresh.cash = FALSE,
-                   save.comments = FALSE){
+                   refresh.cash = FALSE){
     #' Outline:
     #' Input result path
     #' Input script path
     #' Create workspace
     print(getwd())
-    dir.create(ws)
+    dir.create(ws,showWarnings = FALSE)
     ## Get provenance for script
     if (!(any(grepl(".prov",dir(ws, all.files=T)))) | refresh.cash){
         ddg.run(file,ddgdir = paste0(ws,"/.prov"))
