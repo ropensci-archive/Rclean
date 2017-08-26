@@ -25,7 +25,7 @@ cleanR <- function(file = "Path to an R script",
     ## Get provenance for script
     prov.capture(file)
     prov <- read.prov(prov.json())
-    ## 
+    ## Get result options
     r.opts <- as.character(unlist(
         prov$info$entity[(rownames(prov$info$entity) %in% 
                           rownames(prov$graph)[(apply(prov$graph,1,sum) != 0)] &
@@ -72,7 +72,7 @@ cleanR <- function(file = "Path to an R script",
         min.script[i] <- paste0(gd,"(\"","results/",result,"\")")
     }
     ## Save result to results
-    dir.create(paste0(ws,"/results"))
+    dir.create(paste0(ws,"/results"),showWarnings = FALSE)
     file.copy(grep(result,dir(paste0(ws,"/.prov/data"), full.names = TRUE),value = TRUE),
               paste0(ws,"/results/",result))
     ## Re-organize data
