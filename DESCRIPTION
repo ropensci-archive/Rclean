@@ -1,8 +1,8 @@
-Package: codecleanR
+Package: cleanR
 Type: Package
 Title: Clean Code, One Result at a Time.
-Version: 0.01.1
-Date: 2017-08-14
+Version: 0.01.2
+Date: 2017-09-07
 Author: Matthew K. Lau
 Maintainer: Matthew K. Lau <matthewklau@fas.harvard.edu>
 Description: Provides a simple function to help make code more easily
