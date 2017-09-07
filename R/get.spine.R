@@ -15,5 +15,8 @@
 
 get.spine <- function(node.id,g){
     ig <- graph_from_adjacency_matrix(g)
-    names(na.omit(bfs(ig,root = node.id, neimode = c('out'),unreachable = FALSE)$order))
+    nodes <- names(na.omit(bfs(ig,root = node.id, neimode = c('out'),unreachable = FALSE)$order))
+    nodes <- grep("p", nodes, value = TRUE)
+    nodes <- paste0("p",sort(as.numeric(do.call(rbind,strsplit(nodes,"p"))[,2])))
+    return(nodes)
 }
