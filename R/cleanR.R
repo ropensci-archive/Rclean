@@ -20,7 +20,6 @@ cleanR <- function(file = "Path to an R script",
     #' Input result path
     #' Input script path
     #' Create workspace
-    print(getwd())
     dir.create(ws,showWarnings = FALSE)
     ## Get provenance for script
     prov.capture(file)
@@ -49,6 +48,9 @@ cleanR <- function(file = "Path to an R script",
     spine <- get.spine(node.id, prov$g)
     ## min.script == the minimum code to produce the output
     script <- readLines(file)
+
+
+
     lines <- data.frame(prov$info$activity)[grep("p",spine,value = TRUE),
                                 c("rdt.startLine","rdt.endLine")]
     lines <- cbind(process = rownames(lines),lines)
@@ -93,6 +95,8 @@ cleanR <- function(file = "Path to an R script",
     writeLines(min.script, fileConn)
     close(fileConn)
     file.show(out.file)
+    ## Signoff
+    print("These codes are clean!")
     ## Check with lintr
     ## Format with formatR
     ## Option: create data directory
