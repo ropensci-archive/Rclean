@@ -7,7 +7,7 @@
 #' 
 #' @param file Path to an R script.
 #' @param result A desired output present in the script.
-#' @param save.comments LOGICAL: should comments be preserved in cleaned code?
+#' @param ws Workspace directory for cleaned project.
 #' @return Workspace with the minimal code needed to produce the
 #' specified results.
 #' @export cleanR
@@ -15,22 +15,21 @@
 cleanR <- function(file = "Path to an R script",
                    result = "Result name",
                    ws = "R_clean",
-                   refresh.cash = FALSE,
-                   save.comments = FALSE){
+                   refresh.prov = FALSE){
     #' Outline:
     #' Input result path
     #' Input script path
     #' Create workspace
     print(getwd())
-    dir.create(ws)
+    dir.create(ws,showWarnings = FALSE)
     ## Get provenance for script
-    if (!(any(grepl(".prov",dir(ws, all.files=T)))) | refresh.cash){
-        ddg.run(file,ddgdir = paste0(ws,"/.prov"))
-    }else{}
-    prov <- read.prov(paste0(ws,"/.prov/ddg.json"))
-    r.opts <- as.character(unlist(prov$info$entity[(rownames(prov$info$entity) %in% 
-                                                    rownames(prov$graph)[(apply(prov$graph,1,sum) != 0)] &
-                                                        prov$info$entity[,"rdt:type"] == "File"),"rdt:name"]))
+    prov.capture(file)
+    prov <- read.prov(prov.json())
+    ## Get result options
+    r.opts <- as.character(unlist(
+        prov$info$entity[(rownames(prov$info$entity) %in% 
+                          rownames(prov$graph)[(apply(prov$graph,1,sum) != 0)] &
+                              prov$info$entity[,"rdt:type"] == "File"),"rdt:name"]))
     ## If result is NULL then prompt
     if (!(result == "Result name")){}else{
         if (!(result %in% r.opts)){rm(result)}else{}
@@ -69,11 +68,11 @@ cleanR <- function(file = "Path to an R script",
         min.script[i] <- paste0(gd,"(\"","results/",result,"\")")
     }
     ## Save result to results
-    dir.create(paste0(ws,"/results"))
+    dir.create(paste0(ws,"/results"),showWarnings = FALSE)
     file.copy(grep(result,dir(paste0(ws,"/.prov/data"), full.names = TRUE),value = TRUE),
               paste0(ws,"/results/",result))
     ## Re-organize data
-    dir.create(paste0(ws,"/data"))
+    dir.create(paste0(ws,"/data"),showWarnings = FALSE)
     min.data <- data.frame(prov$info$entity[rownames(prov$info$entity) %in% spine,])
     min.data <- min.data[min.data[,"rdt.type"] == "File",]
     min.data <- min.data[!(grepl(result,min.data[,"rdt.name"])),]
@@ -87,7 +86,7 @@ cleanR <- function(file = "Path to an R script",
                     "### See setwd()",
                     min.script)
     ## Write to src
-    dir.create(paste0(ws,"/src"))
+    dir.create(paste0(ws,"/src"),showWarnings = FALSE)
     out.file <- paste0(ws,"/src/",gsub("\\.","_",result),".R")
     file.create(out.file)
     fileConn <- file(out.file)

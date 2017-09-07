@@ -4,7 +4,7 @@
 #' This is an internal function for reading PROV-JSON formatted
 #' provenance.
 #' 
-#' @param file Path to PROV-JSON formatted file.
+#' @param file JSON formatted object or path to PROV-JSON formatted file.
 #' @return A list containing the provenance.
 #' @author Matthew K. Lau
 #' @importFrom jsonlite fromJSON
@@ -15,3 +15,4 @@ read.prov <- function(file){
     info <- parse.info(prov)
     list(graph = g, info = info)
 }
+
