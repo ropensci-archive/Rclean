@@ -48,9 +48,6 @@ cleanR <- function(file = "Path to an R script",
     spine <- get.spine(node.id, prov$g)
     ## min.script == the minimum code to produce the output
     script <- readLines(file)
-
-
-
     lines <- data.frame(prov$info$activity)[grep("p",spine,value = TRUE),
                                 c("rdt.startLine","rdt.endLine")]
     lines <- cbind(process = rownames(lines),lines)
@@ -74,14 +71,16 @@ cleanR <- function(file = "Path to an R script",
     file.copy(grep(result,dir(paste0(ws,"/.prov/data"), full.names = TRUE),value = TRUE),
               paste0(ws,"/results/",result))
     ## Re-organize data
-    dir.create(paste0(ws,"/data"),showWarnings = FALSE)
-    min.data <- data.frame(prov$info$entity[rownames(prov$info$entity) %in% spine,])
-    min.data <- min.data[min.data[,"rdt.type"] == "File",]
-    min.data <- min.data[!(grepl(result,min.data[,"rdt.name"])),]
-    for (i in 1:length(min.data[,"rdt.value"])){
-        cp.dat <- paste0(ws,"/.prov/",min.data[i,"rdt.value"][[1]])
-        file.copy(cp.dat,
-                  paste0(ws,"/data/",min.data[i,"rdt.name"]))
+    if (2 > 3){
+        dir.create(paste0(ws,"/data"),showWarnings = FALSE)
+        min.data <- data.frame(prov$info$entity[rownames(prov$info$entity) %in% spine,])
+        min.data <- min.data[min.data[,"rdt.type"] == "File",]
+        min.data <- min.data[!(grepl(result,min.data[,"rdt.name"])),]
+        for (i in 1:length(min.data[,"rdt.value"])){
+            cp.dat <- paste0(ws,"/.prov/",min.data[i,"rdt.value"][[1]])
+            file.copy(cp.dat,
+                      paste0(ws,"/data/",min.data[i,"rdt.name"]))
+        }
     }
     ## Add working directory header to script
     min.script <- c("### The main project directory should be the working directory",
@@ -104,5 +103,4 @@ cleanR <- function(file = "Path to an R script",
     ## Option: gather dependencies
     ## Option: create a log from formatR and lintR
     ## Option: create a README
-    ## Remove provenance
 }
