@@ -1,7 +1,7 @@
 Package: cleanR
 Type: Package
 Title: Clean Code, One Result at a Time.
-Version: 0.01.2
+Version: 0.01.3
 Date: 2017-09-07
 Author: Matthew K. Lau
 Maintainer: Matthew K. Lau <matthewklau@fas.harvard.edu>
