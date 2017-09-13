@@ -28,4 +28,4 @@ library(cleanR)
 cleanR("messycode.R")
 ```
 
-[Checkout a demo of how to use the package!](http://www.tinyurl.com/cleanR)
+[Checkout a demo of how to use the package!](http://tinyurl.com/ProvTools-cleanR)
