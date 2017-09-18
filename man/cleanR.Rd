@@ -15,6 +15,9 @@ cleanR(file = "Path to an R script", result = "Result name",
 
 \item{refresh.prov}{LOGICAL: do you want the script re-run to generate new provenance?}
 }
+\value{
+Cleaned-up code as a vector of strings ordered by line number.
+}
 \description{
 Produces simplifed, "cleaned" code that is needed to create a result.
 }
