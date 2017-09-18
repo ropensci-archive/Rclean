@@ -2,19 +2,20 @@
 #' OUTPUT = The essential code needed to produce a result.
 #' 
 #' Produces simplifed, "cleaned" code that is needed to create a result.
-#' 
-#' @param file Path to an R script.
-#' @param result A desired output present in the script.
-#' @param refresh.prov LOGICAL: do you want the script re-run to generate new provenance?
+#' @param x Script object to write.
+#' @param file Path to where you want to write.
 #' @return 
-#' @export cleanR
+#' @export write.code
 #' @author Matthew K. Lau
 
 write.code <- function(x,file = NULL){
     if (is.null(file)){
         file <- getwd()
     }else{
-        
+        file.create(file)
+        fileConn <- file(file)
+        writeLines(x, fileConn)
+        close(fileConn)
+        file.show(file)
     }
-    
 }
