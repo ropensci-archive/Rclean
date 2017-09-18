@@ -12,7 +12,7 @@
 
 cleanR <- function(file = "Path to an R script",
                    result = "Result name",
-                   refresh.prov = FALSE){
+                   refresh.prov = TRUE){
     #' Outline:
     #' Input result path
     #' Input script path
