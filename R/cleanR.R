@@ -6,7 +6,7 @@
 #' @param file Path to an R script.
 #' @param result A desired output present in the script.
 #' @param refresh.prov LOGICAL: do you want the script re-run to generate new provenance?
-#' @return 
+#' @return Cleaned-up code as a vector of strings ordered by line number.
 #' @export cleanR
 #' @author Matthew K. Lau
 

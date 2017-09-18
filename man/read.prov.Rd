@@ -8,7 +8,7 @@ OUTPUT = Returns a dataframe containing the provenance.}
 read.prov(file)
 }
 \arguments{
-\item{file}{Path to PROV-JSON formatted file.}
+\item{file}{JSON formatted object or path to PROV-JSON formatted file.}
 }
 \value{
 A list containing the provenance.

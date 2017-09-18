@@ -10,7 +10,7 @@ get.spine(node.id, g)
 \arguments{
 \item{node.id}{Name of the node.}
 
-\item{g}{Provenance graph.}
+\item{g}{Provenance graph adjacency matrix.}
 }
 \value{
 A set of node names tracing the complete parantage of a result.

@@ -1,10 +1,11 @@
-#' cleanR --- Produce "clean" code.
-#' OUTPUT = The essential code needed to produce a result.
+#' write.code --- Write code to disk.
+#' OUTPUT = Writes out code from an object to a specified file. 
 #' 
-#' Produces simplifed, "cleaned" code that is needed to create a result.
+#' This is a simple function for writing code to disk.
+#' 
 #' @param x Script object to write.
 #' @param file Path to where you want to write.
-#' @return 
+#' @return The script is written to disk, line by line.
 #' @export write.code
 #' @author Matthew K. Lau
 

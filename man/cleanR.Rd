@@ -3,31 +3,24 @@
 \name{cleanR}
 \alias{cleanR}
 \title{cleanR --- Produce "clean" code.
-OUTPUT = A workspace containing a cleanced script and associated
-data files.}
+OUTPUT = The essential code needed to produce a result.}
 \usage{
-cleanR(file = "Path to an R script", result, ws = "R_clean",
-  save.comments = FALSE)
+cleanR(file = "Path to an R script", result = "Result name",
+  refresh.prov = FALSE)
 }
 \arguments{
 \item{file}{Path to an R script.}
 
 \item{result}{A desired output present in the script.}
 
-\item{save.comments}{LOGICAL: should comments be preserved in cleaned code?}
-}
-\value{
-Workspace with the minimal code needed to produce the
-specified results.
+\item{refresh.prov}{LOGICAL: do you want the script re-run to generate new provenance?}
 }
 \description{
-Produces simplifed, "cleaned" code that generates
-a set of output from an initial, "draft" script.
+Produces simplifed, "cleaned" code that is needed to create a result.
 }
 \author{
 Matthew K. Lau
 Outline:
 Input result path
 Input script path
-Create workspace
 }
