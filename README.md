@@ -13,20 +13,22 @@ Install the latest version easily with [devtools](https://github.com/hadley/devt
 
 ```R
 library(devtools)
-install_packages("ProvTools/cleanR")
+install_github("ProvTools/cleanR")
 ```
 
-Clean up your code
-==================
-
-[cleanR](https://github.com/ProvTools/cleanR) provides a simple API to
-hone in on a specific result that you want from your script, and
-return the specific code you need to produce it.
+You'll also need the [provR](https://github.com/ProvTools/provR)
+package to capture the data provenance that informs [cleanR](https://github.com/ProvTools/cleanR).
 
 ```R
-library(cleanR)
-cleanR("messycode.R") # This will give you a list of results
-cleanR("messycode.R", result = "save1.csv") # Code for some saved data
+install_github("ProvTools/provR")
 ```
 
-[Checkout a demo of how to use the package!](http://tinyurl.com/cleanR-example)
+Clean some code
+===============
+
+[cleanR](https://github.com/ProvTools/cleanR) provides a simple API to
+hone in on a specific result that you want from your script and return
+the code you need to produce it.
+
+![cleanR-demo](cleanR-demo.gif)
+
