@@ -29,4 +29,4 @@ cleanR("messycode.R") # This will give you a list of results
 cleanR("messycode.R", result = "save1.csv") # Code for some saved data
 ```
 
-[Checkout a demo of how to use the package!](http://tinyurl.com/ProvTools-cleanR)
+[Checkout a demo of how to use the package!](http://tinyurl.com/cleanR-example)
