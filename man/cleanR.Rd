@@ -6,7 +6,7 @@
 OUTPUT = The essential code needed to produce a result.}
 \usage{
 cleanR(file = "Path to an R script", result = "Result name",
-  refresh.prov = FALSE)
+  refresh.prov = TRUE)
 }
 \arguments{
 \item{file}{Path to an R script.}
