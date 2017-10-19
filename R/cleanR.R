@@ -18,7 +18,8 @@ cleanR <- function(file = "Path to an R script",
     ## Get provenance for script
     if (refresh.prov){prov.capture(file)}
     if (!refresh.prov){
-        print("If you don't see the results you're looking for, try 'refresh.prov = TRUE'")
+        print("If you don't see the results you're looking for, try 'refresh.prov = TRUE'", 
+              quote = FALSE)
     }
     prov <- read.prov(prov.json())
     ## Get result options
