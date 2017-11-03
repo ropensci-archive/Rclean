@@ -25,9 +25,9 @@ Clean up your code
   and use?
 - Well you’re not alone. 
 - In a recent survey of over 1500 scientists from across multiple
-  disciplines reported high levels of irreproducibility, with the 5th
+  disciplines reported high levels of irreproducibility, with "slective reporting" being 
   most cited contributing factor being issues with code availability
-  and usability.
+  and usability and code availability contributing over 80% of the time.
 - **cleanR** is a package that does just that
 - [cleanR](https://github.com/ProvTools/cleanR) provides a simple API to
 hone in on a specific result that you want from your script, and
