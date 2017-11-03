@@ -10,13 +10,10 @@
 #' @author Matthew K. Lau
 
 write.code <- function(x,file = NULL){
-    if (is.null(file)){
-        file <- paste0(getwd(),"/cleaned.R")
-    }else{
-        file.create(file)
-        fileConn <- file(file)
-        writeLines(x, fileConn)
-        close(fileConn)
-        file.show(file)
-    }
+    if (is.null(file)){file <- paste0(getwd(),"/cleaned.R")}else{}
+    file.create(file)
+    fileConn <- file(file)
+    writeLines(x, fileConn)
+    close(fileConn)
+    file.show(file)
 }
