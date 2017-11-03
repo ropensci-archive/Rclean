@@ -24,7 +24,7 @@ Clean up your code
   come along and make it all clearer for others and you to understand
   and use?
 - Well you’re not alone. 
-- In a recent survey of over 5000 scientists from across multiple
+- In a recent survey of over 1500 scientists from across multiple
   disciplines reported high levels of irreproducibility, with the 5th
   most cited contributing factor being issues with code availability
   and usability.
