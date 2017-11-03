@@ -13,9 +13,10 @@ Install the latest version easily with [devtools](https://github.com/hadley/devt
 
 ```R
 library(devtools)
-install_packages("ProvTools/cleanR")
+install_github("ProvTools/cleanR")
 ```
 
+<<<<<<< HEAD
 Clean up your code
 ==================
 
@@ -36,9 +37,13 @@ return the specific code you need to produce it.
   does when it’s running and then allows you to pull out the essential
   code that produces specific outputs.
 - Here’s a simple example:
+=======
+You'll also need the [provR](https://github.com/ProvTools/provR)
+package to capture the data provenance that informs [cleanR](https://github.com/ProvTools/cleanR).
+
+>>>>>>> ddf307d5b278e027df6b744a2f3649c89cd96fbf
 ```R
-library(cleanR)
-cleanR("messycode.R")
+install_github("ProvTools/provR")
 ```
 - [Checkout a demo of how to use the package!](http://tinyurl.com/ProvTools-cleanR)
 - By focusing in on the specific results you want, **cleanR** let’s
@@ -48,3 +53,15 @@ cleanR("messycode.R")
 
 
 
+<<<<<<< HEAD
+=======
+Clean some code
+===============
+
+[cleanR](https://github.com/ProvTools/cleanR) provides a simple API to
+hone in on a specific result that you want from your script and return
+the code you need to produce it.
+
+![cleanR-demo](cleanR-demo.gif)
+
+>>>>>>> ddf307d5b278e027df6b744a2f3649c89cd96fbf
