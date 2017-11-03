@@ -19,19 +19,13 @@ install_packages("ProvTools/cleanR")
 Clean up your code
 ==================
 
-- Have you ever written a long script in R that uses multiple data
-  files and conducts oodles of analyses and wished that someone would
-  come along and make it all clearer for others and you to understand
-  and use?
+- Have you ever written a long script in R that conducts oodles of analyses and wished that someone would
+  come along and make it all clearer to understand and use?
 - Well you’re not alone. 
-- In a recent survey of over 1500 scientists from across multiple
-  disciplines reported high levels of irreproducibility, with "slective reporting" being 
-  most cited contributing factor being issues with code availability
-  and usability and code availability contributing over 80% of the time.
-- **cleanR** is a package that does just that
-- [cleanR](https://github.com/ProvTools/cleanR) provides a simple API to
-hone in on a specific result that you want from your script, and
-return the specific code you need to produce it.
+- A recent survey of over 1500 scientists reported a crisis of reproducibility with "slective reporting" being 
+  the most cited contributing factor and 80% saying code availability is playing a role
+- We created **cleanR** to help scientists more *easily* write "cleaner" code
+- [cleanR](https://github.com/ProvTools/cleanR) provides a simple way get the code you need to produce a specific result
 - **cleanR** uses data provenance tp capture what your code actually
   does when it’s running and then allows you to pull out the essential
   code that produces specific outputs.
