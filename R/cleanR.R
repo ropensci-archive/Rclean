@@ -14,12 +14,13 @@
 
 cleanR <- function(file = "Path to an R script",
                    result = "Result name",
-                   refresh.prov = TRUE){
-    #' Outline:
-    #' Input result path
-    #' Input script path
+                   refresh.prov = FALSE){
     ## Get provenance for script
     if (refresh.prov){prov.capture(file)}
+    if (!refresh.prov & result == "Result name"){
+        print("If you don't see the results you're looking for, try 'refresh.prov = TRUE'", 
+              quote = FALSE)
+    }
     prov <- read.prov(prov.json())
     ## Get result options
     result.opts <- as.character(unlist(
