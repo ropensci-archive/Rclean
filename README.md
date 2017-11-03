@@ -1,23 +1,3 @@
-# cleanR
-
-R is a great language for doing rapid, innovative analyses. 
-
-Once you've gotten the results you want, leverage data provenance to
-help clean your code up and focus on the specific results that you
-really want.
-
-Install
-=======
-
-Install the latest version easily with [devtools](https://github.com/hadley/devtools):
-
-```R
-library(devtools)
-install_github("ProvTools/cleanR")
-install_github("ProvTools/provR")
-install.packages("igraph”)
-```
-
 Clean up your code
 ==================
 
@@ -36,3 +16,15 @@ Clean up your code
 - By focusing in on the specific results you want, **cleanR** let’s
   you spend more energy on your science and less time figuring out
   your code.
+
+Install
+=======
+
+Install the latest version easily with [devtools](https://github.com/hadley/devtools):
+
+```R
+library(devtools)
+install_github("ProvTools/cleanR")
+install_github("ProvTools/provR")
+install.packages("igraph”)
+```
