@@ -11,7 +11,7 @@
 
 write.code <- function(x,file = NULL){
     if (is.null(file)){
-        file <- getwd()
+        file <- paste0(getwd(),”/cleaned.R”)
     }else{
         file.create(file)
         fileConn <- file(file)
