@@ -5,7 +5,7 @@ Clean up your code
   analyses and wished that someone would come along and make it all
   clearer to understand and use?
 - Well you’re not alone. 
-- A recent survey of over 1500 scientists reported a crisis of reproducibility with "slective reporting" being 
+- A recent survey of over 1500 scientists reported a crisis of reproducibility with "selective reporting" being 
   the most cited contributing factor and 80% saying code availability is playing a role
 - We created **cleanR** to help scientists more *easily* write "cleaner" code
 - [cleanR](https://github.com/ProvTools/cleanR) provides a simple way get the code you need to produce a specific result
