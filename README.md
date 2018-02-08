@@ -5,14 +5,14 @@ Clean up your code
   analyses and wished that someone would come along and make it all
   clearer to understand and use?
 - Well you’re not alone. 
-- A recent survey of over 1500 scientists reported a crisis of reproducibility with "slective reporting" being 
+- A recent survey of over 1500 scientists reported a crisis of reproducibility with "selective reporting" being 
   the most cited contributing factor and 80% saying code availability is playing a role
 - We created **cleanR** to help scientists more *easily* write "cleaner" code
 - [cleanR](https://github.com/ProvTools/cleanR) provides a simple way get the code you need to produce a specific result
 - **cleanR** uses data provenance tp capture what your code actually
   does when it’s running and then allows you to pull out the essential
   code that produces specific outputs.
-- [Checkout a demo of how to use the package!](http://tinyurl.com/ProvTools-cleanR)
+- [Checkout a demo of how to use the package!](https://www.dropbox.com/s/enyi3s0kfc962u5/cleanR%20demo%20small%20edit.mp4?dl=0)
 - By focusing in on the specific results you want, **cleanR** let’s
   you spend more energy on your science and less time figuring out
   your code.
