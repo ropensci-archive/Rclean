@@ -11,6 +11,12 @@
 ### not used anymore but are still present.
 library('gdata')
 source("sourced.R")
+
+### User defined functions
+myfunc <- function(x){
+    cos(x) * pi
+}
+
 ### Read data from some random file path
 ### Here, a relative path is being used, but
 ### typically, file paths are given from root.
@@ -26,11 +32,23 @@ data.v1.1to4. <- data.v1.1to4
 data.v1.1to4 <- data.v1.1to4 * 2
 data.v1.1to4.2 <- data.v1.1to4 * 2
 data.16[,1:4] <- data.v1.1to4.2
+
+### Very rarely, R scripts will have control
+### statements
+if (any(is.na(data.16))){
+    data.16[is.na(data.16)] <- 0
+}else {}
+
+
+if (any(is.na(data.16.2))){
+    data.16.2[is.na(data.16.2)] <- 0
+} # specifying the else is not required
+
+
+### Conduct some analyses
 library('vegan')
 d1 <- vegdist(data.16[,1:2])
 d2 <- vegdist(data.16[,2:3])
-
-### Conduct some analyses
 mant1 <- mantel(d1,d2)
 mant2 <- mantel(d2,d1)
 mant11 <- mantel(d1,d1)
@@ -39,12 +57,22 @@ lm.summary.1 <- summary(fit1)
 anova.summary <- anova(fit1)
 out.summary <- as.data.frame(anova.summary)
 
+
+### for loops are also uncommon
+for (i in 1:ncol(data.v1.1to4)){
+    colnames(data.v1.1to4)[i] <- paste0("var", i)
+}
+
 ### write some data to file
 write.csv(data.v1.1to4,'projects/data_forestplot/save1.csv',row.names = F)
+
 
 ### write lm and anova output to file
 capture.output(lm.summary.1, file="analysis_forest/lm_table_1.txt")
 write.csv(out.summary, file="analysis_forest/table_2.txt")
+
+### use the defined function
+val <- myfunc(exp(1))
 
 ### write some figures to file
 ### Here's another random, unused package
