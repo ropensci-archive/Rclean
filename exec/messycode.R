@@ -5,8 +5,7 @@
 ### organized than the vast majority of
 ### scripts.
 
-### Depencies are loaded throughout the script.
-
+### Depedencies are loaded throughout the script.
 ### Also, some depencies that are loaded are often 
 ### not used anymore but are still present.
 library('gdata')
@@ -35,14 +34,9 @@ data.16[,1:4] <- data.v1.1to4.2
 
 ### Very rarely, R scripts will have control
 ### statements
-if (any(is.na(data.16))){
-    data.16[is.na(data.16)] <- 0
-}else {}
-
-
 if (any(is.na(data.16.2))){
     data.16.2[is.na(data.16.2)] <- 0
-} # specifying the else is not required
+}# specifying the else is not required
 
 
 ### Conduct some analyses
@@ -64,12 +58,12 @@ for (i in 1:ncol(data.v1.1to4)){
 }
 
 ### write some data to file
-write.csv(data.v1.1to4,'projects/data_forestplot/save1.csv',row.names = F)
+write.csv(data.v1.1to4,'../data/projects/data_forestplot/save1.csv',row.names = F)
 
 
 ### write lm and anova output to file
-capture.output(lm.summary.1, file="analysis_forest/lm_table_1.txt")
-write.csv(out.summary, file="analysis_forest/table_2.txt")
+capture.output(lm.summary.1, file="../data/projects/lm_table_1.txt")
+write.csv(out.summary, file="../data/projects/table_2.csv")
 
 ### use the defined function
 val <- myfunc(exp(1))
@@ -78,15 +72,14 @@ val <- myfunc(exp(1))
 ### Here's another random, unused package
 library('txtplot')
 
-png('figures_1/fig1_biplot.png')
+png('../data/projects/fig1_biplot.png')
 plot(data.16[,1:2])
 dev.off()
 
-png('figures_1/fig1_biplot_t2.png')
+png('../data/projects/fig1_biplot_t2.png')
 plot(data.16[,1:2]*2)
 dev.off()
 
-png('figures_2/fig2_biplot.png')
+png('../data/projects/fig2_biplot.png')
 plot(data.16[,2:3])
 dev.off()
-
