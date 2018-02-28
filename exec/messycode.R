@@ -20,11 +20,11 @@ myfunc <- function(x){
 ### Read data from some random file path
 ### Here, a relative path is being used, but
 ### typically, file paths are given from root.
-data.16 <- read.csv("projects/2016/july_biomass_survey.csv")
+data.16 <- read.csv("../data/projects/2016/july_biomass_survey.csv")
 
 ### Some datasets are loaded and no longer used.
 ### Like this one
-data.16.2 <- read.csv('projects/data_forestplot/dataset_v2_june_from_collaborator1.csv')
+data.16.2 <- read.csv('../data/projects/data_forestplot/dataset_v2_june_from_collaborator1.csv')
 
 ### Create a bunch of intermediate objects
 data.v1.1to4 <- data.16[,1:4]
