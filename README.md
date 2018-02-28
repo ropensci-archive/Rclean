@@ -12,7 +12,7 @@ Clean up your code
 - **cleanR** uses data provenance tp capture what your code actually
   does when it’s running and then allows you to pull out the essential
   code that produces specific outputs.
-- [Checkout a demo of how to use the package!](https://www.dropbox.com/s/enyi3s0kfc962u5/cleanR%20demo%20small%20edit.mp4?dl=0)
+- [Checkout a demo of how to use the package!](https://www.dropbox.com/s/enyi3s0kfc962u5/cleanR%20demo%20small%20edit.mp4?dl=0) [![](cleanR_demo_vid.png)](https://www.dropbox.com/s/enyi3s0kfc962u5/cleanR%20demo%20small%20edit.mp4?dl=0)
 - By focusing in on the specific results you want, **cleanR** let’s
   you spend more energy on your science and less time figuring out
   your code.
