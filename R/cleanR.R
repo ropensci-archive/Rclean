@@ -23,8 +23,8 @@ cleanR <- function(result = "Name of desired result",
             print("Please specify the file pathway to a script")
         }
     }else {
-            options("cleanR.file" = file)
-            refresh.prov <- TRUE
+        options("cleanR.file" = file)
+        refresh.prov <- TRUE
     }
 
     ## Refreshing provenance
