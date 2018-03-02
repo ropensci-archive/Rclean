@@ -28,8 +28,10 @@ cleanR <- function(result = "Name of desired result",
     }
 
     ## Refreshing provenance
-    if (refresh.prov){prov <- prov.capture(file)}else{prov <- read.prov(prov.json())}
-
+    if (refresh.prov){
+        prov.capture(file)
+    }else{}
+    prov <- read.prov(prov.json())
     ## Get result options
     result.opts <- as.character(unlist(
         prov$info$entity[(rownames(prov$info$entity) %in% 
