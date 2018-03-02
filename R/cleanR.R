@@ -3,34 +3,40 @@
 #' 
 #' Produces simplifed, "cleaned" code that is needed to create a result.
 #' 
-#' @param file Path to an R script.
 #' @param result A desired output present in the script.
-#' @param refresh.prov LOGICAL: do you want the script re-run to generate new provenance?
+#' @param file Path to an R script.
 #' @return Cleaned-up code as a vector of strings ordered by line number.
 #' @importFrom provR prov.json
 #' @importFrom provR prov.capture
 #' @export cleanR
 #' @author Matthew K. Lau
 
-cleanR <- function(file = "Path to an R script",
-                   result = "Result name",
-                   refresh.prov = FALSE){
-    ## Get provenance for script
-    if (exists("file)
+cleanR <- function(result = "Name of desired result",
+                   file = "Path to script"){
 
-    if (refresh.prov){prov.capture(file)}
-    if (!refresh.prov & result == "Result name"){
-        print("If you don't see the results you're looking for, try 'refresh.prov = TRUE'", 
-              quote = FALSE)
+    ## Get provenance for script
+    if (file == "Path to script"){
+        if ("cleanR.file" %in% names(options())){
+            file <- options("cleanR.file")
+            refresh.prov <- FALSE
+        }else{
+            print("Please specify the file pathway to a script")
+        }
+    }else {
+            options("cleanR.file" = file)
+            refresh.prov <- TRUE
     }
-    prov <- read.prov(prov.json())
+
+    ## Refreshing provenance
+    if (refresh.prov){prov <- prov.capture(file)}else{prov <- read.prov(prov.json())}
+
     ## Get result options
     result.opts <- as.character(unlist(
         prov$info$entity[(rownames(prov$info$entity) %in% 
                           rownames(prov$graph)[(apply(prov$graph,1,sum) != 0)] &
                               prov$info$entity[,"rdt:type"] == "File"),"rdt:name"]))
     ## If result is NULL then prompt
-    if ((result == "Result name")){
+    if ((result == "Name of desired result")){
         print("Possible results:", quote = FALSE)
         result.opts
     }else{
