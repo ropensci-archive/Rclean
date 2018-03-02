@@ -17,7 +17,7 @@ cleanR <- function(result = "Name of desired result",
     ## Get provenance for script
     if (file == "Path to script"){
         if ("cleanR.file" %in% names(options())){
-            file <- options("cleanR.file")
+            file <- options("cleanR.file")[[1]]
             refresh.prov <- FALSE
         }else{
             print("Please specify the file pathway to a script")
