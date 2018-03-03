@@ -37,6 +37,7 @@ cleanR <- function(result = "Name of desired result",
         prov$info$entity[(rownames(prov$info$entity) %in% 
                           rownames(prov$graph)[(apply(prov$graph,1,sum) != 0)] &
                               prov$info$entity[,"rdt:type"] == "File"),"rdt:name"]))
+    result.opts <- c(result.opts, prov$info$entity[,"rdt:name"])
     ## If result is NULL then prompt
     if ((result == "Name of desired result") | !(result %in% result.opts)){
         print("You can enter an object or output result, here are some examples:", quote = FALSE)
