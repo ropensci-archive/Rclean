@@ -38,8 +38,8 @@ cleanR <- function(result = "Name of desired result",
                           rownames(prov$graph)[(apply(prov$graph,1,sum) != 0)] &
                               prov$info$entity[,"rdt:type"] == "File"),"rdt:name"]))
     ## If result is NULL then prompt
-    if ((result == "Name of desired result")){
-        print("Possible results:", quote = FALSE)
+    if ((result == "Name of desired result") | !(result %in% result.opts)){
+        print("You can enter an object or output result, here are some examples:", quote = FALSE)
         result.opts
     }else{
             ## Breadth first search for code spine
