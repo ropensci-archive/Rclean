@@ -53,8 +53,9 @@ cleanR <- function(result = "Name of desired result",
         lines[,2:3] <- apply(lines[,2:3],2,as.numeric)
         min.script <- character(0)
         for (i in 1:nrow(lines)){
+            l.seq <- unlist(lines[i,2:3])
             if (lines[i,2][[1]] != lines[i,3][[1]]){
-                min.script <- c(min.script,script[unlist(lines[i,2:3])])
+                min.script <- c(min.script,script[seq(l.seq[1],l.seq[2], by = 1)])
             }else{
                 min.script <- c(min.script,script[unlist(lines[i,2])])
             }
