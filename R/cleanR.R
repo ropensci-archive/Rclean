@@ -14,7 +14,8 @@
 #' @author Matthew K. Lau
 
 cleanR <- function(result = "Name of desired result",
-                   file = "Path to script"){
+                   file = "Path to script", 
+                   tidy = TRUE){
     ## Get provenance for script
     if (file == "Path to script"){
         if ("cleanR.file" %in% names(options())){
