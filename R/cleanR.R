@@ -5,15 +5,17 @@
 #' 
 #' @param result A desired output present in the script.
 #' @param file Path to an R script.
+#' @param tidy LOGICAL: should the cleaned script be formatted using syntax best practices?
 #' @return Cleaned-up code as a vector of strings ordered by line number.
 #' @importFrom provR prov.json
 #' @importFrom provR prov.capture
+#' @importFrom formatR tidy_source
 #' @export cleanR
 #' @author Matthew K. Lau
 
 cleanR <- function(result = "Name of desired result",
-                   file = "Path to script"){
-
+                   file = "Path to script", 
+                   tidy = TRUE){
     ## Get provenance for script
     if (file == "Path to script"){
         if ("cleanR.file" %in% names(options())){
@@ -26,7 +28,6 @@ cleanR <- function(result = "Name of desired result",
         options("cleanR.file" = file)
         refresh.prov <- TRUE
     }
-
     ## Refreshing provenance
     if (refresh.prov){
         prov.capture(file)
@@ -37,15 +38,25 @@ cleanR <- function(result = "Name of desired result",
         prov$info$entity[(rownames(prov$info$entity) %in% 
                           rownames(prov$graph)[(apply(prov$graph,1,sum) != 0)] &
                               prov$info$entity[,"rdt:type"] == "File"),"rdt:name"]))
-    result.opts <- c(result.opts, prov$info$entity[,"rdt:name"])
+    ## Get object options
+    obj.opts <- as.character(
+        prov$info$entity[apply(prov$g[grep("d", rownames(prov$g)), ], 1, sum) == 1, 
+                         "rdt:name"]
+        )
+    result.opts <- c(result.opts, obj.opts)
     ## If result is NULL then prompt
     if ((result == "Name of desired result") | !(result %in% result.opts)){
-        print("You can enter an object or output result, here are some examples:", quote = FALSE)
+        print("You can enter an object or output result from the script, such as:", 
+              quote = FALSE)
         result.opts
     }else{
-            ## Breadth first search for code spine
+        ## Breadth first search for code spine
         node.id <- names(which(prov$info$entity[,"rdt:name"] == result))
         spine <- get.spine(node.id, prov$g)
+        ## This is for the improbable user request for a data input
+        if (length(spine) == 1 & any(grepl("d","node.id"))){
+            print("This is an input, not a result of the script.")
+        }
         ## min.script == the minimum code to produce the output
         script <- readLines(file)
         lines <- data.frame(prov$info$activity)[grep("p",spine,value = TRUE),
@@ -60,6 +71,13 @@ cleanR <- function(result = "Name of desired result",
             }else{
                 min.script <- c(min.script,script[unlist(lines[i,2])])
             }
+        }
+        ### Tidying the code using formatR
+        if (tidy){
+            capture.output(
+                min.script <- 
+                    tidy_source(text = min.script)$text.tidy
+                )
         }
         return(min.script)
         ## Signoff
