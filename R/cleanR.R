@@ -72,7 +72,12 @@ cleanR <- function(result = "Name of desired result",
                 min.script <- c(min.script,script[unlist(lines[i,2])])
             }
         }
-        if (tidy){min.script <- tidy_source(text = min.script)$text.tidy}
+        ### Tidying the code using formatR
+        if (tidy){
+            min.script <- capture.output(
+                tidy_source(text = min.script)$text.tidy
+                )
+        }
         return(min.script)
         ## Signoff
         print("These codes are clean!", quote = FALSE)
