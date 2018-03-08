@@ -5,14 +5,17 @@
 #' 
 #' @param result A desired output present in the script.
 #' @param file Path to an R script.
+#' @param tidy LOGICAL: should the cleaned script be formatted using syntax best practices?
 #' @return Cleaned-up code as a vector of strings ordered by line number.
 #' @importFrom provR prov.json
 #' @importFrom provR prov.capture
+#' @importFrom formatR tidy_source
 #' @export cleanR
 #' @author Matthew K. Lau
 
 cleanR <- function(result = "Name of desired result",
-                   file = "Path to script"){
+                   file = "Path to script", 
+                   tidy = TRUE){
     ## Get provenance for script
     if (file == "Path to script"){
         if ("cleanR.file" %in% names(options())){
@@ -68,6 +71,13 @@ cleanR <- function(result = "Name of desired result",
             }else{
                 min.script <- c(min.script,script[unlist(lines[i,2])])
             }
+        }
+        ### Tidying the code using formatR
+        if (tidy){
+            capture.output(
+                min.script <- 
+                    tidy_source(text = min.script)$text.tidy
+                )
         }
         return(min.script)
         ## Signoff
