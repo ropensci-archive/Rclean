@@ -74,8 +74,9 @@ cleanR <- function(result = "Name of desired result",
         }
         ### Tidying the code using formatR
         if (tidy){
-            min.script <- capture.output(
-                tidy_source(text = min.script)$text.tidy
+            capture.output(
+                min.script <- 
+                    tidy_source(text = min.script)$text.tidy
                 )
         }
         return(min.script)
