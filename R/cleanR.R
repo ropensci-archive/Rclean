@@ -16,6 +16,9 @@
 cleanR <- function(result = "Name of desired result",
                    file = "Path to script", 
                    tidy = TRUE){
+    ## Make sure result is of length 1
+    result <- result[1]
+    if (length(result) != 1){warning("Please enter one result at a time.", quote = FALSE)}
     ## Get provenance for script
     if (file == "Path to script"){
         if ("cleanR.file" %in% names(options())){
@@ -34,44 +37,32 @@ cleanR <- function(result = "Name of desired result",
     }else{}
     prov <- read.prov(prov.json())
     ## Get result options
-    result.opts <- as.character(unlist(
-        prov$info$entity[(rownames(prov$info$entity) %in% 
-                          rownames(prov$graph)[(apply(prov$graph,1,sum) != 0)] &
-                              prov$info$entity[,"rdt:type"] == "File"),"rdt:name"]))
-    ## Get object options
-    obj.opts <- as.character(
-        prov$info$entity[apply(prov$g[grep("d", rownames(prov$g)), ], 1, sum) == 1, 
-                         "rdt:name"]
-        )
-    result.opts <- c(result.opts, obj.opts)
+    result.opts <- unlist(prov$info$entity[,1])
+    ## Removing dev.off calls
+    result.opts <- result.opts[!(grepl("dev.", result.opts) & prov$info$entity[,2] == "\"graph\"")]
     ## If result is NULL then prompt
     if ((result == "Name of desired result") | !(result %in% result.opts)){
         print("You can enter an object or output result from the script, such as:", 
               quote = FALSE)
-        result.opts
+        ## Convert to simple character vector
+        as.character(unique(result.opts))
     }else{
-        ## Breadth first search for code spine
-        node.id <- names(which(prov$info$entity[,"rdt:name"] == result))
+        ## Get the node that matches the result name
+        node.id <- tail(
+            rownames(prov$info$entity)[grep(result, result.opts)], 
+            1)
+        ## Graph search for the path from the result to inputs
         spine <- get.spine(node.id, prov$g)
-        ## This is for the improbable user request for a data input
-        if (length(spine) == 1 & any(grepl("d","node.id"))){
-            print("This is an input, not a result of the script.")
-        }
         ## min.script == the minimum code to produce the output
         script <- readLines(file)
-        lines <- data.frame(prov$info$activity)[grep("p",spine,value = TRUE),
-                                                c("rdt.startLine","rdt.endLine")]
-        lines <- cbind(process = rownames(lines),lines)
-        lines[,2:3] <- apply(lines[,2:3],2,as.numeric)
-        min.script <- character(0)
-        for (i in 1:nrow(lines)){
-            l.seq <- unlist(lines[i,2:3])
-            if (lines[i,2][[1]] != lines[i,3][[1]]){
-                min.script <- c(min.script,script[seq(l.seq[1],l.seq[2], by = 1)])
-            }else{
-                min.script <- c(min.script,script[unlist(lines[i,2])])
-            }
-        }
+        ## Get the line numbers from the original source code
+        lines <- prov$info$activity[grep("p",spine),
+                                    grep("Line", colnames(prov$info$activity))]
+        lines <- apply(lines, 2, as.numeric)
+        ### Extract the minimal code
+        min.script <- apply(lines, 1, function(line, src)  
+            src[seq(line[1], line[2])],
+                            src = script)
         ### Tidying the code using formatR
         if (tidy){
             capture.output(
@@ -79,6 +70,7 @@ cleanR <- function(result = "Name of desired result",
                     tidy_source(text = min.script)$text.tidy
                 )
         }
+        ### Return to user
         return(min.script)
         ## Signoff
         print("These codes are clean!", quote = FALSE)
