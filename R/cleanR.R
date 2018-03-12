@@ -56,9 +56,13 @@ cleanR <- function(result = "Name of desired result",
         ## min.script == the minimum code to produce the output
         script <- readLines(file)
         ## Get the line numbers from the original source code
-        lines <- prov$info$activity[grep("p",spine),
+        lines <- prov$info$activity[grep("p",spine, value = TRUE),
                                     grep("Line", colnames(prov$info$activity))]
-        lines <- apply(lines, 2, as.numeric)
+        ### If the result is created on a single line, coerce to a matrix
+        if (length(grep("p", spine)) == 1){
+            lines <- as.numeric(lines)
+            lines <- t(as.matrix(lines))
+        }else{lines <- apply(lines, 2, as.numeric)}
         ### Extract the minimal code
         min.script <- apply(lines, 1, function(line, src)  
             src[seq(line[1], line[2])],
