@@ -98,6 +98,12 @@ cleanR <- function(result = "Name of desired result",
             src[seq(line[1], line[2])],
                             src = script)
         min.script <- unlist(min.script)
+        min.script <- as.character(min.script)
+        ## Check for graphics out
+        plot.code <- sapply(c("jpeg", "png", "tiff", "pdf", "bmp"), grepl, x = min.script)
+        if (any(plot.code)){
+            min.script <- c(min.script, "dev.off()")
+        }
         ### Tidying the code using formatR
         if (tidy){
             capture.output(
