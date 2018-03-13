@@ -1,0 +1,12 @@
+language: r
+r:
+  - oldrel
+  - release
+  - devel
+
+install:
+- R -e 'devtools::install_deps(dep = T)'
+
+script:
+- R CMD build .
+- R CMD check *tar.gz
