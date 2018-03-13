@@ -97,6 +97,7 @@ cleanR <- function(result = "Name of desired result",
         min.script <- apply(lines, 1, function(line, src)  
             src[seq(line[1], line[2])],
                             src = script)
+        min.script <- unlist(min.script)
         ### Tidying the code using formatR
         if (tidy){
             capture.output(
