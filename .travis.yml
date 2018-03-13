@@ -10,11 +10,7 @@ r:
   - devel
 
 install:
-- R -e 'install.packages("devtools")'
-- R -e 'install.packages("igraph")'
-- R -e 'install.packages("jsonlite")'
-- R -e 'install.packages("formatR")'
-- R -e 'devtools::install_deps("ProvTools/provR", dep = TRUE)'
+- R -e 'devtools::install_deps(dep = TRUE)'
 
 script:
 - R CMD build .
