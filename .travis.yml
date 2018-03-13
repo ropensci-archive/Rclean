@@ -1,17 +1,3 @@
-language: R
+language: r
 sudo: false
-
-cache:
-  packages: yes
-
-r:
-  - oldrel
-  - release
-  - devel
-
-install:
-- R -e 'devtools::install_deps(dep = TRUE)'
-
-script:
-- R CMD build .
-- R CMD check --as-cran *tar.gz
+cache: packages
