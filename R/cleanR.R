@@ -63,6 +63,9 @@ cleanR <- function(result = "Name of desired result",
             lines <- as.numeric(lines)
             lines <- t(as.matrix(lines))
         }else{lines <- apply(lines, 2, as.numeric)}
+        rownames(lines) <- grep("p", spine, val = TRUE)
+        ### Re-order ascending 
+        lines <- lines[order(rownames(lines)),]
         ### Extract the minimal code
         min.script <- apply(lines, 1, function(line, src)  
             src[seq(line[1], line[2])],
