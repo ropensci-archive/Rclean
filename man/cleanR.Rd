@@ -5,15 +5,15 @@
 \title{cleanR --- Produce "clean" code.
 OUTPUT = The essential code needed to produce a result.}
 \usage{
-cleanR(file = "Path to an R script", result = "Result name",
-  refresh.prov = TRUE)
+cleanR(result = "Name of desired result", file = "Path to script",
+  tidy = TRUE)
 }
 \arguments{
-\item{file}{Path to an R script.}
-
 \item{result}{A desired output present in the script.}
 
-\item{refresh.prov}{LOGICAL: do you want the script re-run to generate new provenance?}
+\item{file}{Path to an R script.}
+
+\item{tidy}{LOGICAL: should the cleaned script be formatted using syntax best practices?}
 }
 \value{
 Cleaned-up code as a vector of strings ordered by line number.
@@ -23,7 +23,4 @@ Produces simplifed, "cleaned" code that is needed to create a result.
 }
 \author{
 Matthew K. Lau
-Outline:
-Input result path
-Input script path
 }
