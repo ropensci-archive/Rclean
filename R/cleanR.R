@@ -39,21 +39,33 @@ cleanR <- function(result = "Name of desired result",
     }else{}
     prov <- read.prov(prov.json())
     ## Get result options
-    result.opts <- unlist(prov$info$entity[,1])
+    ## Output files
+    result.files <- unlist(
+        prov$info$entity[prov$info$entity[,4] == "File", 1]
+        )
+    ## Remove files that are inputs
+    result.files <- result.files[names(result.files) %in% names(which(apply(prov$graph,2,sum) == 0))]
+    result.files <- as.character(result.files)
+    ## Get objects for suggested results    
+    result.obj <- unlist(prov$info$entity[,1])
     ## Removing dev.off calls
-    result.opts <- result.opts[!(grepl("dev.", result.opts) & 
-                                     prov$info$entity[,2] == "\"graph\"")]
+    result.obj <- result.obj[!(grepl("dev.", result.obj) &  prov$info$entity[,2] == "\"graph\"")]
+    ## Remove output files
+    result.obj <- result.obj[names(result.obj) %in% rownames(prov$info$entity)[prov$info$entity[,4] != "File"]]
+    result.obj <- as.character(result.obj)
+    ## Combine vectors
+    result.opts <- list(Files = unique(result.files), Objects = unique(result.obj))
     ## If result is NULL then prompt
     if ((result == "Name of desired result") | !(result %in% result.opts)){
-        print("You can enter an object or output result from the script, such as:", 
+        print("Possible results:", 
               quote = FALSE)
         ## Convert to simple character vector
-        as.character(unique(result.opts))
+        result.opts
     }else{
         ## Get the node that matches the result name
-        node.id <- tail(
-            rownames(prov$info$entity)[grep(result, result.opts)], 
-            1)
+        node.id <- tail(n = 1,
+                        rownames(prov$info$entity)[prov$info$entity[,1] == result][]
+                        )
         ## Graph search for the path from the result to inputs
         spine <- get.spine(node.id, prov$g)
         ## min.script == the minimum code to produce the output
@@ -78,7 +90,8 @@ cleanR <- function(result = "Name of desired result",
             lines <- as.numeric(lines)
             lines <- t(as.matrix(lines))
         }else{
-            lines <- lines[order(rownames(lines)),]
+            node.rank <- as.numeric(gsub("p", "", rownames(lines)))
+            lines <- lines[order(node.rank),]
         }
         ### Extract the minimal code
         min.script <- apply(lines, 1, function(line, src)  
