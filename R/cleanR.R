@@ -18,7 +18,9 @@ cleanR <- function(result = "Name of desired result",
                    tidy = TRUE){
     ## Make sure result is of length 1
     result <- result[1]
-    if (length(result) != 1){warning("Please enter one result at a time.", quote = FALSE)}
+    if (length(result) != 1){
+        warning("Please enter one result at a time.", quote = FALSE)
+    }
     ## Get provenance for script
     if (file == "Path to script"){
         if ("cleanR.file" %in% names(options())){
@@ -39,7 +41,8 @@ cleanR <- function(result = "Name of desired result",
     ## Get result options
     result.opts <- unlist(prov$info$entity[,1])
     ## Removing dev.off calls
-    result.opts <- result.opts[!(grepl("dev.", result.opts) & prov$info$entity[,2] == "\"graph\"")]
+    result.opts <- result.opts[!(grepl("dev.", result.opts) & 
+                                     prov$info$entity[,2] == "\"graph\"")]
     ## If result is NULL then prompt
     if ((result == "Name of desired result") | !(result %in% result.opts)){
         print("You can enter an object or output result from the script, such as:", 
@@ -70,8 +73,13 @@ cleanR <- function(result = "Name of desired result",
                        d = prov$info$entity[,1])
         rm.p <- names(rm.p)[!(rm.p)]
         lines <- lines[!(rownames(lines) %in% rm.p),]
-        ### Re-order ascending 
-        lines <- lines[order(rownames(lines)),]
+        ## If a single process, re-matricize, else re-order ascending 
+        if (length(grep("p", spine)) == 1){
+            lines <- as.numeric(lines)
+            lines <- t(as.matrix(lines))
+        }else{
+            lines <- lines[order(rownames(lines)),]
+        }
         ### Extract the minimal code
         min.script <- apply(lines, 1, function(line, src)  
             src[seq(line[1], line[2])],
