@@ -1,11 +1,17 @@
-language: r
+language: R
+sudo: false
+
+cache:
+  packages: yes
+
 r:
   - oldrel
   - release
   - devel
 
 install:
-- R -e 'devtools::install_deps(dep = T)'
+- R -e 'install.packages("devtools")'
+- R -e 'devtools::install_deps("ProvTools/provR")'
 
 script:
 - R CMD build .
