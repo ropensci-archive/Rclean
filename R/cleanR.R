@@ -64,6 +64,12 @@ cleanR <- function(result = "Name of desired result",
             lines <- t(as.matrix(lines))
         }else{lines <- apply(lines, 2, as.numeric)}
         rownames(lines) <- grep("p", spine, val = TRUE)
+        ## Remove processes which don't involve the creation of data
+        rm.p <- sapply(prov$info$activity[,1], 
+                       function(p, d) any(sapply(d, grepl, x = p)), 
+                       d = prov$info$entity[,1])
+        rm.p <- names(rm.p)[!(rm.p)]
+        lines <- lines[!(rownames(lines) %in% rm.p),]
         ### Re-order ascending 
         lines <- lines[order(rownames(lines)),]
         ### Extract the minimal code
