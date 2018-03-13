@@ -56,7 +56,7 @@ cleanR <- function(result = "Name of desired result",
     ## Combine vectors
     result.opts <- list(Files = unique(result.files), Objects = unique(result.obj))
     ## If result is NULL then prompt
-    if ((result == "Name of desired result") | !(result %in% result.opts)){
+    if ((result == "Name of desired result") | !(result %in% unlist(result.opts))){
         print("Possible results:", 
               quote = FALSE)
         ## Convert to simple character vector
