@@ -2,6 +2,7 @@
 
 export(cleanR)
 export(write.code)
+importFrom(formatR,tidy_source)
 importFrom(igraph,bfs)
 importFrom(igraph,graph_from_adjacency_matrix)
 importFrom(jsonlite,fromJSON)
