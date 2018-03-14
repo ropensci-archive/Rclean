@@ -1,3 +1,6 @@
+https://travis-ci.org/ProvTools/cleanR.svg?branch=master
+https://travis-ci.org/ProvTools/cleanR.svg?branch=dev
+
 Clean up your code
 ==================
 
