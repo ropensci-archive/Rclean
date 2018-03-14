@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/ProvTools/cleanR.svg?branch=master)](https://travis-ci.org/ProvTools/cleanR)
+
+[![Build Status](https://travis-ci.org/ProvTools/cleanR.svg?branch=dev)](https://travis-ci.org/ProvTools/cleanR)
+
 Clean up your code
 ==================
 
