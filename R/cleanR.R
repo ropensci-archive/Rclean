@@ -10,6 +10,8 @@
 #' @importFrom provR prov.json
 #' @importFrom provR prov.capture
 #' @importFrom formatR tidy_source
+#' @importFrom utils capture.output
+#' @importFrom utils tail
 #' @export cleanR
 #' @author Matthew K. Lau
 

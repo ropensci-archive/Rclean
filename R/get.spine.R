@@ -10,9 +10,9 @@
 #' @param g Provenance graph adjacency matrix.
 #' @return A set of node names tracing the complete parantage of a result.
 #' @author Matthew K. Lau
-#' @importFrom igraph bfs
+#' @importFrom igraph dfs
 #' @importFrom igraph graph_from_adjacency_matrix
-
+#' @importFrom stats na.omit
 
 get.spine <- function(node.id, g){
     ig <- graph_from_adjacency_matrix(g)

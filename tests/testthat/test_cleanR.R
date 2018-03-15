@@ -1,6 +1,12 @@
+context("Provenance capture")
+library(cleanR)
+library(provR)
+library(jsonlite)
+library(igraph)
+library(formatR)
+
 micro.test <- cleanR(file = "../../exec/micro.R")
 
-context("Provenance capture")
 prov <- cleanR:::read.prov(provR::prov.json())
 expect_match(mode(prov), "list")
 expect_equal(length(prov), 2)
