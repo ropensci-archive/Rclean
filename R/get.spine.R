@@ -16,5 +16,5 @@
 
 get.spine <- function(node.id, g){
     ig <- graph_from_adjacency_matrix(g)
-    as.character(na.omit(names(dfs(ig, node.id, "out" ,unreach = F)$order)))
+    as.character(na.omit(names(dfs(ig, node.id, "out" , unreachable = FALSE)$order)))
 }

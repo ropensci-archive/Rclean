@@ -80,7 +80,7 @@ cleanR <- function(result = "Name of desired result",
             lines <- as.numeric(lines)
             lines <- t(as.matrix(lines))
         }else{lines <- apply(lines, 2, as.numeric)}
-        rownames(lines) <- grep("p", spine, val = TRUE)
+        rownames(lines) <- grep("p", spine, value = TRUE)
         ## Remove processes which don't involve the creation of data
         rm.p <- sapply(prov$info$activity[,1], 
                        function(p, d) any(sapply(d, grepl, x = p)), 
