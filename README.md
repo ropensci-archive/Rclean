@@ -20,7 +20,7 @@ Clean up your code
   you spend more energy on your science and less time figuring out
   your code.
 
-[![](cleanR_demo_vid.png)](cleanR_demo_small.mp4)
+<!-- [![](cleanR_demo_vid.png)](cleanR_demo_small.mp4) -->
 
 Install and Setup
 =================

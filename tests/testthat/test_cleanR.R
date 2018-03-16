@@ -1,9 +1,9 @@
 context("Provenance capture")
-library(cleanR)
-library(provR)
-library(jsonlite)
-library(igraph)
-library(formatR)
+## library(cleanR)
+## library(provR)
+## library(jsonlite)
+## library(igraph)
+## library(formatR)
 
 micro.test <- cleanR(file = "micro.R")
 
