@@ -1,3 +1,4 @@
+.travis.yml
 cleanR-demo.gif
 cleanR_demo_vid.png
 exec/loader.R
