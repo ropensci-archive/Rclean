@@ -5,7 +5,7 @@ library(jsonlite)
 library(igraph)
 library(formatR)
 
-micro.test <- cleanR(file = "../../exec/micro.R")
+micro.test <- cleanR(file = "micro.R")
 
 prov <- cleanR:::read.prov(provR::prov.json())
 expect_match(mode(prov), "list")
