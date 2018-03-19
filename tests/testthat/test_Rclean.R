@@ -1,5 +1,4 @@
 context("Provenance capture")
-library(cleanR)
 library(jsonlite)
 library(igraph)
 library(formatR)
