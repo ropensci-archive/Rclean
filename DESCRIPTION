@@ -2,7 +2,7 @@ Package: Rclean
 Type: Package
 Title: Clean Code, One Result at a Time
 Version: 0.01.5
-Date: 2018-03-13
+Date: 2018-03-19
 Author: Matthew K. Lau
 Maintainer: Matthew K. Lau <matthewklau@fas.harvard.edu>
 Description: Provides a simple function to help make code more easily
