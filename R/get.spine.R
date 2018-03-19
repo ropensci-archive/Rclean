@@ -10,29 +10,11 @@
 #' @param g Provenance graph adjacency matrix.
 #' @return A set of node names tracing the complete parantage of a result.
 #' @author Matthew K. Lau
-#' @importFrom igraph bfs
+#' @importFrom igraph dfs
 #' @importFrom igraph graph_from_adjacency_matrix
+#' @importFrom stats na.omit
 
-get.spine <- function(node.id,g){
+get.spine <- function(node.id, g){
     ig <- graph_from_adjacency_matrix(g)
-    nodes <- names(na.omit(bfs(ig, 
-                               root = node.id, 
-                               neimode = c('in'),
-                               unreachable = FALSE)$order))
-    if (length(nodes) == 1 & any(grepl("d",nodes))){
-        nodes <- names(na.omit(bfs(ig, 
-                                   root = node.id, 
-                                   neimode = c('out'),
-                                   unreachable = FALSE)$order))
-        nodes <- grep("p", nodes, value = TRUE)
-        nodes <- paste0("p",sort(as.numeric(do.call(rbind,strsplit(nodes,"p"))[,2])))
-    }else{
-        nodes <- names(na.omit(bfs(ig, 
-                                   root = node.id, 
-                                   neimode = c('in'),
-                                   unreachable = FALSE)$order))
-        nodes <- grep("p", nodes, value = TRUE)
-        nodes <- paste0("p",sort(as.numeric(do.call(rbind,strsplit(nodes,"p"))[,2])))
-    }
-    return(nodes)
+    as.character(na.omit(names(dfs(ig, node.id, "out" , unreachable = FALSE)$order)))
 }

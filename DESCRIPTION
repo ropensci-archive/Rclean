@@ -1,12 +1,13 @@
-Package: cleanR
+Package: Rclean
 Type: Package
-Title: Clean Code, One Result at a Time.
-Version: 0.01.4
-Date: 2017-09-07
+Title: A Tool for Writing Cleaner, more Transparent Code
+Version: 0.01.5
+Date: 2018-03-19
 Author: Matthew K. Lau
 Maintainer: Matthew K. Lau <matthewklau@fas.harvard.edu>
-Description: Provides a simple function to help make code more easily
-	     interpretable and reproducible
+Description: This package provides tools that help you make code more
+	     easily interpretable and reproducible.
 License: GPL-3 | file LICENSE
-Imports: igraph, jsonlite, provR, formatR
+Imports: igraph, jsonlite, formatR
+Suggests: roxygen2, testthat
 RoxygenNote: 6.0.1
