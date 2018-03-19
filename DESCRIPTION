@@ -9,6 +9,5 @@ Description: Provides a simple function to help make code more easily
 	     interpretable and reproducible
 License: GPL-3 | file LICENSE
 Imports: igraph, jsonlite, formatR
-Suggests: roxygen2,
-    testthat
+Suggests: roxygen2, testthat
 RoxygenNote: 6.0.1
