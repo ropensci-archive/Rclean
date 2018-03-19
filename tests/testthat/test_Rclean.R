@@ -7,7 +7,7 @@ library(utils)
 ## Loading test data
 test.dat.loc <- system.file("exec", "micro_R.json", package="Rclean")
 options(prov.json = readLines(test.dat.loc))
-prov <- cleanR:::read.prov(options()$prov.json)
+prov <- Rclean:::read.prov(options()$prov.json)
 expect_match(mode(prov), "list")
 expect_equal(length(prov), 2)
 
