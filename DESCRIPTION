@@ -8,8 +8,7 @@ Maintainer: Matthew K. Lau <matthewklau@fas.harvard.edu>
 Description: Provides a simple function to help make code more easily
 	     interpretable and reproducible
 License: GPL-3 | file LICENSE
-Imports: igraph, jsonlite, provR, formatR
-Remotes: git@github.com:ProvTools/provR.git
+Imports: igraph, jsonlite, formatR
 Suggests: roxygen2,
     testthat
 RoxygenNote: 6.0.1
