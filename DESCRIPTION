@@ -1,6 +1,6 @@
 Package: Rclean
 Type: Package
-Title: A tool for writing cleaner, more transparent code
+Title: Rclean is a tool for writing cleaner, more transparent code
 Version: 0.01.5
 Date: 2018-03-19
 Author: Matthew K. Lau
