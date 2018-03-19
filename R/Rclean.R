@@ -1,22 +1,22 @@
-#' cleanR --- Produce "clean" code.
+#' Rclean --- Produce more transparent code.
 #' OUTPUT = The essential code needed to produce a result.
 #' 
-#' Produces simplifed, "cleaned" code that is needed to create a result.
+#' Produces simplifed, "cleaned" code that is needed to create a result. 
+#' Make sure that your working directory is set to the location of your script
+#' and that you have loaded data provenance for that script into R's option system, and
+#' Rclean takes care of the rest.
 #' 
 #' @param result A desired output present in the script.
-#' @param file Path to an R script.
 #' @param tidy LOGICAL: should the cleaned script be formatted using syntax best practices?
-#' @return Cleaned-up code as a vector of strings ordered by line number.
-#' @importFrom provR prov.json
-#' @importFrom provR prov.capture
+#' @return Cleaned code as a vector of strings ordered by line number. 
+#' @seealso write.code
 #' @importFrom formatR tidy_source
 #' @importFrom utils capture.output
 #' @importFrom utils tail
-#' @export cleanR
+#' @export Rclean
 #' @author Matthew K. Lau
 
-cleanR <- function(result = "Name of desired result",
-                   file = "Path to script", 
+Rclean <- function(result = "Name of desired result",
                    tidy = TRUE){
     ## Make sure result is of length 1
     result <- result[1]
@@ -24,22 +24,18 @@ cleanR <- function(result = "Name of desired result",
         warning("Please enter one result at a time.", quote = FALSE)
     }
     ## Get provenance for script
-    if (file == "Path to script"){
-        if ("cleanR.file" %in% names(options())){
-            file <- options("cleanR.file")[[1]]
-            refresh.prov <- FALSE
-        }else{
-            print("Please specify the file pathway to a script")
-        }
-    }else {
-        options("cleanR.file" = file)
-        refresh.prov <- TRUE
+    ## Check if the provenance is in memory
+    if ("prov.json" %in% names(options())){
+        prov <- read.prov(options()$prov.json)
+    }else{
+        warning("No provenance loaded. Please assign W3C PROV-JSON to options (i.e. options(prov.json = PROV.JSON))")
     }
-    ## Refreshing provenance
-    if (refresh.prov){
-        prov.capture(file)
-    }else{}
-    prov <- read.prov(prov.json())
+    ## Check that the prov matches a file in the current working directory
+    if (!(any(dir() == prov$info$activity[1,1]))){
+        warning("No scripts matching current provenance.")
+    }else{
+        script <- readLines(prov$info$activity[1,1][[1]])
+    }
     ## Get result options
     ## Output files
     result.files <- unlist(
@@ -71,7 +67,6 @@ cleanR <- function(result = "Name of desired result",
         ## Graph search for the path from the result to inputs
         spine <- get.spine(node.id, prov$g)
         ## min.script == the minimum code to produce the output
-        script <- readLines(file)
         ## Get the line numbers from the original source code
         lines <- prov$info$activity[grep("p",spine, value = TRUE),
                                     grep("Line", colnames(prov$info$activity))]
