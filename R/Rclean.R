@@ -1,4 +1,4 @@
-#' Rclean --- Produce "clean" code.
+#' Rclean --- Produce more transparent code.
 #' OUTPUT = The essential code needed to produce a result.
 #' 
 #' Produces simplifed, "cleaned" code that is needed to create a result. 
