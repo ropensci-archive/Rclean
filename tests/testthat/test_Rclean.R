@@ -19,6 +19,7 @@ context("Provenance info")
 expect_equal(length(prov$info), 3)
 
 context("Code cleaning: initiate")
+micro.test <- Rclean()
 expect_equal(length(micro.test), 2)
 expect_match(mode(micro.test), "list")
 expect_match(names(micro.test)[1], "Files")
