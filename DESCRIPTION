@@ -5,8 +5,8 @@ Version: 0.01.5
 Date: 2018-03-19
 Author: Matthew K. Lau
 Maintainer: Matthew K. Lau <matthewklau@fas.harvard.edu>
-Description: This package provides tools aimed at helping to make code
-	     more easily interpretable and reproducible
+Description: This package provides tools that help you make code more
+	     easily interpretable and reproducible.
 License: GPL-3 | file LICENSE
 Imports: igraph, jsonlite, formatR
 Suggests: roxygen2, testthat
