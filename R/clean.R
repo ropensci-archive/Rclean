@@ -19,9 +19,10 @@
 clean <- function(result = "Name of desired result",
                    tidy = TRUE){
     ## Make sure result is of length 1
-    result <- as.character(substitute(result[1]))
+    result <- as.character(substitute(result))
     if (length(result) != 1){
         warning("Please enter one result at a time.", quote = FALSE)
+        result <- result[1]
     }
     ## Get provenance for script
     ## Check if the provenance is in memory
