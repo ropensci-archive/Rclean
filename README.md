@@ -84,16 +84,28 @@ You can then pick and choose from among these results and get the
 essential code to produce the output, like so:
 
 ```R
-clean("x")
+clean(x)
 
 ```
 
+Notice that the 'clean' function doesn't require you to quote your
+results, it interprets all inputs as names of results. 
 
 In many cases, it's handy just to take a look at the isolated code,
 but if you can also save the code for later use or sharing.
 
 ```R
-my.code <- clean("x")
+my.code <- clean(x)
 write.code(my.code, file = "x.R")
 
 ```
+
+If you would like to copy your code to the clipboard, you can do that
+by not specifying a file path. 
+
+```R
+write.code(my.code)
+
+```
+
+Happy cleaning!
