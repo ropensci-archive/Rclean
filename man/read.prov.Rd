@@ -2,7 +2,7 @@
 % Please edit documentation in R/read.prov.R
 \name{read.prov}
 \alias{read.prov}
-\title{.read.prov --- Read and parse provenance from a JSON file.
+\title{read.prov --- Read and parse provenance from a JSON file.
 OUTPUT = Returns a dataframe containing the provenance.}
 \usage{
 read.prov(file)
