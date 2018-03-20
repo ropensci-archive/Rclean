@@ -9,10 +9,13 @@ Clean up your code
   analyses and wished that someone would come along and make it all
   clearer to understand and use?
 - Well you’re not alone. 
-- A recent survey of over 1500 scientists reported a crisis of reproducibility with "selective reporting" being 
-  the most cited contributing factor and 80% saying code availability is playing a role
+- A recent survey of over 1500 scientists reported a crisis of
+  reproducibility with "selective reporting" being the most cited
+  contributing factor and 80% saying code availability is playing a
+  role
 - We created **Rclean** to help scientists more *easily* write "cleaner" code
-- [Rclean](https://github.com/ProvTools/Rclean) provides a simple way get the code you need to produce a specific result
+- [Rclean](https://github.com/ProvTools/Rclean) provides a simple way
+  get the code you need to produce a specific result
 - **Rclean** uses data provenance tp capture what your code actually
   does when it’s running and then allows you to pull out the essential
   code that produces specific outputs.
@@ -68,10 +71,12 @@ prov.capture("micro.R")
 options(prov.json = prov.json())
 ```
 
-Now that we have the provenance loaded, we can start cleaning. [Rclean](https://github.com/ProvTools/Rclean) will give us a list of possible values we can get code for:
+Now that we have the provenance loaded, we can start
+cleaning. [Rclean](https://github.com/ProvTools/Rclean) will give us a
+list of possible values we can get code for:
 
 ```R
-Rclean()
+clean()
 
 ```
 
@@ -79,7 +84,7 @@ You can then pick and choose from among these results and get the
 essential code to produce the output, like so:
 
 ```R
-Rclean("x")
+clean("x")
 
 ```
 
@@ -88,7 +93,7 @@ In many cases, it's handy just to take a look at the isolated code,
 but if you can also save the code for later use or sharing.
 
 ```R
-my.code <- Rclean("x")
+my.code <- clean("x")
 write.code(my.code, file = "x.R")
 
 ```
