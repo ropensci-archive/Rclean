@@ -71,6 +71,13 @@ prov.capture("micro.R")
 options(prov.json = prov.json())
 ```
 
+Or, if you have provenance saved as a text file, you can load it in
+like this:
+
+```R
+options(prov.json = readLines("prov_micro.json"))
+```
+
 Now that we have the provenance loaded, we can start
 cleaning. [Rclean](https://github.com/ProvTools/Rclean) will give us a
 list of possible values we can get code for:
