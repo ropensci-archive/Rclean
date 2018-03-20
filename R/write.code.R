@@ -6,6 +6,7 @@
 #' @param x Script object to write.
 #' @param file Path to where you want to write. Default writes to clipboard.
 #' @return The script is written to disk, line by line.
+#' @importFrom utils sessionInfo
 #' @export write.code
 #' @author Matthew K. Lau
 
