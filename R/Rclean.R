@@ -19,7 +19,7 @@
 Rclean <- function(result = "Name of desired result",
                    tidy = TRUE){
     ## Make sure result is of length 1
-    result <- result[1]
+    result <- as.character(substitute(result[1]))
     if (length(result) != 1){
         warning("Please enter one result at a time.", quote = FALSE)
     }
