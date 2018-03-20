@@ -1,4 +1,4 @@
-#' Rclean --- Produce more transparent code.
+#' clean --- Produces more transparent code.
 #' OUTPUT = The essential code needed to produce a result.
 #' 
 #' Produces simplifed, "cleaned" code that is needed to create a result. 
@@ -13,15 +13,16 @@
 #' @importFrom formatR tidy_source
 #' @importFrom utils capture.output
 #' @importFrom utils tail
-#' @export Rclean
+#' @export clean
 #' @author Matthew K. Lau
 
-Rclean <- function(result = "Name of desired result",
+clean <- function(result = "Name of desired result",
                    tidy = TRUE){
     ## Make sure result is of length 1
-    result <- result[1]
+    result <- as.character(substitute(result))
     if (length(result) != 1){
         warning("Please enter one result at a time.", quote = FALSE)
+        result <- result[1]
     }
     ## Get provenance for script
     ## Check if the provenance is in memory

@@ -10,7 +10,7 @@ write.code(x, file = NULL)
 \arguments{
 \item{x}{Script object to write.}
 
-\item{file}{Path to where you want to write.}
+\item{file}{Path to where you want to write. Default writes to clipboard.}
 }
 \value{
 The script is written to disk, line by line.
