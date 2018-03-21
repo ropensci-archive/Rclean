@@ -5,7 +5,7 @@ Version: 1.0.0
 Date: 2018-03-20
 Author: Matthew K. Lau
 Maintainer: Matthew K. Lau <matthewklau@fas.harvard.edu>
-Description: Create clearer more concise code
+Description: Create clearer, more concise code
 License: GPL-3 | file LICENSE
 Imports: igraph, jsonlite, formatR
 Suggests: roxygen2, testthat
