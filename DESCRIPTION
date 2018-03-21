@@ -5,10 +5,10 @@ Version: 1.0.0
 Date: 2018-03-20
 Author: Matthew K. Lau
 Maintainer: Matthew K. Lau <matthewklau@fas.harvard.edu>
-Description: To create clearer, more concise code this package
-provides tools that isolate the essential parts of a script that
-produces a chosen result, such as an object, tables and figures
-written to disk and even warnings and errors. 
+Description: To create clearer, more concise code provides this
+	     toolbox helps coders to isolate the essential parts of a script that
+	     produces a chosen result, such as an object, tables and figures
+	     written to disk and even warnings and errors. 
 License: GPL-3 | file LICENSE
 Imports: igraph, jsonlite, formatR
 Suggests: roxygen2, testthat
