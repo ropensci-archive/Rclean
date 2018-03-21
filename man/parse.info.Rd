@@ -17,6 +17,13 @@ A symmetric matrix of provenance entity relationships.
 This is an internal function for parsing PROV-JSON formatted 
 provenance.
 }
+\examples{
+\dontrun{
+ data(prov_json)
+ prov <- read.prov(prov_json)
+ parse.info(prov)
+}
+}
 \author{
 Matthew K. Lau
 }

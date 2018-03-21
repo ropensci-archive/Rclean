@@ -17,6 +17,16 @@ A list containing the provenance.
 This is an internal function for reading PROV-JSON formatted
 provenance.
 }
+\examples{
+\dontrun{
+ data(prov_json)
+ prov <- read.prov(prov_json)
+ prov$graph
+ prov$info$activity
+ prov$info$environment
+ prov$info$entity
+}
+}
 \author{
 Matthew K. Lau
 }

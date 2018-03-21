@@ -21,6 +21,15 @@ Make sure that your working directory is set to the location of your script
 and that you have loaded data provenance for that script into R's option system, and
 Rclean takes care of the rest.
 }
+\examples{
+\dontrun{
+data(prov_json)
+options(prov.json = prov_json)
+clean()
+clean(x)
+clean(y)
+}
+}
 \seealso{
 write.code
 }
