@@ -13,6 +13,12 @@
 #' @importFrom igraph dfs
 #' @importFrom igraph graph_from_adjacency_matrix
 #' @importFrom stats na.omit
+#'@examples
+#'\dontrun{
+#' data(prov_json)
+#' prov <- read.prov(prov_json)
+#' get.spine("d1", prov$graph)
+#'}
 
 get.spine <- function(node.id, g){
     ig <- graph_from_adjacency_matrix(g)

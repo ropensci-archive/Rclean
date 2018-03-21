@@ -1,20 +1,28 @@
-#' clean --- Produces more transparent code.
-#' OUTPUT = The essential code needed to produce a result.
-#' 
-#' Produces simplifed, "cleaned" code that is needed to create a result. 
-#' Make sure that your working directory is set to the location of your script
-#' and that you have loaded data provenance for that script into R's option system, and
-#' Rclean takes care of the rest.
-#' 
-#' @param result A desired output present in the script.
-#' @param tidy LOGICAL: should the cleaned script be formatted using syntax best practices?
-#' @return Cleaned code as a vector of strings ordered by line number. 
-#' @seealso write.code
-#' @importFrom formatR tidy_source
-#' @importFrom utils capture.output
-#' @importFrom utils tail
-#' @export clean
-#' @author Matthew K. Lau
+#'clean --- Produces more transparent code.
+#'OUTPUT = The essential code needed to produce a result.
+#'
+#'Produces simplifed, "cleaned" code that is needed to create a result. 
+#'Make sure that your working directory is set to the location of your script
+#'and that you have loaded data provenance for that script into R's option system, and
+#'Rclean takes care of the rest.
+#'
+#'@param result A desired output present in the script.
+#'@param tidy LOGICAL: should the cleaned script be formatted using syntax best practices?
+#'@return Cleaned code as a vector of strings ordered by line number. 
+#'@seealso write.code
+#'@importFrom formatR tidy_source
+#'@importFrom utils capture.output
+#'@importFrom utils tail
+#'@export clean
+#'@author Matthew K. Lau
+#'@examples
+#'\dontrun{
+#'data(prov_json)
+#'options(prov.json = prov_json)
+#'clean()
+#'clean(x)
+#'clean(y)
+#'}
 
 clean <- function(result = "Name of desired result",
                    tidy = TRUE){

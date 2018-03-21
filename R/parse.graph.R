@@ -8,6 +8,12 @@
 #' @param rm.env LOGICAL: should the environment entity be removed?
 #' @return A symmetric matrix of provenance entity relationships.
 #' @author Matthew K. Lau
+#'@examples
+#'\dontrun{
+#' data(prov_json)
+#' prov <- read.prov(prov_json)
+#' parse.graph(prov)
+#'}
 
 parse.graph <- function(prov,rm.env = TRUE){
     if (grepl("rdatatracker",prov[[1]][[2]])){

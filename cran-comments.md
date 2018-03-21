@@ -1,24 +1,30 @@
 ## Test environments
 * local OS X install, R 3.4.3
-* local OS X install, R devel 3.5.0
 * ubuntu 14.14 (on travis-ci), R 3.4.4
+* win-builder (devel and release)
 
 ## R CMD check results
 There were no ERRORs or WARNINGs. 
 
-There were 2 NOTEs:
+There were 1 NOTE:
 
 * checking CRAN incoming feasibility ... NOTE
   Maintainer: ‘Matthew K. Lau <matthewklau@fas.harvard.edu>’
 
   New submission
 
-* checking DESCRIPTION meta-information ... NOTE
-  Malformed Description field: should contain one or more complete sentences.
-
-  Is I understand grammar, the title is indeed a complete
-  sentence. "Create clearer, more concise code" is a sentence in the
-  second person imperative.
-
 ## Downstream dependencies
 There are currently no downstream dependencies. 
+
+## Resubmission
+
+Added more text to the description, elaborating on the intended
+function of the package. 
+
+Added examples to all functions.
+
+Checked all functions to make sure that none write to the user's file
+system without the permission of the user. The only function that
+exectures write commands is the write.code function, which is only
+invoked by the user in order to write to her clipboard (by default) or
+to her filesystem when a file path is supplied by her. 

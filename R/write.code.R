@@ -9,8 +9,16 @@
 #' @importFrom utils sessionInfo
 #' @export write.code
 #' @author Matthew K. Lau
+#' @examples
+#' \dontrun{
+#'  data(prov_json)
+#'  options(prov.json = prov_json)
+#'  clean.code <- clean(x)
+#'  write.code(clean.code) # copies to clipboard by default
+#' }
 
-write.code <- function(x,file = NULL){
+
+write.code <- function(x, file = NULL){
     if (is.null(file)){
         ## Copy to clipboard depending on the system
         sys <- c(Sys.info()[[1]], sessionInfo()[[4]])

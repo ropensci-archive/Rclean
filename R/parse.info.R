@@ -7,6 +7,12 @@
 #' @param prov PROV-JSON formatted provenance.
 #' @return A symmetric matrix of provenance entity relationships.
 #' @author Matthew K. Lau
+#' @examples
+#' \dontrun{
+#'  data(prov_json)
+#'  prov <- read.prov(prov_json)
+#'  parse.info(prov)
+#' }
 
 parse.info <- function(prov){
     if (grepl("rdatatracker",prov[[1]][[2]])){
