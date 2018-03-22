@@ -16,13 +16,11 @@
 #'@export clean
 #'@author Matthew K. Lau
 #'@examples
-#'\dontrun{
-#'data(prov_json)
-#'options(prov.json = prov_json)
-#'clean()
-#'clean(x)
-#'clean(y)
-#'}
+data(prov_json)
+options(prov.json = prov_json)
+clean()
+clean("x")
+clean("y")
 
 clean <- function(result = "Name of desired result",
                    tidy = TRUE){

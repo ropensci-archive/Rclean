@@ -10,14 +10,12 @@
 #' @importFrom jsonlite fromJSON
 #' @export read.prov
 #' @examples
-#' \dontrun{
 #'  data(prov_json)
 #'  prov <- read.prov(prov_json)
 #'  prov$graph
 #'  prov$info$activity
 #'  prov$info$environment
 #'  prov$info$entity
-#' }
 
 read.prov <- function(file){
     prov <- fromJSON(file)

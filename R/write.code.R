@@ -10,12 +10,10 @@
 #' @export write.code
 #' @author Matthew K. Lau
 #' @examples
-#' \dontrun{
 #'  data(prov_json)
 #'  options(prov.json = prov_json)
-#'  clean.code <- clean(x)
+#'  clean.code <- clean("x")
 #'  write.code(clean.code) # copies to clipboard by default
-#' }
 
 
 write.code <- function(x, file = NULL){
