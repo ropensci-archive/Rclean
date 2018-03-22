@@ -19,12 +19,10 @@ The script is written to disk, line by line.
 This is a simple function for writing code to disk.
 }
 \examples{
-\dontrun{
  data(prov_json)
  options(prov.json = prov_json)
- clean.code <- clean(x)
+ clean.code <- clean("x")
  write.code(clean.code) # copies to clipboard by default
-}
 }
 \author{
 Matthew K. Lau

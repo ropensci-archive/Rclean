@@ -22,13 +22,11 @@ and that you have loaded data provenance for that script into R's option system,
 Rclean takes care of the rest.
 }
 \examples{
-\dontrun{
 data(prov_json)
 options(prov.json = prov_json)
 clean()
-clean(x)
-clean(y)
-}
+clean("x")
+clean("y")
 }
 \seealso{
 write.code
