@@ -6,6 +6,8 @@ Date: 2018-03-20
 Author: Matthew K. Lau
 Maintainer: Matthew K. Lau <matthewklau@fas.harvard.edu>
 Description: Create clearer, more concise code
+URL: https://github.com/ProvTools/Rclean
+BugReport: https://github.com/ProvTools/Rclean/issues
 License: GPL-3 | file LICENSE
 Imports: igraph, jsonlite, formatR
 Suggests: roxygen2, testthat
