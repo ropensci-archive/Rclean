@@ -18,9 +18,7 @@
 #'@examples
 #' data(prov_json)
 #' options(prov.json = prov_json)
-#' clean()
-#' clean("x")
-#' clean("y")
+#' clean() # Pick from the list of possible results
 
 clean <- function(result = "Name of desired result",
                    tidy = TRUE){
@@ -39,7 +37,7 @@ clean <- function(result = "Name of desired result",
     }
     ## Check that the prov matches a file in the current working directory
     if (!(any(dir() == prov$info$activity[1,1]))){
-        warning("No scripts matching current provenance.")
+        print("No scripts matching current provenance.")
     }else{
         script <- readLines(prov$info$activity[1,1][[1]])
     }

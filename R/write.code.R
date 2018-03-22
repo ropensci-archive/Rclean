@@ -12,9 +12,8 @@
 #' @examples
 #'  data(prov_json)
 #'  options(prov.json = prov_json)
-#'  clean.code <- clean("x")
-#'  write.code(clean.code) # copies to clipboard by default
-
+#'  some.code <- c("x <- 1", "y <- x + 1")
+#'  write.code(some.code) # copies to clipboard by default
 
 write.code <- function(x, file = NULL){
     if (is.null(file)){

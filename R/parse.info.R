@@ -8,14 +8,12 @@
 #' @return A symmetric matrix of provenance entity relationships.
 #' @author Matthew K. Lau
 #' @examples
-#' \dontrun{
 #'  data(prov_json)
-#'  prov <- read.prov(prov_json)
-#'  parse.info(prov)
-#' }
+#'  prov <- jsonlite::fromJSON(prov_json)
+#'  Rclean:::parse.info(prov)
 
 parse.info <- function(prov){
-    if (grepl("rdatatracker",prov[[1]][[2]])){
+    if (prov[[1]][[2]] %in% c("rdatatracker", "provR")){
         activity <- prov['activity'][[1]][names(prov['activity'][[1]]) != "environment"]
         environment <- prov['activity'][[1]][names(prov['activity'][[1]]) == "environment"]
         entity <- prov['entity'][[1]]
