@@ -24,5 +24,5 @@ Removed dontrun wrappers from all function examples and used
 Also, fixed examples so that arguments which previously referred to x
 (i.e. not a character) now refer to "x".
 
-Added grant funding acknowledgment to DESCRPTION along with URL and
-BugFix references.
+Added grant funding acknowledgment to Description along with URL and
+BugReports.

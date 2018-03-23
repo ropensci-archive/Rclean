@@ -12,7 +12,7 @@ Description: To create clearer, more concise code provides this
 	     was funded by US National Science Foundation grant
 	     SSI-1450277 for applications of End-to-End Data Provenance.
 URL: https://github.com/ProvTools/Rclean
-BugReport: https://github.com/ProvTools/Rclean/issues
+BugReports: https://github.com/ProvTools/Rclean/issues
 License: GPL-3 | file LICENSE
 Imports: igraph, jsonlite, formatR
 Suggests: roxygen2, testthat
