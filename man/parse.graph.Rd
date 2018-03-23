@@ -20,11 +20,9 @@ This is an internal function for parsing PROV-JSON formatted
 provenance.
 }
 \examples{
-\dontrun{
-data(prov_json)
-prov <- read.prov(prov_json)
-parse.graph(prov)
-}
+ data(prov_json)
+ prov <- jsonlite::fromJSON(prov_json)
+ Rclean:::parse.graph(prov)
 }
 \author{
 Matthew K. Lau

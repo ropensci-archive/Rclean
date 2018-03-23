@@ -24,9 +24,7 @@ Rclean takes care of the rest.
 \examples{
 data(prov_json)
 options(prov.json = prov_json)
-clean()
-clean("x")
-clean("y")
+clean() # Pick from the list of possible results
 }
 \seealso{
 write.code

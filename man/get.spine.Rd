@@ -23,11 +23,9 @@ This is an internal function for parsing PROV-JSON formatted
 provenance.
 }
 \examples{
-\dontrun{
 data(prov_json)
 prov <- read.prov(prov_json)
-get.spine("d1", prov$graph)
-}
+Rclean:::get.spine("d1", prov$graph)
 }
 \author{
 Matthew K. Lau

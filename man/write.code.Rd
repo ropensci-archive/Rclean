@@ -21,8 +21,8 @@ This is a simple function for writing code to disk.
 \examples{
  data(prov_json)
  options(prov.json = prov_json)
- clean.code <- clean("x")
- write.code(clean.code) # copies to clipboard by default
+ some.code <- c("x <- 1", "y <- x + 1")
+ write.code(some.code) # copies to clipboard by default
 }
 \author{
 Matthew K. Lau

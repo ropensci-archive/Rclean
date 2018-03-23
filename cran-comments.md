@@ -18,13 +18,11 @@ There are currently no downstream dependencies.
 
 ## Resubmission
 
-Added more text to the description, elaborating on the intended
-function of the package. 
+Removed dontrun wrappers from all function examples and used
+"Rclean:::" for non-exported functions.
 
-Added examples to all functions.
+Also, fixed examples so that arguments which previously referred to x
+(i.e. not a character) now refer to "x".
 
-Checked all functions to make sure that none write to the user's file
-system without the permission of the user. The only function that
-exectures write commands is the write.code function, which is only
-invoked by the user in order to write to her clipboard (by default) or
-to her filesystem when a file path is supplied by her. 
+Added grant funding acknowledgment to DESCRPTION along with URL and
+BugFix references.
