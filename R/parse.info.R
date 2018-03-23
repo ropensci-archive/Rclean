@@ -13,7 +13,7 @@
 #'  Rclean:::parse.info(prov)
 
 parse.info <- function(prov){
-    if (prov[[1]][[2]] %in% c("rdatatracker", "provR")){
+    if (grepl("rdatatracker", prov[[1]][[2]]) | grepl("provR", prov[[1]][[2]])){
         activity <- prov['activity'][[1]][names(prov['activity'][[1]]) != "environment"]
         environment <- prov['activity'][[1]][names(prov['activity'][[1]]) == "environment"]
         entity <- prov['entity'][[1]]

@@ -14,7 +14,7 @@
 #'  Rclean:::parse.graph(prov)
 
 parse.graph <- function(prov,rm.env = TRUE){
-    if (grepl("rdatatracker",prov[[1]][[2]])){
+    if (grepl("rdatatracker", prov[[1]][[2]]) | grepl("provR", prov[[1]][[2]])){
         ## prefix: information about the provenance capture mechanism
         ## activity: information about process nodes and environment
         ## environment contains information about dependencies
