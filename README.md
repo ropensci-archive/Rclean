@@ -57,6 +57,12 @@ library(provR)
 Usage
 =====
 
+Here's a
+[demo video](https://asciinema.org/a/osSGbvH3GKA3r3QMJ2Tlba1pu) for
+the following example:
+
+[![demo video](Rclean_demo.png)](https://asciinema.org/a/osSGbvH3GKA3r3QMJ2Tlba1pu)
+
 Once you have your script and workspace setup, you can use
 [Rclean](https://github.com/ProvTools/Rclean) to get clean chunks of a
 larger script that produce specific results you want. We'll use the
@@ -123,3 +129,5 @@ write.code(my.code)
 ```
 
 Happy cleaning!
+
+
