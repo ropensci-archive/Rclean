@@ -25,25 +25,33 @@ Clean up your code
 Install and Setup
 =================
 
-Install the latest version easily with [devtools](https://github.com/hadley/devtools):
+You can install
+[Rclean](https://cran.r-project.org/web/packages/Rclean/) from *CRAN*: 
 
 ```R
-library(devtools)
-install_github("ProvTools/cleanR")
-install_github("ProvTools/provR")
-install.packages("jsonlite”)
-install.packages("igraph”)
-install.packages("formatR”)
+install.packages("Rclean")
 ```
 
-Then prior to use, load-up the following packages:
+You can install the most up to date version easily with
+[devtools](https://github.com/hadley/devtools):
 
 ```R
-library(cleanR)
+install.packages("devtools")
+devtools::install_github("ProvTools/cleanR")
+```
+You will also need to be able to generate data provenance from your
+script. This can be done using [provR](https://github.com/ProvTools/):
+
+```R
+devtools::install_github("ProvTools/provR")
+```
+
+Once installed, per usual R practice, just load the *Rclean* and
+*provR* packages:
+
+```R
+library(Rclean)
 library(provR)
-library("jsonlite")
-library(igraph)
-library(formatR)
 ```
 
 Usage
@@ -62,7 +70,8 @@ provenance to verify what lines of code depend on each other inside of
 the larger script. We can use the
 [provR](https://github.com/ProvTools/provR) package to generate
 provenance. The next bit of code runs our script and saves the
-provenance to memory, which we then pass to the `options` function, so that [Rclean](https://github.com/ProvTools/Rclean) has access to it:
+provenance to memory, which we then pass to the `options` function, so
+that [Rclean](https://github.com/ProvTools/Rclean) has access to it:
 
 ```R
 prov.capture("micro.R")
