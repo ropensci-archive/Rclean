@@ -1,8 +1,8 @@
 Type: Package
 Package: Rclean
 Title: A Tool for Writing Cleaner, more Transparent Code
-Version: 1.0.0
-Date: 2018-03-22
+Version: 1.0.1
+Date: 2018-03-27
 Author: Matthew K. Lau
 Maintainer: Matthew K. Lau <matthewklau@fas.harvard.edu>
 Description: To create clearer, more concise code provides this
