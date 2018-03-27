@@ -131,3 +131,6 @@ write.code(my.code)
 Happy cleaning!
 
 
+*Contributing*: if you would like to contribute, please read [[CONTRIBUTING.md]].
+
+
