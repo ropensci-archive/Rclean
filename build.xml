@@ -1,0 +1,44 @@
+<project
+	xmlns:if="ant:if"
+    xmlns:unless="ant:unless">
+    
+	<loadproperties srcFile="DESCRIPTION" />
+	<property name="tarfile" value="Rclean_${Version}.tar.gz" />
+
+ 	<target name="roxygenize">
+    	<exec executable="Rscript" >
+    		<arg line="-e roxygen2::roxygenise()"/>
+    	</exec>
+	</target>
+ 		
+    <target name="build" depends="roxygenize">
+    	<exec executable="R" >
+    		<arg line="CMD build --no-build-vignettes ."/>
+    	</exec>
+    </target>
+
+	<target name="check" depends="build">
+		<exec executable="R" >
+  			<arg line="CMD check --no-vignettes --no-build-vignettes ${tarfile}"/>
+	   	</exec>
+    </target>
+
+    <target name="install" depends="check">
+        <exec executable="R" >
+  			<arg line="CMD INSTALL ${tarfile}"/>
+		</exec>
+    </target>
+    
+    <target name="cran-check" depends="build">
+    	<exec executable="R" >
+    		<arg line="CMD check --as-cran --no-vignettes --no-build-vignettes ${tarfile}"/>
+    	</exec>
+    </target>
+
+    <target name="clean">
+        <delete dir="Rclean.Rcheck" verbose="false"/>
+        <delete file="${tarfile}" verbose="false"/>
+    </target>
+
+	
+</project>
