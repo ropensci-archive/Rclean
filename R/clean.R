@@ -23,52 +23,88 @@
 #'OUTPUT = The essential code needed to produce a result.
 #'
 #'Produces simplifed, "cleaned" code that is needed to create a result. 
-#'Make sure that your working directory is set to the location of your script
-#'and that you have loaded data provenance for that script into R's option system, and
+#'Make sure that you have loaded data provenance for an R script into R's option system, and
 #'Rclean takes care of the rest.
 #'
 #'@param result A desired output present in the script.
 #'@param tidy LOGICAL: should the cleaned script be formatted using syntax best practices?
 #'@return Cleaned code as a vector of strings ordered by line number. 
 #'@seealso write.code
-#'@importFrom formatR tidy_source
-#'@importFrom utils capture.output
-#'@importFrom utils tail
 #'@export clean
 #'@author Matthew K. Lau
 #'@examples
+#' \donttest{
 #' test.dat.loc <- system.file("exec", "micro_R.json", package="Rclean")
 #' options(prov.json = readLines(test.dat.loc))
 #' clean() # Pick from the list of possible results
 #' clean ("test.pdf")  # Create a minimal script to compute test.pdf
-
+#' }
+#' @rdname clean
 clean <- function(result = "Name of desired result",
                    tidy = TRUE){
-    ## Make sure result is of length 1
-    result <- as.character(substitute(result))
-    if (length(result) != 1){
-        warning("Please enter one result at a time.", quote = FALSE)
-        result <- result[1]
-    }
     ## Get provenance for script
     ## Check if the provenance is in memory
     if ("prov.json" %in% names(options())){
-        #prov <- read.prov(options()$prov.json)
-        print ("clean: Found prov.json in options")
-        print ("Creating graph")
-        prov.graph <- provGraphR::create.graph (options()$prov.json, isFile = FALSE)
-        print ("clean: Returned from create.graph")
-    }else{
-        warning("No provenance loaded. Please assign W3C PROV-JSON to options (i.e. options(prov.json = PROV.JSON))")
+        return (clean.prov (options()$prov.json, result, tidy, isFile = FALSE))
     }
-    ## Check that the prov matches a file in the current working directory
-    script.file <- provParseR::get.scripts()$script
-    if (!file.exists (script.file)) {
-        print("No scripts matching current provenance.")
+    else {
+        stop("No provenance loaded. Please assign W3C PROV-JSON to options (i.e. options(prov.json = PROV.JSON))")
     }
-    else{
-        script <- readLines(script.file)
+}
+
+#'clean.prov --- Produces more transparent code.
+#'OUTPUT = The essential code needed to produce a result.
+#'
+#'Produces simplifed, "cleaned" code that is needed to create a result. 
+#'Make sure that you have created data provenance for an R script using provR
+#' or RDataTracker, and
+#'Rclean takes care of the rest.
+#'
+#' @param prov The name of a file containing provenance, or a string containing provenance
+#' @param isFile Logical:  If true prov is expected to be a filename.
+#'@export 
+#'@author Matthew K. Lau
+#'@examples
+#' \donttest{
+#' test.dat.loc <- system.file("exec", "micro_R.json", package="Rclean")
+#' clean.prov(test.dat.loc) # Pick from the list of possible results
+#' clean.prov (test.data.loc, "test.pdf")  # Create a minimal script to compute test.pdf
+#' }
+#' @rdname clean
+clean.prov <- function (prov, result = NULL,
+                        tidy = TRUE, isFile = TRUE) {
+    ## Make sure result is of length 1
+    if (length(result) > 1){
+      warning(paste ("Please enter one result at a time.  Using", result[1]), quote = FALSE)
+      result <- result[1]
     }
+    
+    # Load the provenance graph
+    prov.graph <- provGraphR::create.graph (prov, isFile)
+    if (is.null (prov.graph)) {
+      stop ("The provenance could not be parsed.")
+    }
+
+    ## Get the saved copy of the script
+    saved.script.file <- provParseR::get.saved.scripts()$script[1]
+    if (file.exists (saved.script.file)) {
+      script.file <- saved.script.file
+    }
+    
+    # If the saved copy does not exist, use the original script if it exists.
+    else {
+      script.file <- provParseR::get.scripts()$script[1]
+      if (!file.exists (script.file)) {
+        # Look in the current directory 
+        script.file <- basename(script.file)
+        if (!file.exists (script.file)) {
+          stop("No scripts matching current provenance.")
+        }
+      }
+      warning (paste ("Saved script does not exist.  Using", script.file))
+    }
+    script <- readLines(script.file)
+    
     ## Get result options
     ## Output files
     result.files <- provParseR::get.output.files()$name
@@ -80,16 +116,15 @@ clean <- function(result = "Name of desired result",
     result.opts <- list(Files = unique(result.files), Objects = unique(result.obj))
 
     ## If result is NULL then prompt
-    if ((result == "Name of desired result") | !(result %in% unlist(result.opts))){
+    if (is.null (result) || result == "Name of desired result" || !(result %in% unlist(result.opts))){
         print("Possible results:", quote = FALSE)
-        ## Convert to simple character vector
-        result.opts
+        return (result.opts)
     }
     else {
         ## Get the node that matches the result name
         data.nodes <- provParseR::get.data.nodes()
         matching.data.nodes <- data.nodes[data.nodes$name == result, ]
-        node.id <- tail(n = 1, matching.data.nodes$id)
+        node.id <- utils::tail(n = 1, matching.data.nodes$id)
         
         ## Graph search for the path from the result to inputs
         spine <- provGraphR::get.lineage(prov.graph, node.id)
@@ -126,12 +161,12 @@ clean <- function(result = "Name of desired result",
 
         ### Tidying the code using formatR
         if (tidy){
-            capture.output(
+            utils::capture.output(
                 min.script <- 
-                    tidy_source(text = min.script)$text.tidy
+                    formatR::tidy_source(text = min.script)$text.tidy
                 )
         }
-
+        
         ### Return to user
         return(min.script)
     }

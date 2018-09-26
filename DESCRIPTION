@@ -16,8 +16,6 @@ BugReports: https://github.com/ProvTools/Rclean/issues
 License: GPL-3 | file LICENSE
 Imports: 
   formatR,
-  igraph, 
-  jsonlite, 
   provGraphR,
   provParseR
 Suggests: roxygen2, testthat

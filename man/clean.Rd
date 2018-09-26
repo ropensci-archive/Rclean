@@ -2,34 +2,54 @@
 % Please edit documentation in R/clean.R
 \name{clean}
 \alias{clean}
+\alias{clean.prov}
 \title{clean --- Produces more transparent code.
 OUTPUT = The essential code needed to produce a result.}
 \usage{
 clean(result = "Name of desired result", tidy = TRUE)
+
+clean.prov(prov, result = NULL, tidy = TRUE, isFile = TRUE)
 }
 \arguments{
 \item{result}{A desired output present in the script.}
 
 \item{tidy}{LOGICAL: should the cleaned script be formatted using syntax best practices?}
+
+\item{prov}{The name of a file containing provenance, or a string containing provenance}
+
+\item{isFile}{Logical:  If true prov is expected to be a filename.}
 }
 \value{
 Cleaned code as a vector of strings ordered by line number.
 }
 \description{
 Produces simplifed, "cleaned" code that is needed to create a result. 
-Make sure that your working directory is set to the location of your script
-and that you have loaded data provenance for that script into R's option system, and
+Make sure that you have loaded data provenance for an R script into R's option system, and
+Rclean takes care of the rest.
+
+Produces simplifed, "cleaned" code that is needed to create a result. 
+Make sure that you have created data provenance for an R script using provR
+or RDataTracker, and
 Rclean takes care of the rest.
 }
 \examples{
+\donttest{
 test.dat.loc <- system.file("exec", "micro_R.json", package="Rclean")
 options(prov.json = readLines(test.dat.loc))
 clean() # Pick from the list of possible results
 clean ("test.pdf")  # Create a minimal script to compute test.pdf
 }
+\donttest{
+test.dat.loc <- system.file("exec", "micro_R.json", package="Rclean")
+clean.prov(test.dat.loc) # Pick from the list of possible results
+clean.prov (test.data.loc, "test.pdf")  # Create a minimal script to compute test.pdf
+}
+}
 \seealso{
 write.code
 }
 \author{
+Matthew K. Lau
+
 Matthew K. Lau
 }
