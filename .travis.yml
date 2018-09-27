@@ -13,7 +13,9 @@ r_packages:
   - devtools
 
 r_github_packages:
-  - ProvTools/provR
+  - End-to-end-provenance/provR_test
+  - ProvTools/provParseR
+  - ProvTools/provGraphR
 
 notifications:
   slack: endtoendprovenance:DNYqXZWhV1c3eRhkjGYyjCEv
