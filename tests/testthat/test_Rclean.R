@@ -51,13 +51,15 @@ micro.result.x.test <- clean.prov (test.dat.loc, result="x")
 expect_match(micro.result.x.test[1] , "x <- 1")
 expect_match(micro.result.x.test[2] , "y <- 3")
 expect_match(micro.result.x.test[3] , "x <- x \\+ y")
-micro.result.y.test <- clean(result = "y")
-expect_match(micro.result.y.test[1] , "y <- 3")
-micro.result.test_test.test <- clean(result = "test.test")
-expect_match(micro.result.test_test.test[1], "x <- 1")
-expect_match(micro.result.test_test.test[2], "y <- 3")
-expect_match(micro.result.test_test.test[3], "x <- x \\+ y")
-expect_match(micro.result.test_test.test[4], "write\\.csv\\(x, \"~/test\\.test\"\\)")
+
+
+context ("Using R script")
+test.script.loc <- system.file("exec", "micro.R", package="Rclean")
+micro.result.x.test <- clean.script (test.script.loc, result="x")
+expect_match(micro.result.x.test[1] , "x <- 1")
+expect_match(micro.result.x.test[2] , "y <- 3")
+expect_match(micro.result.x.test[3] , "x <- x \\+ y")
+
 
 # No files in provenance
 context ("No files")

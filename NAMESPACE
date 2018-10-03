@@ -2,5 +2,6 @@
 
 export(clean)
 export(clean.prov)
+export(clean.script)
 export(write.code)
 importFrom(utils,sessionInfo)

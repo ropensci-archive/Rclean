@@ -1,8 +1,8 @@
 Type: Package
 Package: Rclean
 Title: A Tool for Writing Cleaner, more Transparent Code
-Version: 1.0.1
-Date: 2018-03-27
+Version: 1.0.2
+Date: 2018-10-03
 Author: Matthew K. Lau
 Maintainer: Matthew K. Lau <matthewklau@fas.harvard.edu>
 Description: To create clearer, more concise code provides this
@@ -18,5 +18,9 @@ Imports:
   formatR,
   provGraphR,
   provParseR
-Suggests: roxygen2, testthat
+Suggests: 
+  provR,
+  RDataTracker,
+  roxygen2, 
+  testthat
 RoxygenNote: 6.0.1

@@ -8,12 +8,15 @@ OUTPUT = Writes out code from an object to a specified file.}
 write.code(x, file = NULL)
 }
 \arguments{
-\item{x}{Script object to write.}
+\item{x}{A character vector containing the script to write.}
 
-\item{file}{Path to where you want to write. Default writes to clipboard.}
+\item{file}{Path to where you want to write. If the file exists,
+it will be overwritten.  If the file is omitted, the script
+is written to the clipboard}
 }
 \value{
-The script is written to disk, line by line.
+The function does not return a value.  The script will
+  have been written to the specified file or clipboard.
 }
 \description{
 This is a simple function for writing code to disk.
