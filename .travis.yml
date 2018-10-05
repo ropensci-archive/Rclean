@@ -1,6 +1,5 @@
 language: r
 r:
-  - oldrel
   - release
   - devel
 
@@ -13,7 +12,10 @@ r_packages:
   - devtools
 
 r_github_packages:
-  - ProvTools/provR
+  - ProvTools/provParseR
+  - ProvTools/provGraphR
+  - ProvTools/RDataTracker
+  - End-to-end-provenance/provR_test
 
 notifications:
   slack: endtoendprovenance:DNYqXZWhV1c3eRhkjGYyjCEv

@@ -5,3 +5,6 @@ cleanR-demo.gif
 cleanR_demo_vid.png
 ^exec/loader.R
 ^example
+.project
+build.xml
+Rclean_demo.png

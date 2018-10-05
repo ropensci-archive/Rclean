@@ -24,9 +24,12 @@
 #' 
 #' This is a simple function for writing code to disk.
 #' 
-#' @param x Script object to write.
-#' @param file Path to where you want to write. Default writes to clipboard.
-#' @return The script is written to disk, line by line.
+#' @param x A character vector containing the script to write.
+#' @param file Path to where you want to write. If the file exists,
+#'   it will be overwritten.  If the file is omitted, the script
+#'   is written to the clipboard
+#' @return The function does not return a value.  The script will
+#'   have been written to the specified file or clipboard.
 #' @importFrom utils sessionInfo
 #' @export write.code
 #' @author Matthew K. Lau

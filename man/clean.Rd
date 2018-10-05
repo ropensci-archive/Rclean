@@ -2,33 +2,79 @@
 % Please edit documentation in R/clean.R
 \name{clean}
 \alias{clean}
-\title{clean --- Produces more transparent code.
-OUTPUT = The essential code needed to produce a result.}
+\alias{clean.prov}
+\alias{clean.script}
+\title{clean --- Produces more transparent code.}
 \usage{
 clean(result = "Name of desired result", tidy = TRUE)
+
+clean.prov(prov, result = NULL, tidy = TRUE, isFile = TRUE)
+
+clean.script(r.script, result = NULL, tidy = TRUE, ...)
 }
 \arguments{
-\item{result}{A desired output present in the script.}
+\item{result}{A desired output present in the script.  This should be either a
+variable set in your script, or a file output by the script.  If omitted,
+the list of varaibles set and files written will be displayed to the user.}
 
 \item{tidy}{LOGICAL: should the cleaned script be formatted using syntax best practices?}
+
+\item{prov}{The name of a file containing provenance, or a string containing provenance}
+
+\item{isFile}{Logical:  If true prov is expected to be a filename.}
+
+\item{r.script}{The name of a file containing an R script}
+
+\item{...}{Extra parameters are passed to the provenance collector}
 }
 \value{
 Cleaned code as a vector of strings ordered by line number.
 }
 \description{
-Produces simplifed, "cleaned" code that is needed to create a result. 
-Make sure that your working directory is set to the location of your script
-and that you have loaded data provenance for that script into R's option system, and
-Rclean takes care of the rest.
+These functions generate a simplifed, "cleaned" version of your code that 
+contains just the code needed to produce a specific result.  They work
+by using data provenance created when your script executes to identify 
+the exact code needed to calculate the result.  The output is a vector
+containing just those lines of code.
+}
+\details{
+The clean function assumes that you have already run a tool 
+to collect the provenance and it has loaded that provenance into R's option system, using
+prov.json as the option name.  The value should be the provenance string, in the 
+format defined by <need link here...>
+
+clean.prov takes as input the name of a file containing provenance,
+or a string containing the provenance directly.  The provenance 
+should have been previously collected by provR or RDataTracker.
+
+clean.script uses one of RDataTracker or provR to collect the provenance.  If only one of 
+these is currently loaded, it will use that tool.  If they are both loaded, it will 
+use provR.  If neither is loaded, it then looks to see if either is installed,
+again preferring provR to RDataTracker if they are both installed.
 }
 \examples{
-data(prov_json)
-options(prov.json = prov_json)
+\donttest{
+test.dat.loc <- system.file("exec", "micro_R.json", package="Rclean")
+options(prov.json = readLines(test.dat.loc))
 clean() # Pick from the list of possible results
+clean ("test.pdf")  # Create a minimal script to compute test.pdf
+}
+\donttest{
+test.dat.loc <- system.file("exec", "micro_R.json", package="Rclean")
+clean.prov(test.dat.loc) # Pick from the list of possible results
+clean.prov (test.data.loc, "test.pdf")  # Create a minimal script to compute test.pdf
+}
+\donttest{
+test.dat.loc <- system.file("exec", "micro.R", package="Rclean")
+clean.script(test.dat.loc) # Pick from the list of possible results
+clean.script (test.data.loc, "test.pdf")  # Create a minimal script to compute test.pdf
+}
 }
 \seealso{
-write.code
+\code{\link{write.code}}
 }
 \author{
 Matthew K. Lau
+
+Barbara Lerner
 }
