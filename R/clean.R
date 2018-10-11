@@ -177,7 +177,6 @@ clean.prov <- function (prov, result = NULL,
 #' @param r.script The name of a file containing an R script
 #' @param ... Extra parameters are passed to the provenance collector
 #'@export 
-#'@author Barbara Lerner
 #'@examples
 #' \donttest{
 #' test.dat.loc <- system.file("exec", "micro.R", package="Rclean")
