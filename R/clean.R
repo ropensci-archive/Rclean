@@ -37,10 +37,12 @@
 #'@export clean
 #'@author Matthew K. Lau
 #'@examples
+#' \donttest{
 #' test.dat.loc <- system.file("exec", "micro_R.json", package="Rclean")
 #' options(prov.json = readLines(test.dat.loc))
-#' \donttest{clean() # Pick from the list of possible results}
+#' clean() # Pick from the list of possible results
 #' clean ("test.pdf")  # Create a minimal script to compute test.pdf
+#' }
 
 clean <- function(result = "Name of desired result",
     tidy = TRUE){
