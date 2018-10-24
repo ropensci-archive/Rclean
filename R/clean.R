@@ -37,7 +37,7 @@
 #'@export clean
 #'@author Matthew K. Lau
 #'@examples
-#' \donttest{
+#' \dontrun{
 #' test.dat.loc <- system.file("exec", "micro_R.json", package="Rclean")
 #' options(prov.json = readLines(test.dat.loc))
 #' clean() # Pick from the list of possible results
