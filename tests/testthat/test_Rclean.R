@@ -1,26 +1,14 @@
 context("Provenance capture")
 library(Rclean)
-library(jsonlite)
-library(igraph)
 library(formatR)
 library(utils)
 
 ## Loading test data
 test.dat.loc <- system.file("exec", "micro_R.json", package="Rclean")
 options(prov.json = readLines(test.dat.loc))
-prov <- read.prov(options()$prov.json)
-expect_match(mode(prov), "list")
-expect_equal(length(prov), 2)
-
-context("Provenance graph")
-expect_match(mode(prov$graph), "numeric")
-expect_match(class(prov$graph), "matrix")
-
-context("Provenance info")
-expect_equal(length(prov$info), 3)
 
 context("Code cleaning: initiate")
-micro.test <- clean()
+expect_warning (micro.test <- clean())
 expect_equal(length(micro.test), 2)
 expect_match(mode(micro.test), "list")
 expect_match(names(micro.test)[1], "Files")

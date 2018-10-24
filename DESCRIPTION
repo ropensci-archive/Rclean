@@ -14,6 +14,6 @@ Description: To create clearer, more concise code provides this
 URL: https://github.com/ProvTools/Rclean
 BugReports: https://github.com/ProvTools/Rclean/issues
 License: GPL-3 | file LICENSE
-Imports: igraph, jsonlite, formatR
+Imports: formatR, provParseR, provGraphR
 Suggests: roxygen2, testthat
 RoxygenNote: 6.0.1

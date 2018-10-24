@@ -22,9 +22,10 @@ and that you have loaded data provenance for that script into R's option system,
 Rclean takes care of the rest.
 }
 \examples{
-data(prov_json)
-options(prov.json = prov_json)
-clean() # Pick from the list of possible results
+test.dat.loc <- system.file("exec", "micro_R.json", package="Rclean")
+options(prov.json = readLines(test.dat.loc))
+\donttest{clean() # Pick from the list of possible results}
+clean ("test.pdf")  # Create a minimal script to compute test.pdf
 }
 \seealso{
 write.code

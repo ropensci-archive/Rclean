@@ -37,106 +37,110 @@
 #'@export clean
 #'@author Matthew K. Lau
 #'@examples
-#' data(prov_json)
-#' options(prov.json = prov_json)
-#' clean() # Pick from the list of possible results
+#' test.dat.loc <- system.file("exec", "micro_R.json", package="Rclean")
+#' options(prov.json = readLines(test.dat.loc))
+#' \donttest{clean() # Pick from the list of possible results}
+#' clean ("test.pdf")  # Create a minimal script to compute test.pdf
 
 clean <- function(result = "Name of desired result",
-                   tidy = TRUE){
-    ## Make sure result is of length 1
-    result <- as.character(substitute(result))
-    if (length(result) != 1){
-        warning("Please enter one result at a time.", quote = FALSE)
-        result <- result[1]
+    tidy = TRUE){
+  ## Get provenance for script
+  ## Check if the provenance is in memory
+  if (!("prov.json" %in% names(options()))){
+    stop("No provenance loaded. Please assign W3C PROV-JSON to options (i.e. options(prov.json = PROV.JSON))")
+  }
+  prov <- options()$prov.json
+
+  ## Make sure result is of length 1
+  if (length(result) > 1){
+    warning(paste ("Please enter one result at a time.  Using", result[1]), quote = FALSE)
+    result <- result[1]
+  }
+  
+  # Load the provenance graph
+  prov.graph <- provGraphR::create.graph (prov, isFile = FALSE)
+  if (is.null (prov.graph)) {
+    stop ("The provenance could not be parsed.")
+  }
+  
+  ## Get the saved copy of the script
+  parsed.prov <- provParseR::prov.parse (prov, isFile = FALSE)
+  saved.script.file <- provParseR::get.saved.scripts(parsed.prov)$script[1]
+  if (file.exists (saved.script.file)) {
+    script.file <- saved.script.file
+  }
+  
+  # If the saved copy does not exist, use the original script if it exists.
+  else {
+    script.file <- provParseR::get.scripts(parsed.prov)$script[1]
+    if (!file.exists (script.file)) {
+      # Look in the current directory 
+      script.file <- basename(script.file)
+      if (!file.exists (script.file)) {
+        stop("No scripts matching current provenance.")
+      }
     }
-    ## Get provenance for script
-    ## Check if the provenance is in memory
-    if ("prov.json" %in% names(options())){
-        prov <- read.prov(options()$prov.json)
-    }else{
-        warning("No provenance loaded. Please assign W3C PROV-JSON to options (i.e. options(prov.json = PROV.JSON))")
+    warning (paste ("Saved script does not exist.  Using", script.file))
+  }
+  script <- readLines(script.file)
+  
+  ## Get result options
+  ## Output files
+  result.files <- provParseR::get.output.files(parsed.prov)$name
+  
+  ## Get objects for suggested results    
+  result.obj <- provParseR::get.variables.set(parsed.prov)$name
+  
+  ## Combine vectors
+  result.opts <- list(Files = unique(result.files), Objects = unique(result.obj))
+  
+  ## If result is NULL then prompt
+  if (is.null (result) || result == "Name of desired result" || !(result %in% unlist(result.opts))){
+    print("Possible results:", quote = FALSE)
+    return (result.opts)
+  }
+  else {
+    ## Get the node that matches the result name
+    data.nodes <- provParseR::get.data.nodes(parsed.prov)
+    matching.data.nodes <- data.nodes[data.nodes$name == result, ]
+    node.id <- utils::tail(n = 1, matching.data.nodes$id)
+    
+    ## Graph search for the path from the result to inputs
+    spine <- provGraphR::get.lineage(prov.graph, node.id)
+    
+    ## min.script == the minimum code to produce the output
+    
+    ## Get the line numbers from the original source code
+    spine.proc.node.ids <- grep ("p", spine, value = TRUE)
+    proc.nodes <- provParseR::get.proc.nodes(parsed.prov)
+    spine.proc.nodes <- proc.nodes [proc.nodes$id %in% spine.proc.node.ids, ]
+    lines <- spine.proc.nodes[ , grep("Line", colnames(spine.proc.nodes))]
+    
+    ### If the result is created on a single line, coerce to a matrix
+    if (length(grep("p", spine)) == 1){
+      lines <- as.numeric(lines)
+      lines <- t(as.matrix(lines))
+      rownames(lines) <- grep("p", spine, value = TRUE)
     }
-    ## Check that the prov matches a file in the current working directory
-    if (!(any(dir() == prov$info$activity[1,1]))){
-        print("No scripts matching current provenance.")
-    }else{
-        script <- readLines(prov$info$activity[1,1][[1]])
+    else{
+      lines <- apply(lines, 2, as.numeric)
+      rownames(lines) <- grep("p", spine, value = TRUE)
     }
-    ## Get result options
-    ## Output files
-    result.files <- unlist(
-        prov$info$entity[prov$info$entity[,4] == "File", 1]
-        )
-    ## Remove files that are inputs
-    result.files <- result.files[names(result.files) %in% names(which(apply(prov$graph,2,sum) == 0))]
-    result.files <- as.character(result.files)
-    ## Get objects for suggested results    
-    result.obj <- unlist(prov$info$entity[,1])
-    ## Removing dev.off calls
-    result.obj <- result.obj[!(grepl("dev.", result.obj) &  prov$info$entity[,2] == "\"graph\"")]
-    ## Remove output files
-    result.obj <- result.obj[names(result.obj) %in% rownames(prov$info$entity)[prov$info$entity[,4] != "File"]]
-    result.obj <- as.character(result.obj)
-    ## Combine vectors
-    result.opts <- list(Files = unique(result.files), Objects = unique(result.obj))
-    ## If result is NULL then prompt
-    if ((result == "Name of desired result") | !(result %in% unlist(result.opts))){
-        print("Possible results:", 
-              quote = FALSE)
-        ## Convert to simple character vector
-        result.opts
-    }else{
-        ## Get the node that matches the result name
-        node.id <- tail(n = 1,
-                        rownames(prov$info$entity)[prov$info$entity[,1] == result][]
-                        )
-        ## Graph search for the path from the result to inputs
-        spine <- get.spine(node.id, prov$g)
-        ## min.script == the minimum code to produce the output
-        ## Get the line numbers from the original source code
-        lines <- prov$info$activity[grep("p",spine, value = TRUE),
-                                    grep("Line", colnames(prov$info$activity))]
-        ### If the result is created on a single line, coerce to a matrix
-        if (length(grep("p", spine)) == 1){
-            lines <- as.numeric(lines)
-            lines <- t(as.matrix(lines))
-        }else{lines <- apply(lines, 2, as.numeric)}
-        rownames(lines) <- grep("p", spine, value = TRUE)
-        ## Remove processes which don't involve the creation of data
-        rm.p <- sapply(prov$info$activity[,1], 
-                       function(p, d) any(sapply(d, grepl, x = p)), 
-                       d = prov$info$entity[,1])
-        rm.p <- names(rm.p)[!(rm.p)]
-        lines <- lines[!(rownames(lines) %in% rm.p),]
-        ## If a single process, re-matricize, else re-order ascending 
-        if (length(grep("p", spine)) == 1){
-            lines <- as.numeric(lines)
-            lines <- t(as.matrix(lines))
-        }else{
-            node.rank <- as.numeric(gsub("p", "", rownames(lines)))
-            lines <- lines[order(node.rank),]
-        }
-        ### Extract the minimal code
-        min.script <- apply(lines, 1, function(line, src)  
-            src[seq(line[1], line[2])],
-                            src = script)
-        min.script <- unlist(min.script)
-        min.script <- as.character(min.script)
-        ## Check for graphics out
-        plot.code <- sapply(c("jpeg", "png", "tiff", "pdf", "bmp"), grepl, x = min.script)
-        if (any(plot.code)){
-            min.script <- c(min.script, "dev.off()")
-        }
-        ### Tidying the code using formatR
-        if (tidy){
-            capture.output(
-                min.script <- 
-                    tidy_source(text = min.script)$text.tidy
-                )
-        }
-        ### Return to user
-        return(min.script)
-        ## Signoff
-        print("These codes are clean!", quote = FALSE)
+    
+    ### Extract the minimal code
+    min.script <- apply(lines, 1, function(line) script[seq(line[1], line[2])])
+    min.script <- unlist(min.script)
+    min.script <- as.character(min.script)
+    
+    ### Tidying the code using formatR
+    if (tidy){
+      utils::capture.output(
+          min.script <- 
+              formatR::tidy_source(text = min.script)$text.tidy
+      )
     }
+    
+    ### Return to user
+    return(min.script)
+  }
 }
