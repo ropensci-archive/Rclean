@@ -30,10 +30,20 @@
 #' @rdname clean
 clean.prov <- function (prov, result = NULL,
     tidy = TRUE, isFile = TRUE) {
+
+  # If a symbol was passed in, convert it to a string
+  arg <- substitute(result)
+  if (is.symbol(arg)) {
+    result <- as.character(deparse(arg))
+  }
+  
   ## Make sure result is of length 1
-  if (length(result) > 1){
-    warning(paste ("Please enter one result at a time.  Using", result[1]), quote = FALSE)
-    result <- result[1]
+  else {
+    result <- eval(result) 
+    if (length(result) > 1){
+      result <- result[1]
+      warning("Please enter one result at a time.  Using ", result)
+    }
   }
   
   # Load the provenance graph

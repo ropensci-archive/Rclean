@@ -45,12 +45,12 @@ format defined by <need link here...>
 
 clean.prov takes as input the name of a file containing provenance,
 or a string containing the provenance directly.  The provenance 
-should have been previously collected by provR or RDataTracker.
+should have been previously collected by rdt or rdtLite.
 
-clean.script uses one of RDataTracker or provR to collect the provenance.  If only one of 
+clean.script uses one of rdt or rdtLite to collect the provenance.  If only one of 
 these is currently loaded, it will use that tool.  If they are both loaded, it will 
-use provR.  If neither is loaded, it then looks to see if either is installed,
-again preferring provR to RDataTracker if they are both installed.
+use rdtLite.  If neither is loaded, it then looks to see if either is installed,
+again preferring rdtLite to rdt if they are both installed.
 }
 \examples{
 \donttest{

@@ -32,31 +32,31 @@
 clean.script <- function (r.script, result = NULL, tidy = TRUE, ...) {
   # Determine which provenance collector to use
   loaded <- loadedNamespaces()
-  if ("provR" %in% loaded) {
-    tool <- "provr"
+  if ("rdtLite" %in% loaded) {
+    tool <- "rdtLite"
   }
-  else if ("RDataTracker" %in% loaded) {
+  else if ("rdt" %in% loaded) {
     tool <- "rdt"
   }
   else {
     installed <- utils::installed.packages ()
-    if ("provR" %in% installed) {
-      tool <- "provr"
+    if ("rdtLite" %in% installed) {
+      tool <- "rdtLite"
     }
-    else if ("RDataTracker" %in% installed) {
+    else if ("rdt" %in% installed) {
       tool <- "rdt"
     }
     else {
-      stop ("One of provR or RDataTracker must be installed.")
+      stop ("One of rdtLite or RDataTracker must be installed.")
     }
   }
   if (tool == "rdt") {
-    prov.run <- RDataTracker::prov.run
-    prov.dir <- RDataTracker::prov.dir
+    prov.run <- rdt::prov.run
+    prov.dir <- rdt::prov.dir
   }
   else {
-    prov.run <- provR::prov.run
-    prov.dir <- provR::prov.dir
+    prov.run <- rdtLite::prov.run
+    prov.dir <- rdtLite::prov.dir
   }
   
   # Run the script, collecting provenance, if a script was provided.
@@ -66,6 +66,6 @@ clean.script <- function (r.script, result = NULL, tidy = TRUE, ...) {
   json.file <- paste(prov.dir(), "prov.json", sep = "/")
   
   # Clean the script
-  clean.prov (json.file, result, tidy, isFile = TRUE)
+  clean.prov (json.file, substitute(result), tidy, isFile = TRUE)
   
 }

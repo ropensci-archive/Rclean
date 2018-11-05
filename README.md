@@ -14,7 +14,7 @@ Clean up your code
 - We created **Rclean** to help scientists more *easily* write "cleaner" code
 - [Rclean](https://github.com/ProvTools/Rclean) provides a simple way
   get the code you need to produce a specific result
-- **Rclean** uses data provenance tp capture what your code actually
+- **Rclean** uses data provenance to capture what your code actually
   does when it’s running and then allows you to pull out the essential
   code that produces specific outputs.
 - By focusing in on the specific results you want, **Rclean** let’s
@@ -40,18 +40,18 @@ install.packages("devtools")
 devtools::install_github("ProvTools/cleanR")
 ```
 You will also need to be able to generate data provenance from your
-script. This can be done using [provR](https://github.com/ProvTools/):
+script. This can be done using [rdtLite](https://github.com/End-to-end-provenance/rdtLite):
 
 ```R
-devtools::install_github("ProvTools/provR")
+devtools::install_github("End-to-end-provenance/rdtLite")
 ```
 
 Once installed, per usual R practice, just load the *Rclean* and
-*provR* packages:
+*rdtlite* packages:
 
 ```R
 library(Rclean)
-library(provR)
+library(rdtLite)
 ```
 
 Usage
@@ -74,21 +74,14 @@ First, you'll need to record information about the script you would
 like to parse. [Rclean](https://github.com/ProvTools/Rclean) uses data
 provenance to verify what lines of code depend on each other inside of
 the larger script. We can use the
-[provR](https://github.com/ProvTools/provR) package to generate
-provenance. The next bit of code runs our script and saves the
-provenance to memory, which we then pass to the `options` function, so
+[rdtLite](https://github.com/End-to-end-provenance/rdtLite) package to generate
+provenance. The next bit of code runs our script and collects the
+provenance, which we then pass to the `options` function, so
 that [Rclean](https://github.com/ProvTools/Rclean) has access to it:
 
 ```R
-prov.capture("micro.R")
+prov.run("micro.R")
 options(prov.json = prov.json())
-```
-
-Or, if you have provenance saved as a text file, you can load it in
-like this:
-
-```R
-options(prov.json = readLines("prov_micro.json"))
 ```
 
 Now that we have the provenance loaded, we can start
@@ -100,19 +93,37 @@ clean()
 
 ```
 
+Altenatively, you can call clean.prov and pass in either the provenance or
+the name of a file containing the provenance ("prov.json" in this example): 
+```R
+clean.prov (prov.json(), isFile=FALSE)
+clean.prov ("prov.json")
+```
+
 You can then pick and choose from among these results and get the
 essential code to produce the output, like so:
 
 ```R
 clean(x)
-
 ```
 
-Notice that the 'clean' function doesn't require you to quote your
-results, it interprets all inputs as names of results. 
+or
+
+```R
+clean.prov (prov.json(), x, isFile=FALSE)
+```
+
+You can also collect provenance and clean in one step using clean.script:
+
+```R
+clean.script ("micro.R", x)
+```
+
+Notice that the 'clean' functions don't require you to quote your
+results, they interpret all inputs as names of results. 
 
 In many cases, it's handy just to take a look at the isolated code,
-but if you can also save the code for later use or sharing.
+but you can also save the code for later use or sharing.
 
 ```R
 my.code <- clean(x)
