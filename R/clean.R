@@ -38,7 +38,7 @@
 #'
 #' clean.script uses one of rdt or rdtLite to collect the provenance.  If only one of 
 #' these is currently loaded, it will use that tool.  If they are both loaded, it will 
-#' use provR.  If neither is loaded, it then looks to see if either is installed,
+#' use rdtLite.  If neither is loaded, it then looks to see if either is installed,
 #' again preferring rdt to rdtLite if they are both installed.
 #' 
 #'@param result A desired output present in the script.  This should be either a
