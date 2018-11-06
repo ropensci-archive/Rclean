@@ -30,11 +30,14 @@
 #' @rdname clean
 clean.prov <- function (prov, result = NULL,
     tidy = TRUE, isFile = TRUE) {
-
-  # If a symbol was passed in, convert it to a string
-  arg <- substitute(result)
-  if (is.symbol(arg)) {
-    result <- as.character(deparse(arg))
+  
+  calling.func <- sys.call(-1)[[1]]
+  if (is.null(calling.func) || (calling.func != "clean" && calling.func != "clean.prov")) {
+    # If a symbol was passed in, convert it to a string
+    arg <- substitute(result)
+    if (is.symbol(arg)) {
+      result <- as.character(deparse(arg))
+    }
   }
   
   ## Make sure result is of length 1

@@ -65,6 +65,12 @@ clean.script <- function (r.script, result = NULL, tidy = TRUE, ...) {
   # Find out where the provenance is stored.
   json.file <- paste(prov.dir(), "prov.json", sep = "/")
   
+  # If a variable name was passed in for the result, convert it to a string
+  arg <- substitute(result)
+  if (is.symbol(arg)) {
+    result <- deparse(arg)
+  }
+
   # Clean the script
   clean.prov (json.file, substitute(result), tidy, isFile = TRUE)
   

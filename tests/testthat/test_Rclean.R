@@ -34,6 +34,12 @@ expect_match(micro.result.test_test.test[2], "y <- 3")
 expect_match(micro.result.test_test.test[3], "x <- x \\+ y")
 expect_match(micro.result.test_test.test[4], "write\\.csv\\(x, \"~/test\\.test\"\\)")
 
+# Use symbol instead of string for result
+micro.result.x.test <- clean(x)
+expect_match(micro.result.x.test[1] , "x <- 1")
+expect_match(micro.result.x.test[2] , "y <- 3")
+expect_match(micro.result.x.test[3] , "x <- x \\+ y")
+
 micro.result.test_pdf.test <- clean(result = "test.pdf")
 expect_match(micro.result.test_pdf.test[1], "x <- 1")
 expect_match(micro.result.test_pdf.test[2], "y <- 3")

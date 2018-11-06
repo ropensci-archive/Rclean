@@ -59,10 +59,15 @@
 #' @rdname clean
 clean <- function(result = "Name of desired result",
                    tidy = TRUE){
+    arg <- substitute(result)
+    if (is.symbol(arg)) {
+      result <- deparse(arg)
+    }
+                 
     ## Get provenance for script
     ## Check if the provenance is in memory
     if ("prov.json" %in% names(options())){
-        return (clean.prov (options()$prov.json, substitute(result), tidy, isFile = FALSE))
+        return (clean.prov (options()$prov.json, result, tidy, isFile = FALSE))
     }
     else {
         stop("No provenance loaded. Please assign W3C PROV-JSON to options (i.e. options(prov.json = PROV.JSON))")
