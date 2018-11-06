@@ -58,10 +58,10 @@ Usage
 =====
 
 Here's a
-[demo video](Rclean_demo.mov) for
+[demo video](https://www.mtholyoke.edu/~blerner/DataProvenance/Rclean_demo.mov) for
 the following example:
 
-[![demo video](Rclean_demo.png)](Rclean_demo.mov)
+[![demo video](Rclean_demo.png)](https://www.mtholyoke.edu/~blerner/DataProvenance/Rclean_demo.mov)
 
 Once you have your script and workspace setup, you can use
 [Rclean](https://github.com/ProvTools/Rclean) to get clean chunks of a
