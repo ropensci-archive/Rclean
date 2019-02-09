@@ -32,7 +32,7 @@ affiliations:
  - name: Department of Computer Science, University of British Columbia
    index: 5
 date: 2 February 2019
-bibliography: rclean.bib
+bibliography: paper.bib
 ---
 
 
