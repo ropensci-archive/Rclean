@@ -26,8 +26,8 @@
 #'     objects with steps (i.e. complexes of function and operation
 #'     calls) listed as numbers that "use" or "create" data objects
 #'     and a variable data frame (vdf) containing details of the
-#'     variables (var) and unique identifiers (uid) that were used or
-#'     created by each step.
+#'     variables (var) and, possibly, unique identifiers (uid) that
+#'     were used or created by each step.
 #'@importFrom CodeDepends getDetailedTimelines
 #'@importFrom CodeDepends getInputs
 #'@export var.lineage
