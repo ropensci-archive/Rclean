@@ -17,32 +17,6 @@
 # Contact: Matthew Lau <matthewklau@fas.harvard.edu>
 
 
-#'var.id --- Generate unique identifiers for variables.
-#'
-#' Uses the order in which variables are created to assign unique identifiers.
-#' 
-#'@param x A data frmae containing "step", "used" by, "defined" by and "var" (i.e. variable) information.
-#'@param sep Text separator for the identification tags.
-#'@return A vector of unique identifiers based on the order of creation in the script. 
-#'@author Matthew K. Lau
-
-var.id <- function(x, sep = "_"){
-  uid <- paste(x[, "var"], cumsum(x[, "defined"]), sep = sep)
-  uid.l <- list()
-                                        # create uids
-  for (i in 1:sum(x[, "defined"])){
-    uid.l[[i]] <- x
-  }
-  for (i in 1:length(uid.l)){
-    y <- uid.l[[i]]
-    y[cumsum(y[, "defined"]) != i, "used"] = FALSE
-    y[cumsum(y[, "defined"]) != i, "defined"] = FALSE
-    y[, "var"] <- paste(y[, "var"], i, sep = sep)
-    uid.l[[i]] <- y
-  }
-  return(do.call(rbind, uid.l))
-}
-
 #'var.lineage --- Determine the lineage of objects contained in an R script. 
 #'
 #' Determine the series of steps that leads to the production of objects contained in a script.
