@@ -42,7 +42,7 @@
 #' clean() # Pick from the list of possible results
 
 clean <- function(result = "Name of desired result",
-                   tidy = TRUE){
+                  tidy = TRUE){
     ## Make sure result is of length 1
     result <- as.character(substitute(result))
     if (length(result) != 1){
