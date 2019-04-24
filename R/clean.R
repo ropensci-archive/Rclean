@@ -46,7 +46,7 @@
 
 clean <- function(file, var, libs = TRUE, reformat = TRUE, plot = FALSE,
                   rp = FALSE){
-    if (missing(file)){
+    if (!(rp) & missing(file) ){
         warning("Please provide a script file path.")
     }else{
         if (missing(var)){
