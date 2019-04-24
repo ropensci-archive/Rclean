@@ -53,4 +53,10 @@ expect_match(micro.result.test_pdf.test[6], "dev.off()")
 
 context("Code cleaning: prospective prov")
 simple_script.loc <- system.file("exec", "simple_script.R", package="Rclean")
-
+clean.test <- clean(simple_script.loc, "dat")
+expect_match(clean.test[1], "library()")
+expect_match(clean.test[2], "dat <- read.csv(\"../data/data.csv\")")
+expect_match(clean.test[3], "dat[, \"X2\"] <- dat[, \"X2\"] + runif(nrow(dat))")
+expect_match(clean.test[4], "dat[, \"X5\"] <- gl(10, 10)")
+expect_match(clean.test[5], "dat <- 25 + 2")
+expect_match(clean.test[6], "dat[2] <- 10")
