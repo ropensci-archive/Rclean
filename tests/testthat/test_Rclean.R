@@ -50,3 +50,7 @@ expect_match(micro.result.test_pdf.test[3], "x <- x \\+ y")
 expect_match(micro.result.test_pdf.test[4], "pdf\\(\"~/test.pdf\"\\)" )
 expect_match(micro.result.test_pdf.test[5], "plot\\(x\\)")
 expect_match(micro.result.test_pdf.test[6], "dev.off()")
+
+context("Code cleaning: prospective prov")
+simple_script.loc <- system.file("exec", "simple_script.R", package="Rclean")
+
