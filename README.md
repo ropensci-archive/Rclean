@@ -1,28 +1,17 @@
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <!-- # ijtiff  <img src="man/figures/logo.png" height="140" align="right"> -->
 <!-- Code status -->
-[![Build
-Status](https://travis-ci.org/ProvTools/Rclean.svg?branch=master)](https://travis-ci.org/ProvTools/Rclean)
-[![Build
-Status](https://travis-ci.org/ProvTools/Rclean.svg?branch=dev)](https://travis-ci.org/ProvTools/Rclean)
+[![Build Status](https://travis-ci.org/ProvTools/Rclean.svg?branch=master)](https://travis-ci.org/ProvTools/Rclean) [![Build Status](https://travis-ci.org/ProvTools/Rclean.svg?branch=dev)](https://travis-ci.org/ProvTools/Rclean)
 
 <!-- R status -->
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/Rclean)](https://cran.r-project.org/package=Rclean)
-![RStudio CRAN
-downloads](http://cranlogs.r-pkg.org/badges/grand-total/Rclean)
-![RStudio CRAN monthly
-downloads](http://cranlogs.r-pkg.org/badges/Rclean)
-[![Rdocumentation](http://www.rdocumentation.org/badges/version/Rclean)](http://www.rdocumentation.org/packages/Rclean)
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/Rclean)](https://cran.r-project.org/package=Rclean) ![RStudio CRAN downloads](http://cranlogs.r-pkg.org/badges/grand-total/Rclean) ![RStudio CRAN monthly downloads](http://cranlogs.r-pkg.org/badges/Rclean) [![Rdocumentation](http://www.rdocumentation.org/badges/version/Rclean)](http://www.rdocumentation.org/packages/Rclean)
 
 <!-- Dev status -->
-[![Project Status: Active – The project has reached a stable, usable
-state and is being actively
-developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 
 <!-- Package Review -->
-[![](https://badges.ropensci.org/300_status.svg)](https://github.com/ropensci/onboarding/issues/300)
-[![status](http://joss.theoj.org/papers/334d80d5508056dc6e7e17c6fd3ed5a6/status.svg)](http://joss.theoj.org/papers/334d80d5508056dc6e7e17c6fd3ed5a6)
+[![](https://badges.ropensci.org/300_status.svg)](https://github.com/ropensci/onboarding/issues/300) [![status](http://joss.theoj.org/papers/334d80d5508056dc6e7e17c6fd3ed5a6/status.svg)](http://joss.theoj.org/papers/334d80d5508056dc6e7e17c6fd3ed5a6)
 
 <!-- Archiving -->
 [![DOI](https://zenodo.org/badge/102645585.svg)](https://zenodo.org/badge/latestdoi/102645585)
@@ -30,109 +19,80 @@ developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repo
 Clean up your code
 ==================
 
--   Have you ever written a long script in R that conducts oodles of
-    analyses and wished that someone would come along and make it all
-    clearer to understand and use?
+-   Have you ever written a long script in R that conducts lots of analyses and wished that someone would come along and make it all clearer to understand and use?
 -   Well you’re not alone.
--   A recent survey of over 1500 scientists reported a crisis of
-    reproducibility with "selective reporting" being the most cited
-    contributing factor and 80% saying code availability is playing a
-    role
--   We created **Rclean** to help scientists more *easily* write
-    "cleaner" code
--   [Rclean](https://github.com/ProvTools/Rclean) provides a simple way
-    get the code you need to produce a specific result
--   **Rclean** uses data provenance tp capture what your code actually
-    does when it’s running and then allows you to pull out the essential
-    code that produces specific outputs.
--   By focusing in on the specific results you want, **Rclean** let’s
-    you spend more energy on your science and less time figuring out
-    your code.
+-   A recent survey of over 1500 scientists reported a crisis of reproducibility with "selective reporting" being the most cited contributing factor and 80% saying code availability is playing a role.
+-   [Rclean](https://github.com/ProvTools/Rclean) was created to help scientists more *easily* write "cleaner" code by providing a simple, rigorous way to isolate the minimal code you need in order to produce a specific result (e.g. object, plot, output written to disk).
+-   [Rclean](https://github.com/ProvTools/Rclean) is built on data provenance, a formal representation of a computation, and uses graph analysis to determine the minimal path from inputs to results.
+-   The goal is to help facilitate code transparency, reproduciblity, reusability and ultimately help scientists spend more time on research and less time on software.
 
 Install and Setup
 =================
 
-You can install
-[Rclean](https://cran.r-project.org/web/packages/Rclean/) from *CRAN*:
+You can install [Rclean](https://cran.r-project.org/web/packages/Rclean/) from *CRAN*:
 
-    install.packages("Rclean")
+``` r
+install.packages("Rclean")
+```
 
-You can install the most up to date version easily with
-[devtools](https://github.com/hadley/devtools):
+You can install the most up to date (beta) version easily with [devtools](https://github.com/hadley/devtools):
 
-    install.packages("devtools")
-    devtools::install_github("ProvTools/cleanR")
+``` r
+install.packages("devtools")
+devtools::install_github("ProvTools/Rclean", ref = "dev")
+```
 
-You will also need to be able to generate data provenance from your
-script. This can be done using [provR](https://github.com/ProvTools/):
+Once installed, per usual R practice, just load the *Rclean*:
 
-    devtools::install_github("ProvTools/provR")
-
-Once installed, per usual R practice, just load the *Rclean* and *provR*
-packages:
-
-    library(Rclean)
-    library(provR)
+``` r
+library(Rclean)
+```
 
 Usage
 =====
 
-Here's a [demo video](https://asciinema.org/a/osSGbvH3GKA3r3QMJ2Tlba1pu)
-for the following example:
+*Rclean* usage is simple. Have a script with code you want to clean saved to disk. Then, just run the `clean` function with the path to the script as the input:
 
-[![demo
-video](Rclean_demo.png)](https://asciinema.org/a/osSGbvH3GKA3r3QMJ2Tlba1pu)
+    clean("./example/simple_script.R")
 
-Once you have your script and workspace setup, you can use
-[Rclean](https://github.com/ProvTools/Rclean) to get clean chunks of a
-larger script that produce specific results you want. We'll use the
-micro.R script, which can be found inside the package repo in the *exec*
-directory. The following example assumes that your current working
-directory is *exec*.
+This returns a list of possible results detected in the script, including execution lines (not counting lines with no code or that are commented). We can now pick the result we want to focus on for cleaning:
 
-First, you'll need to record information about the script you would like
-to parse. [Rclean](https://github.com/ProvTools/Rclean) uses data
-provenance to verify what lines of code depend on each other inside of
-the larger script. We can use the
-[provR](https://github.com/ProvTools/provR) package to generate
-provenance. The next bit of code runs our script and saves the
-provenance to memory, which we then pass to the `options` function, so
-that [Rclean](https://github.com/ProvTools/Rclean) has access to it:
+    clean("./example/simple_script.R", "tab.15")
 
-    prov.capture("micro.R")
-    options(prov.json = prov.json())
+This produces the minimal code detected from the script. It also detects the package dependencies as well and provides them in the code (`libs = TRUE`).
 
-Or, if you have provenance saved as a text file, you can load it in like
-this:
+It can be handy just to take a look at the isolated code, but you can save the code for later use or sharing (e.g. creating a reproducible example for getting help) with the `write.code` function:
 
-    options(prov.json = readLines("prov_micro.json"))
-
-Now that we have the provenance loaded, we can start cleaning.
-[Rclean](https://github.com/ProvTools/Rclean) will give us a list of
-possible values we can get code for:
-
-    clean()
-
-You can then pick and choose from among these results and get the
-essential code to produce the output, like so:
-
-    clean(x)
-
-Notice that the 'clean' function doesn't require you to quote your
-results, it interprets all inputs as names of results.
-
-In many cases, it's handy just to take a look at the isolated code, but
-if you can also save the code for later use or sharing.
-
-    my.code <- clean(x)
+    my.code <- clean("./example/simple_script.R", "tab.15")
     write.code(my.code, file = "x.R")
 
-If you would like to copy your code to the clipboard, you can do that by
-not specifying a file path.
+If you would like to copy your code to the clipboard, you can do that by not specifying a file path. You can now paste as needed to create a simpler script.
 
-    write.code(my.code)
+``` r
+write.code(my.code)
+```
+
+Retrospective Provenance
+------------------------
+
+So far, we've been using "prosepctive" provenance generated from the static code prior to execution. *Rclean* can also be used with "retrospective" provenance, which is recorded during execution of a script. To do so, we can pass the provenance to the `clean` function via `options`:
+
+``` r
+options(prov.json = readLines("prov_micro.json"))
+```
+
+Now that we have the provenance loaded, we can start cleaning. [Rclean](https://github.com/ProvTools/Rclean) will give us a list of possible values we can get code for, notice that the option *rp* (i.e. "retrospective provenance") has been set to `TRUE`:
+
+``` r
+clean(rp = TRUE)
+```
+
+Similar to before, you can then pick and choose from among these results and get the essential code to produce the output, like so:
+
+``` r
+clean(x, rp = TRUE)
+```
 
 Happy cleaning!
 
-*Contributing*: if you would like to contribute, please read
-\[\[CONTRIBUTING.md\]\].
+*Contributing*: if you would like to contribute, please read \[\[CONTRIBUTING.md\]\].
