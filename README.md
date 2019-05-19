@@ -11,7 +11,7 @@
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 
 <!-- Package Review -->
-[![](https://badges.ropensci.org/164_status.svg)](https://github.com/ropensci/onboarding/issues/164) [![status](http://joss.theoj.org/papers/334d80d5508056dc6e7e17c6fd3ed5a6/status.svg)](http://joss.theoj.org/papers/334d80d5508056dc6e7e17c6fd3ed5a6)
+<!-- [![](https://badges.ropensci.org/164_status.svg)](https://github.com/ropensci/onboarding/issues/300)  -->[![status](http://joss.theoj.org/papers/334d80d5508056dc6e7e17c6fd3ed5a6/status.svg)](http://joss.theoj.org/papers/334d80d5508056dc6e7e17c6fd3ed5a6)
 
 Clean up your code
 ==================
