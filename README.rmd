@@ -89,31 +89,55 @@ Usage
 =====
 
 *Rclean* usage is simple. Have a script with code you want to clean
-saved to disk. 
+saved to disk. Then, just run the `clean` function with the path to
+the script as the input:
 
-Once you have your script and workspace setup, you can use
-[Rclean](https://github.com/ProvTools/Rclean) to get clean chunks of a
-larger script that produce specific results you want. We'll use the
-micro.R script, which can be found inside the package repo in the
-*exec* directory. The following example assumes that your current
-working directory is *exec*.
-
-First, you'll need to record information about the script you would
-like to parse. [Rclean](https://github.com/ProvTools/Rclean) uses data
-provenance to verify what lines of code depend on each other inside of
-the larger script. We can use the
-[provR](https://github.com/ProvTools/provR) package to generate
-provenance. The next bit of code runs our script and saves the
-provenance to memory, which we then pass to the `options` function, so
-that [Rclean](https://github.com/ProvTools/Rclean) has access to it:
-
-```R
-prov.capture("micro.R")
-options(prov.json = prov.json())
+```
+clean("./example/simple_script.R")
 ```
 
-Or, if you have provenance saved as a text file, you can load it in
-like this:
+This returns a list of possible results detected in the script,
+including execution lines (not counting lines with no code or that are
+commented). We can now pick the result we want to focus on for
+cleaning: 
+
+
+
+```
+clean("./example/simple_script.R", "tab.15")
+```
+
+This produces the minimal code detected from the script. It also
+detects the package dependencies as well and provides them in the code
+(`libs = TRUE`). 
+
+It can be handy just to take a look at the isolated code, but you can
+save the code for later use or sharing (e.g. creating a reproducible
+example for getting help) with the `write.code` function:
+
+```
+my.code <- clean("./example/simple_script.R", "tab.15")
+write.code(my.code, file = "x.R")
+```
+
+If you would like to copy your code to the clipboard, you can do that
+by not specifying a file path. You can now paste as needed to create a
+simpler script. 
+
+```R
+write.code(my.code)
+```
+
+
+
+## Retrospective Provenance
+
+So far, we've been using "prosepctive" provenance generated from the
+static code prior to execution. *Rclean* can also be used with
+"retrospective" provenance, which is recorded during execution of a
+script. To do so, we can pass the provenance to the `clean` function
+via `options`:
+
 
 ```R
 options(prov.json = readLines("prov_micro.json"))
@@ -121,40 +145,22 @@ options(prov.json = readLines("prov_micro.json"))
 
 Now that we have the provenance loaded, we can start
 cleaning. [Rclean](https://github.com/ProvTools/Rclean) will give us a
-list of possible values we can get code for:
+list of possible values we can get code for, notice that the option
+*rp* (i.e. "retrospective provenance") has been set to `TRUE`:
 
 ```R
-clean()
+clean(rp = TRUE)
 
 ```
 
-You can then pick and choose from among these results and get the
-essential code to produce the output, like so:
+Similar to before, you can then pick and choose from among these
+results and get the essential code to produce the output, like so:
 
 ```R
-clean(x)
+clean(x, rp = TRUE)
 
 ```
 
-Notice that the 'clean' function doesn't require you to quote your
-results, it interprets all inputs as names of results. 
-
-In many cases, it's handy just to take a look at the isolated code,
-but if you can also save the code for later use or sharing.
-
-```R
-my.code <- clean(x)
-write.code(my.code, file = "x.R")
-
-```
-
-If you would like to copy your code to the clipboard, you can do that
-by not specifying a file path. 
-
-```R
-write.code(my.code)
-
-```
 
 Happy cleaning!
 
