@@ -148,7 +148,7 @@ clean <- function(file, var, libs = TRUE, reformat = TRUE, plot = FALSE,
                         node.rank <- as.numeric(gsub("p", "", rownames(lines)))
                         lines <- lines[order(node.rank),]
                     }
-### Extract the minimal code
+                    ## Extract the minimal code
                     min.script <- apply(lines, 1, function(line, src)  
                         src[seq(line[1], line[2])],
                         src = script)
@@ -159,7 +159,7 @@ clean <- function(file, var, libs = TRUE, reformat = TRUE, plot = FALSE,
                     if (any(plot.code)){
                         min.script <- c(min.script, "dev.off()")
                     }
-### Tidying the code using formatR
+                    ## Tidying the code using formatR
                     if (tidy){
                         capture.output(
                             min.script <- 
