@@ -5,7 +5,6 @@
 Status](https://travis-ci.org/ProvTools/Rclean.svg?branch=master)](https://travis-ci.org/ProvTools/Rclean)
 [![Build
 Status](https://travis-ci.org/ProvTools/Rclean.svg?branch=dev)](https://travis-ci.org/ProvTools/Rclean)
-[![DOI](https://zenodo.org/badge/102645585.svg)](https://zenodo.org/badge/latestdoi/102645585)
 
 <!-- R status -->
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/Rclean)](https://cran.r-project.org/package=Rclean)
@@ -24,6 +23,9 @@ developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repo
 <!-- Package Review -->
 [![](https://badges.ropensci.org/300_status.svg)](https://github.com/ropensci/onboarding/issues/300)
 [![status](http://joss.theoj.org/papers/334d80d5508056dc6e7e17c6fd3ed5a6/status.svg)](http://joss.theoj.org/papers/334d80d5508056dc6e7e17c6fd3ed5a6)
+
+<!-- Archiving -->
+[![DOI](https://zenodo.org/badge/102645585.svg)](https://zenodo.org/badge/latestdoi/102645585)
 
 Clean up your code
 ==================
