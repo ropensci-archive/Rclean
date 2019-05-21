@@ -24,6 +24,7 @@
 #'@param src Character vector containing the source script.
 #'@return The libraries used for each step of the script.
 #'@importFrom CodeDepends getInputs
+#'@importFrom methods slot
 #'@export get.libs
 #'@author Matthew K. Lau
 
