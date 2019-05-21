@@ -2,7 +2,6 @@ Type: Package
 Package: Rclean
 Title: A Tool for Writing Cleaner, More Transparent Code
 Version: 1.1.0
-Date: 2019-04-24
 Author: Matthew K. Lau
 Maintainer: Matthew K. Lau <matthewklau@fas.harvard.edu>
 Description: To create clearer, more concise code provides this
@@ -14,4 +13,4 @@ BugReports: https://github.com/ProvTools/Rclean/issues
 License: GPL-3 | file LICENSE
 Imports: igraph, jsonlite, formatR
 Suggests: roxygen2, testthat
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
