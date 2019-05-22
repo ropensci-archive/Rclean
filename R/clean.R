@@ -16,7 +16,7 @@
 #
 # Contact: Matthew Lau <matthewklau@fas.harvard.edu>
 
-#'clean --- Clean code.
+#' clean --- Clean code.
 #'
 #' Reduce the size and complexity of a analytical script through
 #' algorithmic detection of the essential code needed to produce a set

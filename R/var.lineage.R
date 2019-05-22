@@ -17,11 +17,12 @@
 # Contact: Matthew Lau <matthewklau@fas.harvard.edu>
 
 
-#'var.lineage --- Determine the lineage of objects contained in an R script. 
+#' var.lineage --- Determine the lineage of objects contained in an R script. 
 #'
 #' Determine the series of steps that leads to the production of objects contained in a script.
 #' 
 #'@param x Character vector of lines of code from an R script.
+#'@param var.id Variable identifier.
 #'@return A list containing a graph (g) describing the lineage of
 #'     objects with steps (i.e. complexes of function and operation
 #'     calls) listed as numbers that "use" or "create" data objects

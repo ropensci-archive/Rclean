@@ -8,6 +8,8 @@ var.lineage(x, var.id = FALSE)
 }
 \arguments{
 \item{x}{Character vector of lines of code from an R script.}
+
+\item{var.id}{Variable identifier.}
 }
 \value{
 A list containing a graph (g) describing the lineage of
