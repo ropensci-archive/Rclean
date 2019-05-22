@@ -1,3 +1,6 @@
+## Trivial library calls
+library(stats)
+require(base)
 ## Make a data frame
 mat <- matrix(rnorm(400), nrow = 100)
 dat <- as.data.frame(mat)
