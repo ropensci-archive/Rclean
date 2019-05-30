@@ -64,8 +64,10 @@ clean <- function(file, var, libs = TRUE, reformat = TRUE, plot = FALSE, rp = FA
                 if (libs){
                     lib.l <- get.libs(src)
                     lib.l <- unique(lib.l)
-                    lib.src <- paste0("library(", lib.l, ")")
-                    out <- c(lib.src, min.src)
+                    if (length(lib.l) != 0){
+                        lib.src <- paste0("library(", lib.l, ")")
+                        out <- c(lib.src, min.src)
+                    }else{out <- min.src}
                 }else{
                     out <- min.src
                 }
