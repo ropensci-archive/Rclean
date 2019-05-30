@@ -62,7 +62,7 @@ clean <- function(file, var, libs = TRUE, reformat = TRUE, plot = FALSE, rp = FA
                 sp <- sort(as.numeric(sp))
                 min.src <- as.character(src[sp])
                 if (libs){
-                    lib.l <- na.omit(unlist(get.libs(src)[sp]))
+                    lib.l <- get.libs(src)
                     lib.src <- paste0("library(", lib.l, ")")
                     out <- c(lib.src, min.src)
                 }else{

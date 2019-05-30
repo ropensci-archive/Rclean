@@ -53,5 +53,7 @@ get.libs <- function(src){
             }
         }else{step.lib[[i]] <- NA}
     }
-    return(step.lib)
+    out <- unique(unlist(step.lib))
+    out <- out[!(is.na(out))]
+    return(out)
 }
