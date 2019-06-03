@@ -66,14 +66,14 @@ Install and Setup
 You can install
 [Rclean](https://cran.r-project.org/web/packages/Rclean/) from *CRAN*: 
 
-```R
+```{r}
 install.packages("Rclean")
 ```
 
 You can install the most up to date (beta) version easily with
 [devtools](https://github.com/hadley/devtools):
 
-```R
+```{r}
 install.packages("devtools")
 devtools::install_github("ProvTools/Rclean", ref = "dev")
 ```
@@ -81,7 +81,7 @@ devtools::install_github("ProvTools/Rclean", ref = "dev")
 
 Once installed, per usual R practice, just load the *Rclean*:
 
-```R
+```{r}
 library(Rclean)
 ```
 
@@ -92,7 +92,7 @@ Usage
 saved to disk. Then, just run the `clean` function with the path to
 the script as the input:
 
-```
+```{r}
 clean("./example/simple_script.R")
 ```
 
@@ -102,7 +102,7 @@ commented). We can now pick the result we want to focus on for
 cleaning: 
 
 
-```
+```{r}
 clean("./example/simple_script.R", "tab.15")
 ```
 
@@ -114,7 +114,7 @@ It can be handy just to take a look at the isolated code, but you can
 save the code for later use or sharing (e.g. creating a reproducible
 example for getting help) with the `write.code` function:
 
-```
+```{r}
 my.code <- clean("./example/simple_script.R", "tab.15")
 write.code(my.code, file = "x.R")
 ```
@@ -123,7 +123,7 @@ If you would like to copy your code to your clipboard, you can do that
 by not specifying a file path. You can now paste as needed to create a
 simpler script.
 
-```R
+```{r}
 write.code(my.code)
 ```
 
@@ -138,7 +138,7 @@ script. Using it facilitates more accurate code cleaning, We can pass
 the provenance to the `clean` function via `options`:
 
 
-```R
+```{r}
 options(prov.json = readLines("prov_micro.json"))
 ```
 
@@ -147,7 +147,7 @@ cleaning. [Rclean](https://github.com/ProvTools/Rclean) will give us a
 list of possible values we can get code for, notice that the option
 *rp* (i.e. "retrospective provenance") has been set to `TRUE`:
 
-```R
+```{r}
 clean(rp = TRUE)
 
 ```
@@ -155,7 +155,7 @@ clean(rp = TRUE)
 Similar to before, you can then pick and choose from among these
 results and get the essential code to produce the output, like so:
 
-```R
+```{r}
 clean(x, rp = TRUE)
 
 ```
