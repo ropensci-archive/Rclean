@@ -27,8 +27,8 @@ developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repo
 <!-- Archiving -->
 [![DOI](https://zenodo.org/badge/102645585.svg)](https://zenodo.org/badge/latestdoi/102645585)
 
-Clean up your code
-==================
+Clean your code
+===============
 
 -   Have you ever written a long script in R that conducts lots of
     analyses and wished that someone would come along and make it all
@@ -44,8 +44,9 @@ Clean up your code
     produce a specific result (e.g. object, plot, output written to
     disk).
 -   [Rclean](https://github.com/ProvTools/Rclean) is built on data
-    provenance, a formal representation of a computation, and uses graph
-    analysis to determine the minimal path from inputs to results.
+    provenance, a mathematically formal representation of a computation,
+    and uses graph analysis to determine the minimal path from inputs to
+    results in a script.
 -   The goal is to help facilitate code transparency, reproduciblity,
     reusability and ultimately help scientists spend more time on
     research and less time on software.
