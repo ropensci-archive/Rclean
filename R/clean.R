@@ -49,7 +49,7 @@ clean <- function(file, var, libs = TRUE, reformat = TRUE, plot = FALSE, rp = FA
         warning("Please provide a script file path.")
     }else{
         if (missing(var)){
-            print("Possible results:")
+            print("Possible results:", quote = FALSE)
             rownames(var.lineage(readScript(file))[["g"]])
         }else{
             if (!(rp)){

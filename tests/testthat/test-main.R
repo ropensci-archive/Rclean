@@ -41,37 +41,42 @@ test_that("clean prospective no re-formatting", {
 
 # Retrospective Provenance (i.e. rp = TRUE)
 ## provR
-## test_that("check provenance storage", {
-##     options(prov.json = readLines("micro_R.json"))
-##     prov <- read.prov(options()$prov.json)
-##     expect_match(mode(prov), "list")
-##     expect_equal(length(prov), 2)
-## })
+test_that("check provenance storage", {
+    options(prov.json = readLines("micro_R.json"))
+    prov <- read.prov(options()$prov.json)
+    expect_match(mode(prov), "list")
+    expect_equal(length(prov), 2)
+})
 
-## test_that("Provenance graph", {
-##     options(prov.json = readLines("micro_R.json"))
-##     prov <- read.prov(options()$prov.json)
-##     expect_match(mode(prov$graph), "numeric")
-##     expect_match(class(prov$graph), "matrix")
-## })
+test_that("Provenance graph", {
+    options(prov.json = readLines("micro_R.json"))
+    prov <- read.prov(options()$prov.json)
+    expect_match(mode(prov$graph), "numeric")
+    expect_match(class(prov$graph), "matrix")
+})
 
-## test_that("Provenance info", {
-##     options(prov.json = readLines("micro_R.json"))
-##     prov <- read.prov(options()$prov.json)
-##     expect_equal(length(prov$info), 3)
-## })
+test_that("Provenance info", {
+    options(prov.json = readLines("micro_R.json"))
+    prov <- read.prov(options()$prov.json)
+    expect_equal(length(prov$info), 3)
+})
 
-## test_that("Code cleaning: initiate", {
-##     options(prov.json = readLines("micro_R.json"))
-##     micro.test <- clean(rp = TRUE)
-##     expect_equal(length(micro.test), 2)
-##     expect_match(mode(micro.test), "list")
-##     expect_match(names(micro.test)[2], "Objects")
-##     expect_match(micro.test$Files[1], "test.test")
-##     expect_match(micro.test$Files[2], "test.pdf")
-##     expect_match(micro.test$Objects[1], "x")
-##     expect_match(micro.test$Objects[2], "y")
-## })
+test_that("clean RP options", {
+    options(prov.json = readLines("micro_R.json"))
+    micro.test <- clean("micro.R", rp = TRUE)
+})
+
+test_that("clean RP", {
+    options(prov.json = readLines("micro_R.json"))
+    micro.test <- clean("micro.R", rp = TRUE)
+    expect_equal(length(micro.test), 2)
+    expect_match(mode(micro.test), "list")
+    expect_match(names(micro.test)[2], "Objects")
+    expect_match(micro.test$Files[1], "test.test")
+    expect_match(micro.test$Files[2], "test.pdf")
+    expect_match(micro.test$Objects[1], "x")
+    expect_match(micro.test$Objects[2], "y")
+})
 
 ## test_that("Code cleaning: get result", {
 ##     micro.result.x.test <- clean(var = "x")
