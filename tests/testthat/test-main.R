@@ -1,15 +1,11 @@
-## clean.R
-## get.libs.R 
-## parse.graph.R
-## p.spine.R
-## rmd2chunks.R
-## var.lineage.R
-## codeGraph.R
-## get.spine.R
-## parse.info.R
-## read.prov.R
-## var.id.R
-## write.code.
+## clean PP
+## clean RP
+
+
+## rmd2chunks
+## codeGraph
+## read.prov
+## write.code
 
 # Prospective Provenance (i.e. rp = FALSE)
 test_that("clean options prospective", {
@@ -62,51 +58,22 @@ test_that("Provenance info", {
 })
 
 test_that("clean RP options", {
+    load("rp.options.test.rda")
     options(prov.json = readLines("micro_R.json"))
-    micro.test <- clean("micro.R", rp = TRUE)
+    rp.options <- clean("micro.R", rp = TRUE)
+    expect_true(all(rp.options == rp.options.test))
 })
 
-test_that("clean RP", {
+test_that("clean RP x", {
+    load("rp.clean.x.test.rda")
     options(prov.json = readLines("micro_R.json"))
-    micro.test <- clean("micro.R", rp = TRUE)
-    expect_equal(length(micro.test), 2)
-    expect_match(mode(micro.test), "list")
-    expect_match(names(micro.test)[2], "Objects")
-    expect_match(micro.test$Files[1], "test.test")
-    expect_match(micro.test$Files[2], "test.pdf")
-    expect_match(micro.test$Objects[1], "x")
-    expect_match(micro.test$Objects[2], "y")
+    rp.clean.x <- clean("micro.R", "x", rp = TRUE)
+    expect_true(all(rp.clean.x == rp.clean.x.test))
 })
 
-## test_that("Code cleaning: get result", {
-##     micro.result.x.test <- clean(var = "x")
-##     expect_match(micro.result.x.test[1] , "x <- 1")
-##     expect_match(micro.result.x.test[2] , "y <- 3")
-##     expect_match(micro.result.x.test[3] , "x <- x \\+ y")
-##     micro.result.y.test <- clean(var = "y")
-##     expect_match(micro.result.y.test[1] , "y <- 3")
-##     micro.result.test_test.test <- clean(var = "test.test")
-##     expect_match(micro.result.test_test.test[1], "x <- 1")
-##     expect_match(micro.result.test_test.test[2], "y <- 3")
-##     expect_match(micro.result.test_test.test[3], "x <- x \\+ y")
-##     expect_match(micro.result.test_test.test[4], "write\\.csv\\(x, \"~/test\\.test\"\\)")
-
-##     micro.result.test_pdf.test <- clean(var = "test.pdf")
-##     expect_match(micro.result.test_pdf.test[1], "x <- 1")
-##     expect_match(micro.result.test_pdf.test[2], "y <- 3")
-##     expect_match(micro.result.test_pdf.test[3], "x <- x \\+ y")
-##     expect_match(micro.result.test_pdf.test[4], "pdf\\(\"~/test.pdf\"\\)" )
-##     expect_match(micro.result.test_pdf.test[5], "plot\\(x\\)")
-##     expect_match(micro.result.test_pdf.test[6], "dev.off()")
-## })
-
-## test_that("Code cleaning: prospective prov", {
-##     simple_script.loc <- system.file("exec", "simple_script.R", package="Rclean")
-##     clean.test <- clean(simple_script.loc, "dat")
-##     expect_match(clean.test[1], "library()")
-##     expect_match(clean.test[2], "dat <- read.csv(\"../data/data.csv\")")
-##     expect_match(clean.test[3], "dat[, \"X2\"] <- dat[, \"X2\"] + runif(nrow(dat))")
-##     expect_match(clean.test[4], "dat[, \"X5\"] <- gl(10, 10)")
-##     expect_match(clean.test[5], "dat <- 25 + 2")
-##     expect_match(clean.test[6], "dat[2] <- 10")
-## })
+test_that("clean RP y", {
+    load("rp.clean.y.test.rda")
+    options(prov.json = readLines("micro_R.json"))
+    rp.clean.y <- clean("micro.R", "y", rp = TRUE)
+    expect_true(all(rp.clean.y == rp.clean.y.test))
+})
