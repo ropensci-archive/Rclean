@@ -7,7 +7,7 @@
 var.id(x, sep = "_")
 }
 \arguments{
-\item{x}{A data frmae containing "step", "used" by, "defined" by and "var" (i.e. variable) information.}
+\item{x}{A data frame containing "step", "used" by, "defined" by and "var" (i.e. variable) information.}
 
 \item{sep}{Text separator for the identification tags.}
 }
