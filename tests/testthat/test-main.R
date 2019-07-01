@@ -72,9 +72,8 @@ test_that("clean RP y", {
 
 ## 
 test_that("rmd2chunks", {
-    load("rp.clean.y.test.rda")
-    options(prov.json = readLines("micro_R.json"))
-    rp.clean.y <- clean("micro.R", "y", rp = TRUE)
+    load("rmd.file.rda")
+    rmd.chunks <- rmd2chunks(rmd.file)
     expect_true(all(rp.clean.y == rp.clean.y.test))
 })
 

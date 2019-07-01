@@ -7,7 +7,7 @@
 rmd2chunks(x, comment = "## RMD ##", rm.markdown = FALSE)
 }
 \arguments{
-\item{x}{A character of of code from an R markdown notebook.}
+\item{x}{A character vector of code from an R markdown notebook.}
 
 \item{comment}{The string to be used to comment markdown syntax.}
 
