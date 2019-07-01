@@ -78,7 +78,17 @@ test_that("clean RP y", {
 ## })
 
 
-## codeGraph
+
+test_that("codeGraph", {
+    load("codeGraph.src.rda")
+    vl <- var.lineage(src)
+    sp <- p.spine(vl, "out")
+    min.g <- vl[["g"]][rownames(vl[["g"]]) %in% as.character(sp), 
+                       colnames(vl[["g"]]) %in% as.character(sp)]
+
+    codeGraph(min.g)
+    expect_true(all(rmd.chunks == rmd.chunks.test))
+})
 
 
 ## read.prov

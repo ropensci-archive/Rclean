@@ -25,7 +25,7 @@
 #'@importFrom igraph graph_from_adjacency_matrix
 #'@importFrom igraph igraph.to.graphNEL
 #'@importFrom Rgraphviz plot
-#'@export clean
+#'@export codeGraph
 #'@author Matthew K. Lau
 
 
