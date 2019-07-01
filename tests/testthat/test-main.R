@@ -85,11 +85,11 @@ test_that("codeGraph", {
     sp <- p.spine(vl, "out")
     min.g <- vl[["g"]][rownames(vl[["g"]]) %in% as.character(sp), 
                        colnames(vl[["g"]]) %in% as.character(sp)]
-
-    codeGraph(min.g)
-    expect_true(all(rmd.chunks == rmd.chunks.test))
+    output.cap <- capture.output(codeGraph(min.g))
+    expect_true(length(output.cap) == 0)
 })
 
-
 ## read.prov
+
+
 ## write.code
