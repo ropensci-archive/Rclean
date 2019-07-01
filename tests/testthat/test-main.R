@@ -70,12 +70,12 @@ test_that("clean RP y", {
 })
 
 
-## 
-test_that("rmd2chunks", {
-    load("rmd.file.rda")
-    rmd.chunks <- rmd2chunks(rmd.file)
-    expect_true(all(rp.clean.y == rp.clean.y.test))
-})
+## test_that("rmd2chunks", {
+##     load("rmd.file.rda")
+##     load("rmd.chunks.test.rda")
+##     rmd.chunks <- rmd2chunks(rmd.file)
+##     expect_true(all(rmd.chunks == rmd.chunks.test))
+## })
 
 
 ## codeGraph
