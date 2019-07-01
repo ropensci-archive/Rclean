@@ -22,7 +22,7 @@
 #' To facilitate code cleaning, this function permits users to isolate
 #' the code chunks from an R markdown formatted notebook.
 #' 
-#'@param x A character of of code from an R markdown notebook.
+#'@param x A character of code from an R markdown notebook.
 #'@param comment The string to be used to comment markdown syntax.
 #'@param rm.markdown LOGICAL: should markdown syntax be removed?
 #'@return A character vector consisting of the code chunks isolated from the R markdown notebook code.

@@ -1,12 +1,3 @@
-## clean PP
-## clean RP
-
-
-## rmd2chunks
-## codeGraph
-## read.prov
-## write.code
-
 # Prospective Provenance (i.e. rp = FALSE)
 test_that("clean options prospective", {
     load("opt.test.rda")
@@ -77,3 +68,19 @@ test_that("clean RP y", {
     rp.clean.y <- clean("micro.R", "y", rp = TRUE)
     expect_true(all(rp.clean.y == rp.clean.y.test))
 })
+
+
+## 
+test_that("rmd2chunks", {
+    load("rp.clean.y.test.rda")
+    options(prov.json = readLines("micro_R.json"))
+    rp.clean.y <- clean("micro.R", "y", rp = TRUE)
+    expect_true(all(rp.clean.y == rp.clean.y.test))
+})
+
+
+## codeGraph
+
+
+## read.prov
+## write.code
