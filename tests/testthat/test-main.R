@@ -77,8 +77,6 @@ test_that("clean RP y", {
 ##     expect_true(all(rmd.chunks == rmd.chunks.test))
 ## })
 
-
-
 test_that("codeGraph", {
     load("codeGraph.src.rda")
     vl <- var.lineage(src)
@@ -89,7 +87,11 @@ test_that("codeGraph", {
     expect_true(length(output.cap) == 0)
 })
 
-## read.prov
+test_that("read.prov", {
+    load("read.prov.test.rda")
+    prov <- read.prov("micro_R.json")
+    expect_true(all(unlist(prov) == unlist(prov.test)))
+})
 
 
 ## write.code
