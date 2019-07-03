@@ -94,4 +94,11 @@ test_that("read.prov", {
 })
 
 
-## write.code
+test_that("write.code", {
+    load("write.code.test.rda")    
+    write.code(clean.simple.out, file = "clean.simple.test.R")
+    write.code.test <- readLines("clean.simple.test.R")
+    file.remove("clean.simple.test.R")
+    expect_true(all(clean.simple.out == write.code.test))
+})
+
