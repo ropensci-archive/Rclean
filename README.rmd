@@ -138,7 +138,7 @@ script. Using it facilitates more accurate code cleaning, We can pass
 the provenance to the `clean` function via `options`:
 
 
-```{r}
+```{r eval = FALSE}
 options(prov.json = readLines("prov_micro.json"))
 ```
 
@@ -147,7 +147,7 @@ cleaning. [Rclean](https://github.com/ProvTools/Rclean) will give us a
 list of possible values we can get code for, notice that the option
 *rp* (i.e. "retrospective provenance") has been set to `TRUE`:
 
-```{r}
+```{r eval = FALSE}
 clean(rp = TRUE)
 
 ```
@@ -155,7 +155,7 @@ clean(rp = TRUE)
 Similar to before, you can then pick and choose from among these
 results and get the essential code to produce the output, like so:
 
-```{r}
+```{r eval = FALSE}
 clean(x, rp = TRUE)
 
 ```

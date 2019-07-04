@@ -27,26 +27,25 @@ developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repo
 <!-- Archiving -->
 [![DOI](https://zenodo.org/badge/102645585.svg)](https://zenodo.org/badge/latestdoi/102645585)
 
-Clean your code
-===============
+Clean up your code
+==================
 
 -   Have you ever written a long script in R that conducts lots of
     analyses and wished that someone would come along and make it all
     clearer to understand and use?
 -   Well you’re not alone.
 -   A recent survey of over 1500 scientists reported a crisis of
-    reproducibility with "selective reporting" being the most cited
+    reproducibility with “selective reporting” being the most cited
     contributing factor and 80% saying code availability is playing a
     role.
 -   [Rclean](https://github.com/ProvTools/Rclean) was created to help
-    scientists more *easily* write "cleaner" code by providing a simple,
+    scientists more *easily* write “cleaner” code by providing a simple,
     rigorous way to isolate the minimal code you need in order to
-    produce a specific result (e.g. object, plot, output written to
+    produce a specific result (e.g. object, plot, output written to
     disk).
 -   [Rclean](https://github.com/ProvTools/Rclean) is built on data
-    provenance, a mathematically formal representation of a computation,
-    and uses graph analysis to determine the minimal path from inputs to
-    results in a script.
+    provenance, a formal representation of a computation, and uses graph
+    analysis to determine the minimal path from inputs to results.
 -   The goal is to help facilitate code transparency, reproduciblity,
     reusability and ultimately help scientists spend more time on
     research and less time on software.
@@ -58,12 +57,57 @@ You can install
 [Rclean](https://cran.r-project.org/web/packages/Rclean/) from *CRAN*:
 
     install.packages("Rclean")
+    #> 
+    #> The downloaded binary packages are in
+    #>  /var/folders/7x/4c5fkmrx5r54d6sgzglyffth0000gn/T//RtmpPdJRBE/downloaded_packages
 
 You can install the most up to date (beta) version easily with
 [devtools](https://github.com/hadley/devtools):
 
     install.packages("devtools")
+    #> 
+    #> The downloaded binary packages are in
+    #>  /var/folders/7x/4c5fkmrx5r54d6sgzglyffth0000gn/T//RtmpPdJRBE/downloaded_packages
     devtools::install_github("ProvTools/Rclean", ref = "dev")
+    #> Downloading GitHub repo ProvTools/Rclean@dev
+    #>   
+       checking for file ‘/private/var/folders/7x/4c5fkmrx5r54d6sgzglyffth0000gn/T/RtmpPdJRBE/remotes3a36da02ce7/ProvTools-Rclean-1e727f1/DESCRIPTION’ ...
+      
+    ✔  checking for file ‘/private/var/folders/7x/4c5fkmrx5r54d6sgzglyffth0000gn/T/RtmpPdJRBE/remotes3a36da02ce7/ProvTools-Rclean-1e727f1/DESCRIPTION’ (471ms)
+    #> 
+      
+      
+      
+       
+      
+       preparing 
+      
+       preparing ‘Rclean’
+      
+       preparing ‘Rclean’:
+      
+    ─  preparing ‘Rclean’:
+    #> 
+      
+       checking DESCRIPTION meta-information ...
+      
+    ✔  checking DESCRIPTION meta-information
+    #> 
+      
+    ─  checking for LF line-endings in source and make files and shell scripts
+    #> 
+      
+    ─  checking for empty or unneeded directories
+    #> 
+      
+    ─  looking to see if a ‘data/datalist’ file should be added
+    #> 
+      
+    ─  building ‘Rclean_1.1.0.tar.gz’
+    #> 
+      
+       
+    #> 
 
 Once installed, per usual R practice, just load the *Rclean*:
 
@@ -77,18 +121,35 @@ saved to disk. Then, just run the `clean` function with the path to the
 script as the input:
 
     clean("./example/simple_script.R")
+    #> [1] Possible results:
+    #>  [1] "1"         "2"         "3"         "4"         "5"        
+    #>  [6] "6"         "7"         "8"         "9"         "10"       
+    #> [11] "11"        "12"        "13"        "14"        "15"       
+    #> [16] "16"        "mat"       "dat"       "fit12"     "fit13"    
+    #> [21] "fit14"     "fit15.aov" "tab.12"    "tab.13"    "tab.14"   
+    #> [26] "tab.15"    "out"
 
 This returns a list of possible results detected in the script,
 including execution lines (not counting lines with no code or that are
 commented). We can now pick the result we want to focus on for cleaning:
 
     clean("./example/simple_script.R", "tab.15")
+    #>  [1] "mat <- matrix(rnorm(400), nrow = 100)"            
+    #>  [2] "dat <- as.data.frame(mat)"                        
+    #>  [3] "dat[, \"V2\"] <- dat[, \"V2\"] + runif(nrow(dat))"
+    #>  [4] "dat[, \"V5\"] <- gl(10, 10)"                      
+    #>  [5] "fit14 <- lm(V1 ~ V4, data = dat)"                 
+    #>  [6] "fit15.aov <- aov(V1 ~ V2 + V5, data = dat)"       
+    #>  [7] "tab.14 <- summary(fit14)"                         
+    #>  [8] "tab.15 <- append(fit15.aov, tab.14)"              
+    #>  [9] "dat <- 25 + 2"                                    
+    #> [10] "dat[2] <- 10"
 
 This produces the minimal code detected from the script. It also detects
 library dependencies and inserts them into the code (`libs = TRUE`).
 
 It can be handy just to take a look at the isolated code, but you can
-save the code for later use or sharing (e.g. creating a reproducible
+save the code for later use or sharing (e.g. creating a reproducible
 example for getting help) with the `write.code` function:
 
     my.code <- clean("./example/simple_script.R", "tab.15")
@@ -103,9 +164,9 @@ simpler script.
 Retrospective Provenance
 ------------------------
 
-So far, we've been using "prosepective" provenance generated from the
+So far, we’ve been using “prosepective” provenance generated from the
 static code prior to execution. *Rclean* can also be used with
-"retrospective" provenance, which is recorded during execution of a
+“retrospective” provenance, which is recorded during execution of a
 script. Using it facilitates more accurate code cleaning, We can pass
 the provenance to the `clean` function via `options`:
 
@@ -114,7 +175,7 @@ the provenance to the `clean` function via `options`:
 Now that we have the provenance loaded, we can start cleaning.
 [Rclean](https://github.com/ProvTools/Rclean) will give us a list of
 possible values we can get code for, notice that the option *rp* (i.e.
-"retrospective provenance") has been set to `TRUE`:
+“retrospective provenance”) has been set to `TRUE`:
 
     clean(rp = TRUE)
 
