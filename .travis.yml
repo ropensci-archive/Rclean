@@ -11,10 +11,12 @@ warnings_are_errors: false
 
 r_packages:
   - devtools
+  - CodeGraph
+  - testhat
 
 r_github_packages:
   - ProvTools/provR
-
+  
 notifications:
   slack: endtoendprovenance:DNYqXZWhV1c3eRhkjGYyjCEv
 
