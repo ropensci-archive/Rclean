@@ -88,7 +88,7 @@ test_that("codeGraph", {
 })
 
 test_that("read.prov", {
-    load("read.prov.test.rda")
+    load("read.prov.test")
     prov <- read.prov("micro_R.json")
     expect_true(all(unlist(prov) == unlist(prov.test)))
 })
