@@ -19,6 +19,7 @@ original_files <- dir()
 <!-- Code status -->
 [![Build Status](https://travis-ci.org/ProvTools/Rclean.svg?branch=master)](https://travis-ci.org/ProvTools/Rclean) 
 [![Build Status](https://travis-ci.org/ProvTools/Rclean.svg?branch=dev)](https://travis-ci.org/ProvTools/Rclean) 
+[![Coverage status](https://codecov.io/gh/provtools/Rclean/branch/tests/graph/badge.svg)](https://codecov.io/github/provtools/Rclean?branch=tests)
 
 <!-- R status -->
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/Rclean)](https://cran.r-project.org/package=Rclean)

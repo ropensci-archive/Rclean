@@ -13,7 +13,10 @@ URL: https://github.com/ProvTools/Rclean
 BugReports: https://github.com/ProvTools/Rclean/issues
 License: GPL-3 | file LICENSE
 Imports: igraph, jsonlite, formatR, CodeDepends, Rgraphviz, methods
-Suggests: roxygen2, testthat (>= 2.1.0)
+Suggests: 
+    roxygen2,
+    testthat,
+    covr
 Language: en-US
 Encoding: UTF-8
 RoxygenNote: 6.1.1
