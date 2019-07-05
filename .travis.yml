@@ -11,7 +11,7 @@ warnings_are_errors: false
 
 r_packages:
   - devtools
-  - CodeGraph
+  - CodeDepends
   - testhat
 
 r_github_packages:
