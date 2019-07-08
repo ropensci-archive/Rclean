@@ -11,7 +11,7 @@ warnings_are_errors: false
 
 r_packages:
   - devtools
-  - testhat
+  - testthat
 
 r_github_packages:
   - ProvTools/provR
