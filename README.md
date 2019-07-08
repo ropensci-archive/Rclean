@@ -2,9 +2,9 @@
 <!-- # ijtiff  <img src="man/figures/logo.png" height="140" align="right"> -->
 <!-- Code status -->
 [![Dev: Build
-Status](https://travis-ci.org/ProvTools/Rclean.svg?branch=tests)](https://travis-ci.org/ProvTools/Rclean)
+Status](https://travis-ci.org/ProvTools/Rclean.svg?branch=dev)](https://travis-ci.org/ProvTools/Rclean)
 [![Coverage
-status](https://codecov.io/gh/provtools/Rclean/branch/tests/graph/badge.svg)](https://codecov.io/github/provtools/Rclean?branch=tests)
+status](https://codecov.io/gh/provtools/Rclean/branch/dev/graph/badge.svg)](https://codecov.io/github/provtools/Rclean?branch=dev)
 
 <!-- R status -->
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/Rclean)](https://cran.r-project.org/package=Rclean)
@@ -59,7 +59,7 @@ You can install
     install.packages("Rclean")
     #> 
     #> The downloaded binary packages are in
-    #>  /var/folders/7x/4c5fkmrx5r54d6sgzglyffth0000gn/T//RtmpVMiSxb/downloaded_packages
+    #>  /var/folders/7x/4c5fkmrx5r54d6sgzglyffth0000gn/T//RtmpbgnI2j/downloaded_packages
 
 You can install the most up to date (beta) version easily with
 [devtools](https://github.com/hadley/devtools):
@@ -73,20 +73,15 @@ You can install the most up to date (beta) version easily with
     #> installing the source package 'devtools'
     devtools::install_github("ProvTools/Rclean", ref = "dev")
     #> Downloading GitHub repo ProvTools/Rclean@dev
+    #> Skipping 2 packages not available: Rgraphviz, graph
     #>   
-       checking for file ‘/private/var/folders/7x/4c5fkmrx5r54d6sgzglyffth0000gn/T/RtmpVMiSxb/remotes5f56e40dd4f/ProvTools-Rclean-1e727f1/DESCRIPTION’ ...
+       checking for file ‘/private/var/folders/7x/4c5fkmrx5r54d6sgzglyffth0000gn/T/RtmpbgnI2j/remotes65a8cb67cf/ProvTools-Rclean-d2d43a2/DESCRIPTION’ ...
       
-    ✔  checking for file ‘/private/var/folders/7x/4c5fkmrx5r54d6sgzglyffth0000gn/T/RtmpVMiSxb/remotes5f56e40dd4f/ProvTools-Rclean-1e727f1/DESCRIPTION’ (443ms)
+    ✔  checking for file ‘/private/var/folders/7x/4c5fkmrx5r54d6sgzglyffth0000gn/T/RtmpbgnI2j/remotes65a8cb67cf/ProvTools-Rclean-d2d43a2/DESCRIPTION’ (453ms)
     #> 
       
     ─  preparing ‘Rclean’:
-    #> 
-      
-       checking DESCRIPTION meta-information ...
-      
-       checking DESCRIPTION meta-information ... 
-      
-       checking DESCRIPTION meta-information ... OK
+    #>    checking DESCRIPTION meta-information ...
       
     ✔  checking DESCRIPTION meta-information
     #> 
@@ -100,7 +95,11 @@ You can install the most up to date (beta) version easily with
     ─  looking to see if a ‘data/datalist’ file should be added
     #> 
       
-    ─  building ‘Rclean_1.1.0.tar.gz’
+         NB: this package now depends on R (>= 3.5.0)
+    #>    WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects:  'Rclean/tests/testthat/clean.simple.out.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects:  'Rclean/tests/testthat/format.simple.out.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects: 'Rclean/tests/testthat/lib.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects:  'Rclean/tests/testthat/libs.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects: 'Rclean/tests/testthat/opt.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects: 'Rclean/tests/testthat/pi.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects:  'Rclean/tests/testthat/prov.g.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects:  'Rclean/tests/testthat/prov.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects:  'Rclean/tests/testthat/rp.clean.x.test.rda'  WARNING: Added dependency on R >= 3.5.0 beca
+      
+         WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects:  'Rclean/tests/testthat/clean.simple.out.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects:  'Rclean/tests/testthat/format.simple.out.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects: 'Rclean/tests/testthat/lib.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects:  'Rclean/tests/testthat/libs.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects: 'Rclean/tests/testthat/opt.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects: 'Rclean/tests/testthat/pi.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects:  'Rclean/tests/testthat/prov.g.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects:  'Rclean/tests/testthat/prov.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects:  'Rclean/tests/testthat/rp.clean.x.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects:  'Rclean/tests/testthat/rp.clean.y.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects:  'Rclean/tests/testthat/rp.clean.y.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects:  'Rclean/tests/testthat/rp.options.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects: 'Rclean/tests/testthat/s.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects: 'Rclean/tests/testthat/sp.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects: 'Rclean/tests/testthat/vl.test.rda'
+    #> ─  building 'Rclean_1.1.0.tar.gz'
     #> 
       
        
@@ -118,8 +117,7 @@ saved to disk. Then, just run the `clean` function with the path to the
 script as the input:
 
     clean("./example/simple_script.R")
-    #> Warning in clean("./example/simple_script.R"): Please supply a variable/
-    #> object name
+    #> [1] Possible results:
     #>  [1] "1"         "2"         "3"         "4"         "5"        
     #>  [6] "6"         "7"         "8"         "9"         "10"       
     #> [11] "11"        "12"        "13"        "14"        "15"       
@@ -132,17 +130,16 @@ including execution lines (not counting lines with no code or that are
 commented). We can now pick the result we want to focus on for cleaning:
 
     clean("./example/simple_script.R", "tab.15")
-    #>  [1] "library()"                                        
-    #>  [2] "mat <- matrix(rnorm(400), nrow = 100)"            
-    #>  [3] "dat <- as.data.frame(mat)"                        
-    #>  [4] "dat[, \"V2\"] <- dat[, \"V2\"] + runif(nrow(dat))"
-    #>  [5] "dat[, \"V5\"] <- gl(10, 10)"                      
-    #>  [6] "fit14 <- lm(V1 ~ V4, data = dat)"                 
-    #>  [7] "fit15.aov <- aov(V1 ~ V2 + V5, data = dat)"       
-    #>  [8] "tab.14 <- summary(fit14)"                         
-    #>  [9] "tab.15 <- append(fit15.aov, tab.14)"              
-    #> [10] "dat <- 25 + 2"                                    
-    #> [11] "dat[2] <- 10"
+    #>  [1] "mat <- matrix(rnorm(400), nrow = 100)"            
+    #>  [2] "dat <- as.data.frame(mat)"                        
+    #>  [3] "dat[, \"V2\"] <- dat[, \"V2\"] + runif(nrow(dat))"
+    #>  [4] "dat[, \"V5\"] <- gl(10, 10)"                      
+    #>  [5] "fit14 <- lm(V1 ~ V4, data = dat)"                 
+    #>  [6] "fit15.aov <- aov(V1 ~ V2 + V5, data = dat)"       
+    #>  [7] "tab.14 <- summary(fit14)"                         
+    #>  [8] "tab.15 <- append(fit15.aov, tab.14)"              
+    #>  [9] "dat <- 25 + 2"                                    
+    #> [10] "dat[2] <- 10"
 
 This produces the minimal code detected from the script. It also detects
 library dependencies and inserts them into the code (`libs = TRUE`).
