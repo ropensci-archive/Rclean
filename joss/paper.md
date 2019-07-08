@@ -19,7 +19,6 @@ authors:
   - name: Margo Seltzer
     orcid: 0000-0002-2165-4658
     affiliation: "5"
-
 affiliations:
  - name: Harvard Forest, Harvard University 
    index: 1

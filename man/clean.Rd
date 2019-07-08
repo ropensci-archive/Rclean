@@ -2,32 +2,38 @@
 % Please edit documentation in R/clean.R
 \name{clean}
 \alias{clean}
-\title{clean --- Produces more transparent code.
-OUTPUT = The essential code needed to produce a result.}
+\title{clean --- Clean code.}
 \usage{
-clean(result = "Name of desired result", tidy = TRUE)
+clean(file, var, libs = TRUE, reformat = TRUE, plot = FALSE,
+  rp = FALSE)
 }
 \arguments{
-\item{result}{A desired output present in the script.}
+\item{file}{File path to a script.}
 
-\item{tidy}{LOGICAL: should the cleaned script be formatted using syntax best practices?}
+\item{var}{The name of a variable of interest.}
+
+\item{libs}{LOGICAL: should library dependencies be detected and
+included?}
+
+\item{reformat}{LOGICAL: should the minimized code be re-formatted
+following common syntax?}
+
+\item{plot}{LOGICAL: should a network diagram of the cleaned script
+be produced?}
+
+\item{rp}{LOGICAL: should retrospective provenance be used? This
+should be made available in JSON format as an object within
+options (i.e. options(prov.json = <your retrospective
+provenance object>).}
 }
 \value{
-Cleaned code as a vector of strings ordered by line number.
+A character vector containing a minimized script based on
+    the given input variable.
 }
 \description{
-Produces simplifed, "cleaned" code that is needed to create a result. 
-Make sure that your working directory is set to the location of your script
-and that you have loaded data provenance for that script into R's option system, and
-Rclean takes care of the rest.
-}
-\examples{
-data(prov_json)
-options(prov.json = prov_json)
-clean() # Pick from the list of possible results
-}
-\seealso{
-write.code
+Reduce the size and complexity of a analytical script through
+algorithmic detection of the essential code needed to produce a set
+of results.
 }
 \author{
 Matthew K. Lau

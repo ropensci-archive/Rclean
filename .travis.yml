@@ -7,14 +7,18 @@ r:
 sudo: false
 cache: packages
 
-warnings_are_errors: true
+warnings_are_errors: false
 
 r_packages:
   - devtools
+  - testthat
+
+bioc_packages:
+  - graph
 
 r_github_packages:
   - ProvTools/provR
-
-notifications:
-  slack: endtoendprovenance:DNYqXZWhV1c3eRhkjGYyjCEv
-
+  - duncantl/CodeDepends
+  
+after_success:
+  - Rscript -e 'covr::codecov()'

@@ -1,3 +1,4 @@
+^codecov\.yml$
 CONTRIBUTE.md
 cran-comments.md
 .travis.yml
@@ -6,3 +7,4 @@ cleanR_demo_vid.png
 ^exec/loader.R
 ^example
 ^joss
+^ropensci
