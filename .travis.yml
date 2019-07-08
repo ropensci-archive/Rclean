@@ -11,11 +11,11 @@ warnings_are_errors: false
 
 r_packages:
   - devtools
-  - CodeDepends
   - testhat
 
 r_github_packages:
   - ProvTools/provR
+  - duncantl/CodeDepends
   
 after_success:
   - Rscript -e 'covr::codecov()'
