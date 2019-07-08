@@ -12,6 +12,8 @@ warnings_are_errors: false
 r_packages:
   - devtools
   - testthat
+
+bioc_packages:
   - graph
 
 r_github_packages:
