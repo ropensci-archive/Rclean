@@ -1,8 +1,6 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <!-- # ijtiff  <img src="man/figures/logo.png" height="140" align="right"> -->
 <!-- Code status -->
-[![Stable: Build
-Status](https://travis-ci.org/ProvTools/Rclean.svg?branch=master)](https://travis-ci.org/ProvTools/Rclean)
 [![Dev: Build
 Status](https://travis-ci.org/ProvTools/Rclean.svg?branch=tests)](https://travis-ci.org/ProvTools/Rclean)
 [![Coverage
@@ -61,7 +59,7 @@ You can install
     install.packages("Rclean")
     #> 
     #> The downloaded binary packages are in
-    #>  /var/folders/7x/4c5fkmrx5r54d6sgzglyffth0000gn/T//RtmpgCraih/downloaded_packages
+    #>  /var/folders/7x/4c5fkmrx5r54d6sgzglyffth0000gn/T//Rtmp1pfrcO/downloaded_packages
 
 You can install the most up to date (beta) version easily with
 [devtools](https://github.com/hadley/devtools):
@@ -73,21 +71,18 @@ You can install the most up to date (beta) version easily with
     #>          binary source needs_compilation
     #> devtools  2.0.2  2.1.0             FALSE
     #> installing the source package 'devtools'
-    #> Warning in download.file(url, destfile, method, mode = "wb", ...): URL
-    #> 'http://cran.r-project.org/src/contrib/devtools_2.1.0.tar.gz': status was
-    #> 'Couldn't resolve host name'
-    #> Warning in download.packages(pkgs, destdir = tmpd, available = available, :
-    #> download of package 'devtools' failed
     devtools::install_github("ProvTools/Rclean", ref = "dev")
     #> Downloading GitHub repo ProvTools/Rclean@dev
     #>   
-       checking for file ‘/private/var/folders/7x/4c5fkmrx5r54d6sgzglyffth0000gn/T/RtmpgCraih/remotes50c32724ce0/ProvTools-Rclean-1e727f1/DESCRIPTION’ ...
+       checking for file ‘/private/var/folders/7x/4c5fkmrx5r54d6sgzglyffth0000gn/T/Rtmp1pfrcO/remotes58d2985d50d/ProvTools-Rclean-1e727f1/DESCRIPTION’ ...
       
-    ✔  checking for file ‘/private/var/folders/7x/4c5fkmrx5r54d6sgzglyffth0000gn/T/RtmpgCraih/remotes50c32724ce0/ProvTools-Rclean-1e727f1/DESCRIPTION’ (632ms)
+    ✔  checking for file ‘/private/var/folders/7x/4c5fkmrx5r54d6sgzglyffth0000gn/T/Rtmp1pfrcO/remotes58d2985d50d/ProvTools-Rclean-1e727f1/DESCRIPTION’ (483ms)
     #> 
       
     ─  preparing ‘Rclean’:
-    #>    checking DESCRIPTION meta-information ...
+    #> 
+      
+       checking DESCRIPTION meta-information ...
       
     ✔  checking DESCRIPTION meta-information
     #> 
