@@ -17,8 +17,8 @@ original_files <- dir()
 <!-- # ijtiff  <img src="man/figures/logo.png" height="140" align="right"> -->
 
 <!-- Code status -->
-[![Build Status](https://travis-ci.org/ProvTools/Rclean.svg?branch=master)](https://travis-ci.org/ProvTools/Rclean) 
-[![Build Status](https://travis-ci.org/ProvTools/Rclean.svg?branch=dev)](https://travis-ci.org/ProvTools/Rclean) 
+[![Stable: Build Status](https://travis-ci.org/ProvTools/Rclean.svg?branch=master)](https://travis-ci.org/ProvTools/Rclean) 
+[![Dev: Build Status](https://travis-ci.org/ProvTools/Rclean.svg?branch=tests)](https://travis-ci.org/ProvTools/Rclean) 
 [![Coverage status](https://codecov.io/gh/provtools/Rclean/branch/tests/graph/badge.svg)](https://codecov.io/github/provtools/Rclean?branch=tests)
 
 <!-- R status -->
