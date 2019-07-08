@@ -114,7 +114,7 @@ It can be handy just to take a look at the isolated code, but you can
 save the code for later use or sharing (e.g. creating a reproducible
 example for getting help) with the `write.code` function:
 
-```{r}
+```{r eval = FALSE}
 my.code <- clean("./example/simple_script.R", "tab.15")
 write.code(my.code, file = "x.R")
 ```
@@ -123,7 +123,7 @@ If you would like to copy your code to your clipboard, you can do that
 by not specifying a file path. You can now paste as needed to create a
 simpler script.
 
-```{r}
+```{r eval = FALSE}
 write.code(my.code)
 ```
 

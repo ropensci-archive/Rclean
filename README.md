@@ -59,7 +59,7 @@ You can install
     install.packages("Rclean")
     #> 
     #> The downloaded binary packages are in
-    #>  /var/folders/7x/4c5fkmrx5r54d6sgzglyffth0000gn/T//Rtmp1pfrcO/downloaded_packages
+    #>  /var/folders/7x/4c5fkmrx5r54d6sgzglyffth0000gn/T//RtmpVMiSxb/downloaded_packages
 
 You can install the most up to date (beta) version easily with
 [devtools](https://github.com/hadley/devtools):
@@ -74,15 +74,19 @@ You can install the most up to date (beta) version easily with
     devtools::install_github("ProvTools/Rclean", ref = "dev")
     #> Downloading GitHub repo ProvTools/Rclean@dev
     #>   
-       checking for file ‘/private/var/folders/7x/4c5fkmrx5r54d6sgzglyffth0000gn/T/Rtmp1pfrcO/remotes58d2985d50d/ProvTools-Rclean-1e727f1/DESCRIPTION’ ...
+       checking for file ‘/private/var/folders/7x/4c5fkmrx5r54d6sgzglyffth0000gn/T/RtmpVMiSxb/remotes5f56e40dd4f/ProvTools-Rclean-1e727f1/DESCRIPTION’ ...
       
-    ✔  checking for file ‘/private/var/folders/7x/4c5fkmrx5r54d6sgzglyffth0000gn/T/Rtmp1pfrcO/remotes58d2985d50d/ProvTools-Rclean-1e727f1/DESCRIPTION’ (483ms)
+    ✔  checking for file ‘/private/var/folders/7x/4c5fkmrx5r54d6sgzglyffth0000gn/T/RtmpVMiSxb/remotes5f56e40dd4f/ProvTools-Rclean-1e727f1/DESCRIPTION’ (443ms)
     #> 
       
     ─  preparing ‘Rclean’:
     #> 
       
        checking DESCRIPTION meta-information ...
+      
+       checking DESCRIPTION meta-information ... 
+      
+       checking DESCRIPTION meta-information ... OK
       
     ✔  checking DESCRIPTION meta-information
     #> 
