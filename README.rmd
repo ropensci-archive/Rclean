@@ -1,5 +1,5 @@
 ---
-output: github_document
+output: md_document
 ---
 
 
@@ -17,8 +17,8 @@ original_files <- dir()
 <!-- # ijtiff  <img src="man/figures/logo.png" height="140" align="right"> -->
 
 <!-- Code status -->
-[![Build Status](https://travis-ci.org/ProvTools/Rclean.svg?branch=master)](https://travis-ci.org/ProvTools/Rclean) 
-[![Build Status](https://travis-ci.org/ProvTools/Rclean.svg?branch=dev)](https://travis-ci.org/ProvTools/Rclean) 
+[![Dev: Build Status](https://travis-ci.org/ProvTools/Rclean.svg?branch=tests)](https://travis-ci.org/ProvTools/Rclean) 
+[![Coverage status](https://codecov.io/gh/provtools/Rclean/branch/tests/graph/badge.svg)](https://codecov.io/github/provtools/Rclean?branch=tests)
 
 <!-- R status -->
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/Rclean)](https://cran.r-project.org/package=Rclean)
@@ -66,14 +66,14 @@ Install and Setup
 You can install
 [Rclean](https://cran.r-project.org/web/packages/Rclean/) from *CRAN*: 
 
-```R
+```{r}
 install.packages("Rclean")
 ```
 
 You can install the most up to date (beta) version easily with
 [devtools](https://github.com/hadley/devtools):
 
-```R
+```{r}
 install.packages("devtools")
 devtools::install_github("ProvTools/Rclean", ref = "dev")
 ```
@@ -81,7 +81,7 @@ devtools::install_github("ProvTools/Rclean", ref = "dev")
 
 Once installed, per usual R practice, just load the *Rclean*:
 
-```R
+```{r}
 library(Rclean)
 ```
 
@@ -92,7 +92,7 @@ Usage
 saved to disk. Then, just run the `clean` function with the path to
 the script as the input:
 
-```
+```{r}
 clean("./example/simple_script.R")
 ```
 
@@ -102,29 +102,28 @@ commented). We can now pick the result we want to focus on for
 cleaning: 
 
 
-
-```
+```{r}
 clean("./example/simple_script.R", "tab.15")
 ```
 
 This produces the minimal code detected from the script. It also
-detects the package dependencies as well and provides them in the code
-(`libs = TRUE`). 
+detects library dependencies and inserts them into the code (`libs =
+TRUE`).
 
 It can be handy just to take a look at the isolated code, but you can
 save the code for later use or sharing (e.g. creating a reproducible
 example for getting help) with the `write.code` function:
 
-```
+```{r eval = FALSE}
 my.code <- clean("./example/simple_script.R", "tab.15")
 write.code(my.code, file = "x.R")
 ```
 
-If you would like to copy your code to the clipboard, you can do that
+If you would like to copy your code to your clipboard, you can do that
 by not specifying a file path. You can now paste as needed to create a
-simpler script. 
+simpler script.
 
-```R
+```{r eval = FALSE}
 write.code(my.code)
 ```
 
@@ -132,14 +131,14 @@ write.code(my.code)
 
 ## Retrospective Provenance
 
-So far, we've been using "prosepctive" provenance generated from the
+So far, we've been using "prosepective" provenance generated from the
 static code prior to execution. *Rclean* can also be used with
 "retrospective" provenance, which is recorded during execution of a
-script. To do so, we can pass the provenance to the `clean` function
-via `options`:
+script. Using it facilitates more accurate code cleaning, We can pass
+the provenance to the `clean` function via `options`:
 
 
-```R
+```{r eval = FALSE}
 options(prov.json = readLines("prov_micro.json"))
 ```
 
@@ -148,7 +147,7 @@ cleaning. [Rclean](https://github.com/ProvTools/Rclean) will give us a
 list of possible values we can get code for, notice that the option
 *rp* (i.e. "retrospective provenance") has been set to `TRUE`:
 
-```R
+```{r eval = FALSE}
 clean(rp = TRUE)
 
 ```
@@ -156,7 +155,7 @@ clean(rp = TRUE)
 Similar to before, you can then pick and choose from among these
 results and get the essential code to produce the output, like so:
 
-```R
+```{r eval = FALSE}
 clean(x, rp = TRUE)
 
 ```
@@ -165,6 +164,6 @@ clean(x, rp = TRUE)
 Happy cleaning!
 
 
-*Contributing*: if you would like to contribute, please read [[CONTRIBUTING.md]].
+*Contributing*: if you would like to contribute, please read [[CONTRIBUTE.md]].
 
 

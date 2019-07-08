@@ -8,14 +8,16 @@ var.lineage(x, var.id = FALSE)
 }
 \arguments{
 \item{x}{Character vector of lines of code from an R script.}
+
+\item{var.id}{Variable identifier.}
 }
 \value{
 A list containing a graph (g) describing the lineage of
     objects with steps (i.e. complexes of function and operation
     calls) listed as numbers that "use" or "create" data objects
     and a variable data frame (vdf) containing details of the
-    variables (var) and unique identifiers (uid) that were used or
-    created by each step.
+    variables (var) and, possibly, unique identifiers (uid) that
+    were used or created by each step.
 }
 \description{
 Determine the series of steps that leads to the production of objects contained in a script.

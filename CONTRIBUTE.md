@@ -3,8 +3,8 @@ Want to contribute to Rclean?
 
 Great, thank you!
 
-We foster open, respectful software development follows the code of
-conduct put forward by the R Community, please take a moment to review
+We foster open, respectful software development following the code of
+conduct put forward by the R Community. Please take a moment to review
 and adhere to these guidelines when contributing:
 
 [R Community Code of Conduct](https://wiki.r-consortium.org/view/R_Consortium_and_the_R_Community_Code_of_Conduct)
@@ -41,4 +41,11 @@ something that it currently doesn't, you're welcome to:
    community of users to have available in the package, but aren't
    able to develop it your self, please let us know.
 
-# Thanks for contributing!
+# Retrospective Provenance
+
+If you have used or are a developer who uses retrospective provenance
+that is not currently handled by *Rclean*, please submit an
+*enhancement* to the issue system. We'll be happy to help implement
+it. 
+
+# Thanks for contributing and keeping scientific software open!
