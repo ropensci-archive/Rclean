@@ -24,6 +24,7 @@
 #'@param sep Text separator for the identification tags.
 #'@return A vector of unique identifiers based on the order of creation in the script. 
 #'@author Matthew K. Lau
+#'@noRd
 
 var.id <- function(x, sep = "_"){
   uid <- paste(x[, "var"], cumsum(x[, "defined"]), sep = sep)

@@ -28,10 +28,11 @@
 #' @param prov PROV-JSON formatted provenance.
 #' @return A symmetric matrix of provenance entity relationships.
 #' @author Matthew K. Lau
+#' @export
 #' @examples
 #'  data(prov_json)
 #'  prov <- jsonlite::fromJSON(prov_json)
-#'  Rclean:::parse.info(prov)
+#'  parse.info(prov)
 
 parse.info <- function(prov){
     if (grepl("rdatatracker", prov[[1]][[2]]) | grepl("provR", prov[[1]][[2]])){
