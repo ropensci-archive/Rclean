@@ -141,5 +141,6 @@ Similar to before, you can then pick and choose from among these results
 and get the essential code to produce the output, like so:
 
     clean(file = "example/micro.R", var = "x", rp = TRUE)
+    #> [1] "x <- 1"     "y <- 3"     "x <- x + y"
 
 Happy cleaning!

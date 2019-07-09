@@ -155,7 +155,7 @@ clean(file = "example/micro.R", rp = TRUE)
 Similar to before, you can then pick and choose from among these
 results and get the essential code to produce the output, like so:
 
-```{r eval = FALSE}
+```{r eval = TRUE}
 clean(file = "example/micro.R", var = "x", rp = TRUE)
 ```
 
