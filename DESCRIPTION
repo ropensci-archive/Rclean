@@ -12,7 +12,7 @@ Description: To create clearer, more concise code provides this
 URL: https://github.com/ProvTools/Rclean
 BugReports: https://github.com/ProvTools/Rclean/issues
 License: GPL-3 | file LICENSE
-Imports: igraph, jsonlite, formatR, CodeDepends, Rgraphviz, methods
+Imports: igraph, jsonlite, formatR, CodeDepends, Rgraphviz, methods, knitr
 Suggests: 
     roxygen2,
     testthat,
