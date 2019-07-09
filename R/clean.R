@@ -90,11 +90,11 @@ clean <- function(file, var, libs = TRUE, reformat = TRUE, plot = FALSE, rp = FA
                 }else{
                     warning("Please add options(prov.json = PROV.JSON)")
                 }
-                ## Check prov matches a file in the current working directory
-                if (!(any(dir() == prov$info$activity[1,1]))){
-                    print("No scripts matching current provenance.")
+                ## Check that specified file matches provenance file before reading
+                if (!(grepl(prov$info$activity[1,1], file))){
+                    print("Specified script does not match provenance.")
                 }else{
-                    script <- readLines(prov$info$activity[1,1][[1]])
+                    script <- readLines(file)
                 }
                 ## Get result options
                 ## Output files
