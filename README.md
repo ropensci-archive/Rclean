@@ -50,62 +50,19 @@ Clean up your code
     reusability and ultimately help scientists spend more time on
     research and less time on software.
 
-Install and Setup
-=================
+Install
+=======
 
 You can install
 [Rclean](https://cran.r-project.org/web/packages/Rclean/) from *CRAN*:
 
     install.packages("Rclean")
-    #> 
-    #> The downloaded binary packages are in
-    #>  /var/folders/7x/4c5fkmrx5r54d6sgzglyffth0000gn/T//RtmpWqjvmh/downloaded_packages
 
 You can install the most up to date (beta) version easily with
 [devtools](https://github.com/hadley/devtools):
 
     install.packages("devtools")
-    #> 
-    #>   There is a binary version available but the source version is
-    #>   later:
-    #>          binary source needs_compilation
-    #> devtools  2.0.2  2.1.0             FALSE
-    #> installing the source package 'devtools'
     devtools::install_github("ProvTools/Rclean", ref = "dev")
-    #> Downloading GitHub repo ProvTools/Rclean@dev
-    #> Skipping 2 packages not available: Rgraphviz, graph
-    #>   
-       checking for file ‘/private/var/folders/7x/4c5fkmrx5r54d6sgzglyffth0000gn/T/RtmpWqjvmh/remotes6cf364f911d/ProvTools-Rclean-2e6d216/DESCRIPTION’ ...
-      
-    ✔  checking for file ‘/private/var/folders/7x/4c5fkmrx5r54d6sgzglyffth0000gn/T/RtmpWqjvmh/remotes6cf364f911d/ProvTools-Rclean-2e6d216/DESCRIPTION’ (475ms)
-    #> 
-      
-    ─  preparing ‘Rclean’:
-    #>    checking DESCRIPTION meta-information ...
-      
-    ✔  checking DESCRIPTION meta-information
-    #> 
-      
-    ─  checking for LF line-endings in source and make files and shell scripts
-    #> 
-      
-    ─  checking for empty or unneeded directories
-    #> 
-      
-    ─  looking to see if a ‘data/datalist’ file should be added
-    #> 
-      
-         NB: this package now depends on R (>= 3.5.0)
-    #> 
-      
-       WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects:  'Rclean/tests/testthat/clean.simple.out.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects:  'Rclean/tests/testthat/format.simple.out.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects: 'Rclean/tests/testthat/lib.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects:  'Rclean/tests/testthat/libs.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects: 'Rclean/tests/testthat/opt.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects: 'Rclean/tests/testthat/pi.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects:  'Rclean/tests/testthat/prov.g.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects:  'Rclean/tests/testthat/prov.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects:  'Rclean/tests/testthat/rp.clean.x.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load versi
-      
-         WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects:  'Rclean/tests/testthat/clean.simple.out.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects:  'Rclean/tests/testthat/format.simple.out.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects: 'Rclean/tests/testthat/lib.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects:  'Rclean/tests/testthat/libs.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects: 'Rclean/tests/testthat/opt.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects: 'Rclean/tests/testthat/pi.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects:  'Rclean/tests/testthat/prov.g.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects:  'Rclean/tests/testthat/prov.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects:  'Rclean/tests/testthat/rp.clean.x.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects:  'Rclean/tests/testthat/rp.clean.y.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects:  'Rclean/tests/testthat/rp.clean.y.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects:  'Rclean/tests/testthat/rp.options.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects: 'Rclean/tests/testthat/s.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects: 'Rclean/tests/testthat/sp.test.rda'  WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects: 'Rclean/tests/testthat/vl.test.rda'
-    #> ─  building 'Rclean_1.1.0.tar.gz'
-    #> 
-      
-       
-    #> 
 
 Once installed, per usual R practice, just load the *Rclean*:
 
@@ -116,9 +73,10 @@ Usage
 
 *Rclean* usage is simple. Have a script with code you want to clean
 saved to disk. Then, just run the `clean` function with the path to the
-script as the input:
+script as the input. Here, we can use an example script that is included
+with the package:
 
-    clean("./example/simple_script.R")
+    clean("example/simple_script.R")
     #> [1] Possible results:
     #>  [1] "1"         "2"         "3"         "4"         "5"        
     #>  [6] "6"         "7"         "8"         "9"         "10"       
@@ -150,7 +108,7 @@ It can be handy just to take a look at the isolated code, but you can
 save the code for later use or sharing (e.g. creating a reproducible
 example for getting help) with the `write.code` function:
 
-    my.code <- clean("./example/simple_script.R", "tab.15")
+    my.code <- clean("example/simple_script.R", "tab.15")
     write.code(my.code, file = "x.R")
 
 If you would like to copy your code to your clipboard, you can do that
@@ -162,27 +120,26 @@ simpler script.
 Retrospective Provenance
 ------------------------
 
-So far, we’ve been using “prosepective” provenance generated from the
+So far, we’ve been using “prospective” provenance generated from the
 static code prior to execution. *Rclean* can also be used with
 “retrospective” provenance, which is recorded during execution of a
 script. Using it facilitates more accurate code cleaning, We can pass
 the provenance to the `clean` function via `options`:
 
-    options(prov.json = readLines("prov_micro.json"))
+    options(prov.json = readLines("example/prov_micro.json"))
 
 Now that we have the provenance loaded, we can start cleaning.
 [Rclean](https://github.com/ProvTools/Rclean) will give us a list of
 possible values we can get code for, notice that the option *rp* (i.e.
 “retrospective provenance”) has been set to `TRUE`:
 
-    clean(rp = TRUE)
+    clean(file = "example/micro.R", rp = TRUE)
+    #> [1] Possible results:
+    #>  [1] "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" "11" "x"  "y"
 
 Similar to before, you can then pick and choose from among these results
 and get the essential code to produce the output, like so:
 
-    clean(x, rp = TRUE)
+    clean(file = "example/micro.R", var = "x", rp = TRUE)
 
 Happy cleaning!
-
-*Contributing*: if you would like to contribute, please read
-\[\[CONTRIBUTE.md\]\].

@@ -60,20 +60,20 @@ Clean up your code
   reusability and ultimately help scientists spend more time on
   research and less time on software. 
 
-Install and Setup
-=================
+Install
+=======
 
 You can install
 [Rclean](https://cran.r-project.org/web/packages/Rclean/) from *CRAN*: 
 
-```{r}
+```{r eval = FALSE}
 install.packages("Rclean")
 ```
 
 You can install the most up to date (beta) version easily with
 [devtools](https://github.com/hadley/devtools):
 
-```{r}
+```{r eval = FALSE}
 install.packages("devtools")
 devtools::install_github("ProvTools/Rclean", ref = "dev")
 ```
@@ -81,7 +81,7 @@ devtools::install_github("ProvTools/Rclean", ref = "dev")
 
 Once installed, per usual R practice, just load the *Rclean*:
 
-```{r}
+```{r eval = TRUE}
 library(Rclean)
 ```
 
@@ -90,10 +90,11 @@ Usage
 
 *Rclean* usage is simple. Have a script with code you want to clean
 saved to disk. Then, just run the `clean` function with the path to
-the script as the input:
+the script as the input. Here, we can use an example script that is
+included with the package:
 
-```{r}
-clean("./example/simple_script.R")
+```{r eval = TRUE}
+clean("example/simple_script.R")
 ```
 
 This returns a list of possible results detected in the script,
@@ -102,7 +103,7 @@ commented). We can now pick the result we want to focus on for
 cleaning: 
 
 
-```{r}
+```{r eval = TRUE}
 clean("./example/simple_script.R", "tab.15")
 ```
 
@@ -115,7 +116,7 @@ save the code for later use or sharing (e.g. creating a reproducible
 example for getting help) with the `write.code` function:
 
 ```{r eval = FALSE}
-my.code <- clean("./example/simple_script.R", "tab.15")
+my.code <- clean("example/simple_script.R", "tab.15")
 write.code(my.code, file = "x.R")
 ```
 
@@ -131,15 +132,15 @@ write.code(my.code)
 
 ## Retrospective Provenance
 
-So far, we've been using "prosepective" provenance generated from the
+So far, we've been using "prospective" provenance generated from the
 static code prior to execution. *Rclean* can also be used with
 "retrospective" provenance, which is recorded during execution of a
 script. Using it facilitates more accurate code cleaning, We can pass
 the provenance to the `clean` function via `options`:
 
 
-```{r eval = FALSE}
-options(prov.json = readLines("prov_micro.json"))
+```{r eval = TRUE}
+options(prov.json = readLines("example/prov_micro.json"))
 ```
 
 Now that we have the provenance loaded, we can start
@@ -147,23 +148,16 @@ cleaning. [Rclean](https://github.com/ProvTools/Rclean) will give us a
 list of possible values we can get code for, notice that the option
 *rp* (i.e. "retrospective provenance") has been set to `TRUE`:
 
-```{r eval = FALSE}
-clean(rp = TRUE)
-
+```{r eval = TRUE}
+clean(file = "example/micro.R", rp = TRUE)
 ```
 
 Similar to before, you can then pick and choose from among these
 results and get the essential code to produce the output, like so:
 
 ```{r eval = FALSE}
-clean(x, rp = TRUE)
-
+clean(file = "example/micro.R", var = "x", rp = TRUE)
 ```
 
-
 Happy cleaning!
-
-
-*Contributing*: if you would like to contribute, please read [[CONTRIBUTE.md]].
-
 
