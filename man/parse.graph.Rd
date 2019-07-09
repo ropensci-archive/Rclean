@@ -22,7 +22,7 @@ provenance.
 \examples{
  data(prov_json)
  prov <- jsonlite::fromJSON(prov_json)
- Rclean:::parse.graph(prov)
+ parse.graph(prov)
 }
 \author{
 Matthew K. Lau
