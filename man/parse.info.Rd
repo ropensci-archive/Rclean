@@ -20,7 +20,7 @@ provenance.
 \examples{
  data(prov_json)
  prov <- jsonlite::fromJSON(prov_json)
- Rclean:::parse.info(prov)
+ parse.info(prov)
 }
 \author{
 Matthew K. Lau

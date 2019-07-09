@@ -25,7 +25,7 @@ provenance.
 \examples{
 data(prov_json)
 prov <- read.prov(prov_json)
-Rclean:::get.spine("d1", prov$graph)
+get.spine("d1", prov$graph)
 }
 \author{
 Matthew K. Lau
