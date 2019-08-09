@@ -12,6 +12,8 @@ Description: To create clearer, more concise code provides this
 URL: https://github.com/ProvTools/Rclean
 BugReports: https://github.com/ProvTools/Rclean/issues
 License: GPL-3 | file LICENSE
+Depends:
+   R (>= 3.5.0)
 Imports: igraph, jsonlite, formatR, CodeDepends, Rgraphviz, methods, knitr
 Suggests: 
     roxygen2,
