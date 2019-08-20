@@ -58,10 +58,12 @@ You can install
 
     install.packages("Rclean")
 
-You can install the most up to date (beta) version easily with
+You can install the most up to date (beta) version with
 [devtools](https://github.com/hadley/devtools):
 
     install.packages("devtools")
+	install.packages("BiocManager")
+	BiocManager::install("graph")
     devtools::install_github("ProvTools/Rclean", ref = "dev")
 
 Once installed, per usual R practice, just load the *Rclean*:
