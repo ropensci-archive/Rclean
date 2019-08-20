@@ -15,15 +15,9 @@ License: GPL-3 | file LICENSE
 Depends:
    R (>= 3.5.0)
 Imports: igraph, jsonlite, formatR, CodeDepends, methods, knitr, BiocManager
-biocViews:
-	Rgraphviz,
-	graph
-Suggests: 
-    roxygen2,
-    testthat,
-    covr
-Remotes:
-    duncantl/CodeDepends
+biocViews: Rgraphviz, graph
+Suggests: roxygen2, testthat, covr
+Remotes: duncantl/CodeDepends
 Language: en-US
 Encoding: UTF-8
 RoxygenNote: 6.1.1
