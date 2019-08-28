@@ -13,8 +13,8 @@ r_packages:
   - devtools
   - testthat
 
-bioc_packages:
-  - graph
+# bioc_packages:
+#   - graph
 
 r_github_packages:
   - ProvTools/provR

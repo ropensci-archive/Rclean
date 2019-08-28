@@ -2,9 +2,9 @@
 <!-- # ijtiff  <img src="man/figures/logo.png" height="140" align="right"> -->
 <!-- Code status -->
 [![Build
-Status](https://travis-ci.org/ProvTools/Rclean.svg?branch=master)](https://travis-ci.org/ProvTools/Rclean)
+Status](https://travis-ci.org/ProvTools/Rclean.svg?branch=dev)](https://travis-ci.org/ProvTools/Rclean)
 [![Coverage
-status](https://codecov.io/gh/provtools/Rclean/branch/master/graph/badge.svg)](https://codecov.io/github/provtools/Rclean?branch=master)
+status](https://codecov.io/gh/provtools/Rclean/branch/dev/graph/badge.svg)](https://codecov.io/github/provtools/Rclean?branch=dev)
 
 <!-- R status -->
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/Rclean)](https://cran.r-project.org/package=Rclean)

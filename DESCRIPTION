@@ -17,7 +17,7 @@ Depends:
 Imports: igraph, jsonlite, formatR, CodeDepends, methods, knitr, BiocManager, Rgraphviz
 biocViews: Rgraphviz, graph
 Suggests: roxygen2, testthat, covr
-Remotes: duncantl/CodeDepends
+Remotes: MKLau/CodeDepends
 Language: en-US
 Encoding: UTF-8
 RoxygenNote: 6.1.1
