@@ -19,8 +19,8 @@
 # Contact: Matthew Lau <matthewklau@fas.harvard.edu>
 
 
-#' .parse.graph --- Prases the PROV-JSON formatted output
-#' OUTPUT = A symmetric matrix of provenance entity reltionships.
+#' .parse.graph --- Parses the PROV-JSON formatted output
+#' OUTPUT = A symmetric matrix of provenance entity relationships.
 #' 
 #' This is an internal function for parsing PROV-JSON formatted 
 #' provenance.

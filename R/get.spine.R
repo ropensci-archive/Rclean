@@ -28,7 +28,7 @@
 #' 
 #' @param node.id Name of the node.
 #' @param g Provenance graph adjacency matrix.
-#' @return A set of node names tracing the complete parantage of a result.
+#' @return A set of node names tracing the complete parentage of a result.
 #' @author Matthew K. Lau
 #' @importFrom igraph dfs
 #' @importFrom igraph graph_from_adjacency_matrix

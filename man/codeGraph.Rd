@@ -13,7 +13,7 @@ codeGraph(g)
 A network plot.
 }
 \description{
-Plot the dependencies among funcitons and objects for a given script.
+Plot the dependencies among functions and objects for a given script.
 }
 \author{
 Matthew K. Lau

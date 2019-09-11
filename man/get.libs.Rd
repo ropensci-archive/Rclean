@@ -13,7 +13,7 @@ get.libs(src)
 The libraries used for each step of the script.
 }
 \description{
-Uses code dependency inforrmation to produce a set of necessary libraries.
+Uses code dependency information to produce a set of necessary libraries.
 }
 \author{
 Matthew K. Lau

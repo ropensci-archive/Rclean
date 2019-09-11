@@ -13,7 +13,7 @@ get.spine(node.id, g)
 \item{g}{Provenance graph adjacency matrix.}
 }
 \value{
-A set of node names tracing the complete parantage of a result.
+A set of node names tracing the complete parentage of a result.
 }
 \description{
 OUTPUT = A vector with the set of nodes of the minimal path.
