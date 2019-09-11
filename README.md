@@ -2,9 +2,9 @@
 <!-- # ijtiff  <img src="man/figures/logo.png" height="140" align="right"> -->
 <!-- Code status -->
 [![Build
-Status](https://travis-ci.org/ProvTools/Rclean.svg?branch=dev)](https://travis-ci.org/ProvTools/Rclean)
+Status](https://travis-ci.org/ProvTools/Rclean.svg?branch=master)](https://travis-ci.org/ProvTools/Rclean)
 [![Coverage
-status](https://codecov.io/gh/provtools/Rclean/branch/dev/graph/badge.svg)](https://codecov.io/github/provtools/Rclean?branch=dev)
+status](https://codecov.io/gh/provtools/Rclean/branch/master/graph/badge.svg)](https://codecov.io/github/provtools/Rclean?branch=master)
 
 <!-- R status -->
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/Rclean)](https://cran.r-project.org/package=Rclean)
@@ -21,7 +21,7 @@ developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repo
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 
 <!-- Package Review -->
-[![](https://badges.ropensci.org/300_status.svg)](https://github.com/ropensci/onboarding/issues/300)
+[![](https://badges.ropensci.org/327_status.svg)](https://github.com/ropensci/software-review/issues/327)
 [![status](http://joss.theoj.org/papers/334d80d5508056dc6e7e17c6fd3ed5a6/status.svg)](http://joss.theoj.org/papers/334d80d5508056dc6e7e17c6fd3ed5a6)
 
 <!-- Archiving -->
@@ -58,12 +58,10 @@ You can install
 
     install.packages("Rclean")
 
-You can install the most up to date (beta) version with
+You can install the most up to date (beta) version easily with
 [devtools](https://github.com/hadley/devtools):
 
     install.packages("devtools")
-	install.packages("BiocManager")
-	BiocManager::install("graph")
     devtools::install_github("ProvTools/Rclean", ref = "dev")
 
 Once installed, per usual R practice, just load the *Rclean*:
