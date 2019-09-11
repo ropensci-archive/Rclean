@@ -21,7 +21,7 @@ developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repo
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 
 <!-- Package Review -->
-[![](https://badges.ropensci.org/300_status.svg)](https://github.com/ropensci/onboarding/issues/300)
+[![](https://badges.ropensci.org/327_status.svg)](https://github.com/ropensci/software-review/issues/327)
 [![status](http://joss.theoj.org/papers/334d80d5508056dc6e7e17c6fd3ed5a6/status.svg)](http://joss.theoj.org/papers/334d80d5508056dc6e7e17c6fd3ed5a6)
 
 <!-- Archiving -->

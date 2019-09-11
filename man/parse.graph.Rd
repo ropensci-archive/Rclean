@@ -2,8 +2,8 @@
 % Please edit documentation in R/parse.graph.R
 \name{parse.graph}
 \alias{parse.graph}
-\title{.parse.graph --- Prases the PROV-JSON formatted output
-OUTPUT = A symmetric matrix of provenance entity reltionships.}
+\title{.parse.graph --- Parses the PROV-JSON formatted output
+OUTPUT = A symmetric matrix of provenance entity relationships.}
 \usage{
 parse.graph(prov, rm.env = TRUE)
 }
