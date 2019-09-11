@@ -19,7 +19,7 @@
 
 #'get.libs --- Determine the libraries needed for a given script. 
 #'
-#' Uses code dependency inforrmation to produce a set of necessary libraries.
+#' Uses code dependency information to produce a set of necessary libraries.
 #' 
 #'@param src Character vector containing the source script.
 #'@return The libraries used for each step of the script.

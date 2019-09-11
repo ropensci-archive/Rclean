@@ -16,13 +16,13 @@
 #
 # Contact: Matthew Lau <matthewklau@fas.harvard.edu>
 
-#'p.spine --- Parenatage spine for a given object.
+#'p.spine --- Parentage spine for a given object.
 #'
 #' Isolates the line of parentage for an object. This can be either
 #' all steps leading to an object or all steps leading out from an
 #' object.
 #' 
-#'@param g A graph in matrix formate that presents the use and
+#'@param g A graph in matrix format that presents the use and
 #'     creation of variables by steps (i.e. complexes of function and
 #'     operation calls).
 #'@param node.id The name of the node of interest.

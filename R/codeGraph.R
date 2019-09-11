@@ -18,7 +18,7 @@
 
 #'codeGraph --- A network diagram of computational dependencies. 
 #'
-#' Plot the dependencies among funcitons and objects for a given script.
+#' Plot the dependencies among functions and objects for a given script.
 #' 
 #'@param g Matrix representation of the graph.
 #'@return A network plot.
