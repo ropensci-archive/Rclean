@@ -2,12 +2,12 @@
 % Please edit documentation in R/p.spine.R
 \name{p.spine}
 \alias{p.spine}
-\title{p.spine --- Parenatage spine for a given object.}
+\title{p.spine --- Parentage spine for a given object.}
 \usage{
 p.spine(g = "graph", node.id, direction = "in", sep = "_")
 }
 \arguments{
-\item{g}{A graph in matrix formate that presents the use and
+\item{g}{A graph in matrix format that presents the use and
 creation of variables by steps (i.e. complexes of function and
 operation calls).}
 
