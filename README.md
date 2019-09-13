@@ -46,7 +46,7 @@ Clean up your code
 -   [Rclean](https://github.com/ProvTools/Rclean) is built on data
     provenance, a formal representation of a computation, and uses graph
     analysis to determine the minimal path from inputs to results.
--   The goal is to help facilitate code transparency, reproduciblity,
+-   The goal is to help facilitate code transparency, reproducibility,
     reusability and ultimately help scientists spend more time on
     research and less time on software.
 
@@ -58,13 +58,14 @@ You can install
 
     install.packages("Rclean")
 
-You can install the most up to date (beta) version easily with
+You can install the most up to date version easily with
 [devtools](https://github.com/hadley/devtools):
 
     install.packages("devtools")
-    devtools::install_github("ProvTools/Rclean", ref = "dev")
+    devtools::install_github("ProvTools/Rclean")
 
-Once installed, per usual R practice, just load the *Rclean*:
+Once installed, per usual R practice, just load the *Rclean* package
+with:
 
     library(Rclean)
 

@@ -70,16 +70,16 @@ You can install
 install.packages("Rclean")
 ```
 
-You can install the most up to date (beta) version easily with
+You can install the most up to date version easily with
 [devtools](https://github.com/hadley/devtools):
 
 ```{r eval = FALSE}
 install.packages("devtools")
-devtools::install_github("ProvTools/Rclean", ref = "dev")
+devtools::install_github("ProvTools/Rclean")
 ```
 
 
-Once installed, per usual R practice, just load the *Rclean*:
+Once installed, per usual R practice, just load the *Rclean* package with:
 
 ```{r eval = TRUE}
 library(Rclean)
