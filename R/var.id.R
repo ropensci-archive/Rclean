@@ -18,11 +18,14 @@
 
 #'var.id --- Generate unique identifiers for variables.
 #'
-#' Uses the order in which variables are created to assign unique identifiers.
+#' Uses the order in which variables are created to assign unique
+#' identifiers.
 #' 
-#'@param x A data frame containing "step", "used" by, "defined" by and "var" (i.e. variable) information.
+#'@param x A data frame containing "step", "used" by, "defined" by and
+#'     "var" (i.e. variable) information.
 #'@param sep Text separator for the identification tags.
-#'@return A vector of unique identifiers based on the order of creation in the script. 
+#'@return A vector of unique identifiers based on the order of
+#'     creation in the script.
 #'@author Matthew K. Lau
 #'@noRd
 

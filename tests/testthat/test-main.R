@@ -102,3 +102,11 @@ test_that("write.code", {
     expect_true(all(clean.simple.out == write.code.test))
 })
 
+test_that("var.id", {
+    load("var.id.test.rda")    
+    src <- readScript("micro.R")
+    vl <- var.lineage(src)
+    var.id.out <- Rclean:::var.id(vl$vdf)
+    expect_true(all(var.id.out == var.id.test))
+})
+
