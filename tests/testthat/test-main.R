@@ -102,11 +102,9 @@ test_that("write.code", {
     expect_true(all(clean.simple.out == write.code.test))
 })
 
-## test_that("var.id", {
-##     load("var.id.test.rda")    
-    
+test_that("var.id", {
+    load("var.id.test.rda")    
 
-
-##     expect_true(all(var.id.out == var.id.test))
-## })
+    expect_true(all(var.id.out == var.id.test))
+})
 
