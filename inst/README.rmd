@@ -1,5 +1,5 @@
 ---
-output: md_document
+output: github_document
 ---
 
 
@@ -9,7 +9,8 @@ output: md_document
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "man/figures/README-"
+  fig.path = "man/figures/README-",
+  out.width = "100%"
 )
 original_files <- dir()
 ```
@@ -130,7 +131,8 @@ write.code(my.code)
 
 
 
-## Retrospective Provenance
+Retrospective Provenance
+========================
 
 So far, we've been using "prospective" provenance generated from the
 static code prior to execution. *Rclean* can also be used with
@@ -161,3 +163,11 @@ clean(file = "example/micro.R", var = "x", rp = TRUE)
 
 Happy cleaning!
 
+
+
+Contributing
+============
+
+Please note that the 'Rclean' project is released with a
+[Contributor Code of Conduct](CODE_OF_CONDUCT.md).
+By contributing to this project, you agree to abide by its terms.
