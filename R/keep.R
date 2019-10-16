@@ -19,7 +19,7 @@
 # Contact: Matthew Lau <matthewklau@fas.harvard.edu>
 
 
-#' keep_code --- Copy code to clipboard or write a specified file.
+#' keep --- Copy code to clipboard or write a specified file.
 #' OUTPUT = Copies code to the clipboard or writes out code from an
 #' object to a specified file.
 #' 
@@ -32,16 +32,16 @@
 #'     the clipboard.
 #' @return The code is copied to the clipboard or written to disk.
 #' @importFrom utils sessionInfo
-#' @export keep_code
+#' @export keep
 #' @importFrom clipr write_clip
 #' @author Matthew K. Lau
 #' @examples
 #'  data(prov_json)
 #'  options(prov.json = prov_json)
 #'  some.code <- c("x <- 1", "y <- x + 1")
-#'  keep_code(some.code) # copies to clipboard by default
+#'  keep(some.code) # copies to clipboard by default
 
-keep_code <- function(x, file = NULL){
+keep <- function(x, file = NULL){
     if (is.null(file)){
         write_clip(x)
     }else{
