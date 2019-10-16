@@ -13,7 +13,7 @@ BugReports: https://github.com/ProvTools/Rclean/issues
 License: GPL-3 | file LICENSE
 Depends:
    R (>= 3.5.0)
-Imports: igraph, jsonlite, formatR, CodeDepends, methods, Rgraphviz
+Imports: igraph, jsonlite, formatR, CodeDepends, methods, Rgraphviz, clipr
 biocViews: Rgraphviz, graph
 Suggests: roxygen2, testthat, covr, knitr
 Remotes: MKLau/CodeDepends

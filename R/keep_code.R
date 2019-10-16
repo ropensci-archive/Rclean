@@ -36,8 +36,10 @@
 #' @importFrom clipr write_clip
 #' @author Matthew K. Lau
 #' @examples
-#'  code <- c("x <- 1", "y <- x + 1")
-#'  keep_code(code) # copies to clipboard by default
+#'  data(prov_json)
+#'  options(prov.json = prov_json)
+#'  some.code <- c("x <- 1", "y <- x + 1")
+#'  keep_code(some.code) # copies to clipboard by default
 
 keep_code <- function(x, file = NULL){
     if (is.null(file)){
