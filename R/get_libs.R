@@ -17,7 +17,7 @@
 # Contact: Matthew Lau <matthewklau@fas.harvard.edu>
 
 
-#'get.libs --- Determine the libraries needed for a given script. 
+#'get_libs --- Determine the libraries needed for a given script. 
 #'
 #' Uses code dependency information to produce a set of necessary libraries.
 #' 
@@ -25,10 +25,10 @@
 #'@return The libraries used for each step of the script.
 #'@importFrom CodeDepends getInputs
 #'@importFrom methods slot
-#'@export get.libs
+#'@export get_libs
 #'@author Matthew K. Lau
 
-get.libs <- function(src){
+get_libs <- function(src){
   cd <- getInputs(src)
   lib <- unlist(lapply(cd, slot, name = "libraries"))
   lib <- unique(lib)

@@ -28,7 +28,7 @@
 #' @param prov PROV-JSON formatted provenance.
 #' @return A symmetric matrix of provenance entity relationships.
 #' @author Matthew K. Lau
-#' @export
+#' @noRd
 #' @examples
 #'  data(prov_json)
 #'  prov <- jsonlite::fromJSON(prov_json)

@@ -16,7 +16,7 @@
 #
 # Contact: Matthew Lau <matthewklau@fas.harvard.edu>
 
-#'p.spine --- Parentage spine for a given object.
+#'p_spine --- Parentage spine for a given object.
 #'
 #' Isolates the line of parentage for an object. This can be either
 #' all steps leading to an object or all steps leading out from an
@@ -34,10 +34,10 @@
 #'     for the object identified by the node ID.
 #'@importFrom igraph graph_from_adjacency_matrix
 #'@importFrom igraph dfs
-#'@export p.spine
+#'@noRd
 #'@author Matthew K. Lau
 
-p.spine <- function(g = "graph", 
+p_spine <- function(g = "graph", 
                     node.id, 
                     direction = "in", 
                     sep = "_"){

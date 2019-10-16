@@ -4,8 +4,7 @@
 \alias{clean}
 \title{clean --- Clean code.}
 \usage{
-clean(file, var, libs = TRUE, reformat = TRUE, plot = FALSE,
-  rp = FALSE)
+clean(file, var, libs, format)
 }
 \arguments{
 \item{file}{File path to a script.}

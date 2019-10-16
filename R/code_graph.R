@@ -1,5 +1,3 @@
-# Copyright (C) 2017 Harvard University, Mount Holyoke College
-#
 # This file is part of Rclean
 #
 # Rclean is free software; you can redistribute it and/or
@@ -18,28 +16,21 @@
 #
 # Contact: Matthew Lau <matthewklau@fas.harvard.edu>
 
-#' get.spine --- Find the minimal path through the provenance necessary to 
-#' produce a result.
+#'code_graph --- A network diagram of computational dependencies. 
 #'
-#' OUTPUT = A vector with the set of nodes of the minimal path.
+#' Plot the dependencies among functions and objects for a given script.
 #' 
-#' This is an internal function for parsing PROV-JSON formatted 
-#' provenance.
-#' 
-#' @param node.id Name of the node.
-#' @param g Provenance graph adjacency matrix.
-#' @return A set of node names tracing the complete parentage of a result.
-#' @author Matthew K. Lau
-#' @importFrom igraph dfs
-#' @importFrom igraph graph_from_adjacency_matrix
-#' @importFrom stats na.omit
-#' @export
-#' @examples
-#' data(prov_json)
-#' prov <- read.prov(prov_json)
-#' get.spine("d1", prov$graph)
+#'@param g Matrix representation of the graph.
+#'@return A network plot.
+#'@importFrom igraph graph_from_adjacency_matrix
+#'@importFrom igraph igraph.to.graphNEL
+#'@importFrom Rgraphviz plot
+#'@export code_graph
+#'@author Matthew K. Lau
 
-get.spine <- function(node.id, g){
+
+code_graph <- function(g){
     ig <- graph_from_adjacency_matrix(g)
-    as.character(na.omit(names(dfs(ig, node.id, "out" , unreachable = FALSE)$order)))
+    gNEL <- igraph.to.graphNEL(ig)
+    Rgraphviz::plot(gNEL)
 }

@@ -19,7 +19,7 @@
 # Contact: Matthew Lau <matthewklau@fas.harvard.edu>
 
 
-#' .parse.graph --- Parses the PROV-JSON formatted output
+#' parse_graph --- Parses the PROV-JSON formatted output
 #' OUTPUT = A symmetric matrix of provenance entity relationships.
 #' 
 #' This is an internal function for parsing PROV-JSON formatted 
@@ -29,13 +29,13 @@
 #' @param rm.env LOGICAL: should the environment entity be removed?
 #' @return A symmetric matrix of provenance entity relationships.
 #' @author Matthew K. Lau
-#' @export 
+#' @noRd
 #' @examples
 #'  data(prov_json)
 #'  prov <- jsonlite::fromJSON(prov_json)
-#'  parse.graph(prov)
+#'  parse_graph(prov)
 
-parse.graph <- function(prov,rm.env = TRUE){
+parse_graph <- function(prov,rm.env = TRUE){
     if (grepl("rdatatracker", prov[[1]][[2]]) | grepl("provR", prov[[1]][[2]])){
         ## prefix: information about the provenance capture mechanism
         ## activity: information about process nodes and environment

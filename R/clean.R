@@ -48,8 +48,13 @@
 clean <- function(file, var, libs, format){
     
     script <- readScript(file)
-    unique(getVariables(script))
-    
+    if (missing(var)){
+        print(paste("Variables in", file, ":"))
+        print(unique(getVariables(script)))
+    }
+### Determine code based on graph
+### Determine libs
+### Reformat using styler
 
 }
 
