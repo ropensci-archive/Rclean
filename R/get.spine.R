@@ -18,7 +18,7 @@
 #
 # Contact: Matthew Lau <matthewklau@fas.harvard.edu>
 
-#' .get.spine --- Find the minimal path through the provenance necessary to 
+#' get.spine --- Find the minimal path through the provenance necessary to 
 #' produce a result.
 #'
 #' OUTPUT = A vector with the set of nodes of the minimal path.
