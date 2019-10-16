@@ -24,11 +24,13 @@
 #' 
 #' This is a simple function for writing code to disk.
 #' 
-#' @param x Script object to write.
-#' @param file Path to where you want to write. Default writes to clipboard.
-#' @return The script is written to disk, line by line.
+#' @param x Line(s) of code.
+#' @param file Path to write code. If not specified, code is copied to
+#'     the clipboard.
+#' @return The code is copied to the clipboard or written to disk.
 #' @importFrom utils sessionInfo
 #' @export write.code
+#' @importFrom clipr write_clip
 #' @author Matthew K. Lau
 #' @examples
 #'  data(prov_json)
@@ -38,22 +40,11 @@
 
 write.code <- function(x, file = NULL){
     if (is.null(file)){
-        ## Copy to clipboard depending on the system
-        sys <- c(Sys.info()[[1]], sessionInfo()[[4]])
-        if (grepl("Darwin", sys[1]) | grepl("macOS", sys[2])){
-            ## Mac
-            fileConn <- pipe("pbcopy", "w")
-        }else if (grepl("Linux", sys[1])){
-            ## Linux 
-            fileConn <- pipe("xclip -i", "w")
-        }else{
-            ## Windows 
-            fileConn <- file("clipboard-128")
-        }
+        write_clip(x)
     }else{
         file.create(file)
         fileConn <- file(file)
-    }
         writeLines(x, fileConn)
         close(fileConn)
+    }
 }
