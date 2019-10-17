@@ -56,11 +56,12 @@ clean <- function(file, var, libs, format){
 ## Determine code based on graph
     src <- readScript(file)
     vl <- var_lineage(src)
-    sp <- p_spine(vl[["g"]], var)
-    min.g <- vl[["g"]][
-        rownames(vl[["g"]]) %in% as.character(sp),
-        colnames(vl[["g"]]) %in% as.character(sp)
-    ]
+    sp <- path(vl[["g"]], var)
+### Need to account for directionality of pathways
+### See ~/tmp/mean_script.R
+    min.g <- vl[["g"]][rownames(vl[["g"]]) %in% sp, 
+                       colnames(vl[["g"]]) %in% sp]
+
     sp <- sp[sp %in% as.character(unique(vl[["vdf"]][, "step"]))]
     sp <- sort(as.numeric(sp))
     min.src <- as.character(src[sp])

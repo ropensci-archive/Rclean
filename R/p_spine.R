@@ -29,8 +29,6 @@
 #'@param direction Determines the direction of searching on the graph,
 #'     either "in" (path leading to a variable) or "out" (path leading
 #'     from a variable).
-#'@param sep Character string used as a separator in the unique IDs of
-#'     object nodes.
 #'@return A character vector of steps and objects found along the path
 #'     for the object identified by the node ID.
 #'@importFrom igraph graph_from_adjacency_matrix
@@ -42,7 +40,6 @@ path <- function(g = "graph",
                  node.id, 
                  direction = "in"){
     if (mode(g) == "list" & any(names(g) == "g")){g <- g[["g"]]}
-    if (all(!(grepl(sep, rownames(g))))){sep <- ""}
     if (missing(node.id)){
         warning("Please supply a node name.")
         print("Possible node names:", quote = FALSE)
@@ -55,6 +52,7 @@ path <- function(g = "graph",
         out <- as.character(na.omit(names(dfs.result)))
         if (direction == "in"){out <- out[length(out):1]}
     }
+return(out)
 }
 
 ## Detect numbers in a character vector of variables.
