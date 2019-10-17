@@ -47,19 +47,45 @@
 
 clean <- function(file, var, libs, format){
     
-    script <- readScript(file)
+    src <- readScript(file)
+
     if (missing(var)){
         print(paste("Variables in", file, ":"))
         print(unique(getVariables(script)))
     }
-### Determine code based on graph
+## Determine code based on graph
+    src <- readScript(file)
+    vl <- var_lineage(src)
+    sp <- p_spine(vl[["g"]], var)
+    min.g <- vl[["g"]][
+        rownames(vl[["g"]]) %in% as.character(sp),
+        colnames(vl[["g"]]) %in% as.character(sp)
+    ]
+    sp <- sp[sp %in% as.character(unique(vl[["vdf"]][, "step"]))]
+    sp <- sort(as.numeric(sp))
+    min.src <- as.character(src[sp])
+    if (libs) {
+        lib.l <- get.libs(src)
+        lib.l <- unique(lib.l)
+        if (length(lib.l) != 0) {
+            lib.src <- paste0("library(", lib.l, ")")
+            out <- c(lib.src, min.src)
+    }else{
+        out <- min.src
+    }
 ### Determine libs
 ### Reformat using styler
 
 }
 
+## min_graph
+min_graph <- function(x) {
+    
+    ## Find the deepest node
+    ## Subest the graph to the deepest node
+    ## 
 
-
+}
 
 
 ## clean <- function(file, var, libs = TRUE,

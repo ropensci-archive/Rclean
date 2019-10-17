@@ -16,18 +16,19 @@
 #
 # Contact: Matthew Lau <matthewklau@fas.harvard.edu>
 
-#'p_spine --- Parentage spine for a given object.
+#' path --- Lineage pathway for a given variable.
 #'
-#' Isolates the line of parentage for an object. This can be either
-#' all steps leading to an object or all steps leading out from an
-#' object.
+#' Isolates the lineage for an variable. This can be either all steps
+#' leading to the creation of a variable or all descendent steps that
+#' use that variable.
 #' 
-#'@param g A graph in matrix format that presents the use and
-#'     creation of variables by steps (i.e. complexes of function and
-#'     operation calls).
-#'@param node.id The name of the node of interest.
+#' @param g An adjacenty matrix that presents the use and creation of
+#'     variables by steps (i.e. complexes of function and operation
+#'     calls).
+#'@param node.id The name of the variable of interest.
 #'@param direction Determines the direction of searching on the graph,
-#'     either "in" or "out".
+#'     either "in" (path leading to a variable) or "out" (path leading
+#'     from a variable).
 #'@param sep Character string used as a separator in the unique IDs of
 #'     object nodes.
 #'@return A character vector of steps and objects found along the path
@@ -37,21 +38,33 @@
 #'@noRd
 #'@author Matthew K. Lau
 
-p_spine <- function(g = "graph", 
-                    node.id, 
-                    direction = "in", 
-                    sep = "_"){
+path <- function(g = "graph", 
+                 node.id, 
+                 direction = "in"){
     if (mode(g) == "list" & any(names(g) == "g")){g <- g[["g"]]}
     if (all(!(grepl(sep, rownames(g))))){sep <- ""}
     if (missing(node.id)){
         warning("Please supply a node name.")
         print("Possible node names:", quote = FALSE)
-        rownames(g)[grepl(sep, rownames(g))]
+        rownames(g)[!(is.number(rownames(g)))]
     }else{
         ig <- graph_from_adjacency_matrix(g)
-        dfs.out <- dfs(ig, node.id, 
+        dfs.result <- dfs(ig, node.id, 
                        direction, 
                        unreachable = FALSE)$order
-        as.character(na.omit(names(dfs.out)))
+        out <- as.character(na.omit(names(dfs.result)))
+        if (direction == "in"){out <- out[length(out):1]}
     }
+}
+
+## Detect numbers in a character vector of variables.
+is.number <- function(x) {
+    out <- logical()
+    for (i in seq_along(x)) {
+        out[i] <- !(any(
+               strsplit(x[i], split = "")[[1]] %in% 
+               c(letters, LETTERS)
+           ))
+    }
+    return(out)
 }
