@@ -30,9 +30,9 @@ script <- readScript(
         "simple_script.R", 
         package = "Rclean"))
 clean(script)
-clean(script, "x")
-clean(script, "z")
-clean(script, "zz")
+clean(script, "mat")
+clean(script, "tab.12")
+clean(script, "out")
 }
 \author{
 Matthew K. Lau

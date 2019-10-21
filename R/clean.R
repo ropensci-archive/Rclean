@@ -41,9 +41,9 @@
 #'         "simple_script.R", 
 #'         package = "Rclean"))
 #' clean(script)
-#' clean(script, "x")
-#' clean(script, "z")
-#' clean(script, "zz")
+#' clean(script, "mat")
+#' clean(script, "tab.12")
+#' clean(script, "out")
 
 clean <- function(file, vars, format = TRUE){
     ## Check if file is passing a script object
