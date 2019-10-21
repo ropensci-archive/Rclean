@@ -4,26 +4,15 @@
 \alias{clean}
 \title{clean --- Clean code.}
 \usage{
-clean(file, var, libs, format)
+clean(file, vars, format = TRUE)
 }
 \arguments{
 \item{file}{File path to a script.}
 
-\item{var}{The name of a variable of interest.}
+\item{vars}{The name of the variable(s) of interest.}
 
-\item{libs}{LOGICAL: should library dependencies be detected and
-included?}
-
-\item{reformat}{LOGICAL: should the minimized code be re-formatted
+\item{format}{LOGICAL: should the minimized code be re-formatted
 following common syntax?}
-
-\item{plot}{LOGICAL: should a network diagram of the cleaned script
-be produced?}
-
-\item{rp}{LOGICAL: should retrospective provenance be used? This
-should be made available in JSON format as an object within
-options (i.e. options(prov.json = <your retrospective
-provenance object>).}
 }
 \value{
 A character vector containing a minimized script based on
@@ -33,6 +22,17 @@ A character vector containing a minimized script based on
 Reduce the size and complexity of a analytical script through
 algorithmic detection of the essential code needed to produce a set
 of results.
+}
+\examples{
+script <- readScript(
+    system.file(
+        "examples", 
+        "simple_script.R", 
+        package = "Rclean"))
+clean(script)
+clean(script, "x")
+clean(script, "z")
+clean(script, "zz")
 }
 \author{
 Matthew K. Lau

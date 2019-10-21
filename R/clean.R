@@ -62,7 +62,7 @@ clean <- function(file, vars, format = TRUE){
         vl <- var_lineage(src)
         ## Reduce to the minimal code
         out <- min_code(vars, vl)
-        ## Reformat
+        ## Reformat?
         if (format){out <- style_text(out)}
     }
     return(out)
