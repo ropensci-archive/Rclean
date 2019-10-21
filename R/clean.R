@@ -24,71 +24,69 @@
 #' of results.
 #'
 #' @param file File path to a script.
-#' @param var The name of a variable of interest.
+#' @param vars The name of the variable(s) of interest.
 #' @param libs LOGICAL: should library dependencies be detected and
 #'     included?
-#' @param reformat LOGICAL: should the minimized code be re-formatted
+#' @param format LOGICAL: should the minimized code be re-formatted
 #'     following common syntax?
-#' @param plot LOGICAL: should a network diagram of the cleaned script
-#'     be produced?
-#' @param rp LOGICAL: should retrospective provenance be used? This
-#'     should be made available in JSON format as an object within
-#'     options (i.e. options(prov.json = <your retrospective
-#'     provenance object>).
 #' @return A character vector containing a minimized script based on
 #'     the given input variable.
-#' @importFrom CodeDepends getInputs
 #' @importFrom CodeDepends readScript
 #' @importFrom formatR tidy_source
-#' @importFrom utils capture.output
-#' @importFrom utils tail
 #' @export clean
 #' @author Matthew K. Lau
 
-clean <- function(file, var, libs, format){
+clean <- function(file, vars, libs, format){
     
-    src <- readScript(file)
-
-    if (missing(var)){
-        print(paste("Variables in", file, ":"))
-        print(unique(getVariables(script)))
-    }
-## Determine code based on graph
-    src <- readScript(file)
-    vl <- var_lineage(src)
-
-    sp <- path(vl[["g"]], var)
-
-
-### Need to account for directionality of pathways
-### See ~/tmp/mean_script.R
-    min.g <- vl[["g"]][rownames(vl[["g"]]) %in% sp, 
-                       colnames(vl[["g"]]) %in% sp]
-
-    sp <- sp[sp %in% as.character(unique(vl[["vdf"]][, "step"]))]
-    sp <- sort(as.numeric(sp))
-    min.src <- as.character(src[sp])
-    if (libs) {
-        lib.l <- get.libs(src)
-        lib.l <- unique(lib.l)
-        if (length(lib.l) != 0) {
-            lib.src <- paste0("library(", lib.l, ")")
-            out <- c(lib.src, min.src)
-    }else{
-        out <- min.src
-    }
+## Check if file is passing a script object
+    if (class(file) == "Script"){
+        src <- file
+    }else{src <- readScript(file)}
+    ## Check if a variable has been supplied, then find
+    ## minimal code.
+    if (!missing(vars)){
+        ## Define the lineage for all variables
+        vl <- var_lineage(src)
+        ## Reduce to the minimal code
+        min.g <- min_code(vars, vl)
+        ## Need to account for directionality of pathways
+        
+        ## See ~/tmp/mean_script.R
+        if (libs) {
+            lib.l <- get.libs(src)
+            lib.l <- unique(lib.l)
+            if (length(lib.l) != 0) {
+                lib.src <- paste0("library(", lib.l, ")")
+                out <- c(lib.src, min.src)
+            }else{
+                out <- min.src
+            }
 ### Determine libs
 ### Reformat using styler
 
+        }
+
+    }else{
+        print(paste("Please supply at least one variable:"))
+        print(unique(getVariables(src)))
+    }
+    return(out)
 }
-
 ## min_graph
-min_graph <- function(x) {
+min_code <- function(vars = "variables", 
+                     vl = "variable lineage") {
     
-    ## Find the deepest node
-    ## Subest the graph to the deepest node
-    ## 
-
+    ## Find the lines and variables for all vars
+    vp <- sapply(vars, get_path, g = vl[["g"]])
+    vp <- unique(unlist(vp))
+    ## Subest the graph to only required nodes
+    min.g <- vl[["g"]][rownames(vl[["g"]]) %in% vp, 
+                       colnames(vl[["g"]]) %in% vp]
+    cl <- as.character(unique(vl[["vdf"]][, "step"]))
+    vp <- vp[vp %in% cl]
+    vp <- sort(as.numeric(vp))
+    out <- as.character(src[vp])
+    return(out)
 }
 
 
