@@ -37,7 +37,7 @@
 #' @examples
 #' script <- readScript(
 #'     system.file(
-#'         "examples", 
+#'         "example", 
 #'         "simple_script.R", 
 #'         package = "Rclean"))
 #' clean(script)
