@@ -56,7 +56,10 @@ clean <- function(file, var, libs, format){
 ## Determine code based on graph
     src <- readScript(file)
     vl <- var_lineage(src)
+
     sp <- path(vl[["g"]], var)
+
+
 ### Need to account for directionality of pathways
 ### See ~/tmp/mean_script.R
     min.g <- vl[["g"]][rownames(vl[["g"]]) %in% sp, 

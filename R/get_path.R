@@ -36,7 +36,7 @@
 #'@noRd
 #'@author Matthew K. Lau
 
-path <- function(g = "graph", 
+get_path <- function(g = "graph", 
                  node.id, 
                  direction = "in"){
     if (mode(g) == "list" & any(names(g) == "g")){g <- g[["g"]]}
