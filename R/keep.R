@@ -18,7 +18,6 @@
 #
 # Contact: Matthew Lau <matthewklau@fas.harvard.edu>
 
-
 #' keep --- Copy code to clipboard or write a specified file.
 #' OUTPUT = Copies code to the clipboard or writes out code from an
 #' object to a specified file.
