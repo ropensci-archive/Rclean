@@ -30,6 +30,7 @@
 #' @return A character vector containing a minimized script based on
 #'     the given input variable.
 #' @importFrom CodeDepends readScript
+#' @importFrom CodeDepends getVariables
 #' @importFrom formatR tidy_source
 #' @importFrom styler style_text
 #' @export clean
