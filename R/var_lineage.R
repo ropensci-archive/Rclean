@@ -51,16 +51,18 @@ var_lineage <- function(script){
     rownames(use.by) <- 1:nrow(use.by)
                                         # full lineage graph
                                         # adding empty subgraphs
-    def.by <- cbind(array(0, 
-                          dim = rep(nrow(def.by), 
-                                    2)), def.by)
+    def.by <- cbind(
+        array(0, dim = rep(nrow(def.by), 2)), 
+        def.by
+    )
     colnames(def.by)[1:nrow(def.by)] <- 1:nrow(def.by)
-    use.by <- cbind(t(use.by), array(0, 
-                                     dim = rep(ncol(use.by), 
-                                               2)))
+    use.by <- cbind(
+        t(use.by), 
+        array(0, dim = rep(ncol(use.by), 2))
+    )
                                         # sub-graph range
     sg.range <- (ncol(use.by) - nrow(use.by) + 1):ncol(use.by)
-                                        # renames
+                                        # rename nodes
     colnames(use.by)[sg.range] <- rownames(use.by)
     lg <- rbind(def.by, use.by)
     return(list(g = lg, vdf = vdf))

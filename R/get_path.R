@@ -39,7 +39,9 @@
 get_path <- function(g = "graph", 
                      node.id, 
                      direction = "in") {
-    if (mode(g) == "list" & any(names(g) == "g")){g <- g[["g"]]}
+    if (mode(g) == "list" & any(names(g) == "g")){
+        g <- g[["g"]]
+    }
     if (missing(node.id)){
         warning("Please supply a node name.")
         print("Possible node names:", quote = FALSE)
