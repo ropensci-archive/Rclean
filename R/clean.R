@@ -59,7 +59,7 @@ clean <- function(file, vars, format = TRUE){
         out <- unique(getVariables(src))
     }else{
         ## Reduce to the minimal code
-        out <- min_code(vars, var_lineage(src))
+        out <- min_code(src, vars)
         ## Reformat code using styler?
         if (format){
             out <- style_text(out)
@@ -80,11 +80,10 @@ clean <- function(file, vars, format = TRUE){
 min_code <- function(src = "script", vars = "variables") {
     ## Define the lineage for all variables
     vl <- var_lineage(src)
-    test <- lapply(vars, get_path, g = vl[["g"]])
     ## Find the lines and variables for all vars
-    vp <- sapply(vars, get_path, g = vl[["g"]])
+    vp <- lapply(vars, get_path, g = vl[["g"]])
     ## Subest graphs with only required nodes for each var
-    g.min <- lapply(vp, min_graph, vl = vl)
+    g.min <- min_graph(vp, vl)
     ## Create a set list of lines for subsetting
     l.min <- rownames(g.min)[is_number(rownames(g.min))]
     ## Subsest the code to the minimum lines
