@@ -23,7 +23,7 @@
 #' algorithmic detection of the essential code needed to produce a set
 #' of results.
 #'
-#' @param file File path to a script.
+#' @param file File path to a script or a Script object from CodeDepends.
 #' @param vars The name of the variable(s) of interest.
 #' @param format LOGICAL: should the minimized code be re-formatted
 #'     following common syntax?
@@ -59,7 +59,7 @@ clean <- function(file, vars, format = TRUE){
         out <- unique(getVariables(src))
     }else{
         ## Reduce to the minimal code
-        out <- min_code(vars, vl)
+        out <- min_code(vars, var_lineage(src))
         ## Reformat code using styler?
         if (format){
             out <- style_text(out)
@@ -73,8 +73,8 @@ clean <- function(file, vars, format = TRUE){
 #' Extract the minimal code for required for one or more variables
 #' from a longer script.
 #'
+#' @param src Script object.
 #' @param vars The name of the variable(s) of interest.
-#' @param vl Variable lineage for all variables in a graph.
 #' @noRd
 #' @author Matthew K. Lau
 min_code <- function(src = "script", vars = "variables") {
