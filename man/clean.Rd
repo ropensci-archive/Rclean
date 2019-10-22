@@ -7,7 +7,7 @@
 clean(file, vars, format = TRUE)
 }
 \arguments{
-\item{file}{File path to a script.}
+\item{file}{File path to a script or a Script object from CodeDepends.}
 
 \item{vars}{The name of the variable(s) of interest.}
 
