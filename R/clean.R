@@ -58,12 +58,12 @@ clean <- function(file, vars, format = TRUE){
         print(paste("Please supply at least one variable:"))
         out <- unique(getVariables(src))
     }else{
-        ## Define the lineage for all variables
-        vl <- var_lineage(src)
         ## Reduce to the minimal code
         out <- min_code(vars, vl)
-        ## Reformat?
-        if (format){out <- style_text(out)}
+        ## Reformat code using styler?
+        if (format){
+            out <- style_text(out)
+        }
     }
     return(out)
 }
@@ -77,9 +77,10 @@ clean <- function(file, vars, format = TRUE){
 #' @param vl Variable lineage for all variables in a graph.
 #' @noRd
 #' @author Matthew K. Lau
-min_code <- function(vars = "variables", 
-                     vl = "variable lineage") {
-    
+min_code <- function(src = "script", vars = "variables") {
+    ## Define the lineage for all variables
+    lapply(vars, var_lineage, 
+    vl <- var_lineage(src)
     ## Find the lines and variables for all vars
     vp <- sapply(vars, get_path, g = vl[["g"]])
     vp <- unique(unlist(vp))

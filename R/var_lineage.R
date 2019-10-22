@@ -21,7 +21,7 @@
 #'
 #' Determine the series of steps that leads to the production of objects contained in a script.
 #' 
-#' @param script A Script object from readScript the CodeDepends
+#' @param src A Script object from readScript the CodeDepends
 #'     package.
 #' @return A list containing a graph (g) describing the lineage of
 #'     objects with steps (i.e. complexes of function and operation
@@ -34,9 +34,9 @@
 #' @noRd
 #' @author Matthew K. Lau
 
-var_lineage <- function(script){
+var_lineage <- function(src = "script"){
     ## variable data frame
-    vdf <- getDetailedTimelines(info = getInputs(script))
+    vdf <- getDetailedTimelines(info = getInputs(src))
     rownames(vdf) <- 1:nrow(vdf)
     ## lineage graph
                                         # defined by
