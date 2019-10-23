@@ -4,16 +4,21 @@
 \alias{code_graph}
 \title{code_graph --- A network diagram of computational dependencies.}
 \usage{
-code_graph(g)
+code_graph(src)
 }
 \arguments{
-\item{g}{Matrix representation of the graph.}
+\item{src}{Script object from CodeDepends..}
 }
 \value{
 A network plot.
 }
 \description{
 Plot the dependencies among functions and objects for a given script.
+}
+\examples{
+simple.script <- readScript(system.file(
+    "example", "simple_script.R", package = "Rclean"))
+code_graph(simple.script)
 }
 \author{
 Matthew K. Lau
