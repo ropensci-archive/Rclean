@@ -30,7 +30,7 @@ test_that("codeGraph", {
     simple.script <- readScript(system.file(
         "example", "simple_script.R", package = "Rclean"))
     output.cap <- capture.output(
-        codeGraph(simple.script)
+        code_graph(simple.script)
     )
     expect_true(length(output.cap) == 0)
 })
@@ -43,4 +43,3 @@ test_that("keep", {
     file.remove("clean.simple.test.R")
     expect_true(all(keep.test == clean.simple.out))
 })
-
