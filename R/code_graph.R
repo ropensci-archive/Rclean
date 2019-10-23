@@ -37,5 +37,5 @@ code_graph <- function(src){
     g <- var_lineage(src)[["g"]]
     ig <- graph_from_adjacency_matrix(g)
     gNEL <- igraph.to.graphNEL(ig)
-    Rgraphviz::plot(gNEL)
+    plot(gNEL)
 }
