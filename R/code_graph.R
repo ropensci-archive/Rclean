@@ -27,6 +27,10 @@
 #'@importFrom Rgraphviz plot
 #'@export code_graph
 #'@author Matthew K. Lau
+#'@examples
+#' simple.script <- readScript(system.file(
+#'     "example", "simple_script.R", package = "Rclean"))
+#' code_graph(simple.script)
 
 
 code_graph <- function(src){

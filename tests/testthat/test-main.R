@@ -27,11 +27,11 @@ test_that("clean no re-formatting", {
 
 test_that("codeGraph", {
     load("codeGraph.src.rda")
-    vl <- var.lineage(src)
-    sp <- p.spine(vl, "out")
-    min.g <- vl[["g"]][rownames(vl[["g"]]) %in% as.character(sp), 
-                       colnames(vl[["g"]]) %in% as.character(sp)]
-    output.cap <- capture.output(codeGraph(min.g))
+    simple.script <- readScript(system.file(
+        "example", "simple_script.R", package = "Rclean"))
+    output.cap <- capture.output(
+        codeGraph(simple.script)
+    )
     expect_true(length(output.cap) == 0)
 })
 
