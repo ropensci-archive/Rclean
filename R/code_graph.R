@@ -20,7 +20,7 @@
 #'
 #' Plot the dependencies among functions and objects for a given script.
 #' 
-#'@param g Matrix representation of the graph.
+#'@param src Script object from CodeDepends..
 #'@return A network plot.
 #'@importFrom igraph graph_from_adjacency_matrix
 #'@importFrom igraph igraph.to.graphNEL
@@ -29,7 +29,8 @@
 #'@author Matthew K. Lau
 
 
-code_graph <- function(g){
+code_graph <- function(src){
+    g <- var_lineage(src)[["g"]]
     ig <- graph_from_adjacency_matrix(g)
     gNEL <- igraph.to.graphNEL(ig)
     Rgraphviz::plot(gNEL)
