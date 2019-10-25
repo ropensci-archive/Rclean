@@ -17,7 +17,7 @@
 #
 # Contact: Matthew Lau <matthewklau@fas.harvard.edu>
 
-#' list_vars --- Get the variables that are created in a script.
+#' get_vars --- Get the variables that are created in a script.
 #'
 #' Determining the variables that are created in a script is useful
 #' for orienting code cleaning (i.e. refactoring) efforts.
@@ -27,7 +27,7 @@
 #' @return A list of variables from a given script.
 #' @importFrom CodeDepends readScript
 #' @importFrom CodeDepends getVariables
-#' @export list_vars
+#' @export get_vars
 #' @author Matthew K. Lau
 #' @examples
 #' script <- readScript(
@@ -35,9 +35,9 @@
 #'         "example", 
 #'         "simple_script.R", 
 #'         package = "Rclean"))
-#' list_vars(script)
+#' get_vars(script)
 
-list_vars <- function(script){
+get_vars <- function(script){
     if (class(script) == "character"){
         src <- readScript(script[1])
     }else if (class(script) == "Script"){

@@ -56,7 +56,7 @@ clean <- function(file, vars, format = TRUE){
     ## minimal code.
     if (missing(vars)){
         print(paste("Please supply at least one variable:"))
-        out <- list_vars(src)
+        out <- get_vars(src)
     }else{
         ## Reduce to the minimal code
         out <- min_code(src, vars)
