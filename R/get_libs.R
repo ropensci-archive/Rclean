@@ -22,7 +22,7 @@
 #' Uses code dependency information to produce a set of necessary
 #' libraries.
 #' 
-#'@param src Character vector containing the source script.
+#'@param src 
 #'@return The libraries used for each step of the script.
 #'@importFrom CodeDepends getInputs
 #'@importFrom methods slot

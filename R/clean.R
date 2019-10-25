@@ -23,15 +23,14 @@
 #' algorithmic detection of the essential code needed to produce a set
 #' of results.
 #'
-#' @param file File path to a script or a Script object from CodeDepends.
+#' @param script File path to a script or a Script object from
+#'     CodeDepends.
 #' @param vars The name of the variable(s) of interest.
 #' @param format LOGICAL: should the minimized code be re-formatted
-#'     following common syntax?
+#'     following common syntax style guides?
 #' @return A character vector containing a minimized script based on
-#'     the given input variable.
+#'     the given input variable or set of variables.
 #' @importFrom CodeDepends readScript
-#' @importFrom CodeDepends getVariables
-#' @importFrom formatR tidy_source
 #' @importFrom styler style_text
 #' @export clean
 #' @author Matthew K. Lau
@@ -44,7 +43,7 @@
 #' clean(script)
 #' clean(script, "mat")
 #' clean(script, "tab.12")
-#' clean(script, "out")
+#' clean(script, c("mat", "tab.12", "out")
 
 clean <- function(file, vars, format = TRUE){
     ## Check if file is passing a script object
@@ -57,7 +56,7 @@ clean <- function(file, vars, format = TRUE){
     ## minimal code.
     if (missing(vars)){
         print(paste("Please supply at least one variable:"))
-        out <- unique(getVariables(src))
+        out <- list_vars(src)
     }else{
         ## Reduce to the minimal code
         out <- min_code(src, vars)
