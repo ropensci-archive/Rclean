@@ -92,6 +92,12 @@ min_code <- function(src = "script", vars = "variables") {
 }
 
 #' min_graph --- Minimize a graph to a list of paths.
+#' @param vp A path of variables from a depth first search.
+#' @param vl Variable lineage data frame.
+#' @return Produces a graph in matrix form only containing code
+#'     relevant to provided path.
+#' @noRd
+#' @author Matthew K. Lau
 min_graph <- function(vp = "variable path", vl = "variable lineage") {
     g.min <- vl[["g"]]
     nodes <- unique(unlist(vp))
@@ -141,6 +147,11 @@ return(out)
 }
 
 ## is_number --- Detect numbers in a character vector of variables.
+#' @param x A character vector indicating names of variables.
+#' @return Produces a logical vector indicating which items in the
+#'     original vector are likely numbers. 
+#' @noRd
+#' @author Matthew K. Lau
 is_number <- function(x) {
     out <- logical()
     for (i in seq_along(x)) {
