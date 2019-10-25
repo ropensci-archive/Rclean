@@ -7,13 +7,14 @@
 get_libs(src)
 }
 \arguments{
-\item{src}{Character vector containing the source script.}
+\item{src}{}
 }
 \value{
 The libraries used for each step of the script.
 }
 \description{
-Uses code dependency information to produce a set of necessary libraries.
+Uses code dependency information to produce a set of necessary
+libraries.
 }
 \author{
 Matthew K. Lau
