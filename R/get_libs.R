@@ -11,15 +11,16 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with Rclean; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+# along with Rclean; if not, write to the Free Software Foundation,
+# Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 #
 # Contact: Matthew Lau <matthewklau@fas.harvard.edu>
 
 
 #'get_libs --- Determine the libraries needed for a given script. 
 #'
-#' Uses code dependency information to produce a set of necessary libraries.
+#' Uses code dependency information to produce a set of necessary
+#' libraries.
 #' 
 #'@param src Character vector containing the source script.
 #'@return The libraries used for each step of the script.
@@ -30,29 +31,7 @@
 
 get_libs <- function(src){
   cd <- getInputs(src)
-  lib <- unlist(lapply(cd, slot, name = "libraries"))
-  lib <- unique(lib)
-  lib.fun <- lapply(lib, function(x) ls(pos = paste0("package:", x)))
-  names(lib.fun) <- lib
-  step.fun <- lapply(cd, slot, name = "functions")
-  step.fun <- lapply(step.fun, names)
-  step.lib <- step.fun
-  for (i in 1:length(step.fun)){
-    if (length(step.fun[[i]]) > 0){
-      for (j in 1:length(step.fun[[i]])){
-        if (step.fun[[i]][[j]] %in% unlist(lib.fun)){
-          for (k in 1:length(lib.fun)){
-            if (step.fun[[i]][[j]] %in% lib.fun[[k]]){
-              step.lib[[i]][[j]] <- names(lib.fun)[k]
-            }else{}
-          }
-        }else{
-          step.lib[[i]][[j]] <- NA
-        }
-      }
-    }else{step.lib[[i]] <- NA}
-  }
-  out <- unique(unlist(step.lib))
-  out <- out[!(is.na(out))]
+  libs <- unlist(lapply(cd, slot, name = "libraries"))
+  out <- unique(libs)
   return(out)
 }
