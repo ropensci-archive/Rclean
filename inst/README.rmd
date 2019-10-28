@@ -124,7 +124,6 @@ Sometimes for more complicated scripts, it can be helpful to see a
 code_graph(script)
 ```
 
-
 Now, we can now pick the result we want to focus on for cleaning:
 
 
@@ -157,9 +156,11 @@ keep(my.code)
 
 
 
-
 Contributing
 ============
+
+This is an open-source project. If you would like to contribute to the
+project, please check out [CONTRIBUTING.md](CONTRIBUTING.md).
 
 Please note that the 'Rclean' project is released with a
 [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
