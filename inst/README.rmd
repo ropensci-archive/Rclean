@@ -78,7 +78,7 @@ library(Rclean)
 Usage
 =====
 
-```{r eval = TRUE, echo = FALSE results = "hide"}
+```{r eval = TRUE, echo = FALSE, results = "hide"}
 library(CodeDepends)
 script <- system.file(
     "example", 
@@ -118,13 +118,13 @@ get_vars(script)
 Sometimes for more complicated scripts, it can be helpful to see a
  network graph showing the interdependencies of
  variables. `code_graph` will produce a network diagram showing which
- lines of code produce which variables (e.g. 1 -> "out"):
+ lines of code produce or use which variables (e.g. 1 -> "out"):
 
 ```{r eval = TRUE}
 code_graph(script)
 ```
 
-Now, we can now pick the result we want to focus on for cleaning:
+Now, we can pick the result we want to focus on for cleaning:
 
 
 ```{r eval = TRUE}
