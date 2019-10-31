@@ -37,25 +37,15 @@ developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repo
 
 # Clean up your code
 
-  - Have you ever written a long script in R that conducts lots of
-    analyses and wished that someone would come along and make it all
-    clearer to understand and use?
-  - Well you’re not alone.
-  - A recent survey of over 1500 scientists reported a crisis of
-    reproducibility with “selective reporting” being the most cited
-    contributing factor and 80% saying code availability is playing a
-    role.
   - [Rclean](https://github.com/ProvTools/Rclean) was created to help
-    scientists more *easily* write “cleaner” code by providing a simple,
-    rigorous way to isolate the minimal code you need in order to
-    produce a specific result (e.g. object, plot, output written to
-    disk).
-  - [Rclean](https://github.com/ProvTools/Rclean) is built on data
-    provenance, a formal representation of a computation, and uses graph
-    analysis to determine the minimal path from inputs to results.
-  - The goal is to help facilitate code transparency, reproducibility,
-    reusability and ultimately help scientists spend more time on
-    research and less time on software.
+    scientists more *easily* write “cleaner” code.
+  - Written with research scientists that are results oriented in mind,
+    the package’s primary function provides a simple way to isolate the
+    minimal code you need to produce a specific result, such as a
+    statistical table or a figure.
+  - By focusing on specific results, large and/or complicated analytical
+    scripts can be paired down to the essentials and easily re-factored
+    to be more robust and easily shared.
 
 # Install
 
@@ -71,7 +61,7 @@ You can install the most up to date version easily with
 
 ``` r
 install.packages("devtools")
-devtools::install_github("ProvTools/Rclean")
+devtools::install_github("MKLau/Rclean")
 ```
 
 Once installed, per usual R practice, just load the *Rclean* package
@@ -89,88 +79,111 @@ script as the input. Here, we can use an example script that is included
 with the package:
 
 ``` r
-clean("example/simple_script.R")
-#> [1] Possible results:
-#>  [1] "1"         "2"         "3"         "4"         "5"        
-#>  [6] "6"         "7"         "8"         "9"         "10"       
-#> [11] "11"        "12"        "13"        "14"        "15"       
-#> [16] "16"        "mat"       "dat"       "fit12"     "fit13"    
-#> [21] "fit14"     "fit15.aov" "tab.12"    "tab.13"    "tab.14"   
-#> [26] "tab.15"    "out"
+script <- "example/simple_script.R"
 ```
 
-This returns a list of possible results detected in the script,
-including execution lines (not counting lines with no code or that are
-commented). We can now pick the result we want to focus on for cleaning:
+Here’s a quick look at the code:
 
 ``` r
-clean("./example/simple_script.R", "tab.15")
-#>  [1] "mat <- matrix(rnorm(400), nrow = 100)"            
-#>  [2] "dat <- as.data.frame(mat)"                        
-#>  [3] "dat[, \"V2\"] <- dat[, \"V2\"] + runif(nrow(dat))"
-#>  [4] "dat[, \"V5\"] <- gl(10, 10)"                      
-#>  [5] "fit14 <- lm(V1 ~ V4, data = dat)"                 
-#>  [6] "fit15.aov <- aov(V1 ~ V2 + V5, data = dat)"       
-#>  [7] "tab.14 <- summary(fit14)"                         
-#>  [8] "tab.15 <- append(fit15.aov, tab.14)"              
-#>  [9] "dat <- 25 + 2"                                    
-#> [10] "dat[2] <- 10"
+readLines(script)
+#>  [1] "## Make a data frame"                             
+#>  [2] "mat <- matrix(rnorm(400), nrow = 100)"            
+#>  [3] "dat <- as.data.frame(mat)"                        
+#>  [4] "dat[, \"V2\"] <- dat[, \"V2\"] + runif(nrow(dat))"
+#>  [5] "dat[, \"V5\"] <- gl(10, 10)"                      
+#>  [6] "## Conduct some analyses"                         
+#>  [7] "fit12 <- lm(V1 ~ V2, data = dat)"                 
+#>  [8] "fit13 <- lm(V1 ~ V3, data = dat)"                 
+#>  [9] "fit14 <- lm(V1 ~ V4, data = dat)"                 
+#> [10] "fit15.aov <- aov(V1 ~ V2 + V5, data = dat)"       
+#> [11] "## Summarize analyses"                            
+#> [12] "summary(fit15.aov)"                               
+#> [13] "tab.12 <- summary(fit12)"                         
+#> [14] "tab.13 <- summary(fit13)"                         
+#> [15] "tab.14 <- summary(fit14)"                         
+#> [16] "tab.15 <- append(fit15.aov, tab.14)"              
+#> [17] "## Conduct an off-hand calculation"               
+#> [18] "dat <- 25 + 2"                                    
+#> [19] "dat[2] <- 10"                                     
+#> [20] "out <- dat * 2"
 ```
 
-This produces the minimal code detected from the script. It also detects
-library dependencies and inserts them into the code (`libs = TRUE`).
-
-It can be handy just to take a look at the isolated code, but you can
-save the code for later use or sharing (e.g. creating a reproducible
-example for getting help) with the `write.code` function:
+You can get a list of the variables found in an object with `get_vars`.
 
 ``` r
-my.code <- clean("example/simple_script.R", "tab.15")
-write.code(my.code, file = "x.R")
+get_vars(script)
+#>  [1] "mat"       "dat"       "fit12"     "fit13"     "fit14"    
+#>  [6] "fit15.aov" "tab.12"    "tab.13"    "tab.14"    "tab.15"   
+#> [11] "out"
+```
+
+Sometimes for more complicated scripts, it can be helpful to see a
+network graph showing the interdependencies of variables. `code_graph`
+will produce a network diagram showing which lines of code produce or
+use which variables (e.g. 1 -\> “out”):
+
+``` r
+code_graph(script)
+```
+
+<img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" />
+
+Now, we can pick the result we want to focus on for cleaning:
+
+``` r
+clean(script, "tab.15")
+#> mat <- matrix(rnorm(400), nrow = 100)
+#> dat <- as.data.frame(mat)
+#> dat[, "V2"] <- dat[, "V2"] + runif(nrow(dat))
+#> dat[, "V5"] <- gl(10, 10)
+#> fit14 <- lm(V1 ~ V4, data = dat)
+#> fit15.aov <- aov(V1 ~ V2 + V5, data = dat)
+#> tab.14 <- summary(fit14)
+#> tab.15 <- append(fit15.aov, tab.14)
+#> dat <- 25 + 2
+#> dat[2] <- 10
+```
+
+We can also select several variables at the same time:
+
+``` r
+my.vars <- c("tab.12", "tab.15")
+clean(script, my.vars)
+#> mat <- matrix(rnorm(400), nrow = 100)
+#> dat <- as.data.frame(mat)
+#> dat[, "V2"] <- dat[, "V2"] + runif(nrow(dat))
+#> dat[, "V5"] <- gl(10, 10)
+#> fit12 <- lm(V1 ~ V2, data = dat)
+#> fit14 <- lm(V1 ~ V4, data = dat)
+#> fit15.aov <- aov(V1 ~ V2 + V5, data = dat)
+#> tab.12 <- summary(fit12)
+#> tab.14 <- summary(fit14)
+#> tab.15 <- append(fit15.aov, tab.14)
+#> dat <- 25 + 2
+#> dat[2] <- 10
+```
+
+While just taking a look at the simplified code can be very helpful, you
+can also save the code for later use or sharing (e.g. creating a
+reproducible example for getting help) with `keep`:
+
+``` r
+my.code <- clean(script, my.vars)
+keep(my.code, file = "results_tables.R")
 ```
 
 If you would like to copy your code to your clipboard, you can do that
-by not specifying a file path. You can now paste as needed to create a
-simpler script.
+by not specifying a file path. You can now paste the simplified as
+needed.
 
 ``` r
-write.code(my.code)
+keep(my.code)
 ```
-
-# Retrospective Provenance
-
-So far, we’ve been using “prospective” provenance generated from the
-static code prior to execution. *Rclean* can also be used with
-“retrospective” provenance, which is recorded during execution of a
-script. Using it facilitates more accurate code cleaning, We can pass
-the provenance to the `clean` function via `options`:
-
-``` r
-options(prov.json = readLines("example/prov_micro.json"))
-```
-
-Now that we have the provenance loaded, we can start cleaning.
-[Rclean](https://github.com/ProvTools/Rclean) will give us a list of
-possible values we can get code for, notice that the option *rp*
-(i.e. “retrospective provenance”) has been set to `TRUE`:
-
-``` r
-clean(file = "example/micro.R", rp = TRUE)
-#> [1] Possible results:
-#>  [1] "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" "11" "x"  "y"
-```
-
-Similar to before, you can then pick and choose from among these results
-and get the essential code to produce the output, like so:
-
-``` r
-clean(file = "example/micro.R", var = "x", rp = TRUE)
-#> [1] "x <- 1"     "y <- 3"     "x <- x + y"
-```
-
-Happy cleaning\!
 
 # Contributing
+
+This is an open-source project. If you would like to contribute to the
+project, please check out [CONTRIBUTING.md](CONTRIBUTING.md).
 
 Please note that the ‘Rclean’ project is released with a [Contributor
 Code of Conduct](CODE_OF_CONDUCT.md). By contributing to this project,

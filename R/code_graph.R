@@ -20,17 +20,35 @@
 #'
 #' Plot the dependencies among functions and objects for a given script.
 #' 
-#'@param g Matrix representation of the graph.
+#'@param script Script object from CodeDepends or a file path to a script.
+#'@param pdf.file Path to output PDF of the code graph.  
 #'@return A network plot.
 #'@importFrom igraph graph_from_adjacency_matrix
 #'@importFrom igraph igraph.to.graphNEL
 #'@importFrom Rgraphviz plot
 #'@export code_graph
 #'@author Matthew K. Lau
+#'@examples
+#' simple.script <- readScript(system.file(
+#'     "example", "simple_script.R", package = "Rclean"))
+#' code_graph(simple.script)
 
-
-code_graph <- function(g){
+code_graph <- function(script, pdf.file){
+    if (class(script) == "character"){
+        src <- readScript(script[1])
+    }else if (class(script) == "Script"){
+        src <- script
+    }else{
+        stop("Error: Please provide a Script object or script file path.")
+    }
+    g <- var_lineage(src)[["g"]]
     ig <- graph_from_adjacency_matrix(g)
     gNEL <- igraph.to.graphNEL(ig)
-    Rgraphviz::plot(gNEL)
+    if (missing(pdf.file)){
+        plot(gNEL)    
+    }else{
+        pdf(pdf.file)
+        plot(gNEL)
+        dev.off()
+    }
 }

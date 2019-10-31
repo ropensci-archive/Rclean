@@ -7,16 +7,17 @@
 clean(file, vars, format = TRUE)
 }
 \arguments{
-\item{file}{File path to a script or a Script object from CodeDepends.}
-
 \item{vars}{The name of the variable(s) of interest.}
 
 \item{format}{LOGICAL: should the minimized code be re-formatted
-following common syntax?}
+following common syntax style guides?}
+
+\item{script}{File path to a script or a Script object from
+CodeDepends.}
 }
 \value{
 A character vector containing a minimized script based on
-    the given input variable.
+    the given input variable or set of variables.
 }
 \description{
 Reduce the size and complexity of a analytical script through
@@ -32,7 +33,7 @@ script <- readScript(
 clean(script)
 clean(script, "mat")
 clean(script, "tab.12")
-clean(script, "out")
+clean(script, c("mat", "tab.12", "out")
 }
 \author{
 Matthew K. Lau

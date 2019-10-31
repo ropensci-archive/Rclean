@@ -23,15 +23,14 @@
 #' algorithmic detection of the essential code needed to produce a set
 #' of results.
 #'
-#' @param file File path to a script or a Script object from CodeDepends.
+#' @param script File path to a script or a Script object from
+#'     CodeDepends.
 #' @param vars The name of the variable(s) of interest.
 #' @param format LOGICAL: should the minimized code be re-formatted
-#'     following common syntax?
+#'     following common syntax style guides?
 #' @return A character vector containing a minimized script based on
-#'     the given input variable.
+#'     the given input variable or set of variables.
 #' @importFrom CodeDepends readScript
-#' @importFrom CodeDepends getVariables
-#' @importFrom formatR tidy_source
 #' @importFrom styler style_text
 #' @export clean
 #' @author Matthew K. Lau
@@ -44,7 +43,7 @@
 #' clean(script)
 #' clean(script, "mat")
 #' clean(script, "tab.12")
-#' clean(script, "out")
+#' clean(script, c("mat", "tab.12", "out")
 
 clean <- function(file, vars, format = TRUE){
     ## Check if file is passing a script object
@@ -57,7 +56,7 @@ clean <- function(file, vars, format = TRUE){
     ## minimal code.
     if (missing(vars)){
         print(paste("Please supply at least one variable:"))
-        out <- unique(getVariables(src))
+        out <- get_vars(src)
     }else{
         ## Reduce to the minimal code
         out <- min_code(src, vars)
@@ -93,6 +92,12 @@ min_code <- function(src = "script", vars = "variables") {
 }
 
 #' min_graph --- Minimize a graph to a list of paths.
+#' @param vp A path of variables from a depth first search.
+#' @param vl Variable lineage data frame.
+#' @return Produces a graph in matrix form only containing code
+#'     relevant to provided path.
+#' @noRd
+#' @author Matthew K. Lau
 min_graph <- function(vp = "variable path", vl = "variable lineage") {
     g.min <- vl[["g"]]
     nodes <- unique(unlist(vp))
@@ -142,6 +147,11 @@ return(out)
 }
 
 ## is_number --- Detect numbers in a character vector of variables.
+#' @param x A character vector indicating names of variables.
+#' @return Produces a logical vector indicating which items in the
+#'     original vector are likely numbers. 
+#' @noRd
+#' @author Matthew K. Lau
 is_number <- function(x) {
     out <- logical()
     for (i in seq_along(x)) {
