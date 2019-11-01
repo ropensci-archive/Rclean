@@ -4,8 +4,7 @@ cran-comments.md
 .travis.yml
 cleanR-demo.gif
 cleanR_demo_vid.png
-^exec/loader.R
-^example
 ^joss
 ^ropensci
 ^CODE_OF_CONDUCT\.md$
+make.R

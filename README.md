@@ -43,9 +43,9 @@ developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repo
     the package’s primary function provides a simple way to isolate the
     minimal code you need to produce a specific result, such as a
     statistical table or a figure.
-  - By focusing on specific results, large and/or complicated analytical
-    scripts can be paired down to the essentials and easily re-factored
-    to be more robust and easily shared.
+  - By focusing on specific results (aka. variables), large and/or
+    complicated analytical scripts can be paired down to the essentials
+    and easily re-factored to be more robust and easily shared.
 
 # Install
 
