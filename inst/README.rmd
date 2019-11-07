@@ -69,7 +69,20 @@ install.packages("devtools")
 devtools::install_github("MKLau/Rclean")
 ```
 
-Once installed, per usual R practice, just load the *Rclean* package with:
+You will also likely need to install the
+[RGraphViz](bioconductor.org/packages/release/bioc/html/Rgraphviz.html):
+
+```{R rgraphviz}
+
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("Rgraphviz")
+
+```
+
+Once installed, per usual R practice just load the *Rclean* package
+with:
 
 ```{r eval = TRUE}
 library(Rclean)
