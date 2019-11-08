@@ -19,16 +19,15 @@ vignette: >
 ### Provenance
     ## 1 Why?
     ## 2 What is it?
-    ## 3 Prosepctive and retrospective
+    ## 3 Prospective and retrospective
     ## 4 CodeDepends
-    ## 5 Other projects
+    ## 5 Other projects: point to End-to-end/provClean
 ### How variables are isolated
     ## 1 Single variable selection
     ## 2 How multiple variables are isolated
 ### More complicated script example
 ### Applied to Drake
     
-
 Clean up your code
 ==================
 
@@ -66,8 +65,8 @@ Once installed, per usual R practice, just load the *Rclean* package with:
 library(Rclean)
 ```
 
-Usage
-=====
+Quick-start
+===========
 
 ```{r eval = TRUE, echo = FALSE, results = "hide"}
 library(CodeDepends)

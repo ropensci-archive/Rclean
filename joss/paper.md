@@ -78,7 +78,7 @@ Obtaining provenance graph
 
 Prospective provenance
 
-Retrospective provenance requirements
+Retrospective provenance projects
 
 Description of graph algorithm used
 
