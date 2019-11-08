@@ -8,8 +8,8 @@ Description: To create clearer, more concise code provides this
 	     script that produces a chosen result, such as an object,
 	     tables and figures written to disk and even warnings and
 	     errors.
-URL: https://github.com/ProvTools/Rclean
-BugReports: https://github.com/ProvTools/Rclean/issues
+URL: https://github.com/MKLau/Rclean
+BugReports: https://github.com/MKLau/Rclean/issues
 License: GPL-3 | file LICENSE
 Depends:
    R (>= 3.5.0)

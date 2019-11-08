@@ -15,7 +15,7 @@ Just using the package and giving feedback is contributing. If
 the package is not working as described, congratulations you've
 discovered a bug! If you think this is the case, please submit an
 issue to the github
-[issue](https://github.com/ProvTools/Rclean/issues) system. 
+[issue](https://github.com/MKLau/Rclean/issues) system. 
 
 Include a reproducible example in the issue or a link to a
 [gist](https://gist.github.com/), with the following:

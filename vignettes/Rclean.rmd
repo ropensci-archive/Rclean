@@ -32,7 +32,7 @@ vignette: >
 Clean up your code
 ==================
 
-- [Rclean](https://github.com/ProvTools/Rclean) was created to help
+- [Rclean](https://github.com/MKLau/Rclean) was created to help
   scientists more *easily* write "cleaner" code. 
 - Written with research scientists that are results oriented in mind,
   the package's primary function provides a simple way to isolate the
