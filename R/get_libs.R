@@ -22,16 +22,31 @@
 #' Uses code dependency information to produce a set of necessary
 #' libraries.
 #' 
-#'@param src 
-#'@return The libraries used for each step of the script.
+#'@param file 
+#'@return Returns the libraries references in the script.
 #'@importFrom CodeDepends getInputs
+#'@importFrom CodeDepends readScript
 #'@importFrom methods slot
 #'@export get_libs
 #'@author Matthew K. Lau
 
-get_libs <- function(src){
-  cd <- getInputs(src)
-  libs <- unlist(lapply(cd, slot, name = "libraries"))
-  out <- unique(libs)
-  return(out)
+get_libs <- function(file){
+    src <- readScript(file)
+    cd <- getInputs(src)
+    libs <- unlist(lapply(cd, slot, name = "libraries"))
+    libs <- unique(libs)
+    return()
+}
+
+get_funcs <- function(libs){
+    funcs <- list()
+    for (i in seq_along(libs)){
+        get.funcy <- help(package = libs[i])
+        get.funcy <- strsplit(get.funcy[["info"]][[2]], split = " ")
+        get.funcy <- lapply(get.funcy, function(x) x[1])
+        get.funcy <- unlist(get.funcy[get.funcy != ""])
+        funcs[[i]] <- get.funcy
+    }
+    names(funcs) <- libs
+    return(funcs)
 }
