@@ -114,7 +114,8 @@ keep(my.code, file = "results_tables.R")
 ```
 
 If you would like to copy your code to your clipboard, you can do that
-by not specifying a file path. You can now paste the simplified as needed.
+by not specifying a file path. You can now paste the simplified as
+needed.
 
 ```{r eval = FALSE}
 keep(my.code)
@@ -130,7 +131,40 @@ and software engineering training, this also leads to users into
 situations where their code is often complicated, prone to failure and
 hard to reproduce or reuse in different environments.
 
-For example, ...
+For example, here is a complicated, messy script:
+
+
+```{R tangle, echo = TRUE, eval = FALSE}
+
+### Data Munging
+
+### More Data Munging
+
+### Make a plot
+
+### Run another analysis
+
+### Make Another Plot
+
+
+```
+
+# Use-case: Refactoring
+
+
+
+# Use-Case: Debugging
+
+Code returns an error message, but the code is too messy and hard to
+trace back to the error.
+
+```{R debug, eval = FALSE}
+
+
+
+```
+
+
 
 # Behind the Scenes: Provenance
 
