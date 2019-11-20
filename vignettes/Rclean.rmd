@@ -10,19 +10,16 @@ vignette: >
 <!-- \VignetteEngine{knitr::knitr} -->
 <!-- https://bookdown.org/yihui/rmarkdown/r-package-vignette.html -->
 
-# Introduction
-
-Written with research scientists that are results oriented in mind,
+Written with research scientists in mind,
 [Rclean](https://cran.r-project.org/web/packages/Rclean/)'s primary
 function provides a simple way to isolate the minimal code you need to
-produce a specific result, such as a statistical table or a figure. By
-focusing on specific results, large and/or complicated analytical
-scripts can be paired down to the essentials and easily re-factored to
-be more robust and easily shared.
+produce specific results, such as a statistical table or a figure. By
+analyzing the relationships among objects and functions, large and/or
+complicated analytical scripts can be paired down to the
+essentials. This can aid in debugging and re-factoring code and help
+to make scientific projects more robust and easily shared.
 
 # Quick-start Guide
-
-## Install
 
 You can install
 [Rclean](https://cran.r-project.org/web/packages/Rclean/) from *CRAN*: 
@@ -31,7 +28,7 @@ You can install
 install.packages("Rclean")
 ```
 
-You can install the most up to date version easily with
+You can install the most up to date version using
 [devtools](https://github.com/hadley/devtools):
 
 ```{r eval = FALSE}
@@ -55,9 +52,8 @@ script <- system.file(
 ```
 
 [Rclean](https://cran.r-project.org/web/packages/Rclean/) usage is
-simple. Have a script with code you want to clean saved to disk. Then,
-just run the `clean` function with the path to the script as the
-input. Here, we can use an example script that is included with the
+simple. Just run the `clean` function with the file path to a script
+as the input. We can use an example script that is included with the
 package:
 
 ```{r eval = FALSE} 
@@ -82,9 +78,9 @@ get_vars(script)
 ```
 
 Sometimes for more complicated scripts, it can be helpful to see a
- network graph showing the interdependencies of
- variables. `code_graph` will produce a network diagram showing which
- lines of code produce or use which variables (e.g. 1 -> "out"):
+network graph showing the interdependencies of variables. `code_graph`
+will produce a network diagram showing which lines of code produce or
+use which variables (e.g. 1 -> "out"):
 
 ```{r eval = TRUE}
 code_graph(script)
@@ -113,47 +109,32 @@ my.code <- clean(script, my.vars)
 keep(my.code, file = "results_tables.R")
 ```
 
-If you would like to copy your code to your clipboard, you can do that
-by not specifying a file path. You can now paste the simplified as
-needed.
+If you would like to copy your code to your clipboard to copy-paste,
+you can do that by not specifying a file path. You can now paste the
+simplified as needed, such as into another script file or a help forum
+thread.
 
 ```{r eval = FALSE}
 keep(my.code)
 ```
 
-# The Need for "Code Cleaning"
+# Some Thoughts on the Need for "Code Cleaning"
 
-At it's roots R is a statistical programming language. R users are
-largely focused on producing code for idiosyncratic projects. Also,
-although R's low entry level (relative to other programming languages)
-opens the door to scientists that do not have formal computer science
-and software engineering training, this also leads to users into
-situations where their code is often complicated, prone to failure and
-hard to reproduce or reuse in different environments.
-
-For example, here is a complicated, messy script:
-
-
-```{R tangle, echo = TRUE, eval = FALSE}
-
-### Data Munging
-
-### More Data Munging
-
-### Make a plot
-
-### Run another analysis
-
-### Make Another Plot
+At it's root R is a statistical programming language. That it, it was
+designed for use in analytical workflows. As such, the majority of the
+R community is focused on producing code for idiosyncratic projects
+that are results oriented. Also, R's design is intentionally at a
+level that abstracts many aspects of programming that would otherwise
+act as a barrier to entry for many users. This is good in that there
+are many people who use R to their benefit with little to no formal
+training in computer science or software engineering. However, these
+same users are also frequently frustrated by code that is fragile,
+buggy and complicated enough to quickly become obtuse even to
+themselves in a very short amount of time. 
 
 
-```
-
-# Use-case: Refactoring
-
-
-
-# Use-Case: Debugging
+# Example: Cleaning a Complicated Script
+# Example: Debugging a Broken Script
 
 Code returns an error message, but the code is too messy and hard to
 trace back to the error.
@@ -164,10 +145,24 @@ trace back to the error.
 
 ```
 
+# Example: Functions from Scripts
+
+For example, here is a complicated, messy script:
 
 
-# Behind the Scenes: Provenance
+```{R tangle, echo = TRUE, eval = FALSE}
 
+### Data Munging
+### More Data Munging
+### Make a plot
+### Run another analysis
+### Make Another Plot
+
+```
+
+# Behind the Scenes: How Rclean Works
+
+## Getting the Graph of Functions and Objects with Provenance
 
 [\\]: # ### Provenance
 [\\]: #     ## 1 Why?
@@ -184,12 +179,7 @@ trace back to the error.
 [\\]: # ### More complicated script example
 [\\]: # ### Applied to Drake
 
-# Contributing
+# Final Thoughts
 
-This is an open-source project. If you would like to contribute to the
-project, please check out [CONTRIBUTING.md](CONTRIBUTING.md).
-
-Please note that the 'Rclean' project is released with a
-[Contributor Code of Conduct](CODE_OF_CONDUCT.md).
-By contributing to this project, you agree to abide by its terms.
-
+[\\]: # Drake
+[\\]: # Other Workflow Projects
