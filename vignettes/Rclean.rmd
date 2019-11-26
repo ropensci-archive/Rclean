@@ -140,7 +140,7 @@ take an extremely long time to execute, being able to reduce
 unnecessary analyses can help increase computation efficiency.
 
 
-More often then not, when someone is writing an R script, they're
+More often then not, when someone is writing an R script, they are
 intent on getting a set of results. This set of results is always a
 subset of a much larger set of possible ways to explore a dataset, as
 there are many statistical approaches and tests, let alone ways to
@@ -150,9 +150,9 @@ researchers manually subset results, but never refactor (i.e. reduce
 to the final subset). In part, this is enabled by a lack of a proper
 version control system, and in order to record their process and not
 lose work, the entire process remains in a single or several
-scripts. Although Rclean is not designed to fix the latter, it can
+scripts. Although *Rclean* is not designed to fix the latter, it can
 help with the former issue, once an appropriate versioning system is
-adopted (e.g. git or subversion). 
+adopted (e.g. git or subversion).
 
 
 
@@ -203,73 +203,64 @@ and found the minimal set of lines relevant to our object of
 interest. This code can now be visually inspected to adapt the
 original code or ported to a new, "refactored" script. 
 
-Related to the latter possibility, one note about comments. Although,
-there is often very useful for even invaluable content in comments,
-the `clean` function removes comments when isolating code. This is
-partly due to the difficulty in determining the relevance of comments
-to sections of code. Comments at the end of lines are typically
-relevant to the line they are on, but not always, and comments
-occupying their own lines usually refer to the following lines, but
-this is also not necessarily the case. As `clean` depends on
-determining relationships among lines based on variables and function
-calls, it's not actually possible to do this automatically for a
-general set of use cases. However, comments in the original code
-remain untouched and can be used to inform the reduced code, and, as
-the `clean` function is oriented toward isolating code based on a
-specific result, the resulting code tends to naturally would tend
-toward a comment along the lines of "This generates result C using
-inputs A and B by conducting processing steps that do ...".
 
+# Behind the Scenes: How *Rclean* Works
 
-# Example: Functions from Scripts
+The workhorse behind *Rclean* is data provenance. Here, when we refer
+to provenance we are talking about a formalized representation of the
+computational process that produced some data. Data is used in a broad
+sense, not just data that were collected in a research project. There
+are multiple approaches to collecting data provenance, but *Rclean*
+uses "prospective" provenance, which analyzes code and uses language
+specific information to predict the relationship among processes and
+data objects. *Rclean* relies on a library called *CodeDepends* to
+gather the prospective provenance for each script. For more
+information on the mechanics of the *CodeDepends* package, see
+(cite). To get an idea of what data provenance is, take a look at the
+`code_graph` function. The plot that it generates is a graphical
+representation of the prospective provenance generated for *Rclean*.
 
-Naturally following from the previous example, there are instances
-where someone might want to create a function based on a specific
-result. This might be the case for users of workflow systems, such as
-*Drake*, which requires the creation of project specific
-functions. We can do this with the following steps:
+```{R prov-graph}
 
-1. Decide on the object(s) we want.
-2. Use `clean` to isolate the code to produce the object(s).
-3. Determine the correct inputs and create arguments for them.
-4. Create an object to be returned by the function.
-5. Name the function.
-
-For example, let's create a function to run the analysis that we
-isolated in the previous example.
-
-
-
-```{R tangle, echo = TRUE, eval = FALSE}
-
-### Data Munging
-### More Data Munging
-### Make a plot
-### Run another analysis
-### Make Another Plot
+code_graph(script)
 
 ```
 
-# Behind the Scenes: How Rclean Works
+Although, a lot of great work can be done with type of data
+provenance, there are limitations. Only using prospective provenance
+means that the outcomes of some processes can not be predicted. For
+example, if there is a part of a script that is determined by a random
+number, the current implementation of prospective provenance can not
+predict the path that will be taken through the code. Therefore, the
+code cannot be reduced to exclude the pathway that would not be
+taken. Such limitations can be overcome with other data provenance
+methods. One solution is "retrospective" provenance, which tracks a
+computational process as it is executing. Through this active
+monitoring process, retrospective provenance can gather specific
+information, such as the results relevant to our random number
+example. Using retrospective provenance comes at a cost, however, in
+that in order to gather it, the script needs to be executed. When
+scripts are computationally intensive or contain bugs that stop
+execution, then retrospective provenance can not be obtained for part
+or all of the code. The End-to-end Provenance group has implemented
+methods to use retrospective provenance for R and are currently
+working on a project to use it for code cleaning (cite).
 
-## Getting the Graph of Functions and Objects with Provenance
+# A Comment about Comments
 
-[\\]: # ### Provenance
-[\\]: #     ## 1 Why?
-[\\]: #     ## 2 What is it?
-[\\]: #     ## 3 Prospective and retrospective
-[\\]: #     ## 4 CodeDepends
-[\\]: #     ## 5 Other projects: point to End-to-end/provClean
-
-# Results Orientation
-
-[\\]: # ### How variables are isolated
-[\\]: #     ## 1 Single variable selection
-[\\]: #     ## 2 How multiple variables are isolated
-[\\]: # ### More complicated script example
-[\\]: # ### Applied to Drake
-
-# Final Thoughts
-
-[\\]: # Drake
-[\\]: # Other Workflow Projects
+Although, there is often very useful or even invaluable information in
+comments, the `clean` function removes comments when isolating
+code. This is primarily due to the lack of a mathematically formal
+method for determining their relationship to the code itself. Comments
+at the end of lines are typically relevant to the line they are on,
+but this is not explicitly required. Also, comments occupying their
+own lines usually refer to the following lines, but this is also not
+necessarily the case. As `clean` depends on the unambiguous
+determination of relationships in the production of results, it cannot
+operate automatically on comments. However, comments in the original
+code remain untouched and can be used to inform the reduced
+code. Also, as the `clean` function is oriented toward isolating code
+based on a specific result, the resulting code tends to naturally
+support the generation of new comments along the lines of "This
+generates result C using inputs A and B by conducting processing steps
+that do ...".
