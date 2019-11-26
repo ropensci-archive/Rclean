@@ -24,6 +24,14 @@ test_that("clean no re-formatting", {
     expect_true(all(format.simple.out == format.simple.out.test))
 })
 
+test_that("clean multiple variables", {
+    load("clean.multi.test.rda")
+    script <- system.file("example", "simple_script.R", package = "Rclean")
+    simple.script <- readScript(script)
+    vars <- c("tab.15", "out")
+    clean.multi <- clean(simple.script, vars, format = FALSE)
+    expect_true(all(clean.multi == clean.multi.test))
+})
 
 test_that("codeGraph", {
     load("codeGraph.src.rda")
