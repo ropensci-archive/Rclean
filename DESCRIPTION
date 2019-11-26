@@ -1,7 +1,7 @@
 Type: Package
 Package: Rclean
 Title: A Tool for Writing Cleaner, More Transparent Code
-Version: 1.1.0
+Version: 1.1.2
 Authors@R: person("Matthew", "Lau", email = "matthewklau@fas.harvard.edu", role = c("aut", "cre"))
 Description: To create clearer, more concise code provides this
 	     toolbox helps coders to isolate the essential parts of a
@@ -13,7 +13,7 @@ BugReports: https://github.com/MKLau/Rclean/issues
 License: GPL-3 | file LICENSE
 Depends:
    R (>= 3.5.0)
-Imports: igraph, jsonlite, formatR, CodeDepends, methods, Rgraphviz, clipr
+Imports: igraph, jsonlite, CodeDepends, methods, Rgraphviz, clipr, styler
 biocViews: Rgraphviz, graph
 Suggests: roxygen2, testthat, covr, knitr
 Remotes: MKLau/CodeDepends
