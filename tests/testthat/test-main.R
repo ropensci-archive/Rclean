@@ -35,11 +35,20 @@ test_that("codeGraph", {
     expect_true(length(output.cap) == 0)
 })
 
+context("keep: clipr tests")
 
-test_that("keep", {
+test_that("keep write", {
     load("keep.test.rda")    
     keep(clean.simple.out, file = "clean.simple.test.R")
     keep.test <- readLines("clean.simple.test.R")
     file.remove("clean.simple.test.R")
+    expect_true(all(keep.test == clean.simple.out))
+})
+
+
+test_that("keep copy", {
+    load("keep.test.rda")    
+    keep(clean.simple.out)
+    keep.test <- read_clip()
     expect_true(all(keep.test == clean.simple.out))
 })
