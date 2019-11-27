@@ -1,6 +1,7 @@
 ---
 title: "Rclean"
 output: rmarkdown::html_vignette
+bibliography: bibliography.bib
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{Rclean}
@@ -216,8 +217,8 @@ specific information to predict the relationship among processes and
 data objects. *Rclean* relies on a library called *CodeDepends* to
 gather the prospective provenance for each script. For more
 information on the mechanics of the *CodeDepends* package, see
-(cite). To get an idea of what data provenance is, take a look at the
-`code_graph` function. The plot that it generates is a graphical
+[@Lang2019]. To get an idea of what data provenance is, take a look at
+the `code_graph` function. The plot that it generates is a graphical
 representation of the prospective provenance generated for *Rclean*.
 
 ```{R prov-graph}
@@ -243,8 +244,9 @@ that in order to gather it, the script needs to be executed. When
 scripts are computationally intensive or contain bugs that stop
 execution, then retrospective provenance can not be obtained for part
 or all of the code. The End-to-end Provenance group has implemented
-methods to use retrospective provenance for R and are currently
-working on a project to use it for code cleaning (cite).
+methods to use retrospective provenance for R including applications
+on code cleaning. For more information on this work and using
+retrospective provenance, go to http://end-to-end-provenance.github.io.
 
 # A Comment about Comments
 
@@ -261,6 +263,7 @@ operate automatically on comments. However, comments in the original
 code remain untouched and can be used to inform the reduced
 code. Also, as the `clean` function is oriented toward isolating code
 based on a specific result, the resulting code tends to naturally
-support the generation of new comments along the lines of "This
-generates result C using inputs A and B by conducting processing steps
-that do ...".
+support the generation of new comments that are higher level
+(e.g. "The following produces a plot of the mean response of each
+treatment group."), and lower level comments are not necessary because
+the code is simpler and clearer.
