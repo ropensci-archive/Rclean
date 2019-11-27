@@ -36,7 +36,6 @@ get_libs <- function(file){
     }else{
         src <- readScript(file)
     }
-    src <- readScript(file)
     cd <- getInputs(src)
     libs <- unlist(lapply(cd, slot, name = "libraries"))
     libs <- unique(libs)
