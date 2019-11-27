@@ -30,6 +30,12 @@
 #'@author Matthew K. Lau
 
 get_libs <- function(file){
+    ## Check if file is passing a script object
+    if (class(file) == "Script"){
+        src <- file
+    }else{
+        src <- readScript(file)
+    }
     src <- readScript(file)
     cd <- getInputs(src)
     libs <- unlist(lapply(cd, slot, name = "libraries"))

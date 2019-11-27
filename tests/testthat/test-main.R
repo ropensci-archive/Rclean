@@ -1,7 +1,7 @@
 # Prospective Provenance 
 test_that("clean prospective data.frame", {
     load("clean.simple.out.test.rda")
-    simple.script <- CodeDepends::readScript(system.file(
+    simple.script <- readScript(system.file(
         "example", "simple_script.R", package = "Rclean"))
     clean.simple.out <- clean(simple.script, "out")
     expect_true(all(clean.simple.out == clean.simple.out.test))
@@ -10,7 +10,7 @@ test_that("clean prospective data.frame", {
 
 test_that("get_libs", {
     load("lib.test.rda")
-    script <- CodeDepends::readScript("lib_test.R")
+    script <- readScript("lib_test.R")
     lib <- get_libs(script)
     expect_true(all(lib[1:2] == lib.test[1:2]))
 })
@@ -18,7 +18,7 @@ test_that("get_libs", {
 
 test_that("clean no re-formatting", {
     load("format.simple.out.test.rda")
-    simple.script <- CodeDepends::readScript(system.file(
+    simple.script <- readScript(system.file(
         "example", "simple_script.R", package = "Rclean"))
     format.simple.out <- clean(simple.script, "out", format = FALSE)
     expect_true(all(format.simple.out == format.simple.out.test))
@@ -27,7 +27,7 @@ test_that("clean no re-formatting", {
 test_that("clean multiple variables", {
     load("clean.multi.test.rda")
     script <- system.file("example", "simple_script.R", package = "Rclean")
-    simple.script <- CodeDepends::readScript(script)
+    simple.script <- readScript(script)
     vars <- c("tab.15", "out")
     clean.multi <- clean(simple.script, vars, format = FALSE)
     expect_true(all(clean.multi == clean.multi.test))
@@ -35,7 +35,7 @@ test_that("clean multiple variables", {
 
 test_that("codeGraph", {
     load("codeGraph.src.rda")
-    simple.script <- CodeDepends::readScript(system.file(
+    simple.script <- readScript(system.file(
         "example", "simple_script.R", package = "Rclean"))
     output.cap <- capture.output(
         code_graph(simple.script)
