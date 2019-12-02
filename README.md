@@ -6,9 +6,9 @@
 <!-- Code status -->
 
 [![Build
-Status](https://travis-ci.org/ProvTools/Rclean.svg?branch=master)](https://travis-ci.org/ProvTools/Rclean)
+Status](https://travis-ci.org/MKLau/Rclean.svg?branch=master)](https://travis-ci.org/MKLau/Rclean)
 [![Coverage
-status](https://codecov.io/gh/provtools/Rclean/branch/master/graph/badge.svg)](https://codecov.io/github/provtools/Rclean?branch=master)
+status](https://codecov.io/gh/MKLau/Rclean/branch/master/graph/badge.svg)](https://codecov.io/github/MKLau/Rclean?branch=master)
 
 <!-- R status -->
 
@@ -37,17 +37,17 @@ developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repo
 
 # Quick Start Guide
 
-- [Rclean](https://github.com/ProvTools/Rclean) was created to help
+  - [Rclean](https://github.com/ProvTools/Rclean) was created to help
     scientists more *easily* write “cleaner” code.
-- Written with research scientists that are results oriented in mind,
-    the package’s primary function provides a simple way to isolate
-    the minimal code you need to produce a specific result, such as a
-    statistical table or a figure. By focusing on specific results
-    (aka. variables), large and/or complicated analytical scripts can
-    be paired down to the essentials and easily re-factored to be more
+  - Written with research scientists that are results oriented in mind,
+    the package’s primary function provides a simple way to isolate the
+    minimal code you need to produce a specific result, such as a
+    statistical table or a figure. By focusing on specific results (aka.
+    variables), large and/or complicated analytical scripts can be
+    paired down to the essentials and easily re-factored to be more
     robust and easily shared.
-- The following is a brief introduction to the package. For more
-  details, see `vignette("Rclean")`.
+  - Below, you’ll find a brief introduction to get you started using the
+    package. For more details, see `vignette("Rclean")`.
 
 # Install
 
@@ -66,7 +66,16 @@ install.packages("devtools")
 devtools::install_github("MKLau/Rclean")
 ```
 
-Once installed, per usual R practice, just load the *Rclean* package
+You will also likely need to install the
+[RGraphViz](bioconductor.org/packages/release/bioc/html/Rgraphviz.html):
+
+``` r
+
+install.packages("BiocManager")
+BiocManager::install("Rgraphviz")
+```
+
+Once installed, per usual R practice just load the *Rclean* package
 with:
 
 ``` r
@@ -181,7 +190,6 @@ needed.
 ``` r
 keep(my.code)
 ```
-
 
 # Contributing
 
