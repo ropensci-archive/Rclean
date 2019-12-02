@@ -6,9 +6,9 @@
 <!-- Code status -->
 
 [![Build
-Status](https://travis-ci.org/MKLau/Rclean.svg?branch=master)](https://travis-ci.org/MKLau/Rclean)
+Status](https://travis-ci.org/MKLau/Rclean.svg?branch=dev)](https://travis-ci.org/MKLau/Rclean)
 [![Coverage
-status](https://codecov.io/gh/MKLau/Rclean/branch/master/graph/badge.svg)](https://codecov.io/github/MKLau/Rclean?branch=master)
+status](https://codecov.io/gh/MKLau/Rclean/branch/dev/graph/badge.svg)](https://codecov.io/github/MKLau/Rclean?branch=dev)
 
 <!-- R status -->
 
