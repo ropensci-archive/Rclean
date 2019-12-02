@@ -11,13 +11,13 @@ x <- do.call(cbind, x)
 ### This is the best variable the world has ever seen.
 
 x2 <- sample(10:1000, 100)
-x2 <- sapply(x2, rnorm)
+x2 <- lapply(x2, rnorm)
 
 ### Wait, now I had another thought about x that I want to work through.
 
 x <- x * 2
-colnames(x) <- paste0("X", 1:ncol(x))
-rownames(x) <- LETTERS[1:nrow(x)]
+colnames(x) <- paste0("X", seq_len(ncol(x)))
+rownames(x) <- LETTERS[seq_len(nrow(x))]
 x <- t(x)
 x[, "A"] <- sqrt(x[, "A"])
 
