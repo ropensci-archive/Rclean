@@ -42,7 +42,6 @@ test_that("codeGraph", {
     expect_true(length(output.cap) == 0)
 })
 
-context("keep: clipr tests")
 
 test_that("keep write", {
     load("keep.test.rda")    
