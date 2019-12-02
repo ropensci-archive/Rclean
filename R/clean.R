@@ -110,7 +110,7 @@ min_graph <- function(vp = "variable path", vl = "variable lineage") {
 #' leading to the creation of a variable or all descendent steps that
 #' use that variable.
 #' 
-#' @param g An adjacenty matrix that presents the use and creation of
+#'@param g An adjacenty matrix that presents the use and creation of
 #'     variables by steps (i.e. complexes of function and operation
 #'     calls).
 #'@param node.id The name of the variable of interest.
@@ -121,6 +121,7 @@ min_graph <- function(vp = "variable path", vl = "variable lineage") {
 #'     for the object identified by the node ID.
 #'@importFrom igraph graph_from_adjacency_matrix
 #'@importFrom igraph dfs
+#'@importFrom stats na.omit
 #'@noRd
 #'@author Matthew K. Lau
 

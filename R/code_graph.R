@@ -26,6 +26,9 @@
 #'@importFrom igraph graph_from_adjacency_matrix
 #'@importFrom igraph igraph.to.graphNEL
 #'@importFrom Rgraphviz plot
+#'@importFrom grDevices pdf
+#'@importFrom grDevices dev.off
+#'@importFrom grDevices 
 #'@export code_graph
 #'@author Matthew K. Lau
 #'@examples
