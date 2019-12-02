@@ -38,8 +38,8 @@ original_files <- dir()
 <!-- Archiving -->
 [![DOI](https://zenodo.org/badge/102645585.svg)](https://zenodo.org/badge/latestdoi/102645585)
 
-Clean up your code
-==================
+Quick Start Guide
+=================
 
 - [Rclean](https://github.com/ProvTools/Rclean) was created to help
     scientists more *easily* write “cleaner” code.
@@ -50,8 +50,8 @@ Clean up your code
     (aka. variables), large and/or complicated analytical scripts can
     be paired down to the essentials and easily re-factored to be more
     robust and easily shared.
-- The following is a brief introduction to the package. For more
-  details, see `vignette("Rclean")`.
+- Below, you'll find a brief introduction to get you started using the
+  package. For more details, see `vignette("Rclean")`.
 
 
 Install
@@ -75,11 +75,9 @@ devtools::install_github("MKLau/Rclean")
 You will also likely need to install the
 [RGraphViz](bioconductor.org/packages/release/bioc/html/Rgraphviz.html):
 
-```{R rgraphviz}
+```{R install_rgraphviz, eval = FALSE}
 
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-
+install.packages("BiocManager")
 BiocManager::install("Rgraphviz")
 
 ```
