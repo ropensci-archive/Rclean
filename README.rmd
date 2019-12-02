@@ -134,7 +134,7 @@ Sometimes for more complicated scripts, it can be helpful to see a
  variables. `code_graph` will produce a network diagram showing which
  lines of code produce or use which variables:
 
-```{r eval = TRUE}
+```{r eval = TRUE, out.width = "75%", dpi = 300}
 
 code_graph(script)
 

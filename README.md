@@ -138,7 +138,7 @@ use which variables:
 code_graph(script)
 ```
 
-<img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-8-1.png" width="75%" />
 
 Now, we can pick the result we want to focus on for cleaning:
 
