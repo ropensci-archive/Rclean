@@ -37,31 +37,31 @@
 var_lineage <- function(src = "script"){
     ## variable data frame
     vdf <- getDetailedTimelines(info = getInputs(src))
-    rownames(vdf) <- 1:nrow(vdf)
+    rownames(vdf) <- seq(1, nrow(vdf))
     ## lineage graph
                                         # defined by
     def.by <- do.call(cbind, 
                       split(as.numeric(vdf[, "defined"]), 
                             vdf[, "var"]))
-    rownames(def.by) <- 1:nrow(def.by)
+    rownames(def.by) <- seq(1, nrow(def.by))
                                         # used by
     use.by <- do.call(cbind, 
                       split(as.numeric(vdf[, "used"]), 
                             vdf[, "var"]))
-    rownames(use.by) <- 1:nrow(use.by)
+    rownames(use.by) <- seq(1, nrow(use.by))
                                         # full lineage graph
                                         # adding empty subgraphs
     def.by <- cbind(
         array(0, dim = rep(nrow(def.by), 2)), 
         def.by
     )
-    colnames(def.by)[1:nrow(def.by)] <- 1:nrow(def.by)
+    colnames(def.by)[seq(1, nrow(def.by))] <- seq(1, nrow(def.by))
     use.by <- cbind(
         t(use.by), 
         array(0, dim = rep(ncol(use.by), 2))
     )
                                         # sub-graph range
-    sg.range <- (ncol(use.by) - nrow(use.by) + 1):ncol(use.by)
+    sg.range <- ncol(use.by) - seq((nrow(use.by) + 1), ncol(use.by))
                                         # rename nodes
     colnames(use.by)[sg.range] <- rownames(use.by)
     lg <- rbind(def.by, use.by)
