@@ -35,11 +35,10 @@
 #' @export clean
 #' @author Matthew K. Lau
 #' @examples
-#' script <- readScript(
-#'     system.file(
+#' script <- system.file(
 #'         "example", 
 #'         "simple_script.R", 
-#'         package = "Rclean"))
+#'         package = "Rclean")
 #' clean(script)
 #' clean(script, "mat")
 #' clean(script, "tab.12")
