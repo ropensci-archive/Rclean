@@ -4,16 +4,16 @@
 \alias{clean}
 \title{clean --- Clean code.}
 \usage{
-clean(file, vars, format = TRUE)
+clean(script, vars, format = TRUE)
 }
 \arguments{
+\item{script}{File path to a script or a Script object from
+CodeDepends.}
+
 \item{vars}{The name of the variable(s) of interest.}
 
 \item{format}{LOGICAL: should the minimized code be re-formatted
 following common syntax style guides?}
-
-\item{script}{File path to a script or a Script object from
-CodeDepends.}
 }
 \value{
 A character vector containing a minimized script based on
@@ -25,11 +25,10 @@ algorithmic detection of the essential code needed to produce a set
 of results.
 }
 \examples{
-script <- readScript(
-    system.file(
+script <- system.file(
         "example", 
         "simple_script.R", 
-        package = "Rclean"))
+        package = "Rclean")
 clean(script)
 clean(script, "mat")
 clean(script, "tab.12")
