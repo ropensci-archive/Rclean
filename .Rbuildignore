@@ -1,5 +1,6 @@
 ^codecov\.yml$
 CONTRIBUTE.md
+CONTRIBUTING.md
 cran-comments.md
 .travis.yml
 cleanR-demo.gif
