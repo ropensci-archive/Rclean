@@ -35,17 +35,19 @@ developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repo
 
 [![DOI](https://zenodo.org/badge/102645585.svg)](https://zenodo.org/badge/latestdoi/102645585)
 
-# Clean up your code
+# Quick Start Guide
 
-  - [Rclean](https://github.com/ProvTools/Rclean) was created to help
+- [Rclean](https://github.com/ProvTools/Rclean) was created to help
     scientists more *easily* write “cleaner” code.
-  - Written with research scientists that are results oriented in mind,
-    the package’s primary function provides a simple way to isolate the
-    minimal code you need to produce a specific result, such as a
-    statistical table or a figure.
-  - By focusing on specific results (aka. variables), large and/or
-    complicated analytical scripts can be paired down to the essentials
-    and easily re-factored to be more robust and easily shared.
+- Written with research scientists that are results oriented in mind,
+    the package’s primary function provides a simple way to isolate
+    the minimal code you need to produce a specific result, such as a
+    statistical table or a figure. By focusing on specific results
+    (aka. variables), large and/or complicated analytical scripts can
+    be paired down to the essentials and easily re-factored to be more
+    robust and easily shared.
+- The following is a brief introduction to the package. For more
+  details, see `vignette("Rclean")`.
 
 # Install
 
@@ -179,6 +181,7 @@ needed.
 ``` r
 keep(my.code)
 ```
+
 
 # Contributing
 

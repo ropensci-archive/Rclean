@@ -41,15 +41,18 @@ original_files <- dir()
 Clean up your code
 ==================
 
-- [Rclean](https://github.com/MKLau/Rclean) was created to help
-  scientists more *easily* write "cleaner" code. 
+- [Rclean](https://github.com/ProvTools/Rclean) was created to help
+    scientists more *easily* write “cleaner” code.
 - Written with research scientists that are results oriented in mind,
-  the package's primary function provides a simple way to isolate the
-  minimal code you need to produce a specific result, such as a
-  statistical table or a figure.
-- By focusing on specific results (aka. variables), large and/or
-  complicated analytical scripts can be paired down to the essentials
-  and easily re-factored to be more robust and easily shared.
+    the package’s primary function provides a simple way to isolate
+    the minimal code you need to produce a specific result, such as a
+    statistical table or a figure. By focusing on specific results
+    (aka. variables), large and/or complicated analytical scripts can
+    be paired down to the essentials and easily re-factored to be more
+    robust and easily shared.
+- The following is a brief introduction to the package. For more
+  details, see `vignette("Rclean")`.
+
 
 Install
 =======

@@ -17,7 +17,7 @@ r_packages:
 #   - graph
 
 r_github_packages:
-  - ProvTools/provR
+#  - ProvTools/provR
 #  - duncantl/CodeDepends
   
 after_success:
