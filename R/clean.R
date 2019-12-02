@@ -44,12 +44,12 @@
 #' clean(script, "tab.12")
 #' clean(script, c("mat", "tab.12", "out")
 
-clean <- function(file, vars, format = TRUE){
+clean <- function(script, vars, format = TRUE){
     ## Check if file is passing a script object
-    if (class(file) == "Script"){
+    if (class(script) == "Script"){
         src <- file
     }else{
-        src <- readScript(file)
+        src <- readScript(script)
     }
     ## Check if a variable has been supplied, then find
     ## minimal code.
