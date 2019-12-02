@@ -1,8 +1,7 @@
-# Prospective Provenance 
 test_that("clean prospective data.frame", {
     load("clean.simple.out.test.rda")
-    simple.script <- readScript(system.file(
-        "example", "simple_script.R", package = "Rclean"))
+    simple.script <- system.file(
+        "example", "simple_script.R", package = "Rclean")
     clean.simple.out <- clean(simple.script, "out")
     expect_true(all(clean.simple.out == clean.simple.out.test))
 })
@@ -18,8 +17,8 @@ test_that("get_libs", {
 
 test_that("clean no re-formatting", {
     load("format.simple.out.test.rda")
-    simple.script <- readScript(system.file(
-        "example", "simple_script.R", package = "Rclean"))
+    simple.script <- system.file(
+        "example", "simple_script.R", package = "Rclean")
     format.simple.out <- clean(simple.script, "out", format = FALSE)
     expect_true(all(format.simple.out == format.simple.out.test))
 })
@@ -35,8 +34,8 @@ test_that("clean multiple variables", {
 
 test_that("codeGraph", {
     load("codeGraph.src.rda")
-    simple.script <- readScript(system.file(
-        "example", "simple_script.R", package = "Rclean"))
+    simple.script <- system.file(
+        "example", "simple_script.R", package = "Rclean")
     output.cap <- capture.output(
         code_graph(simple.script)
     )
