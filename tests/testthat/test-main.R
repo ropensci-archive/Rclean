@@ -10,8 +10,8 @@ test_that("clean prospective data.frame", {
 
 test_that("get_libs", {
     load("lib.test.rda")
-    lib.test <- readScript("lib_test.R")
-    lib <- get_libs(lib.test)
+    script <- readScript("lib_test.R")
+    lib <- get_libs(script)
     expect_true(all(lib[1:2] == lib.test[1:2]))
 })
 
@@ -24,6 +24,14 @@ test_that("clean no re-formatting", {
     expect_true(all(format.simple.out == format.simple.out.test))
 })
 
+test_that("clean multiple variables", {
+    load("clean.multi.test.rda")
+    script <- system.file("example", "simple_script.R", package = "Rclean")
+    simple.script <- readScript(script)
+    vars <- c("tab.15", "out")
+    clean.multi <- clean(simple.script, vars, format = FALSE)
+    expect_true(all(clean.multi == clean.multi.test))
+})
 
 test_that("codeGraph", {
     load("codeGraph.src.rda")
@@ -35,11 +43,20 @@ test_that("codeGraph", {
     expect_true(length(output.cap) == 0)
 })
 
+context("keep: clipr tests")
 
-test_that("keep", {
+test_that("keep write", {
     load("keep.test.rda")    
     keep(clean.simple.out, file = "clean.simple.test.R")
     keep.test <- readLines("clean.simple.test.R")
     file.remove("clean.simple.test.R")
+    expect_true(all(keep.test == clean.simple.out))
+})
+
+
+test_that("keep copy", {
+    load("keep.test.rda")    
+    keep(clean.simple.out)
+    keep.test <- clipr::read_clip()
     expect_true(all(keep.test == clean.simple.out))
 })

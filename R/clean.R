@@ -141,7 +141,7 @@ get_path <- function(g = "graph",
                        direction, 
                        unreachable = FALSE)$order
         out <- as.character(na.omit(names(dfs.result)))
-        if (direction == "in"){out <- out[length(out):1]}
+        if (direction == "in"){out <- out[seq(length(out), 1)]}
     }
 return(out)
 }

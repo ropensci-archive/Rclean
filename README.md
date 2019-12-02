@@ -6,9 +6,9 @@
 <!-- Code status -->
 
 [![Build
-Status](https://travis-ci.org/ProvTools/Rclean.svg?branch=master)](https://travis-ci.org/ProvTools/Rclean)
+Status](https://travis-ci.org/MKLau/Rclean.svg?branch=master)](https://travis-ci.org/MKLau/Rclean)
 [![Coverage
-status](https://codecov.io/gh/provtools/Rclean/branch/master/graph/badge.svg)](https://codecov.io/github/provtools/Rclean?branch=master)
+status](https://codecov.io/gh/MKLau/Rclean/branch/master/graph/badge.svg)](https://codecov.io/github/MKLau/Rclean?branch=master)
 
 <!-- R status -->
 
@@ -35,17 +35,19 @@ developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repo
 
 [![DOI](https://zenodo.org/badge/102645585.svg)](https://zenodo.org/badge/latestdoi/102645585)
 
-# Clean up your code
+# Quick Start Guide
 
   - [Rclean](https://github.com/ProvTools/Rclean) was created to help
     scientists more *easily* write “cleaner” code.
   - Written with research scientists that are results oriented in mind,
     the package’s primary function provides a simple way to isolate the
     minimal code you need to produce a specific result, such as a
-    statistical table or a figure.
-  - By focusing on specific results (aka. variables), large and/or
-    complicated analytical scripts can be paired down to the essentials
-    and easily re-factored to be more robust and easily shared.
+    statistical table or a figure. By focusing on specific results (aka.
+    variables), large and/or complicated analytical scripts can be
+    paired down to the essentials and easily re-factored to be more
+    robust and easily shared.
+  - Below, you’ll find a brief introduction to get you started using the
+    package. For more details, see `vignette("Rclean")`.
 
 # Install
 
@@ -64,7 +66,16 @@ install.packages("devtools")
 devtools::install_github("MKLau/Rclean")
 ```
 
-Once installed, per usual R practice, just load the *Rclean* package
+You will also likely need to install the
+[RGraphViz](bioconductor.org/packages/release/bioc/html/Rgraphviz.html):
+
+``` r
+
+install.packages("BiocManager")
+BiocManager::install("Rgraphviz")
+```
+
+Once installed, per usual R practice just load the *Rclean* package
 with:
 
 ``` r
@@ -120,17 +131,19 @@ get_vars(script)
 Sometimes for more complicated scripts, it can be helpful to see a
 network graph showing the interdependencies of variables. `code_graph`
 will produce a network diagram showing which lines of code produce or
-use which variables (e.g. 1 -\> “out”):
+use which variables:
 
 ``` r
+
 code_graph(script)
 ```
 
-<img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-8-1.png" width="75%" />
 
 Now, we can pick the result we want to focus on for cleaning:
 
 ``` r
+
 clean(script, "tab.15")
 #> mat <- matrix(rnorm(400), nrow = 100)
 #> dat <- as.data.frame(mat)

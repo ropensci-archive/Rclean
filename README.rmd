@@ -38,18 +38,21 @@ original_files <- dir()
 <!-- Archiving -->
 [![DOI](https://zenodo.org/badge/102645585.svg)](https://zenodo.org/badge/latestdoi/102645585)
 
-Clean up your code
-==================
+Quick Start Guide
+=================
 
-- [Rclean](https://github.com/MKLau/Rclean) was created to help
-  scientists more *easily* write "cleaner" code. 
+- [Rclean](https://github.com/ProvTools/Rclean) was created to help
+    scientists more *easily* write “cleaner” code.
 - Written with research scientists that are results oriented in mind,
-  the package's primary function provides a simple way to isolate the
-  minimal code you need to produce a specific result, such as a
-  statistical table or a figure.
-- By focusing on specific results (aka. variables), large and/or
-  complicated analytical scripts can be paired down to the essentials
-  and easily re-factored to be more robust and easily shared.
+    the package’s primary function provides a simple way to isolate
+    the minimal code you need to produce a specific result, such as a
+    statistical table or a figure. By focusing on specific results
+    (aka. variables), large and/or complicated analytical scripts can
+    be paired down to the essentials and easily re-factored to be more
+    robust and easily shared.
+- Below, you'll find a brief introduction to get you started using the
+  package. For more details, see `vignette("Rclean")`.
+
 
 Install
 =======
@@ -72,11 +75,9 @@ devtools::install_github("MKLau/Rclean")
 You will also likely need to install the
 [RGraphViz](bioconductor.org/packages/release/bioc/html/Rgraphviz.html):
 
-```{R rgraphviz}
+```{R install_rgraphviz, eval = FALSE}
 
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-
+install.packages("BiocManager")
 BiocManager::install("Rgraphviz")
 
 ```
@@ -131,17 +132,21 @@ get_vars(script)
 Sometimes for more complicated scripts, it can be helpful to see a
  network graph showing the interdependencies of
  variables. `code_graph` will produce a network diagram showing which
- lines of code produce or use which variables (e.g. 1 -> "out"):
+ lines of code produce or use which variables:
 
-```{r eval = TRUE}
+```{r eval = TRUE, out.width = "75%", dpi = 300}
+
 code_graph(script)
+
 ```
 
 Now, we can pick the result we want to focus on for cleaning:
 
 
 ```{r eval = TRUE}
+
 clean(script, "tab.15")
+
 ```
 
 We can also select several variables at the same time:

@@ -7,4 +7,5 @@ cleanR_demo_vid.png
 ^joss
 ^ropensci
 ^CODE_OF_CONDUCT\.md$
-make.R
+README.rmd
+README.html

@@ -2,19 +2,18 @@
 % Please edit documentation in R/get_libs.R
 \name{get_libs}
 \alias{get_libs}
-\title{get_libs --- Determine the libraries needed for a given script.}
+\title{get_libs --- Determine the libraries referenced in a given script.}
 \usage{
-get_libs(src)
+get_libs(file)
 }
 \arguments{
-\item{src}{}
+\item{file}{Path to the script.}
 }
 \value{
-The libraries used for each step of the script.
+Returns the libraries referenced in the script.
 }
 \description{
-Uses code dependency information to produce a set of necessary
-libraries.
+get_libs --- Determine the libraries referenced in a given script.
 }
 \author{
 Matthew K. Lau
