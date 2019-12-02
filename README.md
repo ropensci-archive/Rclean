@@ -131,9 +131,10 @@ get_vars(script)
 Sometimes for more complicated scripts, it can be helpful to see a
 network graph showing the interdependencies of variables. `code_graph`
 will produce a network diagram showing which lines of code produce or
-use which variables (e.g. 1 -\> “out”):
+use which variables:
 
 ``` r
+
 code_graph(script)
 ```
 
@@ -142,6 +143,7 @@ code_graph(script)
 Now, we can pick the result we want to focus on for cleaning:
 
 ``` r
+
 clean(script, "tab.15")
 #> mat <- matrix(rnorm(400), nrow = 100)
 #> dat <- as.data.frame(mat)
