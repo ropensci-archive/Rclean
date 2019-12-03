@@ -18,11 +18,10 @@ Determining the variables that are created in a script is useful
 for orienting code cleaning (i.e. refactoring) efforts.
 }
 \examples{
-script <- readScript(
-    system.file(
+script <- system.file(
         "example", 
         "simple_script.R", 
-        package = "Rclean"))
+        package = "Rclean")
 get_vars(script)
 }
 \author{

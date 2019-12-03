@@ -31,9 +31,11 @@
 #'@export code_graph
 #'@author Matthew K. Lau
 #'@examples
+#'\dontrun{
 #' script <- system.file("example", "simple_script.R", package = "Rclean")
 #' simple.script <- readScript(script)
 #' code_graph(simple.script)
+#'}
 
 code_graph <- function(script, pdf.file){
     if (class(script) == "character"){
