@@ -52,9 +52,9 @@ test_that("keep write", {
 })
 
 
-test_that("keep copy", {
-    load("keep.test.rda")    
-    keep(clean.simple.out)
-    keep.test <- clipr::read_clip(allow_non_interactive = TRUE)
-    expect_true(all(keep.test == clean.simple.out))
-})
+## test_that("keep copy", {
+##     load("keep.test.rda")    
+##     keep(clean.simple.out)
+##     keep.test <- clipr::read_clip(allow_non_interactive = TRUE)
+##     expect_true(all(keep.test == clean.simple.out))
+## })
