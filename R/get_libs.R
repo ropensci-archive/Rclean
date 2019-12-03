@@ -31,12 +31,11 @@
 #'@examples
 #' script <- system.file(
 #'         "example", 
-#'         "simple_script.R", 
+#'         "long_script.R", 
 #'         package = "Rclean")
 #' get_libs(script)
 
 get_libs <- function(file){
-    ## Check if file is passing a script object
     if (class(file) == "Script"){
         src <- file
     }else{

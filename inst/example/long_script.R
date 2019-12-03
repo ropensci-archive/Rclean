@@ -1,3 +1,4 @@
+library(stats)
 x <- 1:100
 x <- log(x)
 x <- x^2
