@@ -30,11 +30,10 @@
 #' @export get_vars
 #' @author Matthew K. Lau
 #' @examples
-#' script <- readScript(
-#'     system.file(
+#' script <- system.file(
 #'         "example", 
 #'         "simple_script.R", 
-#'         package = "Rclean"))
+#'         package = "Rclean")
 #' get_vars(script)
 
 get_vars <- function(script){
