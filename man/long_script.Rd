@@ -4,11 +4,7 @@
 \name{long_script}
 \alias{long_script}
 \title{Long R script.}
-\format{A vector of code lines:
-\describe{
-  \item{simple_script}{The script.}
-  ...
-}}
+\format{An object of class \code{character} of length 79.}
 \usage{
 long_script
 }

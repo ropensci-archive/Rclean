@@ -42,7 +42,7 @@
 #' clean(script)
 #' clean(script, "mat")
 #' clean(script, "tab.12")
-#' clean(script, c("mat", "tab.12", "out")
+#' clean(script, c("mat", "tab.12", "out"))
 
 clean <- function(script, vars, format = TRUE){
     ## Check if file is passing a script object

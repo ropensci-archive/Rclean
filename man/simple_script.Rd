@@ -4,11 +4,7 @@
 \name{simple_script}
 \alias{simple_script}
 \title{Simple R script.}
-\format{A vector of code lines:
-\describe{
-  \item{simple_script}{The script.}
-  ... 
-}}
+\format{An object of class \code{character} of length 20.}
 \usage{
 simple_script
 }
