@@ -47,7 +47,7 @@
 clean <- function(script, vars, format = TRUE){
     ## Check if file is passing a script object
     if (class(script) == "Script"){
-        src <- file
+        src <- script
     }else{
         src <- readScript(script)
     }
