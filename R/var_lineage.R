@@ -61,9 +61,10 @@ var_lineage <- function(src = "script"){
         array(0, dim = rep(ncol(use.by), 2))
     )
                                         # sub-graph range
-    sg.range <- ncol(use.by) - seq((nrow(use.by) + 1), ncol(use.by))
-                                        # rename nodes
+    sg.range <- seq((ncol(use.by) - nrow(use.by) + 1), ncol(use.by))
+                                            # rename nodes
     colnames(use.by)[sg.range] <- rownames(use.by)
     lg <- rbind(def.by, use.by)
-    return(list(g = lg, vdf = vdf))
+    out <- list(g = lg, vdf = vdf)
+    return(out)
 }
