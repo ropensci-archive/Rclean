@@ -32,7 +32,7 @@ script <- system.file(
 clean(script)
 clean(script, "mat")
 clean(script, "tab.12")
-clean(script, c("mat", "tab.12", "out")
+clean(script, c("mat", "tab.12", "out"))
 }
 \author{
 Matthew K. Lau

@@ -28,6 +28,7 @@
 #'@importFrom methods slot
 #'@export get_libs
 #'@author Matthew K. Lau
+#' 
 
 get_libs <- function(file){
     ## Check if file is passing a script object
