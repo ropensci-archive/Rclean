@@ -18,9 +18,11 @@ A network plot.
 Plot the dependencies among functions and objects for a given script.
 }
 \examples{
+\dontrun{
 script <- system.file("example", "simple_script.R", package = "Rclean")
 simple.script <- readScript(script)
 code_graph(simple.script)
+}
 }
 \author{
 Matthew K. Lau
