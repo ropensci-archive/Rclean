@@ -4,7 +4,7 @@
 \name{simple_script}
 \alias{simple_script}
 \title{Simple R script.}
-\format{An object of class \code{character} of length 20.}
+\format{A character vector of code lines.}
 \usage{
 simple_script
 }
