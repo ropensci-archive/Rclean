@@ -35,22 +35,21 @@
 #' @export clean
 #' @author Matthew K. Lau
 #' @examples
-#' script <- readScript(
-#'     system.file(
+#' script <- system.file(
 #'         "example", 
 #'         "simple_script.R", 
-#'         package = "Rclean"))
+#'         package = "Rclean")
 #' clean(script)
 #' clean(script, "mat")
 #' clean(script, "tab.12")
-#' clean(script, c("mat", "tab.12", "out")
+#' clean(script, c("mat", "tab.12", "out"))
 
-clean <- function(file, vars, format = TRUE){
+clean <- function(script, vars, format = TRUE){
     ## Check if file is passing a script object
-    if (class(file) == "Script"){
-        src <- file
+    if (class(script) == "Script"){
+        src <- script
     }else{
-        src <- readScript(file)
+        src <- readScript(script)
     }
     ## Check if a variable has been supplied, then find
     ## minimal code.
@@ -111,7 +110,7 @@ min_graph <- function(vp = "variable path", vl = "variable lineage") {
 #' leading to the creation of a variable or all descendent steps that
 #' use that variable.
 #' 
-#' @param g An adjacenty matrix that presents the use and creation of
+#'@param g An adjacenty matrix that presents the use and creation of
 #'     variables by steps (i.e. complexes of function and operation
 #'     calls).
 #'@param node.id The name of the variable of interest.
@@ -122,6 +121,7 @@ min_graph <- function(vp = "variable path", vl = "variable lineage") {
 #'     for the object identified by the node ID.
 #'@importFrom igraph graph_from_adjacency_matrix
 #'@importFrom igraph dfs
+#'@importFrom stats na.omit
 #'@noRd
 #'@author Matthew K. Lau
 

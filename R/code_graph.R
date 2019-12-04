@@ -26,12 +26,16 @@
 #'@importFrom igraph graph_from_adjacency_matrix
 #'@importFrom igraph igraph.to.graphNEL
 #'@importFrom Rgraphviz plot
+#'@importFrom grDevices pdf
+#'@importFrom grDevices dev.off
 #'@export code_graph
 #'@author Matthew K. Lau
 #'@examples
-#' simple.script <- readScript(system.file(
-#'     "example", "simple_script.R", package = "Rclean"))
+#'\dontrun{
+#' script <- system.file("example", "simple_script.R", package = "Rclean")
+#' simple.script <- readScript(script)
 #' code_graph(simple.script)
+#'}
 
 code_graph <- function(script, pdf.file){
     if (class(script) == "character"){

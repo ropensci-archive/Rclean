@@ -28,9 +28,14 @@
 #'@importFrom methods slot
 #'@export get_libs
 #'@author Matthew K. Lau
+#'@examples
+#' script <- system.file(
+#'         "example", 
+#'         "long_script.R", 
+#'         package = "Rclean")
+#' get_libs(script)
 
 get_libs <- function(file){
-    ## Check if file is passing a script object
     if (class(file) == "Script"){
         src <- file
     }else{

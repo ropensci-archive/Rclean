@@ -15,6 +15,13 @@ Returns the libraries referenced in the script.
 \description{
 get_libs --- Determine the libraries referenced in a given script.
 }
+\examples{
+script <- system.file(
+        "example", 
+        "long_script.R", 
+        package = "Rclean")
+get_libs(script)
+}
 \author{
 Matthew K. Lau
 }

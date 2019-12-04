@@ -35,10 +35,14 @@
 #' @importFrom clipr write_clip
 #' @author Matthew K. Lau
 #' @examples
-#'  data(prov_json)
-#'  options(prov.json = prov_json)
-#'  some.code <- c("x <- 1", "y <- x + 1")
-#'  keep(some.code) # copies to clipboard by default
+#' \dontrun{
+#' clean.code <- data(simple_script)
+#' ## Copies code to your clipboard
+#' keep(clean.code)
+#' ## Saves code to your disk
+#' keep(clean.code, file = "clean_code.R")
+#' }
+
 
 keep <- function(x, file = NULL){
     if (is.null(file)){

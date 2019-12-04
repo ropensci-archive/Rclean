@@ -3,11 +3,8 @@
 \docType{data}
 \name{long_script}
 \alias{long_script}
-\title{Long R script.}
-\format{A vector of code lines.
-\describe{
-  \item{simple_script}{The script.}
-}}
+\title{Long R script}
+\format{A character vector of code lines.}
 \usage{
 long_script
 }
