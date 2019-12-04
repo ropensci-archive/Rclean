@@ -2,9 +2,16 @@
 
 - [x] Address issues
 - [x] Increment version
-- [ ] Submit pull requests to dev
+- [x] Submit pull requests to dev
 - [ ] Once checks pass submit to master
 - [ ] Summarize for reviewers, references issue numbers and commits
+
+
+Overall Response @MKLau 
+- Thanks again for reviewing.
+- Below are the point by point responses.
+- For unchecked, please see the comments that follow.
+
 
 ## Documentation
 
