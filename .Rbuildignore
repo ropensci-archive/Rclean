@@ -1,11 +1,13 @@
 ^codecov\.yml$
 CONTRIBUTE.md
+CONTRIBUTING.md
 cran-comments.md
 .travis.yml
 cleanR-demo.gif
 cleanR_demo_vid.png
-^exec/loader.R
-^example
 ^joss
 ^ropensci
 ^CODE_OF_CONDUCT\.md$
+README.Rmd
+README.rmd
+README.html

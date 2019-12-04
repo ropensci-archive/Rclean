@@ -78,7 +78,7 @@ Obtaining provenance graph
 
 Prospective provenance
 
-Retrospective provenance requirements
+Retrospective provenance projects
 
 Description of graph algorithm used
 
@@ -109,7 +109,7 @@ contributions. For example, the existing framework could be extended
 to support new provenance capture methods, and there is tremendous
 potential for the use of code cleaning in the creation of more robust
 capsules [@Pasquier2018]. Interested contributors can connect to the
-project at https://github.com/provtools/Rclean. The project is also
+project at https://github.com/MKLau/Rclean. The project is also
 tagged and curated at Zenodo (DOI: 10.5281/zenodo.1208640).
 
 
