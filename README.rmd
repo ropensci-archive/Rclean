@@ -57,13 +57,6 @@ Quick Start Guide
 Install
 =======
 
-You can install
-[Rclean](https://cran.r-project.org/web/packages/Rclean/) from *CRAN*: 
-
-```{r eval = FALSE}
-install.packages("Rclean")
-```
-
 You can install the most up to date version easily with
 [devtools](https://github.com/hadley/devtools):
 

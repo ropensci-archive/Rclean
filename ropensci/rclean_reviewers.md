@@ -1,17 +1,16 @@
-# ROpenSci Reviewer Synthesis
+# General Response
 
-- [x] Address issues
-- [x] Increment version
-- [x] Submit pull requests to dev
-- [ ] Once checks pass submit to master
-- [ ] Summarize for reviewers, references issue numbers and commits
+Thanks again to @wlandau and @nevrome for reviewing the package and
+providing insightful comments. I have updated the package greatly
+based on the various suggestions and questions. These updates are
+documented in the package's github repo issue and change logs. I
+detailed the changes as they pertain to the reviewers' comments point
+by point below. For unchecked, please see the comments that follow. In
+addition, I would like to point out that the package repo is now
+hosted at https://gitub.com/MKLau/Rclean, which is the result of
+shifts in how the project is now being managed. 
 
-
-Overall Response @MKLau 
-- Thanks again for reviewing.
-- Below are the point by point responses.
-- For unchecked, please see the comments that follow.
-
+# Response to Reviewer Comments
 ## Documentation
 
 - [x] @wlandau Please include a CODE_OF_CONDUCT.md file at the top
@@ -210,7 +209,7 @@ these updates to the text.
 
    @mklau: This has been added to the README.
 
-#### API
+### API
 
 - [x] @wlandau The clean() function tries to do three things: (1) list
     lines of execution, (2) list the names of possible results, and
@@ -311,7 +310,7 @@ these updates to the text.
 
      Good suggestion. Switched to snake case throughout. 
 
-#### Installation and automated checks
+### Installation and automated checks
 
 - [x] @wlandau Re
     https://github.com/ropensci/software-review/issues/327#issuecomment-520062929,
@@ -396,7 +395,7 @@ these updates to the text.
     package. goodpractice::gp() currently reports "Ah! Perfect
     package! Keep up the cat's pajamas work!".
 
-#### Miscellaneous
+### Miscellaneous
 
 - [x] @wlandau I am a bit concerned about the scope of the built-in
     unit tests. It would be helpful to test at least one longer script
@@ -486,6 +485,3 @@ these updates to the text.
 
     This has been updated to treat warnings as errors.. 
 
-## Final Approval
-@wlandau: agree to be listed in DESCRIPTION, need to approve all changes
-@nevrome: agree to be listed in DESCRIPTION, need to approve all changes
