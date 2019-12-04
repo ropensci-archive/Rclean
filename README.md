@@ -6,9 +6,9 @@
 <!-- Code status -->
 
 [![Build
-Status](https://travis-ci.org/MKLau/Rclean.svg?branch=dev)](https://travis-ci.org/MKLau/Rclean)
+Status](https://travis-ci.org/MKLau/Rclean.svg?branch=master)](https://travis-ci.org/MKLau/Rclean)
 [![Coverage
-status](https://codecov.io/gh/MKLau/Rclean/branch/dev/graph/badge.svg)](https://codecov.io/github/MKLau/Rclean?branch=dev)
+status](https://codecov.io/gh/MKLau/Rclean/branch/master/graph/badge.svg)](https://codecov.io/github/MKLau/Rclean?branch=master)
 
 <!-- R status -->
 
@@ -50,13 +50,6 @@ developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repo
     package. For more details, see `vignette("Rclean")`.
 
 # Install
-
-You can install
-[Rclean](https://cran.r-project.org/web/packages/Rclean/) from *CRAN*:
-
-``` r
-install.packages("Rclean")
-```
 
 You can install the most up to date version easily with
 [devtools](https://github.com/hadley/devtools):
@@ -138,7 +131,7 @@ use which variables:
 code_graph(script)
 ```
 
-<img src="man/figures/README-unnamed-chunk-8-1.png" width="75%" />
+<img src="man/figures/README-unnamed-chunk-7-1.png" width="75%" />
 
 Now, we can pick the result we want to focus on for cleaning:
 
