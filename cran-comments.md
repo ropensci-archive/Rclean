@@ -1,28 +1,19 @@
 ## Test environments
-* local OS X install, R 3.4.3
-* ubuntu 14.14 (on travis-ci), R 3.4.4
+* local OS X install, R 3.6.1
+* ubuntu 16.04 (on travis-ci), R unstable r77518
+* ubuntu 16.04 (on travis-ci), R 3.6.1
+* ubuntu 16.04 (on travis-ci), R 3.5.3
 * win-builder (devel and release)
 
 ## R CMD check results
-There were no ERRORs or WARNINGs. 
 
-There were 1 NOTE:
+0 errors | 0 warnings | 1 note
 
-* checking CRAN incoming feasibility ... NOTE
-  Maintainer: ‘Matthew K. Lau <matthewklau@fas.harvard.edu>’
+* This is a new release.
 
-  New submission
+## Comments
 
-## Downstream dependencies
-There are currently no downstream dependencies. 
-
-## Resubmission
-
-Removed dontrun wrappers from all function examples and used
-"Rclean:::" for non-exported functions.
-
-Also, fixed examples so that arguments which previously referred to x
-(i.e. not a character) now refer to "x".
-
-Added grant funding acknowledgment to Description along with URL and
-BugReports.
+* This release fixes a previous violation of CRAN policy for writing
+  to the user file system by using the clipr package. This is in
+  keep.R, which is for the explicitly stated use of writing objects to
+  disk or to the clipboard.

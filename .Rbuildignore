@@ -11,3 +11,5 @@ cleanR_demo_vid.png
 README.Rmd
 README.rmd
 README.html
+cran-comments.md
+^cran-comments\.md$
