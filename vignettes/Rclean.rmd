@@ -126,7 +126,7 @@ keep(my.code)
 
 # Some Thoughts on the Need for "Code Cleaning"
 
-At it's root R is a statistical programming language. That it, it was
+At it's root R is a statistical programming language. That is, it was
 designed for use in analytical workflows. As such, the majority of the
 R community is focused on producing code for idiosyncratic projects
 that are results oriented. Also, R's design is intentionally at a
