@@ -83,7 +83,7 @@ script as the input. Here, we can use an example script that is included
 with the package:
 
 ``` r
-script <- "example/simple_script.R"
+script <- system.file("example", "simple_script.R", package = "Rclean")
 ```
 
 Here’s a quick look at the code:
@@ -116,9 +116,8 @@ You can get a list of the variables found in an object with `get_vars`.
 
 ``` r
 get_vars(script)
-#>  [1] "mat"       "dat"       "fit12"     "fit13"     "fit14"    
-#>  [6] "fit15.aov" "tab.12"    "tab.13"    "tab.14"    "tab.15"   
-#> [11] "out"
+#>  [1] "mat"       "dat"       "fit12"     "fit13"     "fit14"     "fit15.aov"
+#>  [7] "tab.12"    "tab.13"    "tab.14"    "tab.15"    "out"
 ```
 
 Sometimes for more complicated scripts, it can be helpful to see a

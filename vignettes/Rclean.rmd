@@ -63,7 +63,9 @@ as the input. We can use an example script that is included with the
 package:
 
 ```{r eval = FALSE} 
-script <- "example/simple_script.R"
+script <- system.file("example", 
+                      "simple_script.R", 
+                      package = "Rclean")
 
 ```
 
@@ -174,8 +176,10 @@ long, it's long enough to make it frustrating to visualize it in its
 entirety and pick through it. 
 
 
-```{R long-setup, echo = FALSE, eval = TRUE}
-
+```{R long-setup, echo = TRUE, eval = TRUE}
+script.long <- system.file("example", 
+                           "long_script.R", 
+                           package = "Rclean")
 readLines(script.long)
 
 ```

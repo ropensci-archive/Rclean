@@ -100,7 +100,7 @@ the script as the input. Here, we can use an example script that is
 included with the package:
 
 ```{r eval = FALSE} 
-script <- "example/simple_script.R"
+script <- system.file("example", "simple_script.R", package = "Rclean")
 
 ```
 
