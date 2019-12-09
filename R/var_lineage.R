@@ -11,15 +11,17 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with Rclean; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+# along with Rclean; if not, write to the Free Software Foundation,
+# Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 #
 # Contact: Matthew Lau <matthewklau@fas.harvard.edu>
 
 
-#' var_lineage --- Determine the lineage of objects contained in an R script. 
+#' var_lineage --- Determine the lineage of objects contained in an R
+#' script.
 #'
-#' Determine the series of steps that leads to the production of objects contained in a script.
+#' Determine the series of steps that leads to the production of
+#' objects contained in a script.
 #' 
 #' @param src A Script object from readScript the CodeDepends
 #'     package.
