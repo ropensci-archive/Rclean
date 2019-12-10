@@ -61,7 +61,7 @@ test_that("clean get_path missing node id", {
     script <- system.file("example", "simple_script.R", package = "Rclean")
     vl <- Rclean:::var_lineage(readScript(script))
     noid.out <- testthat:::capture_output({Rclean:::get_path(vl)}, 
-                                          print = FALSE)
+                                          print = TRUE)
     expect_true(all(noid.out == noid.test))
 })
 

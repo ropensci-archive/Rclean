@@ -132,7 +132,7 @@ get_path <- function(g = "graph",
         g <- g[["g"]]
     }
     if (missing(node.id)){
-        warning("Please supply a node name.")
+        print("Please supply a node name.")
         print("Possible node names:", quote = FALSE)
         rownames(g)[!(is_number(rownames(g)))]
     }else{
