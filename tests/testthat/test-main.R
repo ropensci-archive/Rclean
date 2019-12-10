@@ -39,6 +39,15 @@ test_that("clean no vars", {
     novars.out <- capture.output(clean(simple.script))
 })
 
+test_that("clean get_path g is list mode", {
+    load("glist.test.rda")
+    script <- system.file("example", "simple_script.R", package = "Rclean")
+    vl <- Rclean:::var_lineage(readScript(script))
+    glist.out <- Rclean:::get_path(vl, "out")
+    expect_true(all(glist.out == glist.test))
+})
+
+
 test_that("codeGraph as file", {
     load("codeGraph.src.rda")
     simple.script <- system.file(
