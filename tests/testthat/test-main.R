@@ -47,6 +47,15 @@ test_that("clean get_path g is list mode", {
     expect_true(all(glist.out == glist.test))
 })
 
+test_that("clean get_path missing node id", {
+    load("noid.test.rda")
+    script <- system.file("example", "simple_script.R", package = "Rclean")
+    vl <- Rclean:::var_lineage(readScript(script))
+    noid.out <- testthat:::capture_output({Rclean:::get_path(vl)}, 
+                                          print = FALSE)
+    expect_true(all(noid.out == noid.test))
+})
+
 
 test_that("codeGraph as file", {
     load("codeGraph.src.rda")
