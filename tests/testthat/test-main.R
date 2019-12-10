@@ -116,5 +116,10 @@ test_that("get_vars as script", {
     expect_true(all(vars.test == vars.out))
 })
 
-
+test_that("get_vars missing script", {
+    load("get_vars.noscript.rda")
+    noscript.test <- try({get_vars(10)})
+    
+   expect_true(all(vars.test == vars.out))
+})
 

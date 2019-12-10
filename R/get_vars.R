@@ -42,7 +42,7 @@ get_vars <- function(script){
     }else if (class(script) == "Script"){
         src <- script
     }else{
-        stop("Error: Please provide a Script object or script file path.")
+        warning("Please provide a Script object or script file path.")
     }
     out <- unique(getVariables(src))
     return(out)
