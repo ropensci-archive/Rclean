@@ -32,6 +32,14 @@ test_that("clean multiple variables", {
     expect_true(all(clean.multi == clean.multi.test))
 })
 
+test_that("clean no vars", {
+    load("novars.test.rda")
+    simple.script <- system.file(
+        "example", "simple_script.R", package = "Rclean")
+    novars.out <- capture.output(clean(simple.script))
+    expect_true(all(novars.out == novars.test))
+})
+
 test_that("codeGraph as file", {
     load("codeGraph.src.rda")
     simple.script <- system.file(
