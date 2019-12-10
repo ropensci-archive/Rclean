@@ -7,7 +7,16 @@ test_that("clean prospective data.frame", {
 })
 
 
-test_that("get_libs", {
+test_that("get_libs provide file path", {
+    load("get_libs.filepath.test.rda")
+    script <- system.file(
+        "example", "long_script.R", package = "Rclean")
+    filepath.out <- get_libs(script)
+    expect_true(all(filepath.out == filepath.test))
+})
+
+
+test_that("get_libs provide script", {
     load("lib.test.rda")
     script <- readScript("lib_test.R")
     lib <- get_libs(script)
