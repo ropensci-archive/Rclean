@@ -42,8 +42,6 @@ code_graph <- function(script, pdf.file){
         src <- readScript(script[1])
     }else if (class(script) == "Script"){
         src <- script
-    }else{
-        stop("Error: Please provide a Script object or script file path.")
     }
     g <- var_lineage(src)[["g"]]
     ig <- graph_from_adjacency_matrix(g)
