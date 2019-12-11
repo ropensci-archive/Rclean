@@ -142,8 +142,8 @@ get_path <- function(g = "graph",
                        unreachable = FALSE)$order
         out <- as.character(na.omit(names(dfs.result)))
         if (direction == "in"){out <- out[seq(length(out), 1)]}
+        return(out)
     }
-return(out)
 }
 
 ## is_number --- Detect numbers in a character vector of variables.

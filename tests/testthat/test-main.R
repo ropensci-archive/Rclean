@@ -46,6 +46,7 @@ test_that("clean no vars", {
     simple.script <- system.file(
         "example", "simple_script.R", package = "Rclean")
     novars.out <- capture.output(clean(simple.script))
+    expect_true(all(novars.out == novars.test))
 })
 
 test_that("clean get_path g is list mode", {
