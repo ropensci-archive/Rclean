@@ -7,7 +7,16 @@ test_that("clean prospective data.frame", {
 })
 
 
-test_that("get_libs", {
+test_that("get_libs provide file path", {
+    load("get_libs.filepath.test.rda")
+    script <- system.file(
+        "example", "long_script.R", package = "Rclean")
+    filepath.out <- get_libs(script)
+    expect_true(all(filepath.out == filepath.test))
+})
+
+
+test_that("get_libs provide script", {
     load("lib.test.rda")
     script <- readScript("lib_test.R")
     lib <- get_libs(script)
@@ -31,6 +40,32 @@ test_that("clean multiple variables", {
     clean.multi <- clean(simple.script, vars, format = FALSE)
     expect_true(all(clean.multi == clean.multi.test))
 })
+
+test_that("clean no vars", {
+    load("novars.test.rda")
+    simple.script <- system.file(
+        "example", "simple_script.R", package = "Rclean")
+    novars.out <- capture.output(clean(simple.script))
+    expect_true(all(novars.out == novars.test))
+})
+
+test_that("clean get_path g is list mode", {
+    load("glist.test.rda")
+    script <- system.file("example", "simple_script.R", package = "Rclean")
+    vl <- Rclean:::var_lineage(readScript(script))
+    glist.out <- Rclean:::get_path(vl, "out")
+    expect_true(all(glist.out == glist.test))
+})
+
+test_that("clean get_path missing node id", {
+    load("noid.test.rda")
+    script <- system.file("example", "simple_script.R", package = "Rclean")
+    vl <- Rclean:::var_lineage(readScript(script))
+    noid.out <- testthat:::capture_output({Rclean:::get_path(vl)}, 
+                                          print = TRUE)
+    expect_true(all(noid.out == noid.test))
+})
+
 
 test_that("codeGraph as file", {
     load("codeGraph.src.rda")
@@ -90,6 +125,4 @@ test_that("get_vars as script", {
     vars.test <- get_vars(script)
     expect_true(all(vars.test == vars.out))
 })
-
-
 

@@ -132,7 +132,7 @@ get_path <- function(g = "graph",
         g <- g[["g"]]
     }
     if (missing(node.id)){
-        warning("Please supply a node name.")
+        print("Please supply a node name.")
         print("Possible node names:", quote = FALSE)
         rownames(g)[!(is_number(rownames(g)))]
     }else{
@@ -142,8 +142,8 @@ get_path <- function(g = "graph",
                        unreachable = FALSE)$order
         out <- as.character(na.omit(names(dfs.result)))
         if (direction == "in"){out <- out[seq(length(out), 1)]}
+        return(out)
     }
-return(out)
 }
 
 ## is_number --- Detect numbers in a character vector of variables.
