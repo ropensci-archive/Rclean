@@ -51,11 +51,6 @@ test_that("clean no vars", {
     expect_true(all(novars.out == novars.test))
 })
 
-## 1. Run source(simple.script, local = some_new_environment) and inspect
-## some_new_environment to get one value of out.
-## 2. Similarly, get another value of out from the cleaned script.  
-## 3. Compare the two values of out using expect_equal().
-
 test_that("clean reproduce var", {
     long.script <- system.file(
         "example", "long_script.R", package = "Rclean")
