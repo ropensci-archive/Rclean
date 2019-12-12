@@ -24,6 +24,8 @@ test_that("get_libs provide script", {
 })
 
 
+
+
 test_that("clean no re-formatting", {
     load("format.simple.out.test.rda")
     simple.script <- system.file(
@@ -48,6 +50,57 @@ test_that("clean no vars", {
     novars.out <- capture.output(clean(simple.script))
     expect_true(all(novars.out == novars.test))
 })
+
+## 1. Run source(simple.script, local = some_new_environment) and inspect
+## some_new_environment to get one value of out.
+## 2. Similarly, get another value of out from the cleaned script.  
+## 3. Compare the two values of out using expect_equal().
+
+test_that("clean reproduce var", {
+    long.script <- system.file(
+        "example", "long_script.R", package = "Rclean")
+    ## Clean some variables in long_script.R
+    clean.x <- clean(long.script, "x")
+    clean.x2 <- clean(long.script, "x2")
+    clean.x3 <- clean(long.script, "x3")
+    clean.x2x3 <- clean(long.script, c("x2", "x3"))
+    clean.z <- clean(long.script, "z")
+    keep(clean.x, "clean_x.R")
+    keep(clean.x2, "clean_x2.R")
+    keep(clean.x3, "clean_x3.R")
+    keep(clean.x2x3, "clean_x2x3.R")
+    keep(clean.z, "clean_z.R")
+    ## Create environments
+    env.long <- new.env()
+    env.x <- new.env()
+    env.x2 <- new.env()
+    env.x3 <- new.env()
+    env.x2x3 <- new.env()
+    env.z <- new.env()
+    ## Run scripts in separate environments
+    set.seed(42)
+    source(long.script, local = env.long)
+    set.seed(42)
+    source("clean_x.R", local = env.x)
+    set.seed(42)
+    source("clean_x2.R", local = env.x2)
+    set.seed(42)
+    source("clean_x3.R", local = env.x3)
+    set.seed(42)
+    source("clean_x2x3.R", local = env.x2x3)
+    set.seed(42)
+    source("clean_z.R", local = env.z)
+    ## Compare variables to original script
+    expect_true(all(c(env.long$x == env.x$x, 
+                      all(env.long$x2 == env.x2$x2),
+                      all(env.long$x3 == env.x3$x3),
+                      all(env.long$x2 == env.x2x3$x2),
+                      all(env.long$x3 == env.x2x3$x3),
+                      all(env.long$z == env.z$z))))
+    file.remove("clean_x.R", "clean_x2.R", "clean_x3.R",
+                "clean_x2x3.R", "clean_z.R")
+})
+
 
 test_that("clean get_path g is list mode", {
     load("glist.test.rda")

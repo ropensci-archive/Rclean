@@ -23,6 +23,7 @@ x <- t(x)
 x[, "A"] <- sqrt(x[, "A"])
 
 for (i in seq_along(colnames(x))){
+    set.seed(17)
     x[, i] <- x[, i] + runif(length(x[, i]), -1, 1)
 }
 
