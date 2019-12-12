@@ -1,7 +1,7 @@
 Type: Package
 Package: Rclean
 Title: A Tool for Writing Cleaner, More Transparent Code
-Version: 1.1.5
+Version: 1.1.6
 Authors@R: person("Matthew", "Lau", email = "matthewklau@fas.harvard.edu", role = c("aut", "cre"))
 Description: To create clearer, more concise code provides this
 	     toolbox helps coders to isolate the essential parts of a
