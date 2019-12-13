@@ -55,7 +55,7 @@ x[, "A"] <- x[, "A"]^2
 
 ## Now, I want to run an analysis on two variables in x2 and x3.
 
-fit.23 <- lm(x2[, 1] ~ x3[, 2])
+fit.23 <- lm(x2 ~ x3, data = data.frame(x2[, 1], x3[, 1]))
 summary(fit.23)
 
 ## And while I'm at it, I should do an analysis on x.
@@ -77,5 +77,5 @@ shapiro.test(residuals(fit.sqrt.A))
 ## x2 and a new variable.
 
 z <- c(rep("A", nrow(x2)/2), rep("B", nrow(x2)/2))
-fit.anova <- aov(x2[, 1] ~ z)
+fit.anova <- aov(x2 ~ z, data = data.frame(x2 = x2[, 1], z))
 summary(fit.anova)
