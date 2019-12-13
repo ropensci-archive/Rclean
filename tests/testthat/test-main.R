@@ -97,6 +97,48 @@ test_that("clean reproduce var", {
 })
 
 
+test_that("clean vars removed simple script", {
+    load(file = "simple.var.vars.rda")
+    simple.script <- system.file(
+        "example", "simple_script.R", package = "Rclean")
+    vars <- get_vars(simple.script)
+    var.files <- paste0(vars, "_clean.R")
+    var.vars <- list()
+    for (i in seq_along(vars)){
+        var.clean <- clean(simple.script, vars[i])
+        keep(var.clean, var.files[i])
+        var.vars[[i]] <- get_vars(var.files[i])
+    }
+    names(var.vars) <- vars
+    var.check <- logical()
+    for (i in seq_along(var.vars)){
+        var.check[i] <- all(var.vars[[i]] == simple.var.vars[[i]])
+    }
+    file.remove(var.files)
+    expect_true(all(var.check))
+})
+
+test_that("clean vars removed long script", {
+    load(file = "long.var.vars.rda")
+    long.script <- system.file(
+        "example", "long_script.R", package = "Rclean")
+    vars <- get_vars(long.script)
+    var.files <- paste0(vars, "_clean.R")
+    var.vars <- list()
+    for (i in seq_along(vars)){
+        var.clean <- clean(long.script, vars[i])
+        keep(var.clean, var.files[i])
+        var.vars[[i]] <- get_vars(var.files[i])
+    }
+    names(var.vars) <- vars
+    var.check <- logical()
+    for (i in seq_along(var.vars)){
+        var.check[i] <- all(var.vars[[i]] == long.var.vars[[i]])
+    }
+    file.remove(var.files)
+    expect_true(all(var.check))
+})
+
 test_that("clean get_path g is list mode", {
     load("glist.test.rda")
     script <- system.file("example", "simple_script.R", package = "Rclean")
