@@ -107,12 +107,16 @@ test_that("clean vars removed simple script", {
     for (i in seq_along(vars)){
         var.clean <- clean(simple.script, vars[i])
         keep(var.clean, var.files[i])
-        var.vars[[i]] <- get_vars(var.files[i])
+        var.env <- new.env()
+        source(var.files[i], local = var.env)
+        var.vars[[i]] <- ls(var.env)
     }
     names(var.vars) <- vars
     var.check <- logical()
     for (i in seq_along(var.vars)){
-        var.check[i] <- all(var.vars[[i]] == simple.var.vars[[i]])
+        var.check[i] <- all(
+            sort(var.vars[[i]]) == sort(simple.var.vars[[i]])
+            )
     }
     file.remove(var.files)
     expect_true(all(var.check))
@@ -128,12 +132,16 @@ test_that("clean vars removed long script", {
     for (i in seq_along(vars)){
         var.clean <- clean(long.script, vars[i])
         keep(var.clean, var.files[i])
-        var.vars[[i]] <- get_vars(var.files[i])
+        var.env <- new.env()
+        source(var.files[i], local = var.env)
+        var.vars[[i]] <- ls(var.env)
     }
     names(var.vars) <- vars
     var.check <- logical()
     for (i in seq_along(var.vars)){
-        var.check[i] <- all(var.vars[[i]] == long.var.vars[[i]])
+        var.check[i] <- all(
+            sort(var.vars[[i]]) == sort(long.var.vars[[i]])
+            )
     }
     file.remove(var.files)
     expect_true(all(var.check))
