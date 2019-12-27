@@ -10,9 +10,11 @@
 #' @aliases Rclean
 #' @author Matthew K. Lau \email{matthewklau@fas.harvard.edu}
 #' @examples
-#' \dontrun{
 #' ## Define the path for your script
-#' script <- "example/simple_script.R"
+#' script <- system.file(
+#'         "example", 
+#'         "simple_script.R", 
+#'         package = "Rclean")
 #' ## Get a list of the variables in your script
 #' get_vars(script)
 #' ## Take a look at the relationships in your script
@@ -22,5 +24,4 @@
 #' ## You can also select multiple results at the same time!
 #' my.vars <- c("tab.12", "tab.15")
 #' clean(script, my.vars)
-#' }
 NULL
