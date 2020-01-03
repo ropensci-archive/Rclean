@@ -11,9 +11,11 @@ essential parts of a script that produces a chosen result, such as
 an object, table and/or figure.
 }
 \examples{
-\dontrun{
 ## Define the path for your script
-script <- "example/simple_script.R"
+script <- system.file(
+        "example", 
+        "simple_script.R", 
+        package = "Rclean")
 ## Get a list of the variables in your script
 get_vars(script)
 ## Take a look at the relationships in your script
@@ -23,7 +25,6 @@ clean(script, "tab.15")
 ## You can also select multiple results at the same time!
 my.vars <- c("tab.12", "tab.15")
 clean(script, my.vars)
-}
 }
 \author{
 Matthew K. Lau \email{matthewklau@fas.harvard.edu}

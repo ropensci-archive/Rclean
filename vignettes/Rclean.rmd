@@ -199,7 +199,7 @@ in the script. Instead, we can easily do this automatically with
 
 ```{R long}
 
-clean(script.long, "fit.sqrt.A")
+clean(script.long, "fit_sqrt_A")
 
 ```
 
