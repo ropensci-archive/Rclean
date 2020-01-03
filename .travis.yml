@@ -12,12 +12,9 @@ warnings_are_errors: true
 r_packages:
   - devtools
   - testthat
-
-# bioc_packages:
-#   - graph
+  - rmarkdown
 
 r_github_packages:
-#  - ProvTools/provR
 #  - duncantl/CodeDepends
    - jimhester/lintr
   
