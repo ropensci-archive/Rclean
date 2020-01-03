@@ -14,3 +14,4 @@ README.html
 cran-comments.md
 ^cran-comments\.md$
 ^\.lintr$
+^.github
