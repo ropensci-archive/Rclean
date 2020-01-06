@@ -44,23 +44,23 @@
 #' clean(script, "tab.12")
 #' clean(script, c("mat", "tab.12", "out"))
 
-clean <- function(script, vars, format = TRUE){
+clean <- function(script, vars, format = TRUE) {
     ## Check if file is passing a script object
-    if (class(script) == "Script"){
+    if (class(script) == "Script") {
         src <- script
     }else{
         src <- readScript(script)
     }
     ## Check if a variable has been supplied, then find
     ## minimal code.
-    if (missing(vars)){
+    if (missing(vars)) {
         print(paste("Please supply at least one variable:"))
         out <- get_vars(src)
     }else{
         ## Reduce to the minimal code
         out <- min_code(src, vars)
         ## Reformat code using styler?
-        if (format){
+        if (format) {
             out <- style_text(out)
         }
     }
@@ -82,11 +82,11 @@ min_code <- function(src = "script", vars = "variables") {
     ## Find the lines and variables for all vars
     vp <- lapply(vars, get_path, g = vl[["g"]])
     ## Subest graphs with only required nodes for each var
-    g.min <- min_graph(vp, vl)
+    g_min <- min_graph(vp, vl)
     ## Create a set list of lines for subsetting
-    l.min <- rownames(g.min)[is_number(rownames(g.min))]
+    l_min <- rownames(g_min)[is_number(rownames(g_min))]
     ## Subsest the code to the minimum lines
-    out <- as.character(src[as.numeric(l.min)])
+    out <- as.character(src[as.numeric(l_min)])
     return(out)
 }
 
@@ -98,10 +98,10 @@ min_code <- function(src = "script", vars = "variables") {
 #' @noRd
 #' @author Matthew K. Lau
 min_graph <- function(vp = "variable path", vl = "variable lineage") {
-    g.min <- vl[["g"]]
+    g_min <- vl[["g"]]
     nodes <- unique(unlist(vp))
-    g.min <- g.min[rownames(g.min) %in% nodes, colnames(g.min) %in% nodes]
-    return(g.min)
+    g_min <- g_min[rownames(g_min) %in% nodes, colnames(g_min) %in% nodes]
+    return(g_min)
 }
 
 #' get_path --- Lineage pathway for a given variable.
@@ -113,7 +113,7 @@ min_graph <- function(vp = "variable path", vl = "variable lineage") {
 #'@param g An adjacenty matrix that presents the use and creation of
 #'     variables by steps (i.e. complexes of function and operation
 #'     calls).
-#'@param node.id The name of the variable of interest.
+#'@param node The name of the variable of interest.
 #'@param direction Determines the direction of searching on the graph,
 #'     either "in" (path leading to a variable) or "out" (path leading
 #'     from a variable).
@@ -126,22 +126,24 @@ min_graph <- function(vp = "variable path", vl = "variable lineage") {
 #'@author Matthew K. Lau
 
 get_path <- function(g = "graph", 
-                     node.id, 
+                     node, 
                      direction = "in") {
-    if (mode(g) == "list" & any(names(g) == "g")){
+    if (mode(g) == "list" & any(names(g) == "g")) {
         g <- g[["g"]]
     }
-    if (missing(node.id)){
+    if (missing(node)) {
         print("Please supply a node name.")
         print("Possible node names:", quote = FALSE)
         rownames(g)[!(is_number(rownames(g)))]
     }else{
         ig <- graph_from_adjacency_matrix(g)
-        dfs.result <- dfs(ig, node.id, 
+        dfs_result <- dfs(ig, node, 
                        direction, 
                        unreachable = FALSE)$order
-        out <- as.character(na.omit(names(dfs.result)))
-        if (direction == "in"){out <- out[seq(length(out), 1)]}
+        out <- as.character(na.omit(names(dfs_result)))
+        if (direction == "in") {
+            out <- out[seq(length(out), 1)]
+        }
         return(out)
     }
 }
