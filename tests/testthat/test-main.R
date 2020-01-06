@@ -104,7 +104,7 @@ test_that("clean vars removed simple script", {
     vars <- get_vars(simple.script)
     var.files <- paste0(vars, "_clean.R")
     var.vars <- list()
-    for (i in seq_along(vars)){
+    for (i in seq_along(vars)) {
         var.clean <- clean(simple.script, vars[i])
         keep(var.clean, var.files[i])
         var.env <- new.env()
@@ -113,7 +113,7 @@ test_that("clean vars removed simple script", {
     }
     names(var.vars) <- vars
     var.check <- logical()
-    for (i in seq_along(var.vars)){
+    for (i in seq_along(var.vars)) {
         var.check[i] <- all(
             sort(var.vars[[i]]) == sort(simple.var.vars[[i]])
             )
@@ -129,7 +129,7 @@ test_that("clean vars removed long script", {
     vars <- get_vars(long.script)
     var.files <- paste0(vars, "_clean.R")
     var.vars <- list()
-    for (i in seq_along(vars)){
+    for (i in seq_along(vars)) {
         var.clean <- clean(long.script, vars[i])
         keep(var.clean, var.files[i])
         var.env <- new.env()
@@ -138,7 +138,7 @@ test_that("clean vars removed long script", {
     }
     names(var.vars) <- vars
     var.check <- logical()
-    for (i in seq_along(var.vars)){
+    for (i in seq_along(var.vars)) {
         var.check[i] <- all(
             sort(var.vars[[i]]) == sort(long.var.vars[[i]])
             )
@@ -189,7 +189,7 @@ test_that("codeGraph as script", {
 test_that("codeGraph write pdf", {
     simple.script <- system.file(
         "example", "simple_script.R", package = "Rclean")
-    code_graph(simple.script, pdf.file = "code_graph_test.pdf")
+    code_graph(simple.script, pdf_file = "code_graph_test.pdf")
     expect_true(file.exists("code_graph_test.pdf"))
     file.remove("code_graph_test.pdf")
 })

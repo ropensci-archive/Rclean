@@ -35,10 +35,10 @@
 #'         package = "Rclean")
 #' get_libs(script)
 
-get_libs <- function(file){
-    if (class(file) == "Script"){
+get_libs <- function(file) {
+    if (class(file) == "Script") {
         src <- file
-    }else{
+    } else {
         src <- readScript(file)
     }
     cd <- getInputs(src)

@@ -4,12 +4,12 @@
 \alias{code_graph}
 \title{code_graph --- A network diagram of computational dependencies.}
 \usage{
-code_graph(script, pdf.file)
+code_graph(script, pdf_file)
 }
 \arguments{
 \item{script}{Script object from CodeDepends or a file path to a script.}
 
-\item{pdf.file}{Path to output PDF of the code graph.}
+\item{pdf_file}{Path to output PDF of the code graph.}
 }
 \value{
 A network plot.

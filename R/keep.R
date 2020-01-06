@@ -36,7 +36,11 @@
 #' @author Matthew K. Lau
 #' @examples
 #' \dontrun{
-#' clean.code <- data(simple_script)
+#' script <- system.file(
+#'         "example", 
+#'         "simple_script.R", 
+#'         package = "Rclean")
+#' clean.code <- clean(script, “tab.15”)
 #' ## Copies code to your clipboard
 #' keep(clean.code)
 #' ## Saves code to your disk
@@ -44,13 +48,13 @@
 #' }
 
 
-keep <- function(x, file = NULL){
-    if (is.null(file)){
+keep <- function(x, file = NULL) {
+    if (is.null(file)) {
         write_clip(x)
-    }else{
+    } else {
         file.create(file)
-        fileConn <- file(file)
-        writeLines(x, fileConn)
-        close(fileConn)
+        file_conn <- file(file)
+        writeLines(x, file_conn)
+        close(file_conn)
     }
 }

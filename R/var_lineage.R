@@ -36,37 +36,37 @@
 #' @noRd
 #' @author Matthew K. Lau
 
-var_lineage <- function(src = "script"){
+var_lineage <- function(src = "script") {
     ## variable data frame
     vdf <- getDetailedTimelines(info = getInputs(src))
     rownames(vdf) <- seq(1, nrow(vdf))
     ## lineage graph
                                         # defined by
-    def.by <- do.call(cbind, 
+    def_by <- do.call(cbind, 
                       split(as.numeric(vdf[, "defined"]), 
                             vdf[, "var"]))
-    rownames(def.by) <- seq(1, nrow(def.by))
+    rownames(def_by) <- seq(1, nrow(def_by))
                                         # used by
-    use.by <- do.call(cbind, 
+    use_by <- do.call(cbind, 
                       split(as.numeric(vdf[, "used"]), 
                             vdf[, "var"]))
-    rownames(use.by) <- seq(1, nrow(use.by))
+    rownames(use_by) <- seq(1, nrow(use_by))
                                         # full lineage graph
                                         # adding empty subgraphs
-    def.by <- cbind(
-        array(0, dim = rep(nrow(def.by), 2)), 
-        def.by
+    def_by <- cbind(
+        array(0, dim = rep(nrow(def_by), 2)), 
+        def_by
     )
-    colnames(def.by)[seq(1, nrow(def.by))] <- seq(1, nrow(def.by))
-    use.by <- cbind(
-        t(use.by), 
-        array(0, dim = rep(ncol(use.by), 2))
+    colnames(def_by)[seq(1, nrow(def_by))] <- seq(1, nrow(def_by))
+    use_by <- cbind(
+        t(use_by), 
+        array(0, dim = rep(ncol(use_by), 2))
     )
                                         # sub-graph range
-    sg.range <- seq((ncol(use.by) - nrow(use.by) + 1), ncol(use.by))
+    sg_range <- seq((ncol(use_by) - nrow(use_by) + 1), ncol(use_by))
                                             # rename nodes
-    colnames(use.by)[sg.range] <- rownames(use.by)
-    lg <- rbind(def.by, use.by)
+    colnames(use_by)[sg_range] <- rownames(use_by)
+    lg <- rbind(def_by, use_by)
     out <- list(g = lg, vdf = vdf)
     return(out)
 }

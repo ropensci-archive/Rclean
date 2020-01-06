@@ -1,7 +1,7 @@
 library(stats)
 x <- 1:100
 x <- log(x)
-x <- x^2
+x <- x * 2
 x <- lapply(x, rep, times = 4)
 ### This is a note that I made for myself.
 ### Next time, make sure to use a different analysis.
@@ -22,7 +22,7 @@ rownames(x) <- LETTERS[seq_len(nrow(x))]
 x <- t(x)
 x[, "A"] <- sqrt(x[, "A"])
 
-for (i in seq_along(colnames(x))){
+for (i in seq_along(colnames(x))) {
     set.seed(17)
     x[, i] <- x[, i] + runif(length(x[, i]), -1, 1)
 }
@@ -51,7 +51,7 @@ x3 <- apply(x3, 2, round, digits = 3)
 
 x[, 1] <- x[, 1] * 2 + 10
 x[, 2] <- x[, 1] + x[, 2]
-x[, "A"] <- x[, "A"]^2
+x[, "A"] <- x[, "A"] * 2
 
 ## Now, I want to run an analysis on two variables in x2 and x3.
 
@@ -67,15 +67,15 @@ shapiro.test(residuals(fit.xx))
 
 ## Ah, it looks like I should probably transform A.
 ## Let's try that.
-fit.sqrt.A <- lm(I(sqrt(A))~B, data = x)
-summary(fit.sqrt.A)
-shapiro.test(residuals(fit.sqrt.A))
+fit_sqrt_A <- lm(I(sqrt(A))~B, data = x)
+summary(fit_sqrt_A)
+shapiro.test(residuals(fit_sqrt_A))
 
 ## Looks good!
 
 ## After that. I came back and ran another analysis with 
 ## x2 and a new variable.
 
-z <- c(rep("A", nrow(x2)/2), rep("B", nrow(x2)/2))
-fit.anova <- aov(x2 ~ z, data = data.frame(x2 = x2[, 1], z))
-summary(fit.anova)
+z <- c(rep("A", nrow(x2) / 2), rep("B", nrow(x2) / 2))
+fit_anova <- aov(x2 ~ z, data = data.frame(x2 = x2[, 1], z))
+summary(fit_anova)

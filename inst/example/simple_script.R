@@ -14,7 +14,7 @@ tab.12 <- summary(fit12)
 tab.13 <- summary(fit13)
 tab.14 <- summary(fit14)
 tab.15 <- append(fit15.aov, tab.14)
-## Conduct an off-hand calculation
+## Conduct a calculation
 dat <- 25 + 2
 dat[2] <- 10
 out <- dat * 2

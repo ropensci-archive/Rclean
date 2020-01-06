@@ -36,13 +36,12 @@
 #'         package = "Rclean")
 #' get_vars(script)
 
-get_vars <- function(script){
-    if (class(script) == "character"){
+get_vars <- function(script) {
+    if (class(script) == "character") {
         src <- readScript(script[1])
-    }else if (class(script) == "Script"){
+    } else if (class(script) == "Script") {
         src <- script
     }
     out <- unique(getVariables(src))
     return(out)
 }
-

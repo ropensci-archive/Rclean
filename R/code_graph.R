@@ -21,7 +21,7 @@
 #' Plot the dependencies among functions and objects for a given script.
 #' 
 #'@param script Script object from CodeDepends or a file path to a script.
-#'@param pdf.file Path to output PDF of the code graph.  
+#'@param pdf_file Path to output PDF of the code graph.  
 #'@return A network plot.
 #'@importFrom igraph graph_from_adjacency_matrix
 #'@importFrom igraph igraph.to.graphNEL
@@ -37,20 +37,20 @@
 #' code_graph(simple.script)
 #'}
 
-code_graph <- function(script, pdf.file){
-    if (class(script) == "character"){
+code_graph <- function(script, pdf_file) {
+    if (class(script) == "character") {
         src <- readScript(script[1])
-    }else if (class(script) == "Script"){
+    }else if (class(script) == "Script") {
         src <- script
     }
     g <- var_lineage(src)[["g"]]
     ig <- graph_from_adjacency_matrix(g)
-    gNEL <- igraph.to.graphNEL(ig)
-    if (missing(pdf.file)){
-        plot(gNEL)    
-    }else{
-        pdf(pdf.file)
-        plot(gNEL)
+    gn <- igraph.to.graphNEL(ig)
+    if (missing(pdf_file)) {
+        plot(gn)    
+    } else {
+        pdf(pdf_file)
+        plot(gn)
         dev.off()
     }
 }

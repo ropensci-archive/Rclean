@@ -1,0 +1,27 @@
+linters: with_defaults(
+    camel_case_linter = NULL, # 21
+    trailing_whitespace_linter = NULL, # 19
+    multiple_dots_linter = NULL, # 12
+    trailing_blank_lines_linter = NULL, # 3
+    closed_curly_linter = NULL, # 2
+    commented_code_linter = NULL, # 2
+    open_curly_linter = NULL, # 2
+    spaces_left_parentheses_linter = NULL, # 1
+    dummy_linter = NULL
+  )
+exclusions: list(
+    "data/long_script.rda",
+    "data/simple_script.rda",
+    "man/clean.Rd",
+    "man/code_graph.Rd",
+    "man/figures/README-unnamed-chunk-7-1.png",
+    "man/figures/README-unnamed-chunk-8-1.png",
+    "man/get_libs.Rd",
+    "man/get_vars.Rd",
+    "man/keep.Rd",
+    "man/long_script.Rd",
+    "man/Rclean-package.Rd",
+    "man/simple_script.Rd",
+    "vignettes/bibliography.bib",
+    "vignettes/Rclean.rmd"
+  )
