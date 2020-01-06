@@ -48,10 +48,10 @@
 #' }
 
 
-keep <- function(x, file = NULL){
-    if (is.null(file)){
+keep <- function(x, file = NULL) {
+    if (is.null(file)) {
         write_clip(x)
-    }else{
+    } else {
         file.create(file)
         fileConn <- file(file)
         writeLines(x, fileConn)
