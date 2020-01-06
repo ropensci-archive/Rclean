@@ -53,8 +53,8 @@ keep <- function(x, file = NULL) {
         write_clip(x)
     } else {
         file.create(file)
-        fileConn <- file(file)
-        writeLines(x, fileConn)
-        close(fileConn)
+        file_conn <- file(file)
+        writeLines(x, file_conn)
+        close(file_conn)
     }
 }

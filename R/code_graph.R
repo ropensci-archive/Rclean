@@ -45,12 +45,12 @@ code_graph <- function(script, pdf_file) {
     }
     g <- var_lineage(src)[["g"]]
     ig <- graph_from_adjacency_matrix(g)
-    gNEL <- igraph.to.graphNEL(ig)
+    gn <- igraph.to.graphNEL(ig)
     if (missing(pdf_file)) {
-        plot(gNEL)    
+        plot(gn)    
     } else {
         pdf(pdf_file)
-        plot(gNEL)
+        plot(gn)
         dev.off()
     }
 }
