@@ -189,7 +189,7 @@ test_that("codeGraph as script", {
 test_that("codeGraph write pdf", {
     simple.script <- system.file(
         "example", "simple_script.R", package = "Rclean")
-    code_graph(simple.script, pdf.file = "code_graph_test.pdf")
+    code_graph(simple.script, pdf_file = "code_graph_test.pdf")
     expect_true(file.exists("code_graph_test.pdf"))
     file.remove("code_graph_test.pdf")
 })
