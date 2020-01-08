@@ -9,7 +9,7 @@ assignees: MKLau
 
 ## Check Here First
 
-- [ ] Read and abide by `drake`'s
+- [ ] Read and abide by `Rclean`'s
   [code of conduct](https://https://github.com/MKLau/Rclean/blob/master/CODE_OF_CONDUCT.md).
 - [ ] Search for duplicates among the
   [existing issues](https://github.com/MKLau/Rclean/issues), both open
