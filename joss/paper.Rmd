@@ -115,6 +115,17 @@ code_graph(script)
 
 ```
 
+The provenance of the results can be seen as terminal nodes. This
+information is based on the static analysis of the script, which
+traces the relationship among code lines from inputs to
+outputs. This is the information that forms the basis of the code reduction
+techinque at the heart of Rclean. Because we can predict what lines of
+code results depend, or more relevantly *don't* depend, allows us to
+predict what code can be removed from a given script. Thus, when we
+know what results we really want, we can rely on the formalized
+provenance to automatically plot a course of "pruning" through the
+script to trim out what we no longer need.
+
 ## The API
 
 The package's main function is `clean`. 
