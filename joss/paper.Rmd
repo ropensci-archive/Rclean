@@ -105,6 +105,36 @@ can be used to detect the packages that a given script depends on,
 which it will return as coded library calls that can be inserted into
 a cleaned script.
 
+All of these processes rely on the generation of data provenance
+[@Carata2014], which is a formal representation of the execution of a
+computational process (https://www.w3.org/TR/prov-dm/), to rigorously
+determine the the unique computational pathway from inputs to
+results. To avoid confusion, note that "data" in this context is used
+in a broad sense to include all of the information generated during
+computation, not just the data that are collected in a research
+project that are used as input to an analysis. Having the formalized,
+mathematically rigorous representation that data provenance provides
+gaurantees that the analyses that *RClean* conducts are theoretically
+sound. Most importantly, it makes it possible to apply a network
+search algorithm to determine the minimum and sufficient code needed
+to generate the chosen result in the `clean` function.
+
+There are multiple approaches to collecting data provenance, but
+*Rclean* uses "prospective" provenance, which analyzes code and uses
+language specific information to predict the relationship among
+processes and data objects. *Rclean* relies on a library called
+*CodeDepends* to gather the prospective provenance for each
+script. For more information on the mechanics of the *CodeDepends*
+package, see [@Lang2019]. To get an idea of what data provenance is,
+take a look at the `code_graph` function. The plot that it generates
+is a graphical representation of the prospective provenance generated
+for *Rclean*.
+
+```{R prov-graph}
+
+code_graph(script)
+
+```
 
 # Results
 
@@ -159,7 +189,7 @@ original code or ported to a new, "refactored" script.
 
 The software is currently hosted on Github, and we recommend using the
 `devtools` library to install directly from the repository
-(https://github.com/MKLau/rclean). The package is open-source and
+(https://github.com/ROpenSci/Rclean). The package is open-source and
 welcomes contributions. Please visit the repository page to report
 issues, request features or provide other feedback.
 
@@ -195,38 +225,37 @@ support the generation of new comments that are higher level
 treatment group."), and lower level comments are not necessary because
 the code is simpler and clearer.
 
+The existing framework could be extended to support new provenance
+capture methods. One possibility is *retrospective provenance*, which
+tracks a computational process as it is executing. Through this
+active, concurrent monitoring, retrospective provenance can gather
+information that static prospective provenance can't. Only using
+prospective provenance means that the outcomes of some processes can
+not be predicted. For example, if there is a part of a script that is
+determined by a random number, the current implementation of
+prospective provenance can not predict the path that will be taken
+through the code. Therefore, the code cannot be reduced to exclude the
+pathway that would not be taken. However, using retrospective provenance comes
+at a cost. In order to gather it, the script needs to
+be executed. When scripts are computationally intensive or contain
+bugs that stop execution, then retrospective provenance can not be
+obtained for part or all of the code. Some work has already been done
+in the direction of implementing retrospective provenance for code
+cleaning in R (see http://end-to-end-provenance.github.io).
 
-
-Although, a lot of great work can be done with type of data
-provenance, there are limitations. Only using prospective provenance
-means that the outcomes of some processes can not be predicted. For
-example, if there is a part of a script that is determined by a random
-number, the current implementation of prospective provenance can not
-predict the path that will be taken through the code. Therefore, the
-code cannot be reduced to exclude the pathway that would not be
-taken. Such limitations can be overcome with other data provenance
-methods. One solution is "retrospective" provenance, which tracks a
-computational process as it is executing. Through this active
-monitoring process, retrospective provenance can gather specific
-information, such as the results relevant to our random number
-example. Using retrospective provenance comes at a cost, however, in
-that in order to gather it, the script needs to be executed. When
-scripts are computationally intensive or contain bugs that stop
-execution, then retrospective provenance can not be obtained for part
-or all of the code. Some work has already been done in the direction
-of implementing retrospective provenance for code cleaning in R (see
-http://end-to-end-provenance.github.io).
-
-
-For example, the existing framework could be extended to support new
-provenance capture methods, and there is tremendous potential for the
-use of code cleaning in the creation of more robust capsules
-[@Pasquier2018].
+To conclude, we hope that `Rclean` makes writing scientifi software
+easier. We look forward to feedback and help with extending its
+applications, particularly in the area of reproducibility, such as
+using code cleaning in the creation of more robust capsules
+[@Pasquier2018]. To get involved, report bugs, suggest features,
+please visit the project page.
 
 # Acknowledgments
 
 This work was improved by discussions with ecologists at Harvard
-Forest. Much of the work was funded by US National Science Foundation
+Forest and through the helpful review provided by the ROpenSci
+community, particuarly Anna Krystalli, Will Landau and Clemens
+Schmid. Much of the work was funded by US National Science Foundation
 grant SSI-1450277 for applications of End-to-End Data Provenance.
 
 # References
