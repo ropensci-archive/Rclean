@@ -130,6 +130,19 @@ take a look at the `code_graph` function. The plot that it generates
 is a graphical representation of the prospective provenance generated
 for *Rclean*.
 
+```{R load-script, echo = FALSE, results = "hide"}
+library(CodeDepends)
+script <- system.file(
+    "example", 
+    "simple_script.R", 
+    package = "Rclean")
+script.long <- system.file(
+    "example", 
+    "long_script.R", 
+    package = "Rclean")
+
+```
+
 ```{R prov-graph}
 
 code_graph(script)
@@ -174,7 +187,7 @@ in the script. Instead, we can easily do this automatically with
 
 ```{R long}
 
-clean(script.long, "fit.sqrt.A")
+clean(script.long, "fit_sqrt_A")
 
 ```
 

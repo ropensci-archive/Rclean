@@ -1,0 +1,273 @@
+---
+title: "Rclean"
+output: rmarkdown::html_vignette
+bibliography: bibliography.bib
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Rclean}
+  %\VignetteEncoding{UTF-8}
+---
+
+<!-- \VignetteEngine{knitr::knitr} -->
+<!-- https://bookdown.org/yihui/rmarkdown/r-package-vignette.html -->
+
+Written with research scientists in mind,
+[Rclean](https://cran.r-project.org/web/packages/Rclean/)'s primary
+function provides a simple way to isolate the minimal code you need to
+produce specific results, such as a statistical table or a figure. By
+analyzing the relationships among objects and functions, large and/or
+complicated analytical scripts can be paired down to the
+essentials. This can aid in debugging and re-factoring code and help
+to make scientific projects more robust and easily shared.
+
+# Quick-start Guide
+
+You can install
+[Rclean](https://cran.r-project.org/web/packages/Rclean/) from *CRAN*: 
+
+```{r eval = FALSE}
+install.packages("Rclean")
+```
+
+You can install the most up to date version using
+[devtools](https://github.com/hadley/devtools):
+
+```{r eval = FALSE}
+install.packages("devtools")
+devtools::install_github("MKLau/Rclean")
+```
+
+Once installed, per usual R practice, just load the *Rclean* package with:
+
+```{r eval = TRUE}
+library(Rclean)
+```
+
+```{r eval = TRUE, echo = FALSE, results = "hide"}
+### Loads libraries and scripts
+library(CodeDepends)
+script <- system.file(
+    "example", 
+    "simple_script.R", 
+    package = "Rclean")
+script.long <- system.file(
+    "example", 
+    "long_script.R", 
+    package = "Rclean")
+
+```
+
+[Rclean](https://cran.r-project.org/web/packages/Rclean/) usage is
+simple. Just run the `clean` function with the file path to a script
+as the input. We can use an example script that is included with the
+package:
+
+```{r eval = FALSE} 
+script <- system.file("example", 
+                      "simple_script.R", 
+                      package = "Rclean")
+
+```
+
+Here's a quick look at the code:
+
+
+```{r eval = TRUE}
+readLines(script)
+
+```
+
+You can get a list of the variables found in an object with
+`get_vars`. 
+
+```{r eval = TRUE}
+get_vars(script)
+
+```
+
+Sometimes for more complicated scripts, it can be helpful to see a
+network graph showing the interdependencies of variables. `code_graph`
+will produce a network diagram showing which lines of code produce or
+use which variables (e.g. 1 -> "out"):
+
+```{r eval = TRUE}
+code_graph(script)
+```
+
+Now, we can pick the result we want to focus on for cleaning:
+
+
+```{r eval = TRUE}
+clean(script, "tab.15")
+```
+
+We can also select several variables at the same time:
+
+```{r eval = TRUE}
+my.vars <- c("tab.12", "tab.15")
+clean(script, my.vars)
+```
+
+While just taking a look at the simplified code can be very helpful,
+you can also save the code for later use or sharing (e.g. creating a
+reproducible example for getting help) with `keep`:
+
+```{r eval = FALSE}
+my.code <- clean(script, my.vars)
+keep(my.code, file = "results_tables.R")
+```
+
+If you would like to copy your code to your clipboard to copy-paste,
+you can do that by not specifying a file path. You can now paste the
+simplified as needed, such as into another script file or a help forum
+thread.
+
+```{r eval = FALSE}
+keep(my.code)
+```
+
+# Some Thoughts on the Need for "Code Cleaning"
+
+At it's root R is a statistical programming language. That is, it was
+designed for use in analytical workflows. As such, the majority of the
+R community is focused on producing code for idiosyncratic projects
+that are results oriented. Also, R's design is intentionally at a
+level that abstracts many aspects of programming that would otherwise
+act as a barrier to entry for many users. This is good in that there
+are many people who use R to their benefit with little to no formal
+training in computer science or software engineering. However, these
+same users are also frequently frustrated by code that is fragile,
+buggy and complicated enough to quickly become obtuse even to
+themselves in a very short amount of time. In addition, when scripts
+take an extremely long time to execute, being able to reduce
+unnecessary analyses can help increase computation efficiency.
+
+
+More often then not, when someone is writing an R script, they are
+intent on getting a set of results. This set of results is always a
+subset of a much larger set of possible ways to explore a dataset, as
+there are many statistical approaches and tests, let alone ways to
+create visualizations and other representations of patterns in
+data. This commonly leads to lengthy, complicated scripts from which
+researchers manually subset results, but never refactor (i.e. reduce
+to the final subset). In part, this is enabled by a lack of a proper
+version control system, and in order to record their process and not
+lose work, the entire process remains in a single or several
+scripts. Although *Rclean* is not designed to fix the latter, it can
+help with the former issue, once an appropriate versioning system is
+adopted (e.g. git or subversion).
+
+
+
+# Example: Cleaning a Long Script
+
+Conducting analyses is challenging in that it requires thinking about
+multiple concepts at the same time. What did I measure? What analyses
+are relevant to them? Do I need to transform the data? How do I go
+about managing the data given how they were entered? What's the code
+for the analysis I want to run? And so on. Data analysis can be messy
+and complicated, so it's no wonder that code reflects this. And this
+is a reason why having a way to isolate code based on variables can be
+valuable.
+
+The following is an example of a script that has some
+complications. As you can see, although the script is not extremely
+long, it's long enough to make it frustrating to visualize it in its
+entirety and pick through it. 
+
+
+```{R long-setup, echo = TRUE, eval = TRUE}
+script.long <- system.file("example", 
+                           "long_script.R", 
+                           package = "Rclean")
+readLines(script.long)
+
+```
+
+So, let's say we've come to our script wanting to extract the code to
+produce one of the results `fit.sqrt.A`, which is an analysis that is
+relevant to some product. Not only do we want to double check the
+results, we also want to use the code again for another purpose, such
+as creating a plot of the patterns supported by the test. 
+
+Manually tracing through our code for all the variables used in the
+test and finding all of the lines that were used to prepare them for
+the analysis would be annoying and difficult, especially given the
+fact that we have used "x" as a prefix for multiple unrelated objects
+in the script. Instead, we can easily do this automatically with
+*Rclean*.
+
+```{R long}
+
+clean(script.long, "fit_sqrt_A")
+
+```
+
+As you can see, *Rclean* has picked through the tangled bits of code
+and found the minimal set of lines relevant to our object of
+interest. This code can now be visually inspected to adapt the
+original code or ported to a new, "refactored" script. 
+
+
+# Behind the Scenes: How *Rclean* Works
+
+The workhorse behind *Rclean* is data provenance. Here, when we refer
+to provenance we are talking about a formalized representation of the
+computational process that produced some data. Data is used in a broad
+sense, not just data that were collected in a research project. There
+are multiple approaches to collecting data provenance, but *Rclean*
+uses "prospective" provenance, which analyzes code and uses language
+specific information to predict the relationship among processes and
+data objects. *Rclean* relies on a library called *CodeDepends* to
+gather the prospective provenance for each script. For more
+information on the mechanics of the *CodeDepends* package, see
+[@Lang2019]. To get an idea of what data provenance is, take a look at
+the `code_graph` function. The plot that it generates is a graphical
+representation of the prospective provenance generated for *Rclean*.
+
+```{R prov-graph}
+
+code_graph(script)
+
+```
+
+Although, a lot of great work can be done with type of data
+provenance, there are limitations. Only using prospective provenance
+means that the outcomes of some processes can not be predicted. For
+example, if there is a part of a script that is determined by a random
+number, the current implementation of prospective provenance can not
+predict the path that will be taken through the code. Therefore, the
+code cannot be reduced to exclude the pathway that would not be
+taken. Such limitations can be overcome with other data provenance
+methods. One solution is "retrospective" provenance, which tracks a
+computational process as it is executing. Through this active
+monitoring process, retrospective provenance can gather specific
+information, such as the results relevant to our random number
+example. Using retrospective provenance comes at a cost, however, in
+that in order to gather it, the script needs to be executed. When
+scripts are computationally intensive or contain bugs that stop
+execution, then retrospective provenance can not be obtained for part
+or all of the code. The End-to-end Provenance group has implemented
+methods to use retrospective provenance for R including applications
+on code cleaning. For more information on this work and using
+retrospective provenance, go to http://end-to-end-provenance.github.io.
+
+# A Comment about Comments
+
+Although, there is often very useful or even invaluable information in
+comments, the `clean` function removes comments when isolating
+code. This is primarily due to the lack of a mathematically formal
+method for determining their relationship to the code itself. Comments
+at the end of lines are typically relevant to the line they are on,
+but this is not explicitly required. Also, comments occupying their
+own lines usually refer to the following lines, but this is also not
+necessarily the case. As `clean` depends on the unambiguous
+determination of relationships in the production of results, it cannot
+operate automatically on comments. However, comments in the original
+code remain untouched and can be used to inform the reduced
+code. Also, as the `clean` function is oriented toward isolating code
+based on a specific result, the resulting code tends to naturally
+support the generation of new comments that are higher level
+(e.g. "The following produces a plot of the mean response of each
+treatment group."), and lower level comments are not necessary because
+the code is simpler and clearer.
