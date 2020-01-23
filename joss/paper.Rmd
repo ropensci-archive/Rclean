@@ -56,20 +56,41 @@ buggy and complicated enough to quickly become obtuse (even to
 themselves) in a very short amount of time, which leads to frequently
 re-writing code unecessarily. Also, when scripts take an extremely
 long time to execute, reducing unnecessary analyses can increase
-computational efficiency.
+computational efficiency. 
+
+The stability, reproducibility and re-use of scientific analyses in R
+would be improved by refactoring. From this perspective, tools that
+can lower the time and energy required to re-factor and streamline
+analytical scripts, and otherwise help to "clean" code will have a
+significant impact on scientific reproducibility across all
+disciplines [@Visser2015]. More often then not, when someone is
+writing an R script, the intent to produce a set of results, such as a
+statistical analysis, figure, etc. This set of results is always a
+subset of a much larger set of possible ways to explore a dataset, as
+there are many statistical approaches and tests, let alone ways to
+create visualizations and other representations of patterns in
+data. This commonly leads to lengthy, complicated scripts from which
+researchers manually subset results, but never refactor (i.e. reduce
+to the desired subset). In part, this is driven a desire to record the
+entire scripting/analytical process and not lose work, which is
+alleviated by the use of proper version control systems (e.g. git and
+subversion); however, refactoring will always be a part of the
+analytical process regardless.
 
 
-From this perspective, tools that can lower the time and energy
-required to re-factor and streamline analytical scripts, and otherwise
-help to "clean" code will have a significant impact on scientific
-reproducibility across all disciplines [@Visser2015]. To support this
-objective, we have created ``Rclean`` which automatically reduces a
-script to the parts that are specifically relevant to a research
-product (e.g.  a blog, academic talk or research article). Here, we
+To support provide support for easier refactoring in R, we have
+created ``Rclean``. The ``Rclean`` package provides tools to
+automatically reduce a script to the parts that are specifically
+relevant to a research product (e.g.  a scientific report, academic
+talk, research article, etc.). Although potentially useful to all R
+coders, it was designed to ease refactoring for scientists that use R
+but do not have formal training in software engineering. Here, we
 detail the structure of the package's API, describe the general
 workflow illustrated by an example use case and provide some
-background on how the underlying use of data provenance enables the
-package.
+background on how data provenance enables the underlying functionality
+of the package. We then end with a discussion of future applications
+of data provenance in the context of "code cleaning" and the potential
+integration with other software engineering tools for the R community.
 
 
 # Methods
