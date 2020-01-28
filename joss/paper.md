@@ -130,6 +130,10 @@ data provenance is, take a look at the `code_graph` function. The plot
 that it generates is a graphical representation of the prospective
 provenance generated for `Rclean`.
 
+    script <- system.file(
+        "example", 
+        "simple_script.R", 
+        package = "Rclean")
     code_graph(script)
 
 ![Network diagram of the prospective data provenance generated for an
