@@ -25,7 +25,7 @@ affiliations:
    index: 3
  - name: Department of Computer Science, University of British Columbia
    index: 4
-date: 6 December 2019
+date: 
 bibliography: paper.bib
 ---
 
