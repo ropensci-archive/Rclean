@@ -2,51 +2,80 @@ Introduction
 ============
 
 The growth of programming in the sciences has been explosive in the last
-decade. In particular, the statistical programming language `R` has
-grown exponentially to become one of the top ten programming languages
-in use today. Recently, concerns have arisen over the reproducibility of
-scientific research (R. D. Peng et al. 2011 Baker (2016) Stodden,
-Seiler, and Ma (2018)) and the potential issues stemming from the
-complexity and fragility of analytical software (Pasquier et al. 2017
-Chen et al. (2018)). There is now a recognition that simply making the
-code open is not enough, and that there is a need for improvements to
-documentation and transparency (Chen et al. 2018).
+decade. This has facilitated the rapid advancement of scienqce through
+the agile development of computational tools. However, concerns have
+begun to surface about the reproducibility of scientific research in
+general (R. D. Peng et al. 2011 Baker (2016)) and the potential issues
+stemming from issues with analytical software (Pasquier et al. 2017
+Stodden, Seiler, and Ma (2018)). Specifically, there is a growing
+recognition across disciplines that simply making data and software
+"available" is not enough and that there is a need to improve the
+transparency and stability of scientific software (Pasquier et al.
+2018).
 
-At it's root R is a statistical programming language, that is, it was
-designed for use in analytical workflows. As such, the majority of the R
-community is focused on producing code for idiosyncratic projects that
-are results oriented. Also, R's design is intentionally at a level that
-abstracts many aspects of programming that would otherwise act as a
-barrier to entry for many users. This is good in that there are many
-people who use R to their benefit with little to no formal training in
-computer science or software engineering. However, these same users are
-also frequently frustrated by code that is fragile, buggy and
-complicated enough to quickly become obtuse (even to themselves) in a
-very short amount of time, which leads to frequently re-writing code
-unecessarily. Also, when scripts take an extremely long time to execute,
-reducing unnecessary analyses can increase computational efficiency.
+At the core of the growth of scentific conputation, the `R` statistical
+programming language has grown exponentially to become one of the top
+ten programming languages in use today. At it's root R is a
+*statistical* programming language. That is, it was designed for use in
+analytical workflows; and the majority of the R community is focused on
+producing code for idiosyncratic projects that are *results* oriented.
+Also, R's design is intentionally at a level that abstracts many aspects
+of programming that would otherwise act as a barrier to entry for many
+users. This is good in that there are many people who use R to their
+benefit with little to no formal training in computer science or
+software engineering, but these same users can also be frequently
+frustrated by code that is fragile, buggy and complicated enough to
+quickly become obtuse even to the authors. The stability,
+reproducibility and re-use of scientific analyses in R would be improved
+by refactoring. From this perspective, tools that can lower the time and
+energy required to re-factor and streamline analytical scripts and
+otherwise help to "clean" code, but abstracted enough to be easily
+accessible, could have a significant impact on scientific
+reproducibility across all disciplines (Visser et al. 2015).
 
-From this perspective, tools that can lower the time and energy required
-to re-factor and streamline analytical scripts, and otherwise help to
-"clean" code will have a significant impact on scientific
-reproducibility across all disciplines (Visser et al. 2015). To support
-this objective, we have created `Rclean` which automatically reduces a
+To provide support for easier refactoring in R, we have created
+`Rclean`. The `Rclean` package provides tools to automatically reduce a
 script to the parts that are specifically relevant to a research product
-(e.g. a blog, academic talk or research article). Here, we detail the
-structure of the package's API, describe the general workflow
-illustrated by an example use case and provide some background on how
-the underlying use of data provenance enables the package.
+(e.g. a scientific report, academic talk, research article, etc.).
+Although potentially useful to all R coders, it was designed to ease
+refactoring for scientists that use R but do not have formal training in
+software engineering. Here, we detail the structure of the package's
+API, describe the general workflow illustrated by an example use case
+and provide some background on how data provenance enables the
+underlying functionality of the package. We then end with a discussion
+of future applications of data provenance in the context of "code
+cleaning" and the potential integration with other software engineering
+tools for the R community.
 
 Methods
 =======
 
-The main goal of *Rclean* is to provide a means to simplify code. To
-keep the process simple and straight-forward, the API has been kept to a
-minimum set of functions, which enable a user to conduct the basic
-workflow of getting information about the posible results in a script,
-obtaining the minimum code for a set of results and then creating a new
-"cleaned" script or other software (e.g. a function, reproducible
-example, web-app, etc.).
+More often then not, when someone is writing an R script, the intent to
+produce a set of results, such as a statistical analysis, figure, table,
+etc. This set of results is always a subset of a much larger set of
+possible ways to explore a dataset, as there are many statistical
+approaches and tests, let alone ways to create visualizations and other
+representations of patterns in data. This commonly leads to lengthy,
+complicated scripts from which researchers manually subset results, but
+never refactor, i.e. refine code so that it is shorter and focused on a
+desired product.
+
+The goal of `Rclean` is to provide a set of tools that help someone
+reduce and organize code based on results. The package uses an automated
+technique based on data provenance (details below) to analyze existing
+scripts and provide ways to identify and extract code to produce a
+desired output. To keep the process simple and straight-forward much of
+this process has been abstracted for the user, and the API has been kept
+to a minimum set of functions that enable a user to conduct the
+following basic workflow:
+
+1.  Obtain the "cleaned" code for a result(s).
+2.  Transfer the code to a new context (e.g. a new script, function,
+    reproducible example, web-app, etc.).
+3.  Get information about the posible results and repeat as needed.
+
+The API
+-------
 
 The package's main functions are `clean` and `keep`. When provided a
 file path to a script and the name of a result (or a set of results),
@@ -59,45 +88,53 @@ editor).
 
 In the process of cleaning a script, it is likely that a user might
 require some help analyzing the script. There are several functions to
-help. The `get_vars` function will return a list of possible results for
-a given script at a supplied file path. This is obviously an important
-step, and justsifiably, the default behavior of the `clean` function is
-to run `get_vars` if no results are supplied. To help with limiting and
-checking the selection of results, the `code_graph` function creates a
-network graph of the relationships among the various results and lines
-of code in the script. Last, the `get_libs` function can be used to
-detect the packages that a given script depends on, which it will return
-as coded library calls that can be inserted into a cleaned script.
+help with this process. The `get_vars` function will return a list of
+possible results for a given script at a supplied file path. This is
+obviously an important step, and justsifiably, the default behavior of
+the `clean` function is to run `get_vars` if no results are supplied. To
+help with limiting and checking the selection of results, the
+`code_graph` function creates a network graph of the relationships among
+the various results and lines of code in the script. Last, the
+`get_libs` function can be used to detect the packages that a given
+script depends on, which it will return as coded library calls that can
+be inserted into a cleaned script.
 
-All of these processes rely on the generation of data provenance (Carata
-et al. 2014), which is a formal representation of the execution of a
+Data Provenance
+---------------
+
+All of these processes rely on the generation of data provenance. The
+term provenance means information about the origins of some object. Data
+provenanve is a formal representation of the execution of a
 computational process (<https://www.w3.org/TR/prov-dm/>), to rigorously
-determine the the unique computational pathway from inputs to results.
-To avoid confusion, note that "data" in this context is used in a broad
-sense to include all of the information generated during computation,
-not just the data that are collected in a research project that are used
-as input to an analysis. Having the formalized, mathematically rigorous
-representation that data provenance provides gaurantees that the
-analyses that *RClean* conducts are theoretically sound. Most
-importantly, it makes it possible to apply a network search algorithm to
-determine the minimum and sufficient code needed to generate the chosen
-result in the `clean` function.
+determine the the unique computational pathway from inputs to results
+(Carata et al. 2014). To avoid confusion, note that "data" in this
+context is used in a broad sense to include all of the information
+generated during computation, not just the data that are collected in a
+research project that are used as input to an analysis. Having the
+formalized, mathematically rigorous representation that data provenance
+provides gaurantees that the analyses that *RClean* conducts are
+theoretically sound. Most importantly, because the relationships defined
+by the provenance can be represented as a graph, it is possible to apply
+network search algorithms to determine the minimum and sufficient code
+needed to generate the chosen result in the `clean` function.
 
 There are multiple approaches to collecting data provenance, but
-*Rclean* uses "prospective" provenance, which analyzes code and uses
+`Rclean` uses "prospective" provenance, which analyzes code and uses
 language specific information to predict the relationship among
-processes and data objects. *Rclean* relies on a library called
-*CodeDepends* to gather the prospective provenance for each script. For
-more information on the mechanics of the *CodeDepends* package, see
+processes and data objects. `Rclean` relies on a library called
+`CodeDepends` to gather the prospective provenance for each script. For
+more information on the mechanics of the `CodeDepends` package, see
 (<span class="citeproc-not-found"
 data-reference-id="Lang2019">**???**</span>). To get an idea of what
 data provenance is, take a look at the `code_graph` function. The plot
 that it generates is a graphical representation of the prospective
-provenance generated for *Rclean*.
+provenance generated for `Rclean`.
 
+    ```r
     code_graph(script)
+    ```
 
-![](paper_files/figure-markdown_strict/prov-graph-1.png)
+    ![Network diagram of the prospective data provenance generated for an example script. Arrows indicate relationships among objects and lines of code (numbered).](paper_files/figure-markdown_strict/prov-graph-1.png)
 
 Results
 =======
@@ -209,7 +246,7 @@ Manually tracing through our code for all the variables used in the test
 and finding all of the lines that were used to prepare them for the
 analysis would be annoying and difficult, especially given the fact that
 we have used "x" as a prefix for multiple unrelated objects in the
-script. Instead, we can easily do this automatically with *Rclean*.
+script. Instead, we can easily do this automatically with `Rclean`.
 
     clean(script.long, "fit_sqrt_A")
 
@@ -237,7 +274,7 @@ script. Instead, we can easily do this automatically with *Rclean*.
     ## x <- data.frame(x)
     ## fit_sqrt_A <- lm(I(sqrt(A)) ~ B, data = x)
 
-As you can see, *Rclean* has picked through the tangled bits of code and
+As you can see, `Rclean` has picked through the tangled bits of code and
 found the minimal set of lines relevant to our object of interest. This
 code can now be visually inspected to adapt the original code or ported
 to a new, "refactored" script.
@@ -328,12 +365,6 @@ Carata, Lucian, Sherif Akoush, Nikilesh Balakrishnan, Thomas Bytheway,
 Ripduman Sohan, Margo Seltzer, and Andy Hopper. 2014. “A Primer on
 Provenance.” *Queue* 12 (3). ACM: 10–23.
 doi:[10.1145/2602649.2602651](https://doi.org/10.1145/2602649.2602651).
-
-Chen, Xiaoli, Sünje Dallmeier-Tiessen, Robin Dasler, Sebastian Feger,
-Pamfilos Fokianos, Jose Benito Gonzalez, Harri Hirvonsalo, et al. 2018.
-“Open is not enough.” *Nat. Phys.*, November. Nature Publishing Group,
-1.
-doi:[10.1038/s41567-018-0342-2](https://doi.org/10.1038/s41567-018-0342-2).
 
 Pasquier, Thomas, Matthew K. Lau, Xueyuan Han, Elizabeth Fong, Barbara
 S. Lerner, Emery R. Boose, Merce Crosas, Aaron M. Ellison, and Margo
