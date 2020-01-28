@@ -167,7 +167,7 @@ script.long <- system.file(
     "example", 
     "long_script.R", 
     package = "Rclean")
-
+script <- script.long
 ```
 
 ```{R prov-graph, fig.cap = "Network diagram of the prospective data provenance generated for an example script. Arrows indicate relationships among objects and lines of code (numbered)."}
@@ -195,7 +195,7 @@ entirety and pick through it.
 
 ```{R long-setup, echo = FALSE, eval = TRUE}
 
-readLines(script.long)
+readLines(script)
 
 ```
 
@@ -214,7 +214,7 @@ in the script. Instead, we can easily do this automatically with
 
 ```{R long}
 
-clean(script.long, "fit_sqrt_A")
+clean(script, "fit_sqrt_A")
 
 ```
 
