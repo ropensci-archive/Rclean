@@ -172,21 +172,42 @@ code_graph(script)
 
 ```
 
+Relatedly, it is important to briefly point out that `Rclean` *does
+not* keep comments present in code. This could be seen as a limitation
+of the data provenance, which currently does not assign them a
+relationships. Therefore, although there is often very useful or even
+invaluable information in comments, the `clean` function removes
+them. This is a general issue with automated methods for detecting the
+relationships between comments and the code itself. Comments at the
+end of lines are typically relevant to the line they are on, but this
+is not a requirement and could refer to other lines. Also, comments
+occupying their own lines usually refer to the following lines, but
+this is also not necessarily the case. As `clean` depends on the
+unambiguous determination of relationships in the production of
+results, it cannot operate automatically on comments. However,
+comments in the original code remain untouched and can be used to
+inform the reduced code. Also, as the `clean` function is oriented
+toward isolating code based on a specific result, the resulting code
+tends to naturally support the generation of new comments that are
+higher level (e.g. "The following produces a plot of the mean response
+of each treatment group."), and lower level comments are not necessary
+because the code is simpler and clearer.
+
+
 # Results
 
 ## Example
 
 Conducting analyses is challenging in that it requires thinking about
 multiple concepts at the same time. What did I measure? What analyses
-are relevant to them? Do I need to transform the data? How do I go
-about managing the data given how they were entered? What's the code
+are relevant to them? Do I need to transform the data? What's the code
 for the analysis I want to run? And so on. Data analysis can be messy
-and complicated, so it's no wonder that code reflects this. And this
-is a reason why having a way to isolate code based on variables can be
-valuable. The following is an example of a script that has some
+and complicated, so it's no wonder that the code often reflects
+this. This is why having a way to isolate code based on variables can
+be valuable. The following is an example of a script that has some
 complications. As you can see, although the script is not extremely
-long, it's long enough to make it frustrating to visualize it in its
-entirety and pick through it.
+long or complicated, it's difficult enough to make it frustrating to
+visualize it in its entirety and pick through it.
 
 ```{R long-setup, echo = FALSE, eval = TRUE, results = "hide"}
 
@@ -227,6 +248,27 @@ and found the minimal set of lines relevant to our object of
 interest. This code can now be visually inspected to adapt the
 original code or ported to a new, "refactored" script. 
 
+```{R ex-keep}
+
+
+```
+
+
+
+```{R ex-get_vars}
+
+
+```
+
+```{R ex-code_graph}
+
+
+```
+
+```{R ex-get_libs}
+
+
+```
 
 
 ## Software Availability
@@ -239,55 +281,48 @@ issues, request features or provide other feedback.
 
 # Discussion
 
-The ``Rclean`` package provides a simple, easy to use tool for
-scientists conducting analyses in the R programming language. Using
-graph analytic algorithms, ``Rclean`` isolates the code necessary to
-produce a specified result (e.g., an object stored in memory or a
-table or figure written to disk). As statistical programming becomes
+We have created ``Rclean`` to provide a simple, easy to use tool for
+scientists who would like help refactoring their code. Using
+``Rclean`` the code necessary to produce a specified result (e.g., an
+object stored in memory or a table or figure written to disk) can be
+easily isolated even when tangled with code for other results. This
+functionality is enabled by graph analysis of data provenance
+collected from the user's script. As statistical programming becomes
 more common across the sciences, tools that make the production of
 accessible code will be an important aid for improving scientific
-reproducibility. ``Rclean`` has been designed to take advantage of
-recent advances in data provenance capture techniques to create a
-minimal tool for this purpose.
+reproducibility.
 
-It is worth mentioning and discussing that `Rclean` does not keep
-comments present in code. Although, there is often very useful or even
-invaluable information in comments, the `clean` function removes
-comments. This is primarily due to the lack of a mathematically formal
-method for determining their relationship to the code itself. Comments
-at the end of lines are typically relevant to the line they are on,
-but this is not explicitly required. Also, comments occupying their
-own lines usually refer to the following lines, but this is also not
-necessarily the case. As `clean` depends on the unambiguous
-determination of relationships in the production of results, it cannot
-operate automatically on comments. However, comments in the original
-code remain untouched and can be used to inform the reduced
-code. Also, as the `clean` function is oriented toward isolating code
-based on a specific result, the resulting code tends to naturally
-support the generation of new comments that are higher level
-(e.g. "The following produces a plot of the mean response of each
-treatment group."), and lower level comments are not necessary because
-the code is simpler and clearer.
+Potential to integrate with a larger context of producing reproducible
+projects. 
 
-The existing framework could be extended to support new provenance
-capture methods. One possibility is *retrospective provenance*, which
-tracks a computational process as it is executing. Through this
-active, concurrent monitoring, retrospective provenance can gather
-information that static prospective provenance can't. Only using
-prospective provenance means that the outcomes of some processes can
-not be predicted. For example, if there is a part of a script that is
-determined by a random number, the current implementation of
-prospective provenance can not predict the path that will be taken
-through the code. Therefore, the code cannot be reduced to exclude the
-pathway that would not be taken. However, using retrospective provenance comes
-at a cost. In order to gather it, the script needs to
-be executed. When scripts are computationally intensive or contain
-bugs that stop execution, then retrospective provenance can not be
-obtained for part or all of the code. Some work has already been done
-in the direction of implementing retrospective provenance for code
-cleaning in R (see http://end-to-end-provenance.github.io).
+- style = styler, formatr
+- naming = lintr, goodpractice
+- workflow = drake
+- libraries = trackr, rrtools, packrat
+- reproducible examples = reprex
+- data = pins
 
-To conclude, we hope that `Rclean` makes writing scientifi software
+Also, future work could extend the existing framework to support new
+and different provenance capture methods. One possibility is
+*retrospective provenance*, which tracks a computational process as it
+is executing. Through this active, concurrent monitoring,
+retrospective provenance can gather information that static
+prospective provenance can't. Only using prospective provenance means
+that the outcomes of some processes can not be predicted. For example,
+if there is a part of a script that is determined by a random number,
+the current implementation of prospective provenance can not predict
+the path that will be taken through the code. Therefore, the code
+cannot be reduced to exclude the pathway that would not be
+taken. However, using retrospective provenance comes at a cost. In
+order to gather it, the script needs to be executed. When scripts are
+computationally intensive or contain bugs that stop execution, then
+retrospective provenance can not be obtained for part or all of the
+code. Some work has already been done in the direction of implementing
+retrospective provenance for code cleaning in R (see
+http://end-to-end-provenance.github.io).
+
+
+To conclude, we hope that `Rclean` makes writing scientific software
 easier. We look forward to feedback and help with extending its
 applications, particularly in the area of reproducibility, such as
 using code cleaning in the creation of more robust capsules
