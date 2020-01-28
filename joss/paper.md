@@ -130,11 +130,11 @@ data provenance is, take a look at the `code_graph` function. The plot
 that it generates is a graphical representation of the prospective
 provenance generated for `Rclean`.
 
-    ```r
     code_graph(script)
-    ```
 
-    ![Network diagram of the prospective data provenance generated for an example script. Arrows indicate relationships among objects and lines of code (numbered).](paper_files/figure-markdown_strict/prov-graph-1.png)
+![Network diagram of the prospective data provenance generated for an
+example script. Arrows indicate relationships among objects and lines of
+code (numbered).](paper_files/figure-markdown_strict/prov-graph-1.png)
 
 Results
 =======
@@ -248,7 +248,7 @@ analysis would be annoying and difficult, especially given the fact that
 we have used "x" as a prefix for multiple unrelated objects in the
 script. Instead, we can easily do this automatically with `Rclean`.
 
-    clean(script.long, "fit_sqrt_A")
+    clean(script, "fit_sqrt_A")
 
     ## Warning: Could not use colored = TRUE, as the package prettycode is not
     ## installed. Please install it if you want to see colored output or see `?
