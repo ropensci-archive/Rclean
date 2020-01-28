@@ -170,7 +170,7 @@ script.long <- system.file(
 
 ```
 
-	```{R prov-graph, fig.cap = "Network diagram of the prospective data provenance generated for an example script. Arrows indicate relationships among objects and lines of code (numbered)."}
+```{R prov-graph, fig.cap = "Network diagram of the prospective data provenance generated for an example script. Arrows indicate relationships among objects and lines of code (numbered)."}
 
 code_graph(script)
 
