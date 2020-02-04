@@ -56,11 +56,12 @@ computer science or software engineering, but these same users can
 also be frequently frustrated by code that is fragile, buggy and
 complicated enough to quickly become obtuse even to the authors. The
 stability, reproducibility and re-use of scientific analyses in R
-would be improved by refactoring. From this perspective, tools that
-can lower the time and energy required to re-factor and streamline
-analytical scripts and otherwise help to "clean" code, but abstracted
-enough to be easily accessible, could have a significant impact on
-scientific reproducibility across all disciplines [@Visser2015].
+would be improved by refactoring, which is a common practice in
+software engineering [@Martin2009]. From this perspective, tools that
+can lower the time and energy required to refactor analytical scripts
+and otherwise help to "clean" code, but abstracted enough to be easily
+accessible, could have a significant impact on scientific
+reproducibility across all disciplines [@Visser2015].
 
 To provide support for easier refactoring in R, we have created
 ``Rclean``. The ``Rclean`` package provides tools to automatically
@@ -114,18 +115,20 @@ code to the user's clipboard (if no output file path is supplied) and
 the user can paste the code into another location (e.g. a script
 editor).
 
-In the process of cleaning a script, it is likely that a user might
-require some help analyzing the script. There are several functions to
-help with this process. The `get_vars` function will return a list of
-possible results for a given script at a supplied file path. This is
-obviously an important step, and justifiably, the default behavior of
-the `clean` function is to run `get_vars` if no results are
-supplied. To help with limiting and checking the selection of results,
-the `code_graph` function creates a network graph of the relationships
-among the various results and lines of code in the script. Last, the
-`get_libs` function can be used to detect the packages that a given
-script depends on, which it will return as coded library calls that
-can be inserted into a cleaned script.
+In the process of cleaning a script, it is likely that a user will not
+know the precise objects they want and might require some help
+analyzing it. There are several functions to help with this
+process. The `get_vars` function will return a list of possible
+results for a given script at a supplied file path. This is obviously
+an important step, and justifiably, the default behavior of the
+`clean` function is to run `get_vars` if no results are supplied. To
+help with limiting and checking the selection of results, the
+`code_graph` function creates a network graph of the relationships
+among the various results and lines of code in the script, which is
+the function used to create the figure demonstrating data provenance
+\ref{prov-graph}. Last, the `get_libs` function can be used to detect
+the packages that a given script depends on, which it will return as
+coded library calls that can be inserted into a cleaned script.
 
 ## Data Provenance
 
@@ -139,7 +142,7 @@ context is used in a broad sense to include all of the information
 generated during computation, not just the data that are collected in
 a research project that are used as input to an analysis. Having the
 formalized, mathematically rigorous representation that data
-provenance provides guarantees that the analyses that *RClean*
+provenance provides guarantees that the analyses that `Rclean`
 conducts are theoretically sound. Most importantly, because the
 relationships defined by the provenance can be represented as a graph,
 it is possible to apply network search algorithms to determine the
@@ -155,14 +158,16 @@ script. For more information on the mechanics of the `CodeDepends`
 package, see [@Lang2019]. To get an idea of what data provenance is,
 take a look at the `code_graph` function. The plot that it generates
 is a graphical representation of the prospective provenance generated
-for `Rclean`.
+for `Rclean` \ref{prov-graph}.
 
 ```{R load-script, echo = FALSE, results = "hide"}
 library(CodeDepends)
 library(Rclean)
 ```
 
-```{R prov-graph, fig.cap = "Network diagram of the prospective data provenance generated for an example script. Arrows indicate relationships among objects and lines of code (numbered)."}
+```{R prov-graph, fig.cap = "Network diagram of the prospective data
+provenance generated for an example script. Arrows indicate
+which lines of code (numbered) produced which objects (named).", echo = FALSE}
 
 script <- system.file(
     "example", 
@@ -172,9 +177,9 @@ code_graph(script)
 
 ```
 
-Relatedly, it is important to briefly point out that `Rclean` *does
-not* keep comments present in code. This could be seen as a limitation
-of the data provenance, which currently does not assign them a
+Relatedly, it is important to point out that `Rclean` *does not* keep
+comments present in code. This could be seen as a limitation of the
+data provenance, which currently does not assign them a
 relationships. Therefore, although there is often very useful or even
 invaluable information in comments, the `clean` function removes
 them. This is a general issue with automated methods for detecting the
@@ -198,16 +203,15 @@ because the code is simpler and clearer.
 
 ## Example
 
-Conducting analyses is challenging in that it requires thinking about
-multiple concepts at the same time. What did I measure? What analyses
-are relevant to them? Do I need to transform the data? What's the code
-for the analysis I want to run? And so on. Data analysis can be messy
-and complicated, so it's no wonder that the code often reflects
-this. This is why having a way to isolate code based on variables can
-be valuable. The following is an example of a script that has some
-complications. As you can see, although the script is not extremely
-long or complicated, it's difficult enough to make it frustrating to
-visualize it in its entirety and pick through it.
+Data analysis can be messy and complicated, so it's no wonder that the
+code often reflects this. "What did I measure? What analyses are
+relevant to them? Do I need to transform the data? What's the function
+for the analysis I want to run?" This is why having a way to isolate
+code based on variables can be valuable. The following is an example
+of a script that has some complications. As you can see, although the
+script is not extremely long or complicated, it's difficult enough to
+make it frustrating to visualize it in its entirety and pick through
+it.
 
 ```{R long-setup, echo = FALSE, eval = TRUE, results = "hide"}
 
@@ -228,13 +232,12 @@ So, let's say we've come to our script wanting to extract the code to
 produce one of the results `fit.sqrt.A`, which is an analysis that is
 relevant to some product. Not only do we want to double check the
 results, we also want to use the code again for another purpose, such
-as creating a plot of the patterns supported by the test. 
-
-Manually tracing through our code for all the variables used in the
-test and finding all of the lines that were used to prepare them for
-the analysis would be annoying and difficult, especially given the
-fact that we have used "x" as a prefix for multiple unrelated objects
-in the script. Instead, we can easily do this automatically with
+as creating a plot of the patterns supported by the test. Manually
+tracing through our code for all the variables used in the test and
+finding all of the lines that were used to prepare them for the
+analysis would be annoying and difficult, especially given the fact
+that we have used "x" as a prefix for multiple unrelated objects in
+the script. Instead, we can easily do this automatically with
 `Rclean`.
 
 ```{R long}
@@ -282,13 +285,14 @@ issues, request features or provide other feedback.
 # Discussion
 
 We have created ``Rclean`` to provide a simple, easy to use tool for
-scientists who would like help refactoring their code. Using
-``Rclean`` the code necessary to produce a specified result (e.g., an
-object stored in memory or a table or figure written to disk) can be
-easily isolated even when tangled with code for other results. This
-functionality is enabled by graph analysis of data provenance
-collected from the user's script. As statistical programming becomes
-more common across the sciences, tools that make the production of
+scientists who would like help refactoring code. Using ``Rclean`` the
+code necessary to produce a specified result (e.g., an object stored
+in memory or a table or figure written to disk) can be easily and
+*reliably* isolated even when tangled with code for other
+results. This functionality is enabled by graph analysis of data
+provenance collected from the user's script. This is likely to be a
+broadly useful tool as statistical programming becomes more common
+across the sciences. Tools, such as this, that make the production of
 accessible code will be an important aid for improving scientific
 reproducibility.
 
@@ -302,24 +306,24 @@ projects.
 - reproducible examples = reprex
 - data = pins
 
-Also, future work could extend the existing framework to support new
-and different provenance capture methods. One possibility is
-*retrospective provenance*, which tracks a computational process as it
-is executing. Through this active, concurrent monitoring,
-retrospective provenance can gather information that static
-prospective provenance can't. Only using prospective provenance means
-that the outcomes of some processes can not be predicted. For example,
-if there is a part of a script that is determined by a random number,
-the current implementation of prospective provenance can not predict
-the path that will be taken through the code. Therefore, the code
-cannot be reduced to exclude the pathway that would not be
-taken. However, using retrospective provenance comes at a cost. In
-order to gather it, the script needs to be executed. When scripts are
-computationally intensive or contain bugs that stop execution, then
-retrospective provenance can not be obtained for part or all of the
-code. Some work has already been done in the direction of implementing
-retrospective provenance for code cleaning in R (see
-http://end-to-end-provenance.github.io).
+Another possible future direction could extend the existing framework
+to support new and different provenance capture methods. One
+possibility is *retrospective provenance*, which tracks a
+computational process as it is executing. Through this active,
+concurrent monitoring, retrospective provenance can gather information
+that static prospective provenance can't. Only using prospective
+provenance means that the outcomes of some processes can not be
+predicted. For example, if there is a part of a script that is
+determined by a random number, the current implementation of
+prospective provenance can not predict the path that will be taken
+through the code. Therefore, the code cannot be reduced to exclude the
+pathway that would not be taken. However, using retrospective
+provenance comes at a cost. In order to gather it, the script needs to
+be executed. When scripts are computationally intensive or contain
+bugs that stop execution, then retrospective provenance can not be
+obtained for part or all of the code. Some work has already been done
+in the direction of implementing retrospective provenance for code
+cleaning in R (see http://end-to-end-provenance.github.io).
 
 
 To conclude, we hope that `Rclean` makes writing scientific software
