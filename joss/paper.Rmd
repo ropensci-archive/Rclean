@@ -318,7 +318,7 @@ Although the workflow described is impactful, we see promise in
 extending it to interface with other clean code and reproducibility
 tools. One example is the `reprex` package, which provides a simple
 API for sharing reproducible examples. Another possibility is to help
-transtion scripts to function, package and workflow creation and
+transition scripts to function, package and workflow creation and
 refactoring via toolboxes like `drake`. `Rclean` could provide a
 reliable way to extract parts of a larger script that would be piped
 to a simplified reproducible example, in the case of `reprex`, or,
