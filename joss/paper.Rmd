@@ -127,7 +127,7 @@ help with limiting and checking the selection of results, the
 `code_graph` function creates a network graph of the relationships
 among the various results and lines of code in the script, which is
 the function used to create the figure demonstrating data provenance
-\ref{prov-graph}. Last, the `get_libs` function can be used to detect
+\@ref(fig:prov-graph). Last, the `get_libs` function can be used to detect
 the packages that a given script depends on, which it will return as
 coded library calls that can be inserted into a cleaned script.
 
@@ -159,7 +159,7 @@ script. For more information on the mechanics of the `CodeDepends`
 package, see [@Lang2019]. To get an idea of what data provenance is,
 take a look at the `code_graph` function. The plot that it generates
 is a graphical representation of the prospective provenance generated
-for `Rclean` \ref{prov-graph}.
+for `Rclean` \@ref(fig:prov-graph).
 
 ```{R load-script, echo = FALSE, results = "hide"}
 library(CodeDepends)
