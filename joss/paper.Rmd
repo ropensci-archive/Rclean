@@ -328,14 +328,12 @@ functions that would be a part of a package or workflow, as is the
 goal of `drake`. 
 
 
-
-
 To conclude, we hope that `Rclean` makes writing scientific software
-easier. We look forward to feedback and help with extending its
-applications, particularly in the area of reproducibility, such as
-using code cleaning in the creation of more robust capsules
-[@Pasquier2018]. To get involved, report bugs, suggest features,
-please visit the project page.
+easier for the R community. We look forward to feedback and help with
+extending its application, particularly in the area of
+reproducibility, such as using code cleaning in the creation of more
+robust capsules [@Pasquier2018]. To get involved, report bugs, suggest
+features, please visit the project page.
 
 # Acknowledgments
 
