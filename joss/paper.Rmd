@@ -109,11 +109,12 @@ function, reproducible example, web-app, etc.).
 The package's main functions are `clean` and `keep`. When provided a
 file path to a script and the name of a result (or a set of results),
 `clean` analyzes the script's code and extracts the lines of code
-required to produce the results. This code can then be passed to the
-`keep` function, which can either write the code to disk or copy the
-code to the user's clipboard (if no output file path is supplied) and
-the user can paste the code into another location (e.g. a script
-editor).
+required to produce the results. By default, code is formatted
+following general best practices recommended by the Tidyverse via the
+`styler` package. This code can then be passed to the `keep` function,
+which can either write the code to disk or copy the code to the user's
+clipboard (if no output file path is supplied) and the user can paste
+the code into another location (e.g. a script editor).
 
 In the process of cleaning a script, it is likely that a user will not
 know the precise objects they want and might require some help
@@ -197,6 +198,22 @@ tends to naturally support the generation of new comments that are
 higher level (e.g. "The following produces a plot of the mean response
 of each treatment group."), and lower level comments are not necessary
 because the code is simpler and clearer.
+
+In the future, it would also be useful to extend the existing
+framework to support other provenance methods. One such possibility is
+*retrospective provenance*, which tracks a computational process as it
+is executing. Through this active, concurrent monitoring,
+retrospective provenance can gather information that static
+prospective provenance can't. Greater details of the computational
+process would enable other features that could address some
+challenges, such as processing information from comments, parsing
+control statements and replicating random processes. However, using
+retrospective provenance comes at a cost. In order to gather it, the
+script needs to be executed. When scripts are computationally
+intensive or contain bugs that stop execution, then retrospective
+provenance can not be obtained for part or all of the code. Some work
+has already been done in the direction of implementing retrospective
+provenance for code cleaning in R (see http://end-to-end-provenance.github.io).
 
 
 # Results
@@ -292,38 +309,25 @@ in memory or a table or figure written to disk) can be easily and
 results. This functionality is enabled by graph analysis of data
 provenance collected from the user's script. This is likely to be a
 broadly useful tool as statistical programming becomes more common
-across the sciences. Tools, such as this, that make the production of
-accessible code will be an important aid for improving scientific
-reproducibility.
+across the sciences. Tools, such as this, that make it easier to
+produce transparent, accessible code will be an important aid for
+improving scientific reproducibility.
 
-Potential to integrate with a larger context of producing reproducible
-projects. 
 
-- style = styler, formatr
-- naming = lintr, goodpractice
-- workflow = drake
-- libraries = trackr, rrtools, packrat
-- reproducible examples = reprex
-- data = pins
+Although the workflow described is impactful, we see promise in
+extending it to interface with other clean code and reproducibility
+tools. One example is the `reprex` package, which provides a simple
+API for sharing reproducible examples. Another possibility is to help
+transtion scripts to function, package and workflow creation and
+refactoring via toolboxes like `drake`. `Rclean` could provide a
+reliable way to extract parts of a larger script that would be piped
+to a simplified reproducible example, in the case of `reprex`, or,
+since it can isolate the code from inputs to one or more outputs, be
+used to extract all of the components needed to write one or more
+functions that would be a part of a package or workflow, as is the
+goal of `drake`. 
 
-Another possible future direction could extend the existing framework
-to support new and different provenance capture methods. One
-possibility is *retrospective provenance*, which tracks a
-computational process as it is executing. Through this active,
-concurrent monitoring, retrospective provenance can gather information
-that static prospective provenance can't. Only using prospective
-provenance means that the outcomes of some processes can not be
-predicted. For example, if there is a part of a script that is
-determined by a random number, the current implementation of
-prospective provenance can not predict the path that will be taken
-through the code. Therefore, the code cannot be reduced to exclude the
-pathway that would not be taken. However, using retrospective
-provenance comes at a cost. In order to gather it, the script needs to
-be executed. When scripts are computationally intensive or contain
-bugs that stop execution, then retrospective provenance can not be
-obtained for part or all of the code. Some work has already been done
-in the direction of implementing retrospective provenance for code
-cleaning in R (see http://end-to-end-provenance.github.io).
+
 
 
 To conclude, we hope that `Rclean` makes writing scientific software
