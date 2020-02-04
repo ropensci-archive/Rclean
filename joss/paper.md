@@ -478,7 +478,81 @@ can easily do this automatically with `Rclean`.
 As you can see, `Rclean` has picked through the tangled bits of code and
 found the minimal set of lines relevant to our object of interest. This
 code can now be visually inspected to adapt the original code or ported
-to a new, "refactored" script.
+to a new, "refactored" script using `keep`.
+
+    fitSA <- clean(script, "fit_sqrt_A")
+    keep(fitSA)
+
+This will pass the code to the clipboard for pasting into another
+document. To write directly to a new file, a file path can be specified.
+
+    fitSA <- clean(script, "fit_sqrt_A")
+    keep(fitSA, file = "fit_SA.R")
+
+To explore more possible variables to extract, the `get_vars` function
+can be used to produce a list of the variables (aka. objects) that are
+created in the script.
+
+    get_vars(script)
+
+    ## [1] "x"          "x2"         "i"          "x3"         "fit.23"    
+    ## [6] "fit.xx"     "fit_sqrt_A" "z"          "fit_anova"
+
+Especially when the code for different variables are entangled, it can
+be useful to visual the code in order to devise an approach to cleaning.
+As seen above @ref(fig:prov-graph), `code_graph` will produce a visual
+of the code and the objects that they produce.
+
+\`\`\`{R ex-code\_graph, fig.cap = "Example of the plot produced by the
+code\_graph function showing which lines of code produce which variables
+and which variables are used by other lines of code."}
+
+code\_graph(script)
+
+\`\`\`
+
+After examining the output from `get_vars` and `code_graph`, it is
+possible that more than one object needs to be isolated. To do this is
+simple in `keep` by passing the set of desired objects to the *vars*
+argument.
+
+    clean(script, vars = c("fit_sqrt_A", "fit_anova"))
+
+    ## x <- 1:100
+    ## x <- log(x)
+    ## x <- x * 2
+    ## x <- lapply(x, rep, times = 4)
+    ## x <- do.call(cbind, x)
+    ## x2 <- sample(10:1000, 100)
+    ## x2 <- lapply(x2, rnorm)
+    ## x <- x * 2
+    ## colnames(x) <- paste0("X", seq_len(ncol(x)))
+    ## rownames(x) <- LETTERS[seq_len(nrow(x))]
+    ## x <- t(x)
+    ## x[, "A"] <- sqrt(x[, "A"])
+    ## for (i in seq_along(colnames(x))) {
+    ##   set.seed(17)
+    ##   x[, i] <- x[, i] + runif(length(x[, i]), -1, 1)
+    ## }
+    ## x2 <- lapply(x2, function(x) x[1:10])
+    ## x2 <- do.call(rbind, x2)
+    ## x[, 1] <- x[, 1] * 2 + 10
+    ## x[, 2] <- x[, 1] + x[, 2]
+    ## x[, "A"] <- x[, "A"] * 2
+    ## x <- data.frame(x)
+    ## fit_sqrt_A <- lm(I(sqrt(A)) ~ B, data = x)
+    ## z <- c(rep("A", nrow(x2) / 2), rep("B", nrow(x2) / 2))
+    ## fit_anova <- aov(x2 ~ z, data = data.frame(x2 = x2[, 1], z))
+
+Currently, because of the data provenance that is used, libraries can
+not be isolated directly during the cleaning process. So, the `get_libs`
+function provides a way to detect the libraries for a given script. Just
+supply a file path and `get_libs` will return the libraries that are
+called by that script.
+
+    get_libs(script)
+
+    ## [1] "stats"
 
 Software Availability
 ---------------------

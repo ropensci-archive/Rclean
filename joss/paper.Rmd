@@ -237,6 +237,7 @@ script.long <- system.file(
     "long_script.R", 
     package = "Rclean")
 script <- script.long
+
 ```
 
 ```{R long-script, echo = FALSE, eval = TRUE}
@@ -266,27 +267,67 @@ clean(script, "fit_sqrt_A")
 As you can see, `Rclean` has picked through the tangled bits of code
 and found the minimal set of lines relevant to our object of
 interest. This code can now be visually inspected to adapt the
-original code or ported to a new, "refactored" script. 
+original code or ported to a new, "refactored" script using `keep`. 
 
-```{R ex-keep}
-
-
-```
-
-
-
-```{R ex-get_vars}
-
+```{R ex-keep, eval = FALSE}
+fitSA <- clean(script, "fit_sqrt_A")
+keep(fitSA)
 
 ```
 
-```{R ex-code_graph}
+This will pass the code to the clipboard for pasting into another
+document. To write directly to a new file, a file path can be
+specified.
 
+```{R ex-keep-write, eval = FALSE}
+fitSA <- clean(script, "fit_sqrt_A")
+keep(fitSA, file = "fit_SA.R")
 
 ```
+
+To explore more possible variables to extract, the `get_vars` function
+can be used to produce a list of the variables (aka. objects) that are
+created in the script.
+
+```{R ex-get_vars-hid, eval = TRUE, echo = TRUE}
+
+get_vars(script)
+
+```
+
+Especially when the code for different variables are entangled, it can
+be useful to visual the code in order to devise an approach to
+cleaning. As seen above \@ref(fig:prov-graph), `code_graph` will
+produce a visual of the code and the objects that they produce. 
+
+```{R ex-code_graph, fig.cap = "Example of the plot produced by the
+code_graph function showing which lines of code produce which
+variables and which variables are used by other lines of code."}
+
+code_graph(script)
+
+```
+
+After examining the output from `get_vars` and `code_graph`, it is
+possible that more than one object needs to be isolated. To do this is
+simple in `keep` by passing the set of desired objects to the *vars*
+argument.
+
+```{R clean-mlti}
+
+clean(script, vars = c("fit_sqrt_A", "fit_anova"))
+
+```
+
+Currently, because of the data provenance that is used, libraries can
+not be isolated directly during the cleaning process. So, the
+`get_libs` function provides a way to detect the libraries for a given
+script. Just supply a file path and `get_libs` will return the
+libraries that are called by that script.
 
 ```{R ex-get_libs}
 
+get_libs(script)
 
 ```
 
