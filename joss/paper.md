@@ -333,13 +333,12 @@ be useful to visual the code in order to devise an approach to cleaning.
 As seen above @ref(fig:prov-graph), `code_graph` will produce a visual
 of the code and the objects that they produce.
 
-\`\`\`{R ex-code\_graph, fig.cap = "Example of the plot produced by the
-code\_graph function showing which lines of code produce which variables
-and which variables are used by other lines of code."}
+    code_graph(script)
 
-code\_graph(script)
-
-\`\`\`
+![Example of the plot produced by the code\_graph function showing which
+lines of code produce which variables and which variables are used by
+other lines of
+code.](paper_files/figure-markdown_strict/ex-code_graph-1.png)
 
 After examining the output from `get_vars` and `code_graph`, it is
 possible that more than one object needs to be isolated. To do this is

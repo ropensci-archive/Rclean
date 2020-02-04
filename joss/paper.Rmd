@@ -299,9 +299,7 @@ be useful to visual the code in order to devise an approach to
 cleaning. As seen above \@ref(fig:prov-graph), `code_graph` will
 produce a visual of the code and the objects that they produce. 
 
-```{R ex-code_graph, fig.cap = "Example of the plot produced by the
-code_graph function showing which lines of code produce which
-variables and which variables are used by other lines of code."}
+```{R ex-code_graph, fig.cap = "Example of the plot produced by the code_graph function showing which lines of code produce which variables and which variables are used by other lines of code."}
 
 code_graph(script)
 
