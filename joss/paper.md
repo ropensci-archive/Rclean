@@ -133,312 +133,144 @@ look at the `code_graph` function. The plot that it generates is a
 graphical representation of the prospective provenance generated for
 `Rclean` @ref(fig:prov-graph).
 
-\`\`\`{R prov-graph, fig.cap = "Network diagram of the prospective data
-provenance generated for an example script. Arrows indicate which lines
-of code (numbered) produced which objects (named).", echo = FALSE}
-
-script &lt;- system.file( "example", "simple\_script.R", package =
-"Rclean") code\_graph(script)
-
-
-    Relatedly, it is important to point out that `Rclean` *does not* keep
-    comments present in code. This could be seen as a limitation of the
-    data provenance, which currently does not assign them a
-    relationships. Therefore, although there is often very useful or even
-    invaluable information in comments, the `clean` function removes
-    them. This is a general issue with automated methods for detecting the
-    relationships between comments and the code itself. Comments at the
-    end of lines are typically relevant to the line they are on, but this
-    is not a requirement and could refer to other lines. Also, comments
-    occupying their own lines usually refer to the following lines, but
-    this is also not necessarily the case. As `clean` depends on the
-    unambiguous determination of relationships in the production of
-    results, it cannot operate automatically on comments. However,
-    comments in the original code remain untouched and can be used to
-    inform the reduced code. Also, as the `clean` function is oriented
-    toward isolating code based on a specific result, the resulting code
-    tends to naturally support the generation of new comments that are
-    higher level (e.g. "The following produces a plot of the mean response
-    of each treatment group."), and lower level comments are not necessary
-    because the code is simpler and clearer.
-
-    In the future, it would also be useful to extend the existing
-    framework to support other provenance methods. One such possibility is
-    *retrospective provenance*, which tracks a computational process as it
-    is executing. Through this active, concurrent monitoring,
-    retrospective provenance can gather information that static
-    prospective provenance can't. Greater details of the computational
-    process would enable other features that could address some
-    challenges, such as processing information from comments, parsing
-    control statements and replicating random processes. However, using
-    retrospective provenance comes at a cost. In order to gather it, the
-    script needs to be executed. When scripts are computationally
-    intensive or contain bugs that stop execution, then retrospective
-    provenance can not be obtained for part or all of the code. Some work
-    has already been done in the direction of implementing retrospective
-    provenance for code cleaning in R (see http://end-to-end-provenance.github.io).
-
-
-    # Results
-
-    ## Example
-
-    Data analysis can be messy and complicated, so it's no wonder that the
-    code often reflects this. "What did I measure? What analyses are
-    relevant to them? Do I need to transform the data? What's the function
-    for the analysis I want to run?" This is why having a way to isolate
-    code based on variables can be valuable. The following is an example
-    of a script that has some complications. As you can see, although the
-    script is not extremely long or complicated, it's difficult enough to
-    make it frustrating to visualize it in its entirety and pick through
-    it.
-
-
-
-\[1\] "library(stats)"
-----------------------
-
-\[2\] "x &lt;- 1:100"
----------------------
-
-\[3\] "x &lt;- log(x)"
-----------------------
-
-\[4\] "x &lt;- x \* 2"
-----------------------
-
-\[5\] "x &lt;- lapply(x, rep, times = 4)"
------------------------------------------
-
-\[6\] "\#\#\# This is a note that I made for myself."
------------------------------------------------------
-
-\[7\] "\#\#\# Next time, make sure to use a different analysis."
-----------------------------------------------------------------
-
-\[8\] "\#\#\# Also, check with someone about how to run some other analysis."
------------------------------------------------------------------------------
-
-\[9\] "x &lt;- do.call(cbind, x)"
----------------------------------
-
-\[10\] ""
----------
-
-\[11\] "\#\#\# Now I'm going to create a different variable."
--------------------------------------------------------------
-
-\[12\] "\#\#\# This is the best variable the world has ever seen."
-------------------------------------------------------------------
-
-\[13\] ""
----------
-
-\[14\] "x2 &lt;- sample(10:1000, 100)"
---------------------------------------
-
-\[15\] "x2 &lt;- lapply(x2, rnorm)"
------------------------------------
-
-\[16\] ""
----------
-
-\[17\] "\#\#\# Wait, now I had another thought about x that I want to work through."
-------------------------------------------------------------------------------------
-
-\[18\] ""
----------
-
-\[19\] "x &lt;- x \* 2"
------------------------
-
-\[20\] "colnames(x) &lt;- paste0("X", seq\_len(ncol(x)))"
----------------------------------------------------------
-
-\[21\] "rownames(x) &lt;- LETTERS\[seq\_len(nrow(x))\]"
--------------------------------------------------------
-
-\[22\] "x &lt;- t(x)"
----------------------
-
-\[23\] "x\[, "A"\] &lt;- sqrt(x\[, "A"\])"
-------------------------------------------
-
-\[24\] ""
----------
-
-\[25\] "for (i in seq\_along(colnames(x))) {"
----------------------------------------------
-
-\[26\] " set.seed(17)"
-----------------------
-
-\[27\] " x\[, i\] &lt;- x\[, i\] + runif(length(x\[, i\]), -1, 1)"
-------------------------------------------------------------------
-
-\[28\] "}"
-----------
-
-\[29\] ""
----------
-
-\[30\] "\#\#\# Ok. Now I can get back to x2."
----------------------------------------------
-
-\[31\] "\#\#\# Now I just need to check out a bunch of stuff with it."
-----------------------------------------------------------------------
-
-\[32\] ""
----------
-
-\[33\] "lapply(x2, length)\[1\]"
---------------------------------
-
-\[34\] "max(unlist(lapply(x2, length)))"
-----------------------------------------
-
-\[35\] "range(unlist(lapply(x2, length)))"
-------------------------------------------
-
-\[36\] "head(x2\[\[1\]\])"
---------------------------
-
-\[37\] "tail(x2\[\[1\]\])"
---------------------------
-
-\[38\] ""
----------
-
-\[39\] "\#\# Now, based on that stuff, I need to subset x2."
-------------------------------------------------------------
-
-\[40\] ""
----------
-
-\[41\] "x2 &lt;- lapply(x2, function(x) x\[1:10\])"
----------------------------------------------------
-
-\[42\] ""
----------
-
-\[43\] "\#\# And turn it into a matrix."
-----------------------------------------
-
-\[44\] "x2 &lt;- do.call(rbind, x2)"
-------------------------------------
-
-\[45\] ""
----------
-
-\[46\] "\#\# Now, based on x2, I need to create x3."
-----------------------------------------------------
-
-\[47\] "x3 &lt;- x2\[, 1:2\]"
------------------------------
-
-\[48\] "x3 &lt;- apply(x3, 2, round, digits = 3)"
--------------------------------------------------
-
-\[49\] ""
----------
-
-\[50\] "\#\# Oh wait! Another thought about x."
------------------------------------------------
-
-\[51\] ""
----------
-
-\[52\] "x\[, 1\] &lt;- x\[, 1\] \* 2 + 10"
-------------------------------------------
-
-\[53\] "x\[, 2\] &lt;- x\[, 1\] + x\[, 2\]"
--------------------------------------------
-
-\[54\] "x\[, "A"\] &lt;- x\[, "A"\] \* 2"
------------------------------------------
-
-\[55\] ""
----------
-
-\[56\] "\#\# Now, I want to run an analysis on two variables in x2 and x3."
----------------------------------------------------------------------------
-
-\[57\] ""
----------
-
-\[58\] "fit.23 &lt;- lm(x2 ~ x3, data = data.frame(x2\[, 1\], x3\[, 1\]))"
---------------------------------------------------------------------------
-
-\[59\] "summary(fit.23)"
-------------------------
-
-\[60\] ""
----------
-
-\[61\] "\#\# And while I'm at it, I should do an analysis on x."
-----------------------------------------------------------------
-
-\[62\] ""
----------
-
-\[63\] "x &lt;- data.frame(x)"
-------------------------------
-
-\[64\] "fit.xx &lt;- lm(A~B, data = x)"
----------------------------------------
-
-\[65\] "summary(fit.xx)"
-------------------------
-
-\[66\] "shapiro.test(residuals(fit.xx))"
-----------------------------------------
-
-\[67\] ""
----------
-
-\[68\] "\#\# Ah, it looks like I should probably transform A."
---------------------------------------------------------------
-
-\[69\] "\#\# Let's try that."
------------------------------
-
-\[70\] "fit\_sqrt\_A &lt;- lm(I(sqrt(A))~B, data = x)"
-------------------------------------------------------
-
-\[71\] "summary(fit\_sqrt\_A)"
-------------------------------
-
-\[72\] "shapiro.test(residuals(fit\_sqrt\_A))"
-----------------------------------------------
-
-\[73\] ""
----------
-
-\[74\] "\#\# Looks good!"
--------------------------
-
-\[75\] ""
----------
-
-\[76\] "\#\# After that. I came back and ran another analysis with "
---------------------------------------------------------------------
-
-\[77\] "\#\# x2 and a new variable."
-------------------------------------
-
-\[78\] ""
----------
-
-\[79\] "z &lt;- c(rep("A", nrow(x2) / 2), rep("B", nrow(x2) / 2))"
-------------------------------------------------------------------
-
-\[80\] "fit\_anova &lt;- aov(x2 ~ z, data = data.frame(x2 = x2\[, 1\], z))"
----------------------------------------------------------------------------
-
-\[81\] "summary(fit\_anova)"
-----------------------------
-
-\`\`\`
+![Network diagram of the prospective data provenance generated for an
+example script. Arrows indicate which lines of code (numbered) produced
+which objects
+(named).](paper_files/figure-markdown_strict/prov-graph-1.png)
+
+Relatedly, it is important to point out that `Rclean` *does not* keep
+comments present in code. This could be seen as a limitation of the data
+provenance, which currently does not assign them a relationships.
+Therefore, although there is often very useful or even invaluable
+information in comments, the `clean` function removes them. This is a
+general issue with automated methods for detecting the relationships
+between comments and the code itself. Comments at the end of lines are
+typically relevant to the line they are on, but this is not a
+requirement and could refer to other lines. Also, comments occupying
+their own lines usually refer to the following lines, but this is also
+not necessarily the case. As `clean` depends on the unambiguous
+determination of relationships in the production of results, it cannot
+operate automatically on comments. However, comments in the original
+code remain untouched and can be used to inform the reduced code. Also,
+as the `clean` function is oriented toward isolating code based on a
+specific result, the resulting code tends to naturally support the
+generation of new comments that are higher level (e.g. "The following
+produces a plot of the mean response of each treatment group."), and
+lower level comments are not necessary because the code is simpler and
+clearer.
+
+In the future, it would also be useful to extend the existing framework
+to support other provenance methods. One such possibility is
+*retrospective provenance*, which tracks a computational process as it
+is executing. Through this active, concurrent monitoring, retrospective
+provenance can gather information that static prospective provenance
+can't. Greater details of the computational process would enable other
+features that could address some challenges, such as processing
+information from comments, parsing control statements and replicating
+random processes. However, using retrospective provenance comes at a
+cost. In order to gather it, the script needs to be executed. When
+scripts are computationally intensive or contain bugs that stop
+execution, then retrospective provenance can not be obtained for part or
+all of the code. Some work has already been done in the direction of
+implementing retrospective provenance for code cleaning in R (see
+<http://end-to-end-provenance.github.io>).
+
+Results
+=======
+
+Example
+-------
+
+Data analysis can be messy and complicated, so it's no wonder that the
+code often reflects this. "What did I measure? What analyses are
+relevant to them? Do I need to transform the data? What's the function
+for the analysis I want to run?" This is why having a way to isolate
+code based on variables can be valuable. The following is an example of
+a script that has some complications. As you can see, although the
+script is not extremely long or complicated, it's difficult enough to
+make it frustrating to visualize it in its entirety and pick through it.
+
+    ##  [1] "library(stats)"                                                          
+    ##  [2] "x <- 1:100"                                                              
+    ##  [3] "x <- log(x)"                                                             
+    ##  [4] "x <- x * 2"                                                              
+    ##  [5] "x <- lapply(x, rep, times = 4)"                                          
+    ##  [6] "### This is a note that I made for myself."                              
+    ##  [7] "### Next time, make sure to use a different analysis."                   
+    ##  [8] "### Also, check with someone about how to run some other analysis."      
+    ##  [9] "x <- do.call(cbind, x)"                                                  
+    ## [10] ""                                                                        
+    ## [11] "### Now I'm going to create a different variable."                       
+    ## [12] "### This is the best variable the world has ever seen."                  
+    ## [13] ""                                                                        
+    ## [14] "x2 <- sample(10:1000, 100)"                                              
+    ## [15] "x2 <- lapply(x2, rnorm)"                                                 
+    ## [16] ""                                                                        
+    ## [17] "### Wait, now I had another thought about x that I want to work through."
+    ## [18] ""                                                                        
+    ## [19] "x <- x * 2"                                                              
+    ## [20] "colnames(x) <- paste0(\"X\", seq_len(ncol(x)))"                          
+    ## [21] "rownames(x) <- LETTERS[seq_len(nrow(x))]"                                
+    ## [22] "x <- t(x)"                                                               
+    ## [23] "x[, \"A\"] <- sqrt(x[, \"A\"])"                                          
+    ## [24] ""                                                                        
+    ## [25] "for (i in seq_along(colnames(x))) {"                                     
+    ## [26] "    set.seed(17)"                                                        
+    ## [27] "    x[, i] <- x[, i] + runif(length(x[, i]), -1, 1)"                     
+    ## [28] "}"                                                                       
+    ## [29] ""                                                                        
+    ## [30] "### Ok. Now I can get back to x2."                                       
+    ## [31] "### Now I just need to check out a bunch of stuff with it."              
+    ## [32] ""                                                                        
+    ## [33] "lapply(x2, length)[1]"                                                   
+    ## [34] "max(unlist(lapply(x2, length)))"                                         
+    ## [35] "range(unlist(lapply(x2, length)))"                                       
+    ## [36] "head(x2[[1]])"                                                           
+    ## [37] "tail(x2[[1]])"                                                           
+    ## [38] ""                                                                        
+    ## [39] "## Now, based on that stuff, I need to subset x2."                       
+    ## [40] ""                                                                        
+    ## [41] "x2 <- lapply(x2, function(x) x[1:10])"                                   
+    ## [42] ""                                                                        
+    ## [43] "## And turn it into a matrix."                                           
+    ## [44] "x2 <- do.call(rbind, x2)"                                                
+    ## [45] ""                                                                        
+    ## [46] "## Now, based on x2, I need to create x3."                               
+    ## [47] "x3 <- x2[, 1:2]"                                                         
+    ## [48] "x3 <- apply(x3, 2, round, digits = 3)"                                   
+    ## [49] ""                                                                        
+    ## [50] "## Oh wait! Another thought about x."                                    
+    ## [51] ""                                                                        
+    ## [52] "x[, 1] <- x[, 1] * 2 + 10"                                               
+    ## [53] "x[, 2] <- x[, 1] + x[, 2]"                                               
+    ## [54] "x[, \"A\"] <- x[, \"A\"] * 2"                                            
+    ## [55] ""                                                                        
+    ## [56] "## Now, I want to run an analysis on two variables in x2 and x3."        
+    ## [57] ""                                                                        
+    ## [58] "fit.23 <- lm(x2 ~ x3, data = data.frame(x2[, 1], x3[, 1]))"              
+    ## [59] "summary(fit.23)"                                                         
+    ## [60] ""                                                                        
+    ## [61] "## And while I'm at it, I should do an analysis on x."                   
+    ## [62] ""                                                                        
+    ## [63] "x <- data.frame(x)"                                                      
+    ## [64] "fit.xx <- lm(A~B, data = x)"                                             
+    ## [65] "summary(fit.xx)"                                                         
+    ## [66] "shapiro.test(residuals(fit.xx))"                                         
+    ## [67] ""                                                                        
+    ## [68] "## Ah, it looks like I should probably transform A."                     
+    ## [69] "## Let's try that."                                                      
+    ## [70] "fit_sqrt_A <- lm(I(sqrt(A))~B, data = x)"                                
+    ## [71] "summary(fit_sqrt_A)"                                                     
+    ## [72] "shapiro.test(residuals(fit_sqrt_A))"                                     
+    ## [73] ""                                                                        
+    ## [74] "## Looks good!"                                                          
+    ## [75] ""                                                                        
+    ## [76] "## After that. I came back and ran another analysis with "               
+    ## [77] "## x2 and a new variable."                                               
+    ## [78] ""                                                                        
+    ## [79] "z <- c(rep(\"A\", nrow(x2) / 2), rep(\"B\", nrow(x2) / 2))"              
+    ## [80] "fit_anova <- aov(x2 ~ z, data = data.frame(x2 = x2[, 1], z))"            
+    ## [81] "summary(fit_anova)"
 
 So, let's say we've come to our script wanting to extract the code to
 produce one of the results `fit.sqrt.A`, which is an analysis that is

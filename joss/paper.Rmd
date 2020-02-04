@@ -167,9 +167,7 @@ library(CodeDepends)
 library(Rclean)
 ```
 
-```{R prov-graph, fig.cap = "Network diagram of the prospective data
-provenance generated for an example script. Arrows indicate
-which lines of code (numbered) produced which objects (named).", echo = FALSE}
+```{R prov-graph, fig.cap = "Network diagram of the prospective data provenance generated for an example script. Arrows indicate which lines of code (numbered) produced which objects (named).", echo = FALSE}
 
 script <- system.file(
     "example", 
