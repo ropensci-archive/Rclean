@@ -28,11 +28,10 @@ frustrated by code that is fragile, buggy and complicated enough to
 quickly become obtuse even to the authors. The stability,
 reproducibility and re-use of scientific analyses in R would be improved
 by refactoring, which is a common practice in software engineering
-(<span class="citeproc-not-found"
-data-reference-id="Martin2009">**???**</span>). From this perspective,
-tools that can lower the time and energy required to refactor analytical
-scripts and otherwise help to "clean" code, but abstracted enough to be
-easily accessible, could have a significant impact on scientific
+\[Martin2009CleanCraftsmanship\]. From this perspective, tools that can
+lower the time and energy required to refactor analytical scripts and
+otherwise help to "clean" code, but abstracted enough to be easily
+accessible, could have a significant impact on scientific
 reproducibility across all disciplines (Visser et al. 2015).
 
 To provide support for easier refactoring in R, we have created
@@ -129,11 +128,10 @@ language specific information to predict the relationship among
 processes and data objects. `Rclean` relies on a library called
 `CodeDepends` to gather the prospective provenance for each script. For
 more information on the mechanics of the `CodeDepends` package, see
-(<span class="citeproc-not-found"
-data-reference-id="Lang2019">**???**</span>). To get an idea of what
-data provenance is, take a look at the `code_graph` function. The plot
-that it generates is a graphical representation of the prospective
-provenance generated for `Rclean` @ref(fig:prov-graph).
+(Lang et al. 2018). To get an idea of what data provenance is, take a
+look at the `code_graph` function. The plot that it generates is a
+graphical representation of the prospective provenance generated for
+`Rclean` @ref(fig:prov-graph).
 
 \`\`\`{R prov-graph, fig.cap = "Network diagram of the prospective data
 provenance generated for an example script. Arrows indicate which lines
@@ -608,7 +606,7 @@ applications of End-to-End Data Provenance.
 References
 ==========
 
-Baker, Monya. 2016. “1,500 Scientists Lift the Lid on Reproducibility.”
+Baker, Monya. 2016. “1,500 scientists lift the lid on reproducibility.”
 *Nature* 533: 452–54.
 doi:[10.1038/533452a](https://doi.org/10.1038/533452a).
 
@@ -617,33 +615,39 @@ Ripduman Sohan, Margo Seltzer, and Andy Hopper. 2014. “A Primer on
 Provenance.” *Queue* 12 (3). ACM: 10–23.
 doi:[10.1145/2602649.2602651](https://doi.org/10.1145/2602649.2602651).
 
+Lang, Duncan Temple, Roger Peng, Deborah Nolan, Gabriel Becker
+Maintainer, and Gabriel Becker. 2018. “Package ’CodeDepends’ Title
+Analysis of R Code for Reproducible Research and Code Comprehension.”
+
 Pasquier, Thomas, Matthew K. Lau, Xueyuan Han, Elizabeth Fong, Barbara
 S. Lerner, Emery R. Boose, Merce Crosas, Aaron M. Ellison, and Margo
 Seltzer. 2018. “Sharing and Preserving Computational Analyses for
-Posterity with encapsulator.” *Comput. Sci. Eng.* 20 (4): 111–24.
+Posterity with encapsulator.” *Computing in Science & Engineering* 20
+(4): 111–24.
 doi:[10.1109/MCSE.2018.042781334](https://doi.org/10.1109/MCSE.2018.042781334).
 
 Pasquier, Thomas, Matthew K. Lau, Ana Trisovic, Emery R. Boose, Ben
 Couturier, Mercè Crosas, Aaron M. Ellison, Valerie Gibson, Chris R.
-Jones, and Margo Seltzer. 2017. “If these data could talk.” *Sci. Data*
-4 (September): 170114.
+Jones, and Margo Seltzer. 2017. “If these data could talk.” *Scientific
+Data* 4 (September): 170114.
 doi:[10.1038/sdata.2017.114](https://doi.org/10.1038/sdata.2017.114).
 
 Peng, Roger D, B. Hanson, A. Sugden, B. Alberts, R. D. Peng, F.
 Dominici, S. L. Zeger, et al. 2011. “Reproducible research in
-computational science.” *Science* 334 (6060). American Association for
-the Advancement of Science: 1226–7.
+computational science.” *Science (New York, N.Y.)* 334 (6060). American
+Association for the Advancement of Science: 1226–7.
 doi:[10.1126/science.1213847](https://doi.org/10.1126/science.1213847).
 
 Stodden, Victoria, Jennifer Seiler, and Zhaokun Ma. 2018. “An empirical
 analysis of journal policy effectiveness for computational
-reproducibility.” *Proc. Natl. Acad. Sci. U. S. A.* 115 (11). National
-Academy of Sciences: 2584–9.
+reproducibility.” *Proceedings of the National Academy of Sciences of
+the United States of America* 115 (11). National Academy of Sciences:
+2584–9.
 doi:[10.1073/pnas.1708290115](https://doi.org/10.1073/pnas.1708290115).
 
 Visser, Marco D., Sean M. McMahon, Cory Merow, Philip M. Dixon, Sydne
 Record, and Eelke Jongejans. 2015. “Speeding Up Ecological and
 Evolutionary Computations in R; Essentials of High Performance Computing
-for Biologists.” Edited by Francis Ouellette. *PLOS Comput. Biol.* 11
-(3). Springer-Verlag: e1004140.
+for Biologists.” Edited by Francis Ouellette. *PLOS Computational
+Biology* 11 (3). Springer-Verlag: e1004140.
 doi:[10.1371/journal.pcbi.1004140](https://doi.org/10.1371/journal.pcbi.1004140).
