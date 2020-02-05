@@ -329,7 +329,7 @@ summary(fit_anova)
 ```
 
 So, let's say we've come to our script wanting to extract the code to
-produce one of the results `fit.sqrt.A`, which is an analysis that is
+produce one of the results `fit_sqrt_A`, which is an analysis that is
 relevant to some product. Not only do we want to double check the
 results, we also want to use the code again for another purpose, such
 as creating a plot of the patterns supported by the test. Manually

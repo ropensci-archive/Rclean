@@ -192,7 +192,7 @@ script is not extremely long or complicated, it's difficult enough to
 make it frustrating to visualize it in its entirety and pick through it.
 
 So, let's say we've come to our script wanting to extract the code to
-produce one of the results `fit.sqrt.A`, which is an analysis that is
+produce one of the results `fit_sqrt_A`, which is an analysis that is
 relevant to some product. Not only do we want to double check the
 results, we also want to use the code again for another purpose, such as
 creating a plot of the patterns supported by the test. Manually tracing
@@ -357,6 +357,7 @@ applications of End-to-End Data Provenance.
 References
 ==========
 
+<!-- Use overleaf papers.bib + knitr::write_bib -->
 Baker, Monya. 2016. “1,500 scientists lift the lid on reproducibility.”
 *Nature* 533: 452–54.
 doi:[10.1038/533452a](https://doi.org/10.1038/533452a).
