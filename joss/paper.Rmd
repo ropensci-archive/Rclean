@@ -57,7 +57,7 @@ also be frequently frustrated by code that is fragile, buggy and
 complicated enough to quickly become obtuse even to the authors. The
 stability, reproducibility and re-use of scientific analyses in R
 would be improved by refactoring, which is a common practice in
-software engineering [Martin2009CleanCraftsmanship]. From this
+software engineering [@Martin2009CleanCraftsmanship]. From this
 perspective, tools that can lower the time and energy required to
 refactor analytical scripts and otherwise help to "clean" code, but
 abstracted enough to be easily accessible, could have a significant

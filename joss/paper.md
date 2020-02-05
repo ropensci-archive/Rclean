@@ -28,11 +28,11 @@ frustrated by code that is fragile, buggy and complicated enough to
 quickly become obtuse even to the authors. The stability,
 reproducibility and re-use of scientific analyses in R would be improved
 by refactoring, which is a common practice in software engineering
-\[Martin2009CleanCraftsmanship\]. From this perspective, tools that can
-lower the time and energy required to refactor analytical scripts and
-otherwise help to "clean" code, but abstracted enough to be easily
-accessible, could have a significant impact on scientific
-reproducibility across all disciplines (Visser et al. 2015).
+(Martin 2009). From this perspective, tools that can lower the time and
+energy required to refactor analytical scripts and otherwise help to
+"clean" code, but abstracted enough to be easily accessible, could have
+a significant impact on scientific reproducibility across all
+disciplines (Visser et al. 2015).
 
 To provide support for easier refactoring in R, we have created
 `Rclean`. The `Rclean` package provides tools to automatically reduce a
@@ -367,6 +367,9 @@ doi:[10.1145/2602649.2602651](https://doi.org/10.1145/2602649.2602651).
 Lang, Duncan Temple, Roger Peng, Deborah Nolan, Gabriel Becker
 Maintainer, and Gabriel Becker. 2018. “Package ’CodeDepends’ Title
 Analysis of R Code for Reproducible Research and Code Comprehension.”
+
+Martin, Robert. 2009. *Clean code : a handbook of agile software
+craftsmanship*.
 
 Pasquier, Thomas, Matthew K. Lau, Xueyuan Han, Elizabeth Fong, Barbara
 S. Lerner, Emery R. Boose, Merce Crosas, Aaron M. Ellison, and Margo
