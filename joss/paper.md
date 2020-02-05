@@ -83,10 +83,11 @@ file path to a script and the name of a result (or a set of results),
 `clean` analyzes the script's code and extracts the lines of code
 required to produce the results. By default, code is formatted following
 general best practices recommended by the Tidyverse via the `styler`
-package. This code can then be passed to the `keep` function, which can
-either write the code to disk or copy the code to the user's clipboard
-(if no output file path is supplied) and the user can paste the code
-into another location (e.g. a script editor).
+package (Müller and Walthert 2019). This code can then be passed to the
+`keep` function, which can either write the code to disk or copy the
+code to the user's clipboard (if no output file path is supplied) and
+the user can paste the code into another location (e.g. a script
+editor).
 
 In the process of cleaning a script, it is likely that a user will not
 know the precise objects they want and might require some help analyzing
@@ -128,9 +129,9 @@ language specific information to predict the relationship among
 processes and data objects. `Rclean` relies on a library called
 `CodeDepends` to gather the prospective provenance for each script. For
 more information on the mechanics of the `CodeDepends` package, see
-(Lang et al. 2018). To get an idea of what data provenance is, take a
-look at the `code_graph` function. The plot that it generates is a
-graphical representation of the prospective provenance generated for
+(Temple Lang et al. 2020). To get an idea of what data provenance is,
+take a look at the `code_graph` function. The plot that it generates is
+a graphical representation of the prospective provenance generated for
 `Rclean` @ref(fig:prov-graph).
 
 ![Network diagram of the prospective data provenance generated for an
@@ -305,10 +306,10 @@ Software Availability
 ---------------------
 
 The software is currently hosted on Github, and we recommend using the
-`devtools` library to install directly from the repository
-(<https://github.com/ROpenSci/Rclean>). The package is open-source and
-welcomes contributions. Please visit the repository page to report
-issues, request features or provide other feedback.
+`devtools` library (Wickham, Hester, and Chang 2019) to install directly
+from the repository (<https://github.com/ROpenSci/Rclean>). The package
+is open-source and welcomes contributions. Please visit the repository
+page to report issues, request features or provide other feedback.
 
 Discussion
 ==========
@@ -327,14 +328,15 @@ code will be an important aid for improving scientific reproducibility.
 Although the workflow described is impactful, we see promise in
 extending it to interface with other clean code and reproducibility
 tools. One example is the `reprex` package, which provides a simple API
-for sharing reproducible examples. Another possibility is to help
-transition scripts to function, package and workflow creation and
-refactoring via toolboxes like `drake`. `Rclean` could provide a
-reliable way to extract parts of a larger script that would be piped to
-a simplified reproducible example, in the case of `reprex`, or, since it
-can isolate the code from inputs to one or more outputs, be used to
-extract all of the components needed to write one or more functions that
-would be a part of a package or workflow, as is the goal of `drake`.
+for sharing reproducible examples (Bryan et al. 2019). Another
+possibility is to help transition scripts to function, package and
+workflow creation and refactoring via toolboxes like `drake` (Landau
+2020). `Rclean` could provide a reliable way to extract parts of a
+larger script that would be piped to a simplified reproducible example,
+in the case of `reprex`, or, since it can isolate the code from inputs
+to one or more outputs, be used to extract all of the components needed
+to write one or more functions that would be a part of a package or
+workflow, as is the goal of `drake`.
 
 To conclude, we hope that `Rclean` makes writing scientific software
 easier for the R community. We look forward to feedback and help with
@@ -359,17 +361,24 @@ Baker, Monya. 2016. “1,500 scientists lift the lid on reproducibility.”
 *Nature* 533: 452–54.
 doi:[10.1038/533452a](https://doi.org/10.1038/533452a).
 
+Bryan, Jennifer, Jim Hester, David Robinson, and Hadley Wickham. 2019.
+*Reprex: Prepare Reproducible Example Code via the Clipboard*.
+<https://CRAN.R-project.org/package=reprex>.
+
 Carata, Lucian, Sherif Akoush, Nikilesh Balakrishnan, Thomas Bytheway,
 Ripduman Sohan, Margo Seltzer, and Andy Hopper. 2014. “A Primer on
 Provenance.” *Queue* 12 (3). ACM: 10–23.
 doi:[10.1145/2602649.2602651](https://doi.org/10.1145/2602649.2602651).
 
-Lang, Duncan Temple, Roger Peng, Deborah Nolan, Gabriel Becker
-Maintainer, and Gabriel Becker. 2018. “Package ’CodeDepends’ Title
-Analysis of R Code for Reproducible Research and Code Comprehension.”
+Landau, William Michael. 2020. *Drake: A Pipeline Toolkit for
+Reproducible Computation at Scale*.
+<https://CRAN.R-project.org/package=drake>.
 
 Martin, Robert. 2009. *Clean code : a handbook of agile software
 craftsmanship*.
+
+Müller, Kirill, and Lorenz Walthert. 2019. *Styler: Non-Invasive Pretty
+Printing of R Code*. <https://CRAN.R-project.org/package=styler>.
 
 Pasquier, Thomas, Matthew K. Lau, Xueyuan Han, Elizabeth Fong, Barbara
 S. Lerner, Emery R. Boose, Merce Crosas, Aaron M. Ellison, and Margo
@@ -397,9 +406,17 @@ the United States of America* 115 (11). National Academy of Sciences:
 2584–9.
 doi:[10.1073/pnas.1708290115](https://doi.org/10.1073/pnas.1708290115).
 
+Temple Lang, Duncan, Roger Peng, Deborah Nolan, and Gabriel Becker.
+2020. *CodeDepends: Analysis of R Code for Reproducible Research and
+Code Comprehension*. <https://github.com/duncantl/CodeDepends>.
+
 Visser, Marco D., Sean M. McMahon, Cory Merow, Philip M. Dixon, Sydne
 Record, and Eelke Jongejans. 2015. “Speeding Up Ecological and
 Evolutionary Computations in R; Essentials of High Performance Computing
 for Biologists.” Edited by Francis Ouellette. *PLOS Computational
 Biology* 11 (3). Springer-Verlag: e1004140.
 doi:[10.1371/journal.pcbi.1004140](https://doi.org/10.1371/journal.pcbi.1004140).
+
+Wickham, Hadley, Jim Hester, and Winston Chang. 2019. *Devtools: Tools
+to Make Developing R Packages Easier*.
+<https://CRAN.R-project.org/package=devtools>.

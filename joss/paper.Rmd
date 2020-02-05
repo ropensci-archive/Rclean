@@ -112,10 +112,11 @@ file path to a script and the name of a result (or a set of results),
 `clean` analyzes the script's code and extracts the lines of code
 required to produce the results. By default, code is formatted
 following general best practices recommended by the Tidyverse via the
-`styler` package. This code can then be passed to the `keep` function,
-which can either write the code to disk or copy the code to the user's
-clipboard (if no output file path is supplied) and the user can paste
-the code into another location (e.g. a script editor).
+`styler` package [@R-styler]. This code can then be passed to the
+`keep` function, which can either write the code to disk or copy the
+code to the user's clipboard (if no output file path is supplied) and
+the user can paste the code into another location (e.g. a script
+editor).
 
 In the process of cleaning a script, it is likely that a user will not
 know the precise objects they want and might require some help
@@ -157,10 +158,10 @@ language specific information to predict the relationship among
 processes and data objects. `Rclean` relies on a library called
 `CodeDepends` to gather the prospective provenance for each
 script. For more information on the mechanics of the `CodeDepends`
-package, see [@Lang2018PackageComprehension]. To get an idea of what
-data provenance is, take a look at the `code_graph` function. The plot
-that it generates is a graphical representation of the prospective
-provenance generated for `Rclean` \@ref(fig:prov-graph).
+package, see [@R-CodeDepends]. To get an idea of what data provenance
+is, take a look at the `code_graph` function. The plot that it
+generates is a graphical representation of the prospective provenance
+generated for `Rclean` \@ref(fig:prov-graph).
 
 ```{R load-script, echo = FALSE, results = "hide"}
 library(CodeDepends)
@@ -414,10 +415,10 @@ get_libs(script)
 ## Software Availability
 
 The software is currently hosted on Github, and we recommend using the
-`devtools` library to install directly from the repository
-(https://github.com/ROpenSci/Rclean). The package is open-source and
-welcomes contributions. Please visit the repository page to report
-issues, request features or provide other feedback.
+`devtools` library [@R-devtools] to install directly from the
+repository (https://github.com/ROpenSci/Rclean). The package is
+open-source and welcomes contributions. Please visit the repository
+page to report issues, request features or provide other feedback.
 
 # Discussion
 
@@ -437,15 +438,15 @@ improving scientific reproducibility.
 Although the workflow described is impactful, we see promise in
 extending it to interface with other clean code and reproducibility
 tools. One example is the `reprex` package, which provides a simple
-API for sharing reproducible examples. Another possibility is to help
+API for sharing reproducible examples [@R-reprex]. Another possibility is to help
 transition scripts to function, package and workflow creation and
-refactoring via toolboxes like `drake`. `Rclean` could provide a
-reliable way to extract parts of a larger script that would be piped
-to a simplified reproducible example, in the case of `reprex`, or,
-since it can isolate the code from inputs to one or more outputs, be
-used to extract all of the components needed to write one or more
-functions that would be a part of a package or workflow, as is the
-goal of `drake`. 
+refactoring via toolboxes like `drake` [@R-drake]. `Rclean` could
+provide a reliable way to extract parts of a larger script that would
+be piped to a simplified reproducible example, in the case of
+`reprex`, or, since it can isolate the code from inputs to one or more
+outputs, be used to extract all of the components needed to write one
+or more functions that would be a part of a package or workflow, as is
+the goal of `drake`.
 
 
 To conclude, we hope that `Rclean` makes writing scientific software
@@ -465,3 +466,4 @@ grant SSI-1450277 for applications of End-to-End Data Provenance.
 
 # References
 
+<!-- Use overleaf papers.bib + knitr::write_bib -->
