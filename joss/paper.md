@@ -51,32 +51,32 @@ tools for the R community.
 Methods
 =======
 
-More often then not, when someone is writing an R script, the intent to
-produce a set of results, such as a statistical analysis, figure, table,
-etc. This set of results is always a subset of a much larger set of
-possible ways to explore a dataset, as there are many statistical
-approaches and tests, let alone ways to create visualizations and other
-representations of patterns in data. This commonly leads to lengthy,
-complicated scripts from which researchers manually subset results, but
-never refactor, i.e. refine code so that it is shorter and focused on a
-desired product.
-
 The goal of `Rclean` is to provide a set of tools that help someone
-reduce and organize code based on results. The package uses an automated
-technique based on data provenance (details below) to analyze existing
-scripts and provide ways to identify and extract code to produce a
-desired output. To keep the process simple and straight-forward much of
-this process has been abstracted for the user, and the API has been kept
-to a minimum set of functions that enable a user to conduct the
-following basic workflow:
+reduce and organize code based on results. More often then not, when
+someone is writing an R script, the intent is to produce a set of
+results, such as a statistical analysis, figure, table, etc. This set of
+results is always a subset of a much larger set of possible ways to
+explore a dataset, as there are many statistical approaches and tests,
+let alone ways to create visualizations and other representations of
+patterns in data. This commonly leads to lengthy, complicated scripts
+from which researchers manually subset results, but likely never to be
+refactored because of the difficulty in disentangling the code needed to
+produce some results and not others. The 'Rclean' package uses an
+automated technique based on data provenance (details below) to analyze
+existing scripts and provide ways to identify and extract code to
+produce a desired output.
+
+The API
+-------
+
+To keep the process simple and straight-forward much of this process has
+been abstracted for the user, and the API has been kept to a minimum set
+of functions that enable a user to conduct the following basic workflow:
 
 1.  Obtain the "cleaned" code for a result(s).
 2.  Transfer the code to a new context (e.g. a new script, function,
     reproducible example, web-app, etc.).
 3.  Get information about the possible results and repeat as needed.
-
-The API
--------
 
 The package's main functions are `clean` and `keep`. When provided a
 file path to a script and the name of a result (or a set of results),
@@ -340,10 +340,9 @@ workflow, as is the goal of `drake`.
 
 To conclude, we hope that `Rclean` makes writing scientific software
 easier for the R community. We look forward to feedback and help with
-extending its application, particularly in the area of reproducibility,
-such as using code cleaning in the creation of more robust capsules
-(Pasquier et al. 2018). To get involved, report bugs, suggest features,
-please visit the project page.
+extending its application, particularly in the area of reproducibility.
+To get involved, report bugs, suggest features, please visit the project
+page.
 
 Acknowledgments
 ===============
