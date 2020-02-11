@@ -2,7 +2,8 @@ Type: Package
 Package: Rclean
 Title: A Tool for Writing Cleaner, More Transparent Code
 Version: 1.1.7
-Authors@R: c(person("Matthew", "Lau", email = "matthewklau@fas.harvard.edu", role = c("aut", "cre")),
+Authors@R: c(person("Matthew", "Lau", email =
+"matthewklau@fas.harvard.edu", role = c("aut", "cre"), comment="http://orcid.org/0000-0003-3758-2406"),
 	   person("Will", "Landau", role = "rev",
 	       comment = "Will reviewed the package for ropensci, 
 	       see <https://github.com/ropensci/software-review/issues/327>"),
