@@ -15,3 +15,4 @@ cran-comments.md
 ^cran-comments\.md$
 ^\.lintr$
 ^.github
+^codemeta\.json$
