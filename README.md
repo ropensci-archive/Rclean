@@ -2,9 +2,9 @@
 <!-- # ijtiff  <img src="man/figures/logo.png" height="140" align="right"> -->
 <!-- Code status -->
 [![Build
-Status](https://travis-ci.org/MKLau/Rclean.svg?branch=master)](https://travis-ci.org/MKLau/Rclean)
+Status](https://travis-ci.org/ROpenSci/Rclean.svg?branch=master)](https://travis-ci.org/ROpenSci/Rclean)
 [![Coverage
-status](https://codecov.io/gh/MKLau/Rclean/branch/master/graph/badge.svg)](https://codecov.io/github/MKLau/Rclean?branch=master)
+status](https://codecov.io/gh/ROpenSci/Rclean/branch/master/graph/badge.svg)](https://codecov.io/github/ROpenSci/Rclean?branch=master)
 
 <!-- R status -->
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/Rclean)](https://cran.r-project.org/package=Rclean)
@@ -30,7 +30,7 @@ developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repo
 Quick Start Guide
 =================
 
--   [Rclean](https://github.com/ProvTools/Rclean) was created to help
+-   [Rclean](https://github.com/MKLau/Rclean) was created to help
     scientists more *easily* write “cleaner” code.
 -   Written with research scientists that are results oriented in mind,
     the package’s primary function provides a simple way to isolate the
