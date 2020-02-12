@@ -202,6 +202,7 @@ annoying and difficult, especially given the fact that we have used "x"
 as a prefix for multiple unrelated objects in the script. Instead, we
 can easily do this automatically with `Rclean`.
 
+    library(Rclean)
     clean(script, "fit_sqrt_A")
 
     ## x <- 1:100
