@@ -18,8 +18,8 @@ original_files <- dir()
 <!-- # ijtiff  <img src="man/figures/logo.png" height="140" align="right"> -->
 
 <!-- Code status -->
-[![Build Status](https://travis-ci.org/MKLau/Rclean.svg?branch=master)](https://travis-ci.org/MKLau/Rclean) 
-[![Coverage status](https://codecov.io/gh/MKLau/Rclean/branch/master/graph/badge.svg)](https://codecov.io/github/MKLau/Rclean?branch=master)
+[![Build Status](https://travis-ci.org/ROpenSci/Rclean.svg?branch=master)](https://travis-ci.org/ROpenSci/Rclean) 
+[![Coverage status](https://codecov.io/gh/ROpenSci/Rclean/branch/master/graph/badge.svg)](https://codecov.io/github/ROpenSci/Rclean?branch=master)
 
 <!-- R status -->
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/Rclean)](https://cran.r-project.org/package=Rclean)
@@ -41,7 +41,7 @@ original_files <- dir()
 Quick Start Guide
 =================
 
-- [Rclean](https://github.com/ProvTools/Rclean) was created to help
+- [Rclean](https://github.com/MKLau/Rclean) was created to help
     scientists more *easily* write “cleaner” code.
 - Written with research scientists that are results oriented in mind,
     the package’s primary function provides a simple way to isolate
@@ -176,3 +176,5 @@ project, please check out [CONTRIBUTING.md](CONTRIBUTING.md).
 Please note that the 'Rclean' project is released with a
 [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
 By contributing to this project, you agree to abide by its terms.
+
+![ropensci_footer](https://ropensci.org/public_images/ropensci_footer.png)

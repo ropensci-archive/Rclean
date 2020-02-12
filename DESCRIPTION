@@ -2,7 +2,14 @@ Type: Package
 Package: Rclean
 Title: A Tool for Writing Cleaner, More Transparent Code
 Version: 1.1.7
-Authors@R: person("Matthew", "Lau", email = "matthewklau@fas.harvard.edu", role = c("aut", "cre"))
+Authors@R: c(person("Matthew", "Lau", email =
+"matthewklau@fas.harvard.edu", role = c("aut", "cre"), comment="http://orcid.org/0000-0003-3758-2406"),
+	   person("Will", "Landau", role = "rev",
+	       comment = "Will reviewed the package for ropensci, 
+	       see <https://github.com/ropensci/software-review/issues/327>"),
+	   person("Clemens", "Schmid", role = "rev",
+	       comment = "Clemens reviewed the package for ropensci, 
+	       see <https://github.com/ropensci/software-review/issues/327>"))
 Description: To create clearer, more concise code provides this
 	     toolbox helps coders to isolate the essential parts of a
 	     script that produces a chosen result, such as an object,

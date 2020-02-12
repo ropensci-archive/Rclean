@@ -28,7 +28,7 @@ script <- system.file(
         "example", 
         "simple_script.R", 
         package = "Rclean")
-clean.code <- clean(script, “tab.15”)
+clean.code <- clean(script, "tab.15")
 ## Copies code to your clipboard
 keep(clean.code)
 ## Saves code to your disk
