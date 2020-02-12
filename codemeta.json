@@ -1,5 +1,8 @@
 {
-  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@context": [
+    "https://doi.org/10.5063/schema/codemeta-2.0",
+    "http://schema.org"
+  ],
   "@type": "SoftwareSourceCode",
   "identifier": "Rclean",
   "description": "To create clearer, more concise code provides this\n\t     toolbox helps coders to isolate the essential parts of a\n\t     script that produces a chosen result, such as an object,\n\t     tables and figures written to disk.",
@@ -140,6 +143,34 @@
   ],
   "releaseNotes": "https://github.com/mklau/rclean/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/Rclean/blob/master/README.md",
-  "contIntegration": ["https://travis-ci.org/ROpenSci/Rclean", "https://codecov.io/github/ROpenSci/Rclean?branch=master"],
-  "developmentStatus": ["http://www.repostatus.org/#active", "https://www.tidyverse.org/lifecycle/#maturing"]
+  "contIntegration": [
+    "https://travis-ci.org/ROpenSci/Rclean",
+    "https://codecov.io/github/ROpenSci/Rclean?branch=master"
+  ],
+  "developmentStatus": [
+    "http://www.repostatus.org/#active",
+    "https://www.tidyverse.org/lifecycle/#maturing"
+  ],
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Matthew",
+      "familyName": "Lau",
+      "email": "matthewklau@fas.harvard.edu",
+      "@id": "https://orcid.org/0000-0003-3758-2406"
+    }
+  ],
+  "contributor": {},
+  "copyrightHolder": {},
+  "funder": {},
+  "maintainer": [
+    {
+      "@type": "Person",
+      "givenName": "Matthew",
+      "familyName": "Lau",
+      "email": "matthewklau@fas.harvard.edu",
+      "@id": "https://orcid.org/0000-0003-3758-2406"
+    }
+  ],
+  "fileSize": "315.665KB"
 }
