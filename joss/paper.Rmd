@@ -343,7 +343,7 @@ the script. Instead, we can easily do this automatically with
 `Rclean`.
 
 ```{R long}
-
+library(Rclean)
 clean(script, "fit_sqrt_A")
 
 ```
