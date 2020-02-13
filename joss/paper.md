@@ -29,6 +29,7 @@ date:
 bibliography: paper.bib
 ---
 
+
 Introduction
 ============
 
@@ -37,10 +38,10 @@ decade. This has facilitated the rapid advancement of science through
 the agile development of computational tools. However, concerns have
 begun to surface about the reproducibility of scientific research in
 general [@Baker2016] and the potential issues stemming from issues
-with analytical software @Stodden2018. Specifically, there is a growing
-recognition across disciplines that simply making data and software
-"available" is not enough and that there is a need to improve the
-transparency and stability of scientific software @Pasquier2018.
+with analytical software [@Stodden2018]. Specifically, there is a
+growing recognition across disciplines that simply making data and
+software "available" is not enough and that there is a need to improve
+the transparency and stability of scientific software [@Pasquier2018].
 
 At the core of the growth of scientific computation, the `R` statistical
 programming language has grown exponentially to become one of the top
@@ -57,11 +58,11 @@ frustrated by code that is fragile, buggy and complicated enough to
 quickly become obtuse even to the authors. The stability,
 reproducibility and re-use of scientific analyses in R would be improved
 by refactoring, which is a common practice in software engineering
-@Martin2009CleanCraftsmanship. From this perspective, tools that can
+[@Martin2009CleanCraftsmanship]. From this perspective, tools that can
 lower the time and energy required to refactor analytical scripts and
 otherwise help to "clean" code, but abstracted enough to be easily
 accessible, could have a significant impact on scientific
-reproducibility across all disciplines @Visser2015.
+reproducibility across all disciplines [@Visser2015].
 
 To provide support for easier refactoring in R, we have created
 `Rclean`. The `Rclean` package provides tools to automatically reduce a
@@ -97,7 +98,7 @@ term provenance means information about the origins of some object. Data
 provenance is a formal representation of the execution of a
 computational process (<https://www.w3.org/TR/prov-dm/>), to rigorously
 determine the the unique computational pathway from inputs to results
-@Carata2014. To avoid confusion, note that "data" in this context is
+[@Carata2014]. To avoid confusion, note that "data" in this context is
 used in a broad sense to include all of the information generated during
 computation, not just the data that are collected in a research project
 that are used as input to an analysis. Having the formalized,
@@ -114,9 +115,10 @@ language specific information to predict the relationship among
 processes and data objects. `Rclean` relies on a library called
 `CodeDepends` to gather the prospective provenance for each script. For
 more information on the mechanics of the `CodeDepends` package, see
-@R-CodeDepends. To get an idea of what data provenance is, take a look
-at the `code_graph` function. The plot that it generates is a graphical
-representation of the prospective provenance generated for `Rclean` .
+[@R-CodeDepends]. To get an idea of what data provenance is, take a
+look at the `code_graph` function. The plot that it generates is a
+graphical representation of the prospective provenance generated for
+`Rclean` .
 
 ![Network diagram of the prospective data provenance generated for an
 example script. Arrows indicate which lines of code (numbered) produced
@@ -143,27 +145,27 @@ Software Availability
 ---------------------
 
 The software is currently hosted on Github, and we recommend using the
-`devtools` library @R-devtools to install directly from the repository
-(<https://github.com/ROpenSci/Rclean>). The package is open-source and
-welcomes contributions. Please visit the repository page to report
-issues, request features or provide other feedback.
+`devtools` library [@R-devtools] to install directly from the
+repository (<https://github.com/ROpenSci/Rclean>). The package is
+open-source and welcomes contributions. Please visit the repository page
+to report issues, request features or provide other feedback.
 
 Discussion
 ==========
 
 We see promise in connecting `Rclean` with other clean code and
 reproducibility tools. One example is the `reprex` package, which
-provides a simple API for sharing reproducible examples @R-reprex.
+provides a simple API for sharing reproducible examples [@R-reprex].
 Another possibility is to help transition scripts to function, package
 and workflow creation and refactoring via toolboxes like `drake`
-@R-drake. `Rclean` could provide a reliable way to extract parts of a
-larger script that would be piped to a simplified reproducible example,
-in the case of `reprex`, or, since it can isolate the code from inputs
-to one or more outputs, be used to extract all of the components needed
-to write one or more functions that would be a part of a package or
-workflow, as is the goal of `drake`. To conclude, we hope that `Rclean`
-makes writing scientific software easier for the R community. We look
-forward to feedback and help with extending its application,
+[@R-drake]. `Rclean` could provide a reliable way to extract parts of
+a larger script that would be piped to a simplified reproducible
+example, in the case of `reprex`, or, since it can isolate the code from
+inputs to one or more outputs, be used to extract all of the components
+needed to write one or more functions that would be a part of a package
+or workflow, as is the goal of `drake`. To conclude, we hope that
+`Rclean` makes writing scientific software easier for the R community.
+We look forward to feedback and help with extending its application,
 particularly in the area of reproducibility. To get involved, report
 bugs, suggest features, please visit the project page.
 
