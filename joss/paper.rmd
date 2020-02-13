@@ -4,7 +4,7 @@ The growth of programming in the sciences has been explosive in the
 last decade. This has facilitated the rapid advancement of science
 through the agile development of computational tools. However,
 concerns have begun to surface about the reproducibility of scientific
-research in general @Baker2016 and the potential issues stemming from
+research in general [@Baker2016] and the potential issues stemming from
 issues with analytical software @Stodden2018. Specifically, there is a
 growing recognition across disciplines that simply making data and
 software "available" is not enough and that there is a need to improve

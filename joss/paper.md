@@ -1,35 +1,3 @@
----
-title: 'Rclean: A Tool for Writing Cleaner, More Transparent Code'
-tags:
-  - R
-  - reproducibility
-  - transparency
-  - code cleaning
-  - data provenance
-authors:
-  - name: Matthew K. Lau
-    orcid: 0000-0003-3758-2406
-    affiliation: 1
-  - name: Thomas F. J.-M. Pasquier
-    orcid: 0000-0001-6876-1306
-    affiliation: "2, 3" 
-  - name: Margo Seltzer
-    orcid: 0000-0002-2165-4658
-    affiliation: "4"
-affiliations:
- - name: Harvard Forest, Harvard University 
-   index: 1
- - name: Department of Computer Science, University of Bristol 
-   index: 2
- - name: School of Engineering and Applied Science, Harvard University
-   index: 3
- - name: Department of Computer Science, University of British Columbia
-   index: 4
-date: 
-bibliography: paper.bib
----
-
-
 Introduction
 ============
 
@@ -37,8 +5,8 @@ The growth of programming in the sciences has been explosive in the last
 decade. This has facilitated the rapid advancement of science through
 the agile development of computational tools. However, concerns have
 begun to surface about the reproducibility of scientific research in
-general @Baker2016 and the potential issues stemming from issues with
-analytical software @Stodden2018. Specifically, there is a growing
+general [@Baker2016] and the potential issues stemming from issues
+with analytical software @Stodden2018. Specifically, there is a growing
 recognition across disciplines that simply making data and software
 "available" is not enough and that there is a need to improve the
 transparency and stability of scientific software @Pasquier2018.
