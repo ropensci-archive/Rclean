@@ -1,35 +1,3 @@
----
-title: 'Rclean: A Tool for Writing Cleaner, More Transparent Code'
-tags:
-  - R
-  - reproducibility
-  - transparency
-  - code cleaning
-  - data provenance
-authors:
-  - name: Matthew K. Lau
-    orcid: 0000-0003-3758-2406
-    affiliation: 1
-  - name: Thomas F. J.-M. Pasquier
-    orcid: 0000-0001-6876-1306
-    affiliation: "2, 3" 
-  - name: Margo Seltzer
-    orcid: 0000-0002-2165-4658
-    affiliation: "4"
-affiliations:
- - name: Harvard Forest, Harvard University 
-   index: 1
- - name: Department of Computer Science, University of Bristol 
-   index: 2
- - name: School of Engineering and Applied Science, Harvard University
-   index: 3
- - name: Department of Computer Science, University of British Columbia
-   index: 4
-date: 
-bibliography: paper.bib
----
-
-
 Introduction
 ============
 
@@ -72,13 +40,7 @@ script to the parts that are specifically relevant to a research product
 (e.g. a scientific report, academic talk, research article, etc.).
 Although potentially useful to all R coders, it was designed to ease
 refactoring for scientists that use R but do not have formal training in
-software engineering. Here, we detail the structure of the package's
-API, describe the general workflow illustrated by an example use case
-and provide some background on how data provenance enables the
-underlying functionality of the package. We then end with a discussion
-of future applications of data provenance in the context of "code
-cleaning" and the potential integration with other software engineering
-tools for the R community.
+software engineering.
 
 Methods
 =======
@@ -94,9 +56,9 @@ patterns in data. This commonly leads to lengthy, complicated scripts
 from which researchers manually subset results, but likely never to be
 refactored because of the difficulty in disentangling the code needed to
 produce some results and not others. The 'Rclean' package uses an
-automated technique based on data provenance (details below) to analyze
-existing scripts and provide ways to identify and extract code to
-produce a desired output.
+automated technique based on data provenance to analyze existing scripts
+and provide ways to identify and extract code to produce a desired
+output.
 
 Data Provenance
 ---------------
@@ -132,27 +94,6 @@ a graphical representation of the prospective provenance generated for
 example script. Arrows indicate which lines of code (numbered) produced
 which objects
 (named).](paper_files/figure-markdown_strict/prov-graph-1.png)
-
-Relatedly, it is important to point out that `Rclean` *does not* keep
-comments present in code. This could be seen as a limitation of the data
-provenance, which currently does not assign them a relationships.
-Therefore, although there is often very useful or even invaluable
-information in comments, the `clean` function removes them. This is a
-general issue with automated methods for detecting the relationships
-between comments and the code itself. Comments at the end of lines are
-typically relevant to the line they are on, but this is not a
-requirement and could refer to other lines. Also, comments occupying
-their own lines usually refer to the following lines, but this is also
-not necessarily the case. As `clean` depends on the unambiguous
-determination of relationships in the production of results, it cannot
-operate automatically on comments. However, comments in the original
-code remain untouched and can be used to inform the reduced code. Also,
-as the `clean` function is oriented toward isolating code based on a
-specific result, the resulting code tends to naturally support the
-generation of new comments that are higher level (e.g. "The following
-produces a plot of the mean response of each treatment group."), and
-lower level comments are not necessary because the code is simpler and
-clearer.
 
 In the future, it would also be useful to extend the existing framework
 to support other provenance methods. One such possibility is
@@ -192,13 +133,11 @@ a larger script that would be piped to a simplified reproducible
 example, in the case of `reprex`, or, since it can isolate the code from
 inputs to one or more outputs, be used to extract all of the components
 needed to write one or more functions that would be a part of a package
-or workflow, as is the goal of `drake`.
-
-To conclude, we hope that `Rclean` makes writing scientific software
-easier for the R community. We look forward to feedback and help with
-extending its application, particularly in the area of reproducibility.
-To get involved, report bugs, suggest features, please visit the project
-page.
+or workflow, as is the goal of `drake`. To conclude, we hope that
+`Rclean` makes writing scientific software easier for the R community.
+We look forward to feedback and help with extending its application,
+particularly in the area of reproducibility. To get involved, report
+bugs, suggest features, please visit the project page.
 
 Acknowledgments
 ===============
