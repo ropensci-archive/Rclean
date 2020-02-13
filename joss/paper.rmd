@@ -181,9 +181,6 @@ has already been done in the direction of implementing retrospective
 provenance for code cleaning in R (see http://end-to-end-provenance.github.io).
 
 
-# Results
-
-
 
 ## Software Availability
 
@@ -195,32 +192,18 @@ page to report issues, request features or provide other feedback.
 
 # Discussion
 
-We have created ``Rclean`` to provide a simple, easy to use tool for
-scientists who would like help refactoring code. Using ``Rclean`` the
-code necessary to produce a specified result (e.g., an object stored
-in memory or a table or figure written to disk) can be easily and
-*reliably* isolated even when tangled with code for other
-results. This functionality is enabled by graph analysis of data
-provenance collected from the user's script. This is likely to be a
-broadly useful tool as statistical programming becomes more common
-across the sciences. Tools, such as this, that make it easier to
-produce transparent, accessible code will be an important aid for
-improving scientific reproducibility.
-
-
-Although the workflow described is impactful, we see promise in
-extending it to interface with other clean code and reproducibility
-tools. One example is the `reprex` package, which provides a simple
-API for sharing reproducible examples [@R-reprex]. Another possibility
-is to help transition scripts to function, package and workflow
-creation and refactoring via toolboxes like `drake`
-[@R-drake]. `Rclean` could provide a reliable way to extract parts of
-a larger script that would be piped to a simplified reproducible
-example, in the case of `reprex`, or, since it can isolate the code
-from inputs to one or more outputs, be used to extract all of the
-components needed to write one or more functions that would be a part
-of a package or workflow, as is the goal of `drake`.
-
+We see promise in connecting `Rclean` with other clean code and
+reproducibility tools. One example is the `reprex` package, which
+provides a simple API for sharing reproducible examples
+[@R-reprex]. Another possibility is to help transition scripts to
+function, package and workflow creation and refactoring via toolboxes
+like `drake` [@R-drake]. `Rclean` could provide a reliable way to
+extract parts of a larger script that would be piped to a simplified
+reproducible example, in the case of `reprex`, or, since it can
+isolate the code from inputs to one or more outputs, be used to
+extract all of the components needed to write one or more functions
+that would be a part of a package or workflow, as is the goal of
+`drake`.
 
 To conclude, we hope that `Rclean` makes writing scientific software
 easier for the R community. We look forward to feedback and help with
