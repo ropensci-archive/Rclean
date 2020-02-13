@@ -1,3 +1,35 @@
+---
+title: 'Rclean: A Tool for Writing Cleaner, More Transparent Code'
+tags:
+  - R
+  - reproducibility
+  - transparency
+  - code cleaning
+  - data provenance
+authors:
+  - name: Matthew K. Lau
+    orcid: 0000-0003-3758-2406
+    affiliation: 1
+  - name: Thomas F. J.-M. Pasquier
+    orcid: 0000-0001-6876-1306
+    affiliation: "2, 3" 
+  - name: Margo Seltzer
+    orcid: 0000-0002-2165-4658
+    affiliation: "4"
+affiliations:
+ - name: Harvard Forest, Harvard University 
+   index: 1
+ - name: Department of Computer Science, University of Bristol 
+   index: 2
+ - name: School of Engineering and Applied Science, Harvard University
+   index: 3
+ - name: Department of Computer Science, University of British Columbia
+   index: 4
+date: 
+bibliography: paper.bib
+---
+
+
 Introduction
 ============
 
