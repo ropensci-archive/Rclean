@@ -120,6 +120,8 @@ look at the `code_graph` function. The plot that it generates is a
 graphical representation of the prospective provenance generated for
 `Rclean` .
 
+a`{R load-script, echo = FALSE, results = "hide"} library(CodeDepends) library(Rclean)`
+
 ![Network diagram of the prospective data provenance generated for an
 example script. Arrows indicate which lines of code (numbered) produced
 which objects
