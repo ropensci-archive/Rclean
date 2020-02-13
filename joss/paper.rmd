@@ -88,7 +88,7 @@ is, take a look at the `code_graph` function. The plot that it
 generates is a graphical representation of the prospective provenance
 generated for `Rclean` \ref{fig:prov-graph}.
 
-a```{R load-script, echo = FALSE, results = "hide"}
+```{R load-script, echo = FALSE, results = "hide"}
 library(CodeDepends)
 library(Rclean)
 ```
