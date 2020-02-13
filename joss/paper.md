@@ -37,13 +37,12 @@ The growth of programming in the sciences has been explosive in the last
 decade. This has facilitated the rapid advancement of science through
 the agile development of computational tools. However, concerns have
 begun to surface about the reproducibility of scientific research in
-general (R. D. Peng et al. 2011 Baker (2016)) and the potential issues
-stemming from issues with analytical software (Pasquier et al. 2017
-Stodden, Seiler, and Ma (2018)). Specifically, there is a growing
-recognition across disciplines that simply making data and software
-"available" is not enough and that there is a need to improve the
-transparency and stability of scientific software (Pasquier et al.
-2018).
+general \[@Peng2011, @Baker2016\] and the potential issues stemming from
+issues with analytical software \[@Pasquier2017, @Stodden2018\].
+Specifically, there is a growing recognition across disciplines that
+simply making data and software "available" is not enough and that there
+is a need to improve the transparency and stability of scientific
+software \[@Pasquier2018\].
 
 At the core of the growth of scientific computation, the `R` statistical
 programming language has grown exponentially to become one of the top
@@ -60,11 +59,11 @@ frustrated by code that is fragile, buggy and complicated enough to
 quickly become obtuse even to the authors. The stability,
 reproducibility and re-use of scientific analyses in R would be improved
 by refactoring, which is a common practice in software engineering
-(Martin 2009). From this perspective, tools that can lower the time and
-energy required to refactor analytical scripts and otherwise help to
-"clean" code, but abstracted enough to be easily accessible, could have
-a significant impact on scientific reproducibility across all
-disciplines (Visser et al. 2015).
+\[@Martin2009CleanCraftsmanship\]. From this perspective, tools that can
+lower the time and energy required to refactor analytical scripts and
+otherwise help to "clean" code, but abstracted enough to be easily
+accessible, could have a significant impact on scientific
+reproducibility across all disciplines \[@Visser2015\].
 
 To provide support for easier refactoring in R, we have created
 `Rclean`. The `Rclean` package provides tools to automatically reduce a
@@ -100,14 +99,14 @@ term provenance means information about the origins of some object. Data
 provenance is a formal representation of the execution of a
 computational process (<https://www.w3.org/TR/prov-dm/>), to rigorously
 determine the the unique computational pathway from inputs to results
-(Carata et al. 2014). To avoid confusion, note that "data" in this
-context is used in a broad sense to include all of the information
-generated during computation, not just the data that are collected in a
-research project that are used as input to an analysis. Having the
-formalized, mathematically rigorous representation that data provenance
-provides guarantees that the analyses that `Rclean` conducts are
-theoretically sound. Most importantly, because the relationships defined
-by the provenance can be represented as a graph, it is possible to apply
+\[@Carata2014\]. To avoid confusion, note that "data" in this context is
+used in a broad sense to include all of the information generated during
+computation, not just the data that are collected in a research project
+that are used as input to an analysis. Having the formalized,
+mathematically rigorous representation that data provenance provides
+guarantees that the analyses that `Rclean` conducts are theoretically
+sound. Most importantly, because the relationships defined by the
+provenance can be represented as a graph, it is possible to apply
 network search algorithms to determine the minimum and sufficient code
 needed to generate the chosen result in the `clean` function.
 
@@ -117,10 +116,10 @@ language specific information to predict the relationship among
 processes and data objects. `Rclean` relies on a library called
 `CodeDepends` to gather the prospective provenance for each script. For
 more information on the mechanics of the `CodeDepends` package, see
-(Temple Lang et al. 2020). To get an idea of what data provenance is,
-take a look at the `code_graph` function. The plot that it generates is
-a graphical representation of the prospective provenance generated for
-`Rclean` @ref(fig:prov-graph).
+\[@R-CodeDepends\]. To get an idea of what data provenance is, take a
+look at the `code_graph` function. The plot that it generates is a
+graphical representation of the prospective provenance generated for
+`Rclean` .
 
 ![Network diagram of the prospective data provenance generated for an
 example script. Arrows indicate which lines of code (numbered) produced
@@ -147,20 +146,20 @@ Software Availability
 ---------------------
 
 The software is currently hosted on Github, and we recommend using the
-`devtools` library (Wickham, Hester, and Chang 2019) to install directly
-from the repository (<https://github.com/ROpenSci/Rclean>). The package
-is open-source and welcomes contributions. Please visit the repository
-page to report issues, request features or provide other feedback.
+`devtools` library \[@R-devtools\] to install directly from the
+repository (<https://github.com/ROpenSci/Rclean>). The package is
+open-source and welcomes contributions. Please visit the repository page
+to report issues, request features or provide other feedback.
 
 Discussion
 ==========
 
 We see promise in connecting `Rclean` with other clean code and
 reproducibility tools. One example is the `reprex` package, which
-provides a simple API for sharing reproducible examples (Bryan et al.
-2019). Another possibility is to help transition scripts to function,
-package and workflow creation and refactoring via toolboxes like `drake`
-(Landau 2020). `Rclean` could provide a reliable way to extract parts of
+provides a simple API for sharing reproducible examples \[@R-reprex\].
+Another possibility is to help transition scripts to function, package
+and workflow creation and refactoring via toolboxes like `drake`
+\[@R-drake\]. `Rclean` could provide a reliable way to extract parts of
 a larger script that would be piped to a simplified reproducible
 example, in the case of `reprex`, or, since it can isolate the code from
 inputs to one or more outputs, be used to extract all of the components
@@ -184,63 +183,3 @@ References
 ==========
 
 <!-- Use overleaf papers.bib + knitr::write_bib -->
-Baker, Monya. 2016. “1,500 scientists lift the lid on reproducibility.”
-*Nature* 533: 452–54.
-doi:[10.1038/533452a](https://doi.org/10.1038/533452a).
-
-Bryan, Jennifer, Jim Hester, David Robinson, and Hadley Wickham. 2019.
-*Reprex: Prepare Reproducible Example Code via the Clipboard*.
-<https://CRAN.R-project.org/package=reprex>.
-
-Carata, Lucian, Sherif Akoush, Nikilesh Balakrishnan, Thomas Bytheway,
-Ripduman Sohan, Margo Seltzer, and Andy Hopper. 2014. “A Primer on
-Provenance.” *Queue* 12 (3). ACM: 10–23.
-doi:[10.1145/2602649.2602651](https://doi.org/10.1145/2602649.2602651).
-
-Landau, William Michael. 2020. *Drake: A Pipeline Toolkit for
-Reproducible Computation at Scale*.
-<https://CRAN.R-project.org/package=drake>.
-
-Martin, Robert. 2009. *Clean code : a handbook of agile software
-craftsmanship*.
-
-Pasquier, Thomas, Matthew K. Lau, Xueyuan Han, Elizabeth Fong, Barbara
-S. Lerner, Emery R. Boose, Merce Crosas, Aaron M. Ellison, and Margo
-Seltzer. 2018. “Sharing and Preserving Computational Analyses for
-Posterity with encapsulator.” *Computing in Science & Engineering* 20
-(4): 111–24.
-doi:[10.1109/MCSE.2018.042781334](https://doi.org/10.1109/MCSE.2018.042781334).
-
-Pasquier, Thomas, Matthew K. Lau, Ana Trisovic, Emery R. Boose, Ben
-Couturier, Mercè Crosas, Aaron M. Ellison, Valerie Gibson, Chris R.
-Jones, and Margo Seltzer. 2017. “If these data could talk.” *Scientific
-Data* 4 (September): 170114.
-doi:[10.1038/sdata.2017.114](https://doi.org/10.1038/sdata.2017.114).
-
-Peng, Roger D, B. Hanson, A. Sugden, B. Alberts, R. D. Peng, F.
-Dominici, S. L. Zeger, et al. 2011. “Reproducible research in
-computational science.” *Science (New York, N.Y.)* 334 (6060). American
-Association for the Advancement of Science: 1226–7.
-doi:[10.1126/science.1213847](https://doi.org/10.1126/science.1213847).
-
-Stodden, Victoria, Jennifer Seiler, and Zhaokun Ma. 2018. “An empirical
-analysis of journal policy effectiveness for computational
-reproducibility.” *Proceedings of the National Academy of Sciences of
-the United States of America* 115 (11). National Academy of Sciences:
-2584–9.
-doi:[10.1073/pnas.1708290115](https://doi.org/10.1073/pnas.1708290115).
-
-Temple Lang, Duncan, Roger Peng, Deborah Nolan, and Gabriel Becker.
-2020. *CodeDepends: Analysis of R Code for Reproducible Research and
-Code Comprehension*. <https://github.com/duncantl/CodeDepends>.
-
-Visser, Marco D., Sean M. McMahon, Cory Merow, Philip M. Dixon, Sydne
-Record, and Eelke Jongejans. 2015. “Speeding Up Ecological and
-Evolutionary Computations in R; Essentials of High Performance Computing
-for Biologists.” Edited by Francis Ouellette. *PLOS Computational
-Biology* 11 (3). Springer-Verlag: e1004140.
-doi:[10.1371/journal.pcbi.1004140](https://doi.org/10.1371/journal.pcbi.1004140).
-
-Wickham, Hadley, Jim Hester, and Winston Chang. 2019. *Devtools: Tools
-to Make Developing R Packages Easier*.
-<https://CRAN.R-project.org/package=devtools>.
