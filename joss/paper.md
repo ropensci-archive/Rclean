@@ -45,18 +45,18 @@ the transparency and stability of scientific software [@Pasquier2018].
 
 At the core of the growth of scientific computation, the `R` statistical
 programming language has grown exponentially to become one of the top
-ten programming languages in use today. At it's root R is a
+ten programming languages in use today. At its root R is a
 *statistical* programming language. That is, it was designed for use in
-analytical workflows; and the majority of the R community is focused on
+analytical workflows, and the majority of the R community is focused on
 producing code for idiosyncratic projects that are *results* oriented.
 Also, R's design is intentionally at a level that abstracts many aspects
 of programming that would otherwise act as a barrier to entry for many
-users. This is good in that there are many people who use R to their
-benefit with little to no formal training in computer science or
+users. This is good in that there are many people who use R
+with little to no formal training in computer science or
 software engineering, but these same users can also be frequently
-frustrated by code that is fragile, buggy and complicated enough to
+frustrated by code that is fragile, buggy, and complicated enough to
 quickly become obtuse even to the authors. The stability,
-reproducibility and re-use of scientific analyses in R would be improved
+reproducibility, and re-use of scientific analyses in R would be improved
 by refactoring, which is a common practice in software engineering
 [@Martin2009CleanCraftsmanship]. From this perspective, tools that can
 lower the time and energy required to refactor analytical scripts and
@@ -67,9 +67,9 @@ reproducibility across all disciplines [@Visser2015].
 To provide support for easier refactoring in R, we have created
 `Rclean`. The `Rclean` package provides tools to automatically reduce a
 script to the parts that are specifically relevant to a research product
-(e.g. a scientific report, academic talk, research article, etc.).
+(e.g., a scientific report, academic talk, research article, etc.)
 Although potentially useful to all R coders, it was designed to ease
-refactoring for scientists that use R but do not have formal training in
+refactoring for scientists who use R but do not have formal training in
 software engineering.
 
 Methods
@@ -132,7 +132,7 @@ is executing. Through this active, concurrent monitoring, retrospective
 provenance can gather information that static prospective provenance
 can't. Greater details of the computational process would enable other
 features that could address some challenges, such as processing
-information from comments, parsing control statements and replicating
+information from comments, parsing control statements, and replicating
 random processes. However, using retrospective provenance comes at a
 cost. In order to gather it, the script needs to be executed. When
 scripts are computationally intensive or contain bugs that stop
@@ -144,7 +144,7 @@ implementing retrospective provenance for code cleaning in R (see
 Software Availability
 ---------------------
 
-The software is currently hosted on Github, and we recommend using the
+The software is currently hosted on GitHub, and we recommend using the
 `devtools` library [@R-devtools] to install directly from the
 repository (<https://github.com/ROpenSci/Rclean>). The package is
 open-source and welcomes contributions. Please visit the repository page
@@ -174,7 +174,7 @@ Acknowledgments
 
 This work was improved by discussions with ecologists at Harvard Forest
 and through the helpful review provided by the ROpenSci community,
-particularly Anna Krystalli, Will Landau and Clemens Schmid. Much of the
+particularly Anna Krystalli, Will Landau, and Clemens Schmid. Much of the
 work was funded by US National Science Foundation grant SSI-1450277 for
 applications of End-to-End Data Provenance.
 
