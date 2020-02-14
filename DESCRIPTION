@@ -1,7 +1,7 @@
 Type: Package
 Package: Rclean
 Title: A Tool for Writing Cleaner, More Transparent Code
-Version: 1.1.7
+Version: 1.1.8
 Authors@R: c(
    person(
      given = "Matthew", 
