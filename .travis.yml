@@ -21,4 +21,4 @@ r_github_packages:
 after_success:
   - Rscript -e 'covr::codecov()'
   - R CMD INSTALL $PKG_TARBALL
-  - Rscript -e 'lintr::lint_package()'
+  - Rscript -e 'lintr::lint_package(LINTR_COMMENT_BOT=false)'
