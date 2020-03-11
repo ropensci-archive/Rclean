@@ -1,70 +1,63 @@
 Rclean: Automated Tools for Cleaning R Code
 ===========================================
 
-# What is Clean Code?
+> Leave the code cleaner than you found it. 
+-- R.C. Martin in *Clean Code*
 
-From R.C. Martin's "Clean Code"
+Data analysis can be messy and complicated, so it's no wonder that the
+code often reflects this. "What did I measure? What analyses are
+relevant to them? Do I need to transform the data? What's the function
+for the analysis I want to run?" In addition, although many
+researchers see the value in learning to write software, the entry
+level is still exceedingly high. The `R` language has become very
+popular among scientists and analysts because of the lower threshold,
+which is good in that it empowers science. The downside is that
+learning to create good software is a skill that takes a considerable
+amount of time to learn, which means that many scientists write code
+that will get the job "done" but lacks transparency and is highly
+unstable (i.e. buggy). 
 
-"Leave the code cleaner than you found it." -- R.C. Martin
-
-Interviews with software engineers
-- Does one thing well
-- Simple and direct
-- Can be read and enhanced by others
-- Comments don't make up for bad code
-
-- Code Smells?
-
-# What can Rclean do?
-
-
-The goal of `Rclean` is to provide a set of tools that help someone
-reduce and organize code based on results. More often then not, when
-someone is writing an R script, the intent is to produce a set of
-results, such as a statistical analysis, figure, table, etc. This set
-of results is always a subset of a much larger set of possible ways to
+The goal of `Rclean` is to provide a tool that help someone reduce and
+organize code based on results.  More often then not, when someone is
+writing an R script, the intent is to produce a set of results, such
+as a statistical analysis, figure or table. This set of results is
+nearly always a subset of a much larger set of possible ways to
 explore a dataset, as there are many statistical approaches and tests,
 let alone ways to create visualizations and other representations of
 patterns in data. This commonly leads to lengthy, complicated scripts
 from which researchers manually subset results, but likely never to be
 refactored because of the difficulty in disentangling the code needed
-to produce some results and not others. The 'Rclean' package uses an
-automated technique based on data provenance (details below) to
-analyze existing scripts and provide ways to identify and extract code
-to produce a desired output. 
+to produce some results and not others. 
 
-
-- Automatically, isolates code in a script that produces one or more objects.
-- Manual searching of code not required.
-
-## Applications
-
-SCRIPT <-> Refactor
-   |-----> Function 
-   |          |------> Package
-   |          |------> Workflow System (e.g. drake)
-   |-----> Workbook
-   |------> Shiny App
-   |-----> Examples (e.g. reprex)
+The `Rclean` package uses an automated technique based on data
+provenance and network algorithms to analyze existing scripts and
+provide ways to identify and extract code to produce a desired output
+without having to manually conduct the search through the code line by
+line. `Rclean` was designed to ease refactoring for scientists that
+use R but do not have formal training in software engineering and
+specifically with the "art" of creating clean code; however, because
+manually culling code is tedious and potentially leads to errors,
+`Rclean` can be a useful tool for everyone at all levels of coding
+ability.
 
 # The Provenance Engine Under the Hood
 
-All of these processes rely on the generation of data provenance.  The
-term provenance means information about the origins of some
-object. Data provenance is a formal representation of the execution of
-a computational process (https://www.w3.org/TR/prov-dm/), to
-rigorously determine the the unique computational pathway from inputs
-to results [@Carata2014]. To avoid confusion, note that "data" in this
-context is used in a broad sense to include all of the information
-generated during computation, not just the data that are collected in
-a research project that are used as input to an analysis. Having the
-formalized, mathematically rigorous representation that data
-provenance provides guarantees that the analyses that `Rclean`
-conducts are theoretically sound. Most importantly, because the
-relationships defined by the provenance can be represented as a graph,
-it is possible to apply network search algorithms to determine the
-minimum and sufficient code needed to generate the chosen result in
-the `clean` function.
+The process that `Rclean` uses relies on the generation of data
+provenance.  The term provenance means information about the origins
+of some object. Data provenance is a formal representation of the
+execution of a computational process (https://www.w3.org/TR/prov-dm/),
+to rigorously determine the the unique computational pathway from
+inputs to results [@Carata2014]. To avoid confusion, note that "data"
+in this context is used in a broad sense to include all of the
+information generated during computation, not just the data that are
+collected in a research project that are used as input to an
+analysis. Having the formalized, mathematically rigorous
+representation that data provenance provides guarantees that the
+analyses that `Rclean` conducts are theoretically sound. Most
+importantly, because the relationships defined by the provenance can
+be represented as a graph, it is possible to apply network search
+algorithms to determine the minimum and sufficient code needed to
+generate the chosen result in the `clean` function.
 
 There are multiple approaches to collecting data provenance, but
 `Rclean` uses "prospective" provenance, which analyzes code and uses
@@ -75,7 +68,7 @@ script. For more information on the mechanics of the `CodeDepends`
 package, see [@R-CodeDepends]. To get an idea of what data provenance
 is, take a look at the `code_graph` function. The plot that it
 generates is a graphical representation of the prospective provenance
-generated for `Rclean` \@ref(fig:prov-graph).
+generated for `Rclean` \@ref(fig:prov-graph). 
 
 ```{R load-script, echo = FALSE, results = "hide"}
 library(CodeDepends)
@@ -92,24 +85,21 @@ code_graph(script)
 
 ```
 
-## CodeDepends Provenance Collection Summary
+As you can see, the provenance provides a network representation of
+relationships among functions and objects. This is very powerful
+because we can now apply algorithms analyze the R script with respect
+to our results. The main function of `Rclean`, called `clean`, takes
+the provenance and applies a depth first network search algorithm to
+determine the pathways leading from inputs to outputs, excluding any
+objects or lines of code that do not fall along that pathway and are,
+therefore, not necessary to produce the desired set of results. As
+demonstrated in the next section, through this process, we can produce
+a new script with the minimal code necessary to generate the output we
+want.
 
-- Review paper
-- How it's used in Rclean
-- Depth first search
 
-# How you can use Rclean
+# Using `Rclean` to clean your code
 
-
-Data analysis can be messy and complicated, so it's no wonder that the
-code often reflects this. "What did I measure? What analyses are
-relevant to them? Do I need to transform the data? What's the function
-for the analysis I want to run?" This is why having a way to isolate
-code based on variables can be valuable. `Rclean` provides an
-automatic way to do this. Although potentially useful to all R coders,
-it was designed to ease refactoring for scientists that use R but do
-not have formal training in software engineering and specifically with
-the "art" of creating clean code.
 
 The following is an example of a script that has some "complications."
 As you can see, although the script is not extremely long or
@@ -307,28 +297,58 @@ open-source and welcomes contributions. Please visit the repository
 page to report issues, request features or provide other feedback.
 
 
-# Future Work and Contributing
+# Concluding Remarks and Future Work
+
+We have created ``Rclean`` to provide a simple, easy to use tool for
+scientists who would like help refactoring code. Using ``Rclean`` the
+code necessary to produce a specified result (e.g., an object stored
+in memory or a table or figure written to disk) can be easily and
+*reliably* isolated even when tangled with code for other
+results. Tools, such as this, that make it easier to produce
+transparent, accessible code will be an important aid for improving
+scientific reproducibility.
+
+The `clean` function provides an effective way to remove code that is
+unwanted; however, many researchers are wary about doing this exact
+thing for at least a few reasons. Perhaps the top reason is that the
+main goal of an analysis is the results and taking time to craft
+transparent, dependable software is not the priority. As such, taking
+time to go back through a script and remove code is time
+wasted. Relatedly, for most researchers the best way to keep track of
+the various analyses that they have explored is to keep them in the
+script, as they do not use a rigorous version control system but
+instead rely on file backups and informal versioning. Although we
+can't give researchers more hours in the day, providing an easier and
+more reliable means to remove unused code will lower the barrier to
+creating better, cleaner code. Combined with the increasing use of
+version control systems and digital notebooks, the practice of
+"saving" analytical ideas in a script will become less common and code
+quality will increase.
 
 Relatedly, it is important to point out that `Rclean` *does not* keep
-comments present in code. This could be seen as a limitation of the
-data provenance, which currently does not assign them a
-relationships. Therefore, although there is often very useful or even
-invaluable information in comments, the `clean` function removes
-them. This is a general issue with automated methods for detecting the
-relationships between comments and the code itself. Comments at the
-end of lines are typically relevant to the line they are on, but this
-is not a requirement and could refer to other lines. Also, comments
-occupying their own lines usually refer to the following lines, but
-this is also not necessarily the case. As `clean` depends on the
-unambiguous determination of relationships in the production of
-results, it cannot operate automatically on comments. However,
-comments in the original code remain untouched and can be used to
-inform the reduced code. Also, as the `clean` function is oriented
-toward isolating code based on a specific result, the resulting code
-tends to naturally support the generation of new comments that are
-higher level (e.g. "The following produces a plot of the mean response
-of each treatment group."), and lower level comments are not necessary
-because the code is simpler and clearer.
+comments present in code. This is a limitation of the data provenance,
+which currently does not assign them a relationships. Therefore,
+although there is often very useful or even invaluable information in
+comments, the `clean` function removes them. This is a general issue
+with automated methods for detecting the relationships between
+comments and the code itself. Comments at the end of lines are
+typically relevant to the line they are on, but this is not a
+requirement and could refer to other lines. Also, comments occupying
+their own lines usually refer to the following lines, but this is also
+not necessarily the case. As `clean` depends on the unambiguous
+determination of relationships in the production of results, it cannot
+operate automatically on comments. However, comments in the original
+code remain untouched and can be used to inform the reduced
+code. Also, as the `clean` function is oriented toward isolating code
+based on a specific result, the resulting code tends to naturally
+support the generation of new comments that are higher level
+(e.g. "The following produces a plot of the mean response of each
+treatment group."), and lower level comments are not necessary because
+the code is simpler and clearer. Lastly, as stated above, comments can
+serve an important role in coding, it is worth reflecting on the
+statement in R.C. Martin's book `Clean Code: A Handbook of Agile
+Software Craftsmanship` that "Comments do not compensate for bad
+code."
 
 In the future, it would also be useful to extend the existing
 framework to support other provenance methods. One possibility is
@@ -367,114 +387,6 @@ to feedback and help with extending it, particularly in the area of
 reproducibility. We invite people to use the package and get involved
 by reporting bugs and suggesting or contributing features. For more
 information please visit the project page on Github.
-
-
-#### Old Text for JOSS before the hard edit of content
-
----
-title: 'Rclean: A Tool for Writing Cleaner, More Transparent Code'
-tags:
-  - R
-  - reproducibility
-  - transparency
-  - code cleaning
-  - data provenance
-authors:
-  - name: Matthew K. Lau
-    orcid: 0000-0003-3758-2406
-    affiliation: 1
-  - name: Thomas F. J.-M. Pasquier
-    orcid: 0000-0001-6876-1306
-    affiliation: "2, 3" 
-  - name: Margo Seltzer
-    orcid: 0000-0002-2165-4658
-    affiliation: "4"
-affiliations:
- - name: Harvard Forest, Harvard University 
-   index: 1
- - name: Department of Computer Science, University of Bristol 
-   index: 2
- - name: School of Engineering and Applied Science, Harvard University
-   index: 3
- - name: Department of Computer Science, University of British Columbia
-   index: 4
-date: 
-bibliography: paper.bib
----
-
-# Introduction
-
-The growth of programming in the sciences has been explosive in the
-last decade. This has facilitated the rapid advancement of science
-through the agile development of computational tools. However,
-concerns have begun to surface about the reproducibility of scientific
-research in general [@Peng2011 @Baker2016] and the potential issues
-stemming from issues with analytical software [@Pasquier2017
-@Stodden2018]. Specifically, there is a growing recognition across
-disciplines that simply making data and software "available" is not
-enough and that there is a need to improve the transparency and
-stability of scientific software [@Pasquier2018].
-
-At the core of the growth of scientific computation, the ``R``
-statistical programming language has grown exponentially to become one
-of the top ten programming languages in use today. At its root R is a
-*statistical* programming language. That is, it was designed for use
-in analytical workflows; and the majority of the R community is
-focused on producing code for idiosyncratic projects that are
-*results* oriented. Also, R's design is intentionally at a level that
-abstracts many aspects of programming that would otherwise act as a
-barrier to entry for many users. This is good in that there are many
-people who use R to their benefit with little to no formal training in
-computer science or software engineering, but these same users can
-also be frequently frustrated by code that is fragile, buggy and
-complicated enough to quickly become obtuse even to the authors. The
-stability, reproducibility and re-use of scientific analyses in R
-would be improved by refactoring, which is a common practice in
-software engineering [@Martin2009CleanCraftsmanship]. From this
-perspective, tools that can lower the time and energy required to
-refactor analytical scripts and otherwise help to "clean" code, but
-abstracted enough to be easily accessible, could have a significant
-impact on scientific reproducibility across all disciplines
-[@Visser2015].
-
-
-
-
-
-
-
-## Data Provenance
-
-
-
-# Results
-
-
-# Discussion
-
-We have created ``Rclean`` to provide a simple, easy to use tool for
-scientists who would like help refactoring code. Using ``Rclean`` the
-code necessary to produce a specified result (e.g., an object stored
-in memory or a table or figure written to disk) can be easily and
-*reliably* isolated even when tangled with code for other
-results. This functionality is enabled by graph analysis of data
-provenance collected from the user's script. This is likely to be a
-broadly useful tool as statistical programming becomes more common
-across the sciences. Tools, such as this, that make it easier to
-produce transparent, accessible code will be an important aid for
-improving scientific reproducibility.
-
-
-
-
-
-# Acknowledgments
-
-This work was improved by discussions with ecologists at Harvard
-Forest and through the helpful review provided by the ROpenSci
-community, particularly Anna Krystalli, Will Landau and Clemens
-Schmid. Much of the work was funded by US National Science Foundation
-grant SSI-1450277 for applications of End-to-End Data Provenance.
 
 # References
 
