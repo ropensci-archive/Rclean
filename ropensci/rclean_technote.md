@@ -65,7 +65,7 @@ more information on the mechanics of the `CodeDepends` package, see
 (Temple Lang et al. 2020). To get an idea of what data provenance is,
 take a look at the `code_graph` function. The plot that it generates is
 a graphical representation of the prospective provenance generated for
-`Rclean` @ref(fig:prov-graph).
+`Rclean` .
 
 ![Network diagram of the prospective data provenance generated for an
 example script. Arrows indicate which lines of code (numbered) produced
@@ -254,8 +254,8 @@ created in the script.
 
 Especially when the code for different variables are entangled, it can
 be useful to visual the code in order to devise an approach to cleaning.
-As seen above @ref(fig:prov-graph), `code_graph` will produce a visual
-of the code and the objects that they produce.
+As seen above , `code_graph` will produce a visual of the code and the
+objects that they produce.
 
     code_graph(script)
 

@@ -72,7 +72,7 @@ script. For more information on the mechanics of the `CodeDepends`
 package, see [@R-CodeDepends]. To get an idea of what data provenance
 is, take a look at the `code_graph` function. The plot that it
 generates is a graphical representation of the prospective provenance
-generated for `Rclean` \@ref(fig:prov-graph). 
+generated for `Rclean` \ref{fig:prov-graph}. 
 
 ```{R load-script, echo = FALSE, results = "hide"}
 library(CodeDepends)
@@ -273,7 +273,7 @@ get_vars(script)
 
 Especially when the code for different variables are entangled, it can
 be useful to visual the code in order to devise an approach to
-cleaning. As seen above \@ref(fig:prov-graph), `code_graph` will
+cleaning. As seen above \ref{fig:prov-graph}, `code_graph` will
 produce a visual of the code and the objects that they produce. 
 
 ```{R ex-code_graph, fig.cap = "Example of the plot produced by the code_graph function showing which lines of code produce which variables and which variables are used by other lines of code."}
