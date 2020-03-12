@@ -2,11 +2,12 @@
 
 -- R.C. Martin in *Clean Code*
 
-Data analysis can be messy and complicated, so it's no wonder that the
-code often reflects this. "What did I measure? What analyses are
-relevant to them? Do I need to transform the data? What's the function
-for the analysis I want to run?" In addition, although many researchers
-see the value in learning to write software, the entry level is still
+Data analysis can be messy and complicated. Because of project
+complexities and time contraints, analytial software often reflects
+these challenges. "What did I measure? What analyses are relevant to
+them? Do I need to transform the data? What's the function for the
+analysis I want to run?" In addition, although many researchers see the
+value in learning to write software, the entry level is still
 exceedingly high. The `R` language has become very popular among
 scientists and analysts because of the lower threshold, which is good in
 that it empowers science. The downside is that learning to create good
@@ -96,9 +97,6 @@ Github, and the package can be installed using the `devtools` library
 (<https://github.com/ROpenSci/Rclean>).
 
     library(devtools)
-
-    ## Loading required package: usethis
-
     install_github("ROpenSci/Rclean")
 
     ## Skipping install of 'Rclean' from a github remote, the SHA1 (7099ed70) has not changed since last install.

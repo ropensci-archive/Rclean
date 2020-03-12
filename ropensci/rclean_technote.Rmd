@@ -8,18 +8,18 @@ bibliography: refs.bib
 
 -- R.C. Martin in *Clean Code*
 
-Data analysis can be messy and complicated, so it's no wonder that the
-code often reflects this. "What did I measure? What analyses are
-relevant to them? Do I need to transform the data? What's the function
-for the analysis I want to run?" In addition, although many
-researchers see the value in learning to write software, the entry
-level is still exceedingly high. The `R` language has become very
-popular among scientists and analysts because of the lower threshold,
-which is good in that it empowers science. The downside is that
-learning to create good software is a skill that takes a considerable
-amount of time to learn, which means that many scientists write code
-that will get the job "done" but lacks transparency and is highly
-unstable (i.e. buggy). 
+Data analysis can be messy and complicated. Because of project
+complexities and time contraints, analytial software often reflects
+these challenges. "What did I measure? What analyses are relevant to
+them? Do I need to transform the data? What's the function for the
+analysis I want to run?" In addition, although many researchers see
+the value in learning to write software, the entry level is still
+exceedingly high. The `R` language has become very popular among
+scientists and analysts because of the lower threshold, which is good
+in that it empowers science. The downside is that learning to create
+good software is a skill that takes a considerable amount of time to
+learn, which means that many scientists write code that will get the
+job "done" but lacks transparency and is highly unstable (i.e. buggy).
 
 The goal of `Rclean` is to provide a tool that help someone reduce and
 organize code based on results.  More often then not, when someone is
@@ -79,7 +79,7 @@ library(CodeDepends)
 library(Rclean)
 ```
 
-```{R prov-graph, fig.cap = "Network diagram of the prospective data provenance generated for an example script. Arrows indicate which lines of code (numbered) produced which objects (named).", echo = FALSE}
+```{R prov-graph, dpi = 300, fig.cap = "Network diagram of the prospective data provenance generated for an example script. Arrows indicate which lines of code (numbered) produced which objects (named).", echo = FALSE}
 
 script <- system.file(
     "example", 
@@ -276,7 +276,7 @@ be useful to visual the code in order to devise an approach to
 cleaning. As seen above \ref{fig:prov-graph}, `code_graph` will
 produce a visual of the code and the objects that they produce. 
 
-```{R ex-code_graph, fig.cap = "Example of the plot produced by the code_graph function showing which lines of code produce which variables and which variables are used by other lines of code."}
+```{R ex-code_graph, dpi = 300, fig.cap = "Example of the plot produced by the code_graph function showing which lines of code produce which variables and which variables are used by other lines of code."}
 
 code_graph(script)
 
