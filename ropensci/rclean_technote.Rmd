@@ -1,7 +1,11 @@
-Rclean: Automated Tools for Cleaning R Code
-===========================================
+---
+title: Rclean and Automatng Code Cleaning in R
+author: M.K. Lau
+bibliography: refs.bib
+---
 
 > Leave the code cleaner than you found it. 
+
 -- R.C. Martin in *Clean Code*
 
 Data analysis can be messy and complicated, so it's no wonder that the
@@ -85,28 +89,28 @@ code_graph(script)
 
 ```
 
-As you can see, the provenance provides a network representation of
-relationships among functions and objects. This is very powerful
-because we can now apply algorithms analyze the R script with respect
-to our results. The main function of `Rclean`, called `clean`, takes
-the provenance and applies a depth first network search algorithm to
-determine the pathways leading from inputs to outputs, excluding any
-objects or lines of code that do not fall along that pathway and are,
-therefore, not necessary to produce the desired set of results. As
-demonstrated in the next section, through this process, we can produce
-a new script with the minimal code necessary to generate the output we
-want.
+The provenance provides a network representation of relationships
+among functions and objects. This is very powerful because we can now
+apply algorithms analyze the R script with respect to our results. The
+main function of `Rclean`, called `clean`, takes the provenance and
+applies a depth first network search algorithm to determine the
+pathways leading from inputs to outputs, excluding any objects or
+lines of code that do not fall along that pathway and are, therefore,
+not necessary to produce the desired set of results. As demonstrated
+in the next section, through this process, we can produce a new script
+with the minimal code necessary to generate the output we want.
 
 
 # Using `Rclean` to clean your code
 
 
-The following is an example of a script that has some "complications."
-As you can see, although the script is not extremely long or
-complicated, it's difficult enough to make it frustrating to visualize
-it in its entirety and pick through it.
+Analytical scripts that have not been refactored are often both long
+and complicated. However, a script doesn't need to be long to be
+complicated. The following example script presents some challenges
+such that even though it's not a long script, picking through it to
+get a result would likely prove to be frustrating.
 
-```{R long-setup, echo = FALSE, eval = TRUE, results = "hide"}
+```{R long-setup, echo = FALSE, eval = TRUE}
 
 script.long <- system.file(
     "example", 
@@ -116,7 +120,7 @@ script <- script.long
 
 ```
 
-```{R long-script, echo = FALSE, eval = FALSE}
+```{R long-script, echo = TRUE, eval = FALSE}
 
 library(stats)
 x <- 1:100
@@ -206,15 +210,14 @@ summary(fit_anova)
 
 So, let's say we've come to our script wanting to extract the code to
 produce one of the results `fit_sqrt_A`, which is an analysis that is
-relevant to some product. Not only do we want to double check the
-results, we also want to use the code again for another purpose, such
-as creating a plot of the patterns supported by the test. Manually
-tracing through our code for all the variables used in the test and
-finding all of the lines that were used to prepare them for the
-analysis would be annoying and difficult, especially given the fact
-that we have used "x" as a prefix for multiple unrelated objects in
-the script. Instead, we can easily do this automatically with
-`Rclean`.
+the fitted model object for an analysis. We might want to double check
+the results, and we also might need to use the code again for another
+purpose, such as creating a plot of the patterns supported by the
+test. Manually tracing through our code for all the variables used in
+the test and finding all of the lines that were used to prepare them
+for the analysis would be annoying and difficult, especially given the
+fact that we have used "x" as a prefix for multiple unrelated objects
+in the script. However, `Rclean` can do this easily via the `clean`.
 
 ```{R long}
 library(Rclean)
@@ -275,11 +278,10 @@ clean(script, vars = c("fit_sqrt_A", "fit_anova"))
 
 ```
 
-Currently, because of the data provenance that is used, libraries can
-not be isolated directly during the cleaning process. So, the
-`get_libs` function provides a way to detect the libraries for a given
-script. Just supply a file path and `get_libs` will return the
-libraries that are called by that script.
+Currently, libraries can not be isolated directly during the cleaning
+process. So, the `get_libs` function provides a way to detect the
+libraries for a given script. We just need to supply a file path and
+`get_libs` will return the libraries that are called by that script.
 
 ```{R ex-get_libs}
 
@@ -288,14 +290,20 @@ get_libs(script)
 ```
 
 
-## Software Availability
+## Software Availability and Installation
 
-The software is currently hosted on Github, and we recommend using the
-`devtools` library [@R-devtools] to install directly from the
-repository (https://github.com/ROpenSci/Rclean). The package is
-open-source and welcomes contributions. Please visit the repository
-page to report issues, request features or provide other feedback.
+Thanks to the efforts and helpful feedback from the ROpenSci
+Community, the package has recently passed software review and we have
+also recently published an article in the Journal of Statistical
+Software. The package is hosted through the ROpenSci organization on
+Github, and we recommend using the `devtools` library [@R-devtools] to
+install directly from the repository (https://github.com/ROpenSci/Rclean).
 
+```{R install}
+library(devtools)
+install_github("ROpenSci/Rclean")
+
+```
 
 # Concluding Remarks and Future Work
 
@@ -357,15 +365,17 @@ is executing. Through this active, concurrent monitoring,
 retrospective provenance can gather information that static
 prospective provenance can't. Greater details of the computational
 process would enable other features that could address some
-challenges, such as processing information from comments, parsing
-control statements and replicating random processes. However, using
-retrospective provenance comes at a cost. In order to gather it, the
-script needs to be executed. When scripts are computationally
-intensive or contain bugs that stop execution, then retrospective
-provenance can not be obtained for part or all of the code. Some work
-has already been done in the direction of implementing retrospective
-provenance for code cleaning in R (see
-http://end-to-end-provenance.github.io).
+challenges, such as libraries that are actually used by the code,
+processing comments, parsing control statements and replicating random
+processes. Using retrospective provenance comes at a cost. In order to
+gather it, the script needs to be executed. When scripts are
+computationally intensive or contain bugs that stop execution, then
+retrospective provenance can not be obtained for part or all of the
+code. Some work has already been done in the direction of implementing
+retrospective provenance for code cleaning in R (see
+http://end-to-end-provenance.github.io). Although such costs may
+present challenges, combining prospective and retrospective provenance
+methods could provide a powerful and flexible solution.
 
 Although the current implementation of Rclean for minimizing code is
 useful on its own, we see promise in connecting it with other clean
