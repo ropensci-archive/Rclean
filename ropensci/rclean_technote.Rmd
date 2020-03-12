@@ -232,7 +232,8 @@ test. Manually tracing through our code for all the variables used in
 the test and finding all of the lines that were used to prepare them
 for the analysis would be annoying and difficult, especially given the
 fact that we have used "x" as a prefix for multiple unrelated objects
-in the script. However, `Rclean` can do this easily via the `clean`.
+in the script. However, `Rclean` can do this easily via the `clean`
+function.
 
 ```{R long}
 library(Rclean)
