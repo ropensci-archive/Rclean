@@ -1,5 +1,5 @@
 ---
-title: Rclean and Automatng Code Cleaning in R
+title: Automatic Code Cleaning in R with `Rclean`
 author: M.K. Lau
 bibliography: refs.bib
 ---
@@ -43,7 +43,7 @@ specifically with the "art" of creating clean code; however, because
 manually culling code is tedious and potentially leads to errors,
 `Rclean` can be a useful tool for everyone at all levels of coding
 ability.
-
+	
 # The Provenance Engine Under the Hood
 
 The process that `Rclean` uses relies on the generation of data
@@ -101,8 +101,23 @@ in the next section, through this process, we can produce a new script
 with the minimal code necessary to generate the output we want.
 
 
-# Using `Rclean` to clean your code
+# Installation
 
+Through the helpful feedback from the ROpenSci community, the package
+has recently passed software review and a supporting article was
+recently published in the Journal of Open Source Software [@Lau2020],
+in which you can find more details about the package. The package is
+hosted through the ROpenSci organization on Github, and the package
+can be installed using the `devtools` library [@R-devtools] directly
+from the repository (https://github.com/ROpenSci/Rclean). 
+
+```{R install}
+library(devtools)
+install_github("ROpenSci/Rclean")
+
+```
+
+# Using `Rclean` to clean your code
 
 Analytical scripts that have not been refactored are often both long
 and complicated. However, a script doesn't need to be long to be
@@ -289,21 +304,6 @@ get_libs(script)
 
 ```
 
-
-## Software Availability and Installation
-
-Thanks to the efforts and helpful feedback from the ROpenSci
-Community, the package has recently passed software review and we have
-also recently published an article in the Journal of Statistical
-Software. The package is hosted through the ROpenSci organization on
-Github, and we recommend using the `devtools` library [@R-devtools] to
-install directly from the repository (https://github.com/ROpenSci/Rclean).
-
-```{R install}
-library(devtools)
-install_github("ROpenSci/Rclean")
-
-```
 
 # Concluding Remarks and Future Work
 

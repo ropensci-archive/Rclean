@@ -83,6 +83,27 @@ the desired set of results. As demonstrated in the next section, through
 this process, we can produce a new script with the minimal code
 necessary to generate the output we want.
 
+Installation
+============
+
+Through the helpful feedback from the ROpenSci community, the package
+has recently passed software review and a supporting article was
+recently published in the Journal of Open Source Software (Lau,
+Pasquier, and Seltzer 2020), in which you can find more details about
+the package. The package is hosted through the ROpenSci organization on
+Github, and the package can be installed using the `devtools` library
+(Wickham, Hester, and Chang 2019) directly from the repository
+(<https://github.com/ROpenSci/Rclean>).
+
+    library(devtools)
+
+    ## Loading required package: usethis
+
+    install_github("ROpenSci/Rclean")
+
+    ## Skipping install of 'Rclean' from a github remote, the SHA1 (7099ed70) has not changed since last install.
+    ##   Use `force = TRUE` to force installation
+
 Using `Rclean` to clean your code
 =================================
 
@@ -285,23 +306,6 @@ libraries for a given script. We just need to supply a file path and
 
     ## [1] "stats"
 
-Software Availability and Installation
---------------------------------------
-
-Thanks to the efforts and helpful feedback from the ROpenSci Community,
-the package has recently passed software review and we have also
-recently published an article in the Journal of Statistical Software.
-The package is hosted through the ROpenSci organization on Github, and
-we recommend using the `devtools` library (Wickham, Hester, and Chang
-2019) to install directly from the repository
-(<https://github.com/ROpenSci/Rclean>).
-
-    library(devtools)
-    install_github("ROpenSci/Rclean")
-
-    ## Skipping install of 'Rclean' from a github remote, the SHA1 (7099ed70) has not changed since last install.
-    ##   Use `force = TRUE` to force installation
-
 Concluding Remarks and Future Work
 ==================================
 
@@ -408,6 +412,11 @@ doi:[10.1145/2602649.2602651](https://doi.org/10.1145/2602649.2602651).
 Landau, William Michael. 2020. *drake: A Pipeline Toolkit for
 Reproducible Computation at Scale*.
 <https://CRAN.R-project.org/package=drake>.
+
+Lau, Matthew, Thomas F. J.-M Pasquier, and Margo Seltzer. 2020. “Rclean:
+A Tool for Writing Cleaner, More Transparent Code.” *Journal of Open
+Source Software* 5 (46). The Open Journal: 1312.
+doi:[10.21105/joss.01312](https://doi.org/10.21105/joss.01312).
 
 Temple Lang, Duncan, Roger Peng, Deborah Nolan, and Gabriel Becker.
 2020. *CodeDepends: Analysis of R Code for Reproducible Research and
