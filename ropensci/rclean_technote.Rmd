@@ -14,7 +14,7 @@ The `R` language has become very popular among scientists and analysts
 because it enables the rapid development of software and empowers
 scientific investigation. However, regardless of the language used,
 data analysis is usually complicated. Because of various project
-complexities and time contraints, analytical software often reflects
+complexities and time constraints, analytical software often reflects
 these challenges. "What did I measure? What analyses are relevant to
 them? Do I need to transform the data? What's the function for the
 analysis I want to run?" Although many researchers see the value in
@@ -28,7 +28,7 @@ to issues with transparency and software that is highly unstable
 
 The goal of `Rclean` is to provide a automated tool to help scientists
 more easily write better code. Specifically, `Rclean` has been
-designed to faciliate the isolation of the code needed to produce one
+designed to facilitate the isolation of the code needed to produce one
 or more results, because more often then not, when someone is writing
 an R script, the ultimate goal is analytical results for inference,
 such as a set of statistical analyses and associated figures and
