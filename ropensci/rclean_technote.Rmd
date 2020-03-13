@@ -65,7 +65,7 @@ hosted through the ROpenSci organization on Github, and the package
 can be installed using the `devtools` library [@R-devtools] directly
 from the repository (https://github.com/ROpenSci/Rclean). 
 
-```{R install}
+```{R install, eval = FALSE}
 library(devtools)
 install_github("ROpenSci/Rclean")
 
